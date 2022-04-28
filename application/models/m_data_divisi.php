@@ -21,4 +21,10 @@ class M_data_divisi extends CI_Model
     $this->db->delete($table, $where);
   }
 
+  //
+  public function showDataDivisi()
+  {
+    $query = "SELECT * FROM tb_divisi ORDER BY tb_divisi.id_divisi DESC";
+    return $this->db->query($query)->result_array();
+  }
 }

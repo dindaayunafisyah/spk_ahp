@@ -21,4 +21,11 @@ class M_data_jabatan extends CI_Model
     $this->db->delete($table, $where);
   }
 
+  //
+  // public function showDataJabatan()
+  // {
+  //   $query = "SELECT * FROM tb_jabatan ORDER BY tb_jabatan.id_jabatan DESC";
+  //   return $this->db->query($query)->result_array();
+  // }
+
 }
