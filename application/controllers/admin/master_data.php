@@ -205,6 +205,9 @@ class Master_data extends CI_Controller
 
 
 
+
+
+
     // ---------------------- Data Karyawan ----------------------
 
     // ---------------------- Data Operator ----------------------
@@ -487,15 +490,67 @@ class Master_data extends CI_Controller
 
 
 
+
+
+
+
+
+
+    //
     public function tampil_kriteria_op()
     {
+        $data['title'] = 'Data Kriteria';
         // ini adalah variabel array $data yang memiliki index user, berguna untuk menyimpan data 
         $data['kriteria_op'] = $this->m_data_kriteria->tampil_kriteria_op()->result();
+        $data['data_nilban'] = $this->m_data_nilai->tampil_nilai()->result_array();
         // ini adalah baris kode yang berfungsi menampilkan v_tampil dan membawa data dari tabel user
         $this->load->view('admin/tamplate/header');
         $this->load->view('admin/tamplate/sidebar');
         $this->load->view('admin/v_kriteria_operator', $data);
         $this->load->view('admin/tamplate/footer');
+    }
+
+    public function update_kriteria_op()
+    {
+        $data['title'] = 'Data Kriteria';
+        // ini adalah variabel array $data yang memiliki index user, berguna untuk menyimpan data 
+        $data['kriteria_op'] = $this->m_data_kriteria->tampil_kriteria_op()->result();
+        $data['data_nilban'] = $this->m_data_nilai->tampil_nilai()->result_array();
+        // ini adalah baris kode yang berfungsi menampilkan v_tampil dan membawa data dari tabel user
+        $update = [
+            'nama_kriteria_op' => $this->input->post('nama_kriteria_op'),
+            'nilai_kriteria_op' => $this->input->post('nilai_banding'),
+        ];
+        $id = $this->input->post('id_kriteria_op');
+        $this->db->where('id_kriteria_op', $id);
+        $true = $this->db->update('tb_kriteria_operator', $update);
+        if ($true) {
+            $this->load->view('admin/tamplate/header');
+            $this->load->view('admin/tamplate/sidebar');
+            $this->load->view('admin/v_kriteria_operator', $data);
+            $this->load->view('admin/tamplate/footer');
+            $this->session->set_flashdata(
+                'message',
+                '<div class="alert alert-primary alert-dismissible fade show" role="alert">
+                    Sukses diupdate
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>'
+            );
+            redirect('admin/master_data/tampil_kriteria_op');
+        } else {
+            $this->load->view('admin/tamplate/header');
+            $this->load->view('admin/tamplate/sidebar');
+            $this->load->view('admin/v_kriteria_operator', $data);
+            $this->load->view('admin/tamplate/footer');
+            $this->session->set_flashdata(
+                'message',
+                '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    Gagal diupdate
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>'
+            );
+            redirect('admin/master_data/tampil_kriteria_op');
+        }
     }
 
     public function tambah_kriteria_op()
@@ -536,6 +591,7 @@ class Master_data extends CI_Controller
         $data = array(
             'id_kriteria_op' =>  $id_kriteria_op
         );
+        $data['data_nilban'] = $this->m_data_nilai->tampil_nilai()->result_array();
         $this->load->view('admin/tamplate/header');
         $this->load->view('admin/tamplate/sidebar');
         $this->load->view('admin/v_tambah_kriteria_op', $data);
@@ -549,8 +605,8 @@ class Master_data extends CI_Controller
         // array yang berguna untuk mennjadikanva variabel diatas menjadi 1 variabel yang nantinya akan di sertakan dalam query insert
         $data = array(
             'id_kriteria_op' =>  $id_kriteria_op,
-            'nama_kriteria_op' => $nama_kriteria_op
-
+            'nama_kriteria_op' => $nama_kriteria_op,
+            'nilai_kriteria_op' => $this->input->post('nilai_banding'),
         );
         // method yang berfungsi melakukan insert ke dalam database yang mengirim 2 parameter yaitu sebuah array data dan nama tabel yang dimaksud
         $this->m_data_kriteria->tambah_kriteria_op($data, 'tb_kriteria_operator');
@@ -578,7 +634,17 @@ class Master_data extends CI_Controller
          ');
         redirect('admin/master_data/tampil_kriteria_op');
     }
+    //
 
+
+
+
+
+
+
+
+
+    //
     public function tampil_kriteria_kasi()
     {
         // ini adalah variabel array $data yang memiliki index user, berguna untuk menyimpan data 
@@ -671,8 +737,19 @@ class Master_data extends CI_Controller
         redirect('admin/master_data/tampil_kriteria_kasi');
     }
 
+
+
+
+
+
+
+
+
+
+    //
     public function tampil_nilai()
     {
+        $data['title'] = 'Nilai Banding';
         // ini adalah variabel array $data yang memiliki index user, berguna untuk menyimpan data 
         $data['nilai'] = $this->m_data_nilai->tampil_nilai()->result();
         // ini adalah baris kode yang berfungsi menampilkan v_tampil dan membawa data dari tabel user
@@ -681,6 +758,81 @@ class Master_data extends CI_Controller
         $this->load->view('admin/v_nilai_banding', $data);
         $this->load->view('admin/tamplate/footer');
     }
+    public function update_nilai_banding()
+    {
+        $data['title'] = 'Nilai Banding';
+        // ini adalah variabel array $data yang memiliki index user, berguna untuk menyimpan data 
+        $data['nilai'] = $this->m_data_nilai->tampil_nilai()->result();
+        // ini adalah baris kode yang berfungsi menampilkan v_tampil dan membawa data dari tabel user
+        $update = [
+            'nama_nilai' => $this->input->post('nama_nilai'),
+            'nilai' => $this->input->post('nilai'),
+        ];
+        $id = $this->input->post('id_nilai');
+        $this->db->where('id_nilai', $id);
+        $true = $this->db->update('nilai_banding', $update);
+        if ($true) {
+            $this->load->view('admin/tamplate/header');
+            $this->load->view('admin/tamplate/sidebar');
+            $this->load->view('admin/v_nilai_banding', $data);
+            $this->load->view('admin/tamplate/footer');
+            $this->session->set_flashdata(
+                'message',
+                '<div class="alert alert-primary alert-dismissible fade show" role="alert">
+                    Sukses diupdate
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>'
+            );
+            redirect('admin/master_data/tampil_nilai');
+        } else {
+            $this->load->view('admin/tamplate/header');
+            $this->load->view('admin/tamplate/sidebar');
+            $this->load->view('admin/v_nilai_banding', $data);
+            $this->load->view('admin/tamplate/footer');
+            $this->session->set_flashdata(
+                'message',
+                '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    Gagal diupdate
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>'
+            );
+            redirect('admin/master_data/tampil_nilai');
+        }
+    }
+    public function delete_nilai_banding($id)
+    {
+        $this->db->where('id_nilai', $id);
+        $true = $this->db->delete('nilai_banding');
+        if ($true) {
+            $this->session->set_flashdata(
+                'message',
+                '<div class="alert alert-primary alert-dismissible fade show" role="alert">
+                    Sukses dihapus
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>'
+            );
+            redirect('admin/master_data/tampil_nilai');
+        } else {
+            $this->session->set_flashdata(
+                'message',
+                '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    Gagal dihapus
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>'
+            );
+            redirect('admin/master_data/tampil_nilai');
+        }
+    }
+    //
+
+
+
+
+
+
+
+
+
 
     public function tambah_nilai()
     {

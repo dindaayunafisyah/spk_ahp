@@ -39,6 +39,11 @@
                                         Data Divisi</a></li>
                         </li>
                         <li class="submenu-item ">
+                        <li class="sidebar-title"><a href="<?= base_url('admin/master_data/tampil_nilai') ?>">
+                                Nilai Banding</a>
+                        </li>
+                        </li>
+                        <li class="submenu-item ">
                         <li class="sidebar-item  has-sub">
                             <a href="#" class='sidebar-link'>
                                 Data Karyawan</a>
@@ -76,10 +81,6 @@
                                     <a href="component-badge.html">Kepala Divisi</a>
                                 </li>
                             </ul>
-                        </li>
-                        <li class="submenu-item ">
-                        <li class="sidebar-title"><a href="<?= base_url('admin/master_data/tampil_nilai') ?>">
-                                Nilai Banding</a></li>
                         </li>
                         <li class="submenu-item ">
                         <li class="sidebar-item  has-sub">

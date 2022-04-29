@@ -5,7 +5,8 @@ class M_data_nilai extends CI_Model
 
   public function tampil_nilai()
   {
-    return $this->db->get('nilai_banding');
+    $query = "SELECT * FROM nilai_banding ORDER BY nilai_banding.id_nilai ASC";
+    return $this->db->query($query);
   }
   function tampil_nilai_akhir()
   {
@@ -16,5 +17,4 @@ class M_data_nilai extends CI_Model
   {
     $this->db->insert($table, $data);
   }
-  
 }
