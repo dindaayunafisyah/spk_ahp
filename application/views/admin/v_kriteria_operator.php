@@ -19,7 +19,6 @@
               <tr>
                 <th>ID Kriteria Operator</th>
                 <th>Kriteria Penilaian</th>
-                <th>Nilai Banding</th>
                 <th>Aksi</th>
               </tr>
             </thead>
@@ -29,7 +28,6 @@
                 <tr>
                   <td><?= $kri->id_kriteria_op ?></td>
                   <td><?= $kri->nama_kriteria_op ?></td>
-                  <td><?= $kri->nilai_kriteria_op; ?></td>
                   <td>
                     <button type="button" class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#edit-data-kriteria<?= $kri->id_kriteria_op ?>">
                       Edit
@@ -40,30 +38,90 @@
                 </tr>
               <?php } ?>
             </tbody>
+            <tfoot>
+              <tr>
+                <td>
+                  <a href="<?= base_url('admin/master_data/analisa_perbandingan') ?>" class="btn btn-secondary">
+                    Analisa >
+                  </a>
+                </td>
+                <td colspan="2">
+                  <a href="<?= base_url('admin/master_data/update_analisa_perbandingan') ?>" class="btn btn-secondary">
+                    Update Analisa >
+                  </a>
+                </td>
+              </tr>
+            </tfoot>
           </table>
           <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
             <thead>
               <tr>
                 <th></th>
-                <?php foreach ($kriteria_op as $kri) : ?>
-                  <th><?= $kri->nama_kriteria_op ?></th>
-                <?php endforeach; ?>
+                <th>Productivity</th>
+                <th>Kerjasa Dan Komunikasi</th>
+                <th>Pelaksanaan 5R</th>
+                <th>Dokumentasi</th>
               </tr>
             </thead>
             <tbody>
+              <tr></tr>
               <?php
-              foreach ($kriteria_op as $kri) { ?>
+              foreach ($data_anop as $dao) { ?>
                 <tr>
-                  <td><?= $kri->nama_kriteria_op ?></td>
-                  <?php foreach ($kriteria_op as $kri1) : ?>
+                  <td>
                     <?php
-                    $res = $kri1->nilai_kriteria_op / $kri->nilai_kriteria_op;
-                    if ($res == 1) : ?>
-                      <td style="background-color: aqua;"><?= $res; ?></td>
-                    <?php else : ?>
-                      <td><?= $res; ?></td>
-                    <?php endif; ?>
-                  <?php endforeach; ?>
+                    switch ($dao):
+                      case $dao['id_anop'] == 1:
+                        echo 'Productivty';
+                        break;
+                      case $dao['id_anop'] == 2:
+                        echo 'Kerjasama dan Komunikasi';
+                        break;
+                      case $dao['id_anop'] == 3:
+                        echo 'Pelaksanaan 5 R';
+                        break;
+                      case $dao['id_anop'] == 4:
+                        echo 'Dokumentasi';
+                        break;
+                    ?>
+                    <?php endswitch; ?>
+                  </td>
+                  <?php if ($dao['productivity'] == 1) : ?>
+                    <td style="background-color: aqua;">
+                      <?= $dao['productivity'] ?>
+                    </td>
+                  <?php else : ?>
+                    <td>
+                      <?= $dao['productivity'] ?>
+                    </td>
+                  <?php endif; ?>
+                  <?php if ($dao['kerjasamadankom'] == 1) : ?>
+                    <td style="background-color: aqua;">
+                      <?= $dao['kerjasamadankom'] ?>
+                    </td>
+                  <?php else : ?>
+                    <td>
+                      <?= $dao['kerjasamadankom'] ?>
+                    </td>
+                  <?php endif; ?>
+                  <?php if ($dao['pelaksana5r'] == 1) : ?>
+                    <td style="background-color: aqua;">
+                      <?= $dao['pelaksana5r'] ?>
+                    </td>
+                  <?php else : ?>
+                    <td>
+                      <?= $dao['pelaksana5r'] ?>
+                    </td>
+                  <?php endif; ?>
+                  <?php if ($dao['dokumentasi'] == 1) : ?>
+                    <td style="background-color: aqua;">
+                      <?= $dao['dokumentasi'] ?>
+                    </td>
+                  <?php else : ?>
+                    <td>
+                      <?= $dao['dokumentasi'] ?>
+                    </td>
+                  <?php endif; ?>
                 </tr>
               <?php } ?>
             </tbody>
@@ -92,15 +150,6 @@
                   <label for="nama_divisi"> Kriteria Penilaian : </label>
                   <div class="form-group">
                     <input type="text" class="form-control form-control-user" id="nama_kriteria_op" name="nama_kriteria_op" value="<?= $kri->nama_kriteria_op ?>" required>
-                  </div>
-                  <label for="Nilai Banding"> Nilai Banding : </label>
-                  <div class="form-group">
-                    <select class="form-control form-control-user" id="nilai_banding" name="nilai_banding" required>
-                      <option value="<?= $kri->nilai_kriteria_op ?>"><?= $kri->nilai_kriteria_op ?></option>
-                      <?php foreach ($data_nilban as $dnb) : ?>
-                        <option value="<?= $dnb['nilai'] ?>"><?= $dnb['nama_nilai'] . ' - ' . $dnb['nilai'] ?></option>
-                      <?php endforeach; ?>
-                    </select>
                   </div>
                 </div>
                 <div class="modal-footer">

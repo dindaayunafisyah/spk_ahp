@@ -13,6 +13,11 @@ class M_data_nilai extends CI_Model
     $this->db->order_by('id_nilai', 'DESC');
     return $this->db->get('nilai_banding', 1);
   }
+  function tampil_nilai_awal()
+  {
+    $this->db->order_by('id_nilai', 'ASC');
+    return $this->db->get('nilai_banding', 1);
+  }
   function tambah_nilai($data, $table)
   {
     $this->db->insert($table, $data);

@@ -20,14 +20,6 @@
                 <label for="nama_divisi"> Kriteria Penilaian : </label>
                 <input type="text" class="form-control form-control-user" id="nama_kriteria_op" name="nama_kriteria_op" placeholder="Masukan Nama Kriteria" title="Isikan data dengan benar" required>
             </div>
-            <div class="form-group">
-                <label for="Nilai Banding"> Nilai Banding : </label>
-                <select class="form-control form-control-user" id="nilai_banding" name="nilai_banding" required>
-                    <?php foreach ($data_nilban as $dnb) : ?>
-                        <option value="<?= $dnb['nilai'] ?>"><?= $dnb['nama_nilai'] . ' - ' . $dnb['nilai'] ?></option>
-                    <?php endforeach; ?>
-                </select>
-            </div>
             <hr>
             <button type="submit" name="submit" class="btn btn-success btn-user btn-block">Tambah</button>
             <br>

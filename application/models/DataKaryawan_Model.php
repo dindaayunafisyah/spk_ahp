@@ -14,4 +14,12 @@ class DataKaryawan_Model extends CI_Model
       $query = "SELECT * FROM tb_karyawan WHERE tb_karyawan.id_jabatan = 'JB003' ORDER BY tb_karyawan.id_karyawan DESC";
       return $this->db->query($query)->result_array();
    }
+
+
+   //Data analisa OP
+   public function showAnalyzeOP()
+   {
+      $query = "SELECT * FROM tb_analisa_op";
+      return $this->db->query($query)->result_array();
+   }
 }
