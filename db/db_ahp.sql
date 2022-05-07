@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 29 Apr 2022 pada 16.10
+-- Waktu pembuatan: 07 Bulan Mei 2022 pada 12.57
 -- Versi server: 10.4.11-MariaDB
 -- Versi PHP: 7.3.13
 
@@ -76,7 +76,7 @@ INSERT INTO `data_kuisioner_op` (`id_kuis_op`, `id_kriteria_op`, `kuis_op`) VALU
 CREATE TABLE `nilai_banding` (
   `id_nilai` varchar(10) NOT NULL,
   `nama_nilai` varchar(50) NOT NULL,
-  `nilai` int(11) NOT NULL
+  `nilai` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -84,15 +84,15 @@ CREATE TABLE `nilai_banding` (
 --
 
 INSERT INTO `nilai_banding` (`id_nilai`, `nama_nilai`, `nilai`) VALUES
-('NL001', 'Sama Pentingnya dari', 1),
-('NL002', 'Sedikit lebih penting dari', 3),
-('NL003', 'Cukup Penting dari', 5),
-('NL004', 'Sangat Penting dari', 7),
-('NL005', 'Ekstrim Pentingnya dari', 9),
-('NL006', 'Nilai diantara penilaian yang sama', 2),
-('NL007', 'Nilai diantara penilaian yang sama', 4),
-('NL008', 'Nilai diantara penilaian yang sama', 6),
-('NL009', 'Nilai diantara penilaian yang sama', 8);
+('NL001', 'Sama Penting dengan', 1),
+('NL002', 'Mendekati sedikit lebih penting dari', 2),
+('NL003', 'Sedikit lebih penting dari', 3),
+('NL004', 'Mendekati lebih penting dari', 4),
+('NL005', 'Lebih penting dari ', 5),
+('NL006', 'Nilai diantara penilaian yang sama', 6),
+('NL007', 'Sangat penting dari', 7),
+('NL008', 'Nilai diantara penilaian yang sama', 8),
+('NL009', 'Ekstrim penting dari', 9);
 
 -- --------------------------------------------------------
 
@@ -106,6 +106,36 @@ CREATE TABLE `tb_admin` (
   `username` varchar(10) NOT NULL,
   `password` varchar(8) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `tb_analisa_op`
+--
+
+CREATE TABLE `tb_analisa_op` (
+  `id_anop` int(11) NOT NULL,
+  `productivity` double DEFAULT NULL,
+  `kerjasamadankom` double DEFAULT NULL,
+  `pelaksana5r` double DEFAULT NULL,
+  `dokumentasi` double DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `tb_analisa_op`
+--
+
+INSERT INTO `tb_analisa_op` (`id_anop`, `productivity`, `kerjasamadankom`, `pelaksana5r`, `dokumentasi`) VALUES
+(1, 1, 4, 5, 5),
+(2, 0.25, 1, 2, 2),
+(3, 0.5, 0.5, 1, 0.33333333333333),
+(4, 0.5, 0.5, 3, 1),
+(5, NULL, NULL, NULL, NULL),
+(6, NULL, NULL, NULL, NULL),
+(7, NULL, NULL, NULL, NULL),
+(8, NULL, NULL, NULL, NULL),
+(9, NULL, NULL, NULL, NULL),
+(10, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -199,19 +229,18 @@ INSERT INTO `tb_kriteria_kasi` (`id_kriteria_kasi`, `nama_kriteria_kasi`) VALUES
 
 CREATE TABLE `tb_kriteria_operator` (
   `id_kriteria_op` varchar(10) NOT NULL,
-  `nama_kriteria_op` varchar(50) NOT NULL,
-  `nilai_kriteria_op` int(11) NOT NULL
+  `nama_kriteria_op` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `tb_kriteria_operator`
 --
 
-INSERT INTO `tb_kriteria_operator` (`id_kriteria_op`, `nama_kriteria_op`, `nilai_kriteria_op`) VALUES
-('KOP001', 'Productivity', 1),
-('KOP002', 'Komunikasi dan Kerjasama', 4),
-('KOP003', 'Pelaksanaan 5R', 5),
-('KOP004', 'Dokumentasi', 3);
+INSERT INTO `tb_kriteria_operator` (`id_kriteria_op`, `nama_kriteria_op`) VALUES
+('KOP001', 'Productivity'),
+('KOP002', 'Komunikasi dan Kerjasama'),
+('KOP003', 'Pelaksanaan 5R'),
+('KOP004', 'Dokumentasi');
 
 -- --------------------------------------------------------
 
@@ -286,6 +315,12 @@ ALTER TABLE `data_kuisioner_op`
 --
 ALTER TABLE `nilai_banding`
   ADD PRIMARY KEY (`id_nilai`);
+
+--
+-- Indeks untuk tabel `tb_analisa_op`
+--
+ALTER TABLE `tb_analisa_op`
+  ADD PRIMARY KEY (`id_anop`);
 
 --
 -- Indeks untuk tabel `tb_divisi`
