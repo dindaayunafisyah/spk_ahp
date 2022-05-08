@@ -5,7 +5,10 @@ class M_data_kriteria extends CI_Model
 
   public function tampil_kriteria_op()
   {
-    return $this->db->get('tb_kriteria_operator');
+    $query = "SELECT * FROM tb_kriteria_operator ORDER BY tb_kriteria_operator.id_kriteria_op ASC";
+
+    $getUserb = $this->db->query($query);
+    return $getUserb;
   }
   function tampil_kriteria_akhir_op()
   {
@@ -46,5 +49,4 @@ class M_data_kriteria extends CI_Model
   {
     return $this->db->get_where($table, $where);
   }
-
 }

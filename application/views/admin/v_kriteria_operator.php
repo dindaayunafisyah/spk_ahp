@@ -26,7 +26,11 @@
               <?php
               foreach ($kriteria_op as $kri) { ?>
                 <tr>
-                  <td><?= $kri->id_kriteria_op ?></td>
+                  <?php if ($kri->id_kriteria_op != "KOP01") : ?>
+                    <td><?= $kri->id_kriteria_op ?></td>
+                  <?php else : ?>
+                    <td>KOP0010</td>
+                  <?php endif; ?>
                   <td><?= $kri->nama_kriteria_op ?></td>
                   <td>
                     <button type="button" class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#edit-data-kriteria<?= $kri->id_kriteria_op ?>">
@@ -45,11 +49,11 @@
                     Analisa >
                   </a>
                 </td>
-                <td colspan="2">
+                <!-- <td colspan="2">
                   <a href="<?= base_url('admin/master_data/update_analisa_perbandingan') ?>" class="btn btn-secondary">
                     Update Analisa >
                   </a>
-                </td>
+                </td> -->
               </tr>
             </tfoot>
           </table>
@@ -57,10 +61,45 @@
             <thead>
               <tr>
                 <th></th>
-                <th>Productivity</th>
-                <th>Kerjasa Dan Komunikasi</th>
-                <th>Pelaksanaan 5R</th>
-                <th>Dokumentasi</th>
+                <?php
+                foreach ($data_anop as $dao) : ?>
+                  <th>
+                    <?php
+                    switch ($dao):
+                      case $dao['id_anop'] == 1:
+                        echo 'Productivty';
+                        break;
+                      case $dao['id_anop'] == 2:
+                        echo 'Kerjasama dan Komunikasi';
+                        break;
+                      case $dao['id_anop'] == 3:
+                        echo 'Pelaksanaan 5 R';
+                        break;
+                      case $dao['id_anop'] == 4:
+                        echo 'Dokumentasi';
+                        break;
+                      case $dao['id_anop'] == 5:
+                        echo 'Pemahaman dan Pelaksanaan K3';
+                        break;
+                      case $dao['id_anop'] == 6:
+                        echo 'Pemahaman SOP';
+                        break;
+                      case $dao['id_anop'] == 7:
+                        echo 'Pemahaman Tools';
+                        break;
+                      case $dao['id_anop'] == 8:
+                        echo 'Kehadiran';
+                        break;
+                      case $dao['id_anop'] == 9:
+                        echo 'Kedisiplinan';
+                        break;
+                      case $dao['id_anop'] == 10:
+                        echo 'Inisiatif';
+                        break;
+                    ?>
+                    <?php endswitch; ?>
+                  </th>
+                <?php endforeach; ?>
               </tr>
             </thead>
             <tbody>
@@ -83,6 +122,24 @@
                       case $dao['id_anop'] == 4:
                         echo 'Dokumentasi';
                         break;
+                      case $dao['id_anop'] == 5:
+                        echo 'Pemahaman dan Pelaksanaan K3';
+                        break;
+                      case $dao['id_anop'] == 6:
+                        echo 'Pemahaman SOP';
+                        break;
+                      case $dao['id_anop'] == 7:
+                        echo 'Pemahaman Tools';
+                        break;
+                      case $dao['id_anop'] == 8:
+                        echo 'Kehadiran';
+                        break;
+                      case $dao['id_anop'] == 9:
+                        echo 'Kedisiplinan';
+                        break;
+                      case $dao['id_anop'] == 10:
+                        echo 'Inisiatif';
+                        break;
                     ?>
                     <?php endswitch; ?>
                   </td>
@@ -95,6 +152,7 @@
                       <?= $dao['productivity'] ?>
                     </td>
                   <?php endif; ?>
+
                   <?php if ($dao['kerjasamadankom'] == 1) : ?>
                     <td style="background-color: aqua;">
                       <?= $dao['kerjasamadankom'] ?>
@@ -104,6 +162,7 @@
                       <?= $dao['kerjasamadankom'] ?>
                     </td>
                   <?php endif; ?>
+
                   <?php if ($dao['pelaksana5r'] == 1) : ?>
                     <td style="background-color: aqua;">
                       <?= $dao['pelaksana5r'] ?>
@@ -113,6 +172,7 @@
                       <?= $dao['pelaksana5r'] ?>
                     </td>
                   <?php endif; ?>
+
                   <?php if ($dao['dokumentasi'] == 1) : ?>
                     <td style="background-color: aqua;">
                       <?= $dao['dokumentasi'] ?>
@@ -122,8 +182,104 @@
                       <?= $dao['dokumentasi'] ?>
                     </td>
                   <?php endif; ?>
+
+                  <?php if ($dao['paham_laksana_k3'] == 1) : ?>
+                    <td style="background-color: aqua;">
+                      <?= $dao['paham_laksana_k3'] ?>
+                    </td>
+                  <?php else : ?>
+                    <td>
+                      <?= $dao['paham_laksana_k3'] ?>
+                    </td>
+                  <?php endif; ?>
+
+                  <?php if ($dao['paham_sop'] == 1) : ?>
+                    <td style="background-color: aqua;">
+                      <?= $dao['paham_sop'] ?>
+                    </td>
+                  <?php else : ?>
+                    <td>
+                      <?= $dao['paham_sop'] ?>
+                    </td>
+                  <?php endif; ?>
+
+                  <?php if ($dao['paham_tools'] == 1) : ?>
+                    <td style="background-color: aqua;">
+                      <?= $dao['paham_tools'] ?>
+                    </td>
+                  <?php else : ?>
+                    <td>
+                      <?= $dao['paham_tools'] ?>
+                    </td>
+                  <?php endif; ?>
+
+                  <?php if ($dao['hadir'] == 1) : ?>
+                    <td style="background-color: aqua;">
+                      <?= $dao['hadir'] ?>
+                    </td>
+                  <?php else : ?>
+                    <td>
+                      <?= $dao['hadir'] ?>
+                    </td>
+                  <?php endif; ?>
+
+                  <?php if ($dao['disiplin'] == 1) : ?>
+                    <td style="background-color: aqua;">
+                      <?= $dao['disiplin'] ?>
+                    </td>
+                  <?php else : ?>
+                    <td>
+                      <?= $dao['disiplin'] ?>
+                    </td>
+                  <?php endif; ?>
+
+                  <?php if ($dao['inisiatif'] == 1) : ?>
+                    <td style="background-color: aqua;">
+                      <?= $dao['inisiatif'] ?>
+                    </td>
+                  <?php else : ?>
+                    <td>
+                      <?= $dao['inisiatif'] ?>
+                    </td>
+                  <?php endif; ?>
+
                 </tr>
               <?php } ?>
+              <?php foreach ($data_sum as $dsm) : ?>
+                <tr style="font-weight: bold; font-size:15px;">
+                  <td><strong>Total</strong></td>
+                  <td>
+                    <?= $dsm['sumProc']; ?>
+                  </td>
+                  <td>
+                    <?= $dsm['sumKdk']; ?>
+                  </td>
+                  <td>
+                    <?= $dsm['sump5r']; ?>
+                  </td>
+                  <td>
+                    <?= $dsm['sumDoc']; ?>
+                  </td>
+                  <td>
+                    <?= $dsm['sumplk3']; ?>
+                  </td>
+                  <td>
+                    <?= $dsm['sumPsop']; ?>
+                  </td>
+                  <td>
+                    <?= $dsm['sumPtls']; ?>
+                  </td>
+                  <td>
+                    <?= $dsm['sumHdr']; ?>
+                  </td>
+                  <td>
+                    <?= $dsm['sumDsp']; ?>
+                  </td>
+                  <td>
+                    <?= $dsm['sumInf']; ?>
+                  </td>
+                </tr>
+              <?php endforeach; ?>
             </tbody>
           </table>
         </div>

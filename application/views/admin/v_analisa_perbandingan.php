@@ -17,7 +17,7 @@
         <!-- Disini tempat membuat Edit Profil nya! -->
     </div>
     <div class="col-lg-10">
-        <form action="<?php echo base_url() . 'admin/master_data/analisa_perbandingan'; ?>" method="post">
+        <form action="<?php echo base_url() . 'admin/master_data/update_analisa_perbandingan'; ?>" method="post">
             <table class="table table-responsive table-hover">
                 <?php foreach ($data_kriop as $dko) : ?>
                     <?php foreach ($data_kriop as $dko1) : ?>
@@ -27,6 +27,7 @@
                             </td>
                             <td>
                                 <select name="<?= str_replace(" ", "_", $dko['nama_kriteria_op']) ?>[]" id="<?= str_replace(" ", "_", $dko['nama_kriteria_op']) ?>" class="form-control">
+                                    <option value="">Pilih Nilai ...</option>
                                     <?php foreach ($data_nilban as $dbn) : ?>
                                         <option value="<?= $dbn['nilai'] ?>"><?= $dbn['nama_nilai'] . ' - ' . $dbn['nilai'] ?></option>
                                         <?php foreach ($data_nilban1 as $dbn1) : ?>

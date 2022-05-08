@@ -22,4 +22,11 @@ class M_data_nilai extends CI_Model
   {
     $this->db->insert($table, $data);
   }
+
+  //
+  public function showAnalyzeOP()
+  {
+    $query = "SELECT * FROM tb_analisa_op ORDER BY tb_analisa_op.id_anop ASC";
+    return $this->db->query($query);
+  }
 }

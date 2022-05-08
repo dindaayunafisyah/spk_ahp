@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 07 Bulan Mei 2022 pada 12.57
+-- Waktu pembuatan: 08 Bulan Mei 2022 pada 16.36
 -- Versi server: 10.4.11-MariaDB
 -- Versi PHP: 7.3.13
 
@@ -118,24 +118,30 @@ CREATE TABLE `tb_analisa_op` (
   `productivity` double DEFAULT NULL,
   `kerjasamadankom` double DEFAULT NULL,
   `pelaksana5r` double DEFAULT NULL,
-  `dokumentasi` double DEFAULT NULL
+  `dokumentasi` double DEFAULT NULL,
+  `paham_laksana_k3` double DEFAULT NULL,
+  `paham_sop` double DEFAULT NULL,
+  `paham_tools` double DEFAULT NULL,
+  `hadir` double DEFAULT NULL,
+  `disiplin` double DEFAULT NULL,
+  `inisiatif` double DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `tb_analisa_op`
 --
 
-INSERT INTO `tb_analisa_op` (`id_anop`, `productivity`, `kerjasamadankom`, `pelaksana5r`, `dokumentasi`) VALUES
-(1, 1, 4, 5, 5),
-(2, 0.25, 1, 2, 2),
-(3, 0.5, 0.5, 1, 0.33333333333333),
-(4, 0.5, 0.5, 3, 1),
-(5, NULL, NULL, NULL, NULL),
-(6, NULL, NULL, NULL, NULL),
-(7, NULL, NULL, NULL, NULL),
-(8, NULL, NULL, NULL, NULL),
-(9, NULL, NULL, NULL, NULL),
-(10, NULL, NULL, NULL, NULL);
+INSERT INTO `tb_analisa_op` (`id_anop`, `productivity`, `kerjasamadankom`, `pelaksana5r`, `dokumentasi`, `paham_laksana_k3`, `paham_sop`, `paham_tools`, `hadir`, `disiplin`, `inisiatif`) VALUES
+(1, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -240,7 +246,13 @@ INSERT INTO `tb_kriteria_operator` (`id_kriteria_op`, `nama_kriteria_op`) VALUES
 ('KOP001', 'Productivity'),
 ('KOP002', 'Komunikasi dan Kerjasama'),
 ('KOP003', 'Pelaksanaan 5R'),
-('KOP004', 'Dokumentasi');
+('KOP004', 'Dokumentasi'),
+('KOP005', 'Pemahaman dan Pelaksanaan K3'),
+('KOP006', 'Pemahaman SOP'),
+('KOP007', 'Pemahaman Tools'),
+('KOP008', 'Kehadiran'),
+('KOP009', 'Kedisiplinan'),
+('KOP01', 'Inisiatif');
 
 -- --------------------------------------------------------
 

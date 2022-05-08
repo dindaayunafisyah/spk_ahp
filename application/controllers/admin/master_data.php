@@ -504,6 +504,7 @@ class Master_data extends CI_Controller
         $data['kriteria_op'] = $this->m_data_kriteria->tampil_kriteria_op()->result();
         $data['data_nilban'] = $this->m_data_nilai->tampil_nilai()->result_array();
         $data['data_anop'] = $this->DataKaryawan_Model->showAnalyzeOP();
+        $data['data_sum'] = $this->DataKaryawan_Model->sumAnalyzeOP();
         // ini adalah baris kode yang berfungsi menampilkan v_tampil dan membawa data dari tabel user
         $this->load->view('admin/tamplate/header');
         $this->load->view('admin/tamplate/sidebar');
@@ -649,142 +650,95 @@ class Master_data extends CI_Controller
     public function analisa_perbandingan()
     {
         $data['data_kriop'] = $this->m_data_kriteria->tampil_kriteria_op()->result_array();
-        $res = count($data['data_kriop']);
-        for ($i = 0; $i < $res; $i++) {
-            $this->form_validation->set_rules(str_replace(" ", "_", $data['data_kriop'][$i]['nama_kriteria_op']) . '[]', $data['data_kriop'][$i]['nama_kriteria_op'], 'required');
-        }
-        if ($this->form_validation->run() == false) {
-            $data['title'] = 'Analisa Perbandingan Kriteria Operator';
-            $data['data_nilban'] = $this->m_data_nilai->tampil_nilai()->result_array();
-            $data['data_nilban1'] = $this->m_data_nilai->tampil_nilai_awal()->result_array();
-            $this->load->view('admin/tamplate/header');
-            $this->load->view('admin/tamplate/sidebar');
-            $this->load->view('admin/v_analisa_perbandingan', $data);
-            $this->load->view('admin/tamplate/footer');
-        } else {
+        // $res = count($data['data_kriop']);
+        // for ($i = 0; $i < $res; $i++) {
+        //     $this->form_validation->set_rules(str_replace(" ", "_", $data['data_kriop'][$i]['nama_kriteria_op']) . '[]', $data['data_kriop'][$i]['nama_kriteria_op'], 'required');
+        // }
+        // if ($this->form_validation->run() == false) {
+        $data['title'] = 'Analisa Perbandingan Kriteria Operator';
+        $data['data_nilban'] = $this->m_data_nilai->tampil_nilai()->result_array();
+        $data['data_nilban1'] = $this->m_data_nilai->tampil_nilai_awal()->result_array();
+        $data['data_anop'] = $this->m_data_nilai->showAnalyzeOP()->result_array();
+        $this->load->view('admin/tamplate/header');
+        $this->load->view('admin/tamplate/sidebar');
+        $this->load->view('admin/v_analisa_perbandingan', $data);
+        $this->load->view('admin/tamplate/footer');
 
-            $pro = $this->input->post('Productivity[]');
-            $kdk = $this->input->post('Komunikasi_dan_Kerjasama[]');
-            $p5r = $this->input->post('Pelaksanaan_5R[]');
-            $doc = $this->input->post('Dokumentasi[]');
+        // } else {
 
-            // $nik = $this->input->post('nik[]');
-            // $nama = $this->input->post('nama[]');
-            // $image = $this->input->post('image[]');
-            // $keluarga_name = $this->input->post('keluarga_name[]');
-            // $jabatan_name = $this->input->post('jabatan_name[]');
-            // $unit_kerja = $this->input->post('unit_kerja[]');
 
-            $data = array();
-            for ($x = 0; $x < sizeof($pro); $x++) {
-                $data[] = [
-                    'productivity' => $pro[$x],
-                    'kerjasamadankom' => $kdk[$x],
-                    'pelaksana5r' => $p5r[$x],
-                    'dokumentasi' => $doc[$x],
-                ];
-            }
-            // echo '<pre>';
-            // print_r($data);
-            // echo '</pre>';
-            // die;
 
-            $query = $this->db->insert_batch('tb_analisa_op', $data);
-            // print_r($query2);
-            // die;
+        // $nik = $this->input->post('nik[]');
+        // $nama = $this->input->post('nama[]');
+        // $image = $this->input->post('image[]');
+        // $keluarga_name = $this->input->post('keluarga_name[]');
+        // $jabatan_name = $this->input->post('jabatan_name[]');
+        // $unit_kerja = $this->input->post('unit_kerja[]');
 
-            if ($query) {
-                $this->session->set_flashdata(
-                    'message',
-                    '<div class="alert alert-success success-dismissible fade show" role="alert">
-                    Sukses dianalisa
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>'
-                );
-                redirect('admin/master_data/analisa_perbandingan');
-            } else {
-                $this->session->set_flashdata(
-                    'message',
-                    '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    Gagal dianalisa
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>'
-                );
-                redirect('admin/master_data/analisa_perbandingan');
-            }
-        }
+
+        // echo '<pre>';
+        // print_r($data);
+        // echo '</pre>';
+        // die;
+
+
+        // print_r($query2);
+        // die;
+
+
+        // }
     }
 
     public function update_analisa_perbandingan()
     {
-        $data['data_kriop'] = $this->m_data_kriteria->tampil_kriteria_op()->result_array();
-        $res = count($data['data_kriop']);
-        for ($i = 0; $i < $res; $i++) {
-            $this->form_validation->set_rules(str_replace(" ", "_", $data['data_kriop'][$i]['nama_kriteria_op']) . '[]', $data['data_kriop'][$i]['nama_kriteria_op'], 'required');
+        $pro = $this->input->post('Productivity[]');
+        $kdk = $this->input->post('Komunikasi_dan_Kerjasama[]');
+        $p5r = $this->input->post('Pelaksanaan_5R[]');
+        $doc = $this->input->post('Dokumentasi[]');
+        $ppk3 = $this->input->post('Pemahaman_dan_Pelaksanaan_K3[]');
+        $psop = $this->input->post('Pemahaman_SOP[]');
+        $ptls = $this->input->post('Pemahaman_Tools[]');
+        $hdr = $this->input->post('Kehadiran[]');
+        $dsp = $this->input->post('Kedisiplinan[]');
+        $inf = $this->input->post('Inisiatif[]');
+        $data = array();
+        for ($x = 0; $x < sizeof($pro); $x++) {
+            $data[] = [
+                'productivity' => $pro[$x],
+                'kerjasamadankom' => $kdk[$x],
+                'pelaksana5r' => $p5r[$x],
+                'dokumentasi' => $doc[$x],
+                'paham_laksana_k3' => $ppk3[$x],
+                'paham_sop' => $psop[$x],
+                'paham_tools' => $ptls[$x],
+                'hadir' => $hdr[$x],
+                'disiplin' => $dsp[$x],
+                'inisiatif' => $inf[$x],
+                'id_anop' => $x + 1,
+            ];
         }
-        if ($this->form_validation->run() == false) {
-            $data['title'] = 'Analisa Perbandingan Kriteria Operator';
-            $data['data_nilban'] = $this->m_data_nilai->tampil_nilai()->result_array();
-            $data['data_nilban1'] = $this->m_data_nilai->tampil_nilai_awal()->result_array();
-            $data['data_anop'] = $this->DataKaryawan_Model->showAnalyzeOP();
-
-            $this->load->view('admin/tamplate/header');
-            $this->load->view('admin/tamplate/sidebar');
-            $this->load->view('admin/edit/v_analisa_perbandingan', $data);
-            $this->load->view('admin/tamplate/footer');
-        } else {
-
-            $pro = $this->input->post('Productivity[]');
-            $kdk = $this->input->post('Komunikasi_dan_Kerjasama[]');
-            $p5r = $this->input->post('Pelaksanaan_5R[]');
-            $doc = $this->input->post('Dokumentasi[]');
-
-            // $nik = $this->input->post('nik[]');
-            // $nama = $this->input->post('nama[]');
-            // $image = $this->input->post('image[]');
-            // $keluarga_name = $this->input->post('keluarga_name[]');
-            // $jabatan_name = $this->input->post('jabatan_name[]');
-            // $unit_kerja = $this->input->post('unit_kerja[]');
-
-            $data = array();
-            for ($x = 0; $x < sizeof($pro); $x++) {
-                $data[] = [
-                    'productivity' => $pro[$x],
-                    'kerjasamadankom' => $kdk[$x],
-                    'pelaksana5r' => $p5r[$x],
-                    'dokumentasi' => $doc[$x],
-                ];
-            }
-            // echo '<pre>';
-            // print_r($data);
-            // echo '</pre>';
-            // die;
-
-            $query = $this->db->update_batch('tb_analisa_op', $data);
-            // print_r($query2);
-            // die;
-
-            if ($query) {
-                $this->session->set_flashdata(
-                    'message',
-                    '<div class="alert alert-success success-dismissible fade show" role="alert">
+        $query = $this->db->update_batch('tb_analisa_op', $data, 'id_anop');
+        if ($query) {
+            $this->session->set_flashdata(
+                'message',
+                '<div class="alert alert-success success-dismissible fade show" role="alert">
                     Sukses dianalisa
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>'
-                );
-                redirect('admin/master_data/analisa_perbandingan');
-            } else {
-                $this->session->set_flashdata(
-                    'message',
-                    '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+            );
+            redirect('admin/master_data/analisa_perbandingan');
+        } else {
+            $this->session->set_flashdata(
+                'message',
+                '<div class="alert alert-danger alert-dismissible fade show" role="alert">
                     Gagal dianalisa
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>'
-                );
-                redirect('admin/master_data/analisa_perbandingan');
-            }
+            );
+            redirect('admin/master_data/analisa_perbandingan');
         }
     }
+
     //---------------------- End Analisa Perbandingan ----------------------
 
 
