@@ -523,7 +523,6 @@ class Master_data extends CI_Controller
         // ini adalah baris kode yang berfungsi menampilkan v_tampil dan membawa data dari tabel user
         $update = [
             'nama_kriteria_op' => $this->input->post('nama_kriteria_op'),
-            'nilai_kriteria_op' => $this->input->post('nilai_banding'),
         ];
         $id = $this->input->post('id_kriteria_op');
         $this->db->where('id_kriteria_op', $id);
@@ -534,7 +533,7 @@ class Master_data extends CI_Controller
             $this->load->view('admin/v_kriteria_operator', $data);
             $this->load->view('admin/tamplate/footer');
             $this->session->set_flashdata(
-                'message',
+                'pesan_update_kriteria_op',
                 '<div class="alert alert-primary alert-dismissible fade show" role="alert">
                     Sukses diupdate
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -547,7 +546,7 @@ class Master_data extends CI_Controller
             $this->load->view('admin/v_kriteria_operator', $data);
             $this->load->view('admin/tamplate/footer');
             $this->session->set_flashdata(
-                'message',
+                'pesan_update_kriteria_op',
                 '<div class="alert alert-danger alert-dismissible fade show" role="alert">
                     Gagal diupdate
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -648,48 +647,7 @@ class Master_data extends CI_Controller
 
 
 
-    //---------------------- End Analisa Perbandingan ----------------------
-    public function analisa_perbandingan()
-    {
-        $data['data_kriop'] = $this->m_data_kriteria->tampil_kriteria_op()->result_array();
-        // $res = count($data['data_kriop']);
-        // for ($i = 0; $i < $res; $i++) {
-        //     $this->form_validation->set_rules(str_replace(" ", "_", $data['data_kriop'][$i]['nama_kriteria_op']) . '[]', $data['data_kriop'][$i]['nama_kriteria_op'], 'required');
-        // }
-        // if ($this->form_validation->run() == false) {
-        $data['title'] = 'Analisa Perbandingan Kriteria Operator';
-        $data['data_nilban'] = $this->m_data_nilai->tampil_nilai()->result_array();
-        $data['data_nilban1'] = $this->m_data_nilai->tampil_nilai_awal()->result_array();
-        $data['data_anop'] = $this->m_data_nilai->showAnalyzeOP()->result_array();
-        $this->load->view('admin/tamplate/header');
-        $this->load->view('admin/tamplate/sidebar');
-        $this->load->view('admin/v_analisa_perbandingan', $data);
-        $this->load->view('admin/tamplate/footer');
-
-        // } else {
-
-
-
-        // $nik = $this->input->post('nik[]');
-        // $nama = $this->input->post('nama[]');
-        // $image = $this->input->post('image[]');
-        // $keluarga_name = $this->input->post('keluarga_name[]');
-        // $jabatan_name = $this->input->post('jabatan_name[]');
-        // $unit_kerja = $this->input->post('unit_kerja[]');
-
-
-        // echo '<pre>';
-        // print_r($data);
-        // echo '</pre>';
-        // die;
-
-
-        // print_r($query2);
-        // die;
-
-
-        // }
-    }
+    //---------------------- Analisa Perbandingan ----------------------
 
     public function update_analisa_perbandingan()
     {

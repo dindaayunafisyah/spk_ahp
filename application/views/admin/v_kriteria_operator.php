@@ -17,6 +17,17 @@
           <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
             <thead>
               <tr>
+                <td colspan="3">
+                  <?php if (validation_errors()) : ?>
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                      <?= validation_errors(); ?>
+                      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                  <?php endif; ?>
+                  <?= $this->session->flashdata('pesan_update_kriteria_op') ?>
+                </td>
+              </tr>
+              <tr>
                 <th>ID Kriteria Operator</th>
                 <th>Kriteria Penilaian</th>
                 <th>Aksi</th>
@@ -144,190 +155,370 @@
                       <?php endswitch; ?>
                     </td>
 
-                    <td>
-                      <select name="productivity[]" id="productivity" class="form-control">
-                        <option value="<?= $dao['productivity'] ?>"> <?= $dao['productivity'] ?></option>
-                        <?php foreach ($data_nilban as $dbn) : ?>
-                          <option value="<?= $dbn['nilai'] ?>"><?= $dbn['nama_nilai'] . ' - ' . $dbn['nilai'] ?></option>
-                          <?php foreach ($data_nilban1 as $dbn1) : ?>
-                            <?php if ($dbn1 != $dbn) : ?>
-                              <option value="<?= $dbn1['nilai'] / $dbn['nilai'] ?>"><?= '1 dibagi ' . $dbn['nama_nilai'] . ' - &sup' . $dbn1['nilai'] . ' / ' . $dbn['nilai'] ?></option>
-                            <?php endif; ?>
+                    <?php if ($dao['productivity'] == 1) : ?>
+                      <td style="background-color: aqua ;">
+                        <select name="productivity[]" id="productivity" class="form-control" style="background-color: aqua;">
+                          <option value="<?= $dao['productivity'] ?>"> <?= $dao['productivity'] ?></option>
+                          <?php foreach ($data_nilban as $dbn) : ?>
+                            <option value="<?= $dbn['nilai'] ?>"><?= $dbn['nama_nilai'] . ' - ' . $dbn['nilai'] ?></option>
+                            <?php foreach ($data_nilban1 as $dbn1) : ?>
+                              <?php if ($dbn1 != $dbn) : ?>
+                                <option value="<?= $dbn1['nilai'] / $dbn['nilai'] ?>"><?= '1 dibagi ' . $dbn['nama_nilai'] . ' - &sup' . $dbn1['nilai'] . ' / ' . $dbn['nilai'] ?></option>
+                              <?php endif; ?>
+                            <?php endforeach; ?>
                           <?php endforeach; ?>
-                        <?php endforeach; ?>
-                      </select>
-                    </td>
-
-
-
-                    <td>
-                      <select name="kerjasamadankom[]" id="kerjasamadankom" class="form-control">
-                        <option value="<?= $dao['kerjasamadankom'] ?>"> <?= $dao['kerjasamadankom'] ?></option>
-                        <?php foreach ($data_nilban as $dbn) : ?>
-                          <option value="<?= $dbn['nilai'] ?>"><?= $dbn['nama_nilai'] . ' - ' . $dbn['nilai'] ?></option>
-                          <?php foreach ($data_nilban1 as $dbn1) : ?>
-                            <?php if ($dbn1 != $dbn) : ?>
-                              <option value="<?= $dbn1['nilai'] / $dbn['nilai'] ?>"><?= '1 dibagi ' . $dbn['nama_nilai'] . ' - &sup' . $dbn1['nilai'] . ' / ' . $dbn['nilai'] ?></option>
-                            <?php endif; ?>
+                        </select>
+                      </td>
+                    <?php else : ?>
+                      <td>
+                        <select name="productivity[]" id="productivity" class="form-control">
+                          <option value="<?= $dao['productivity'] ?>"> <?= $dao['productivity'] ?></option>
+                          <?php foreach ($data_nilban as $dbn) : ?>
+                            <option value="<?= $dbn['nilai'] ?>"><?= $dbn['nama_nilai'] . ' - ' . $dbn['nilai'] ?></option>
+                            <?php foreach ($data_nilban1 as $dbn1) : ?>
+                              <?php if ($dbn1 != $dbn) : ?>
+                                <option value="<?= $dbn1['nilai'] / $dbn['nilai'] ?>"><?= '1 dibagi ' . $dbn['nama_nilai'] . ' - &sup' . $dbn1['nilai'] . ' / ' . $dbn['nilai'] ?></option>
+                              <?php endif; ?>
+                            <?php endforeach; ?>
                           <?php endforeach; ?>
-                        <?php endforeach; ?>
-                      </select>
-                    </td>
+                        </select>
+                      </td>
+                    <?php endif; ?>
 
 
 
-                    <td>
-                      <select name="pelaksana5r[]" id="pelaksana5r" class="form-control">
-                        <option value=" <?= $dao['pelaksana5r'] ?>"> <?= $dao['pelaksana5r'] ?></option>
-                        <?php foreach ($data_nilban as $dbn) : ?>
-                          <option value="<?= $dbn['nilai'] ?>"><?= $dbn['nama_nilai'] . ' - ' . $dbn['nilai'] ?></option>
-                          <?php foreach ($data_nilban1 as $dbn1) : ?>
-                            <?php if ($dbn1 != $dbn) : ?>
-                              <option value="<?= $dbn1['nilai'] / $dbn['nilai'] ?>"><?= '1 dibagi ' . $dbn['nama_nilai'] . ' - &sup' . $dbn1['nilai'] . ' / ' . $dbn['nilai'] ?></option>
-                            <?php endif; ?>
+                    <?php if ($dao['kerjasamadankom'] == 1) : ?>
+                      <td style="background-color: aqua;">
+                        <select name="kerjasamadankom[]" id="kerjasamadankom" class="form-control" style="background-color: aqua;">
+                          <option value="<?= $dao['kerjasamadankom'] ?>"> <?= $dao['kerjasamadankom'] ?></option>
+                          <?php foreach ($data_nilban as $dbn) : ?>
+                            <option value="<?= $dbn['nilai'] ?>"><?= $dbn['nama_nilai'] . ' - ' . $dbn['nilai'] ?></option>
+                            <?php foreach ($data_nilban1 as $dbn1) : ?>
+                              <?php if ($dbn1 != $dbn) : ?>
+                                <option value="<?= $dbn1['nilai'] / $dbn['nilai'] ?>"><?= '1 dibagi ' . $dbn['nama_nilai'] . ' - &sup' . $dbn1['nilai'] . ' / ' . $dbn['nilai'] ?></option>
+                              <?php endif; ?>
+                            <?php endforeach; ?>
                           <?php endforeach; ?>
-                        <?php endforeach; ?>
-                      </select>
-                    </td>
-
-
-
-                    <td>
-                      <select name="dokumentasi[]" id="dokumentasi" class="form-control">
-                        <option value="<?= $dao['dokumentasi'] ?>"> <?= $dao['dokumentasi'] ?></option>
-                        <?php foreach ($data_nilban as $dbn) : ?>
-                          <option value="<?= $dbn['nilai'] ?>"><?= $dbn['nama_nilai'] . ' - ' . $dbn['nilai'] ?></option>
-                          <?php foreach ($data_nilban1 as $dbn1) : ?>
-                            <?php if ($dbn1 != $dbn) : ?>
-                              <option value="<?= $dbn1['nilai'] / $dbn['nilai'] ?>"><?= '1 dibagi ' . $dbn['nama_nilai'] . ' - &sup' . $dbn1['nilai'] . ' / ' . $dbn['nilai'] ?></option>
-                            <?php endif; ?>
+                        </select>
+                      </td>
+                    <?php else : ?>
+                      <td>
+                        <select name="kerjasamadankom[]" id="kerjasamadankom" class="form-control">
+                          <option value="<?= $dao['kerjasamadankom'] ?>"> <?= $dao['kerjasamadankom'] ?></option>
+                          <?php foreach ($data_nilban as $dbn) : ?>
+                            <option value="<?= $dbn['nilai'] ?>"><?= $dbn['nama_nilai'] . ' - ' . $dbn['nilai'] ?></option>
+                            <?php foreach ($data_nilban1 as $dbn1) : ?>
+                              <?php if ($dbn1 != $dbn) : ?>
+                                <option value="<?= $dbn1['nilai'] / $dbn['nilai'] ?>"><?= '1 dibagi ' . $dbn['nama_nilai'] . ' - &sup' . $dbn1['nilai'] . ' / ' . $dbn['nilai'] ?></option>
+                              <?php endif; ?>
+                            <?php endforeach; ?>
                           <?php endforeach; ?>
-                        <?php endforeach; ?>
-                      </select>
-                    </td>
+                        </select>
+                      </td>
+                    <?php endif; ?>
 
-                    <td>
-                      <select name="paham_laksana_k3[]" id="paham_laksana_k3" class="form-control">
-                        <option value="<?= $dao['paham_laksana_k3'] ?>"> <?= $dao['paham_laksana_k3'] ?></option>
-                        <?php foreach ($data_nilban as $dbn) : ?>
-                          <option value="<?= $dbn['nilai'] ?>"><?= $dbn['nama_nilai'] . ' - ' . $dbn['nilai'] ?></option>
-                          <?php foreach ($data_nilban1 as $dbn1) : ?>
-                            <?php if ($dbn1 != $dbn) : ?>
-                              <option value="<?= $dbn1['nilai'] / $dbn['nilai'] ?>"><?= '1 dibagi ' . $dbn['nama_nilai'] . ' - &sup' . $dbn1['nilai'] . ' / ' . $dbn['nilai'] ?></option>
-                            <?php endif; ?>
+
+                    <?php if ($dao['pelaksana5r'] == 1) : ?>
+                      <td style="background-color: aqua;">
+                        <select name="pelaksana5r[]" id="pelaksana5r" class="form-control" style="background-color: aqua;">
+                          <option value=" <?= $dao['pelaksana5r'] ?>"> <?= $dao['pelaksana5r'] ?></option>
+                          <?php foreach ($data_nilban as $dbn) : ?>
+                            <option value="<?= $dbn['nilai'] ?>"><?= $dbn['nama_nilai'] . ' - ' . $dbn['nilai'] ?></option>
+                            <?php foreach ($data_nilban1 as $dbn1) : ?>
+                              <?php if ($dbn1 != $dbn) : ?>
+                                <option value="<?= $dbn1['nilai'] / $dbn['nilai'] ?>"><?= '1 dibagi ' . $dbn['nama_nilai'] . ' - &sup' . $dbn1['nilai'] . ' / ' . $dbn['nilai'] ?></option>
+                              <?php endif; ?>
+                            <?php endforeach; ?>
                           <?php endforeach; ?>
-                        <?php endforeach; ?>
-                      </select>
-
-                    </td>
-
-                    <td>
-                      <select name="paham_sop[]" id="paham_sop" class="form-control">
-                        <option value="<?= $dao['paham_sop'] ?>"> <?= $dao['paham_sop'] ?></option>
-                        <?php foreach ($data_nilban as $dbn) : ?>
-                          <option value="<?= $dbn['nilai'] ?>"><?= $dbn['nama_nilai'] . ' - ' . $dbn['nilai'] ?></option>
-                          <?php foreach ($data_nilban1 as $dbn1) : ?>
-                            <?php if ($dbn1 != $dbn) : ?>
-                              <option value="<?= $dbn1['nilai'] / $dbn['nilai'] ?>"><?= '1 dibagi ' . $dbn['nama_nilai'] . ' - &sup' . $dbn1['nilai'] . ' / ' . $dbn['nilai'] ?></option>
-                            <?php endif; ?>
+                        </select>
+                      </td>
+                    <?php else : ?>
+                      <td>
+                        <select name="pelaksana5r[]" id="pelaksana5r" class="form-control">
+                          <option value=" <?= $dao['pelaksana5r'] ?>"> <?= $dao['pelaksana5r'] ?></option>
+                          <?php foreach ($data_nilban as $dbn) : ?>
+                            <option value="<?= $dbn['nilai'] ?>"><?= $dbn['nama_nilai'] . ' - ' . $dbn['nilai'] ?></option>
+                            <?php foreach ($data_nilban1 as $dbn1) : ?>
+                              <?php if ($dbn1 != $dbn) : ?>
+                                <option value="<?= $dbn1['nilai'] / $dbn['nilai'] ?>"><?= '1 dibagi ' . $dbn['nama_nilai'] . ' - &sup' . $dbn1['nilai'] . ' / ' . $dbn['nilai'] ?></option>
+                              <?php endif; ?>
+                            <?php endforeach; ?>
                           <?php endforeach; ?>
-                        <?php endforeach; ?>
-                      </select>
-                    </td>
+                        </select>
+                      </td>
+                    <?php endif; ?>
 
-                    <td>
-                      <select name="paham_tools[]" id="paham_tools" class="form-control">
-                        <option value="<?= $dao['paham_tools'] ?>"> <?= $dao['paham_tools'] ?></option>
-                        <?php foreach ($data_nilban as $dbn) : ?>
-                          <option value="<?= $dbn['nilai'] ?>"><?= $dbn['nama_nilai'] . ' - ' . $dbn['nilai'] ?></option>
-                          <?php foreach ($data_nilban1 as $dbn1) : ?>
-                            <?php if ($dbn1 != $dbn) : ?>
-                              <option value="<?= $dbn1['nilai'] / $dbn['nilai'] ?>"><?= '1 dibagi ' . $dbn['nama_nilai'] . ' - &sup' . $dbn1['nilai'] . ' / ' . $dbn['nilai'] ?></option>
-                            <?php endif; ?>
-                          <?php endforeach; ?>
-                        <?php endforeach; ?>
-                      </select>
-                    </td>
 
-                    <td>
-                      <select name="hadir[]" id="hadir" class="form-control">
-                        <option value="<?= $dao['hadir'] ?>"> <?= $dao['hadir'] ?></option>
-                        <?php foreach ($data_nilban as $dbn) : ?>
-                          <option value="<?= $dbn['nilai'] ?>"><?= $dbn['nama_nilai'] . ' - ' . $dbn['nilai'] ?></option>
-                          <?php foreach ($data_nilban1 as $dbn1) : ?>
-                            <?php if ($dbn1 != $dbn) : ?>
-                              <option value="<?= $dbn1['nilai'] / $dbn['nilai'] ?>"><?= '1 dibagi ' . $dbn['nama_nilai'] . ' - &sup' . $dbn1['nilai'] . ' / ' . $dbn['nilai'] ?></option>
-                            <?php endif; ?>
-                          <?php endforeach; ?>
-                        <?php endforeach; ?>
-                      </select>
-                    </td>
 
-                    <td>
-                      <select name="disiplin[]" id="disiplin" class="form-control">
-                        <option value="<?= $dao['disiplin'] ?>"> <?= $dao['disiplin'] ?></option>
-                        <?php foreach ($data_nilban as $dbn) : ?>
-                          <option value="<?= $dbn['nilai'] ?>"><?= $dbn['nama_nilai'] . ' - ' . $dbn['nilai'] ?></option>
-                          <?php foreach ($data_nilban1 as $dbn1) : ?>
-                            <?php if ($dbn1 != $dbn) : ?>
-                              <option value="<?= $dbn1['nilai'] / $dbn['nilai'] ?>"><?= '1 dibagi ' . $dbn['nama_nilai'] . ' - &sup' . $dbn1['nilai'] . ' / ' . $dbn['nilai'] ?></option>
-                            <?php endif; ?>
+                    <?php if ($dao['dokumentasi'] == 1) : ?>
+                      <td style="background-color: aqua;">
+                        <select name="dokumentasi[]" id="dokumentasi" class="form-control" style="background-color: aqua;">
+                          <option value="<?= $dao['dokumentasi'] ?>"> <?= $dao['dokumentasi'] ?></option>
+                          <?php foreach ($data_nilban as $dbn) : ?>
+                            <option value="<?= $dbn['nilai'] ?>"><?= $dbn['nama_nilai'] . ' - ' . $dbn['nilai'] ?></option>
+                            <?php foreach ($data_nilban1 as $dbn1) : ?>
+                              <?php if ($dbn1 != $dbn) : ?>
+                                <option value="<?= $dbn1['nilai'] / $dbn['nilai'] ?>"><?= '1 dibagi ' . $dbn['nama_nilai'] . ' - &sup' . $dbn1['nilai'] . ' / ' . $dbn['nilai'] ?></option>
+                              <?php endif; ?>
+                            <?php endforeach; ?>
                           <?php endforeach; ?>
-                        <?php endforeach; ?>
-                      </select>
-                    </td>
+                        </select>
+                      </td>
+                    <?php else : ?>
+                      <td>
+                        <select name="dokumentasi[]" id="dokumentasi" class="form-control">
+                          <option value="<?= $dao['dokumentasi'] ?>"> <?= $dao['dokumentasi'] ?></option>
+                          <?php foreach ($data_nilban as $dbn) : ?>
+                            <option value="<?= $dbn['nilai'] ?>"><?= $dbn['nama_nilai'] . ' - ' . $dbn['nilai'] ?></option>
+                            <?php foreach ($data_nilban1 as $dbn1) : ?>
+                              <?php if ($dbn1 != $dbn) : ?>
+                                <option value="<?= $dbn1['nilai'] / $dbn['nilai'] ?>"><?= '1 dibagi ' . $dbn['nama_nilai'] . ' - &sup' . $dbn1['nilai'] . ' / ' . $dbn['nilai'] ?></option>
+                              <?php endif; ?>
+                            <?php endforeach; ?>
+                          <?php endforeach; ?>
+                        </select>
+                      </td>
+                    <?php endif; ?>
 
-                    <td>
-                      <select name="inisiatif[]" id="inisiatif" class="form-control">
-                        <option value="<?= $dao['inisiatif'] ?>"> <?= $dao['inisiatif'] ?></option>
-                        <?php foreach ($data_nilban as $dbn) : ?>
-                          <option value="<?= $dbn['nilai'] ?>"><?= $dbn['nama_nilai'] . ' - ' . $dbn['nilai'] ?></option>
-                          <?php foreach ($data_nilban1 as $dbn1) : ?>
-                            <?php if ($dbn1 != $dbn) : ?>
-                              <option value="<?= $dbn1['nilai'] / $dbn['nilai'] ?>"><?= '1 dibagi ' . $dbn['nama_nilai'] . ' - &sup' . $dbn1['nilai'] . ' / ' . $dbn['nilai'] ?></option>
-                            <?php endif; ?>
+
+
+                    <?php if ($dao['paham_laksana_k3'] == 1) : ?>
+                      <td style="background-color: aqua;">
+                        <select name="paham_laksana_k3[]" id="paham_laksana_k3" class="form-control" style="background-color: aqua;">
+                          <option value="<?= $dao['paham_laksana_k3'] ?>"> <?= $dao['paham_laksana_k3'] ?></option>
+                          <?php foreach ($data_nilban as $dbn) : ?>
+                            <option value="<?= $dbn['nilai'] ?>"><?= $dbn['nama_nilai'] . ' - ' . $dbn['nilai'] ?></option>
+                            <?php foreach ($data_nilban1 as $dbn1) : ?>
+                              <?php if ($dbn1 != $dbn) : ?>
+                                <option value="<?= $dbn1['nilai'] / $dbn['nilai'] ?>"><?= '1 dibagi ' . $dbn['nama_nilai'] . ' - &sup' . $dbn1['nilai'] . ' / ' . $dbn['nilai'] ?></option>
+                              <?php endif; ?>
+                            <?php endforeach; ?>
                           <?php endforeach; ?>
-                        <?php endforeach; ?>
-                      </select>
-                    </td>
+                        </select>
+                      </td>
+                    <?php else : ?>
+                      <td>
+                        <select name="paham_laksana_k3[]" id="paham_laksana_k3" class="form-control">
+                          <option value="<?= $dao['paham_laksana_k3'] ?>"> <?= $dao['paham_laksana_k3'] ?></option>
+                          <?php foreach ($data_nilban as $dbn) : ?>
+                            <option value="<?= $dbn['nilai'] ?>"><?= $dbn['nama_nilai'] . ' - ' . $dbn['nilai'] ?></option>
+                            <?php foreach ($data_nilban1 as $dbn1) : ?>
+                              <?php if ($dbn1 != $dbn) : ?>
+                                <option value="<?= $dbn1['nilai'] / $dbn['nilai'] ?>"><?= '1 dibagi ' . $dbn['nama_nilai'] . ' - &sup' . $dbn1['nilai'] . ' / ' . $dbn['nilai'] ?></option>
+                              <?php endif; ?>
+                            <?php endforeach; ?>
+                          <?php endforeach; ?>
+                        </select>
+                      </td>
+                    <?php endif; ?>
+
+
+
+
+                    <?php if ($dao['paham_sop'] == 1) : ?>
+                      <td style="background-color: aqua;">
+                        <select name="paham_sop[]" id="paham_sop" class="form-control" style="background-color: aqua;">
+                          <option value="<?= $dao['paham_sop'] ?>"> <?= $dao['paham_sop'] ?></option>
+                          <?php foreach ($data_nilban as $dbn) : ?>
+                            <option value="<?= $dbn['nilai'] ?>"><?= $dbn['nama_nilai'] . ' - ' . $dbn['nilai'] ?></option>
+                            <?php foreach ($data_nilban1 as $dbn1) : ?>
+                              <?php if ($dbn1 != $dbn) : ?>
+                                <option value="<?= $dbn1['nilai'] / $dbn['nilai'] ?>"><?= '1 dibagi ' . $dbn['nama_nilai'] . ' - &sup' . $dbn1['nilai'] . ' / ' . $dbn['nilai'] ?></option>
+                              <?php endif; ?>
+                            <?php endforeach; ?>
+                          <?php endforeach; ?>
+                        </select>
+                      </td>
+                    <?php else : ?>
+                      <td>
+                        <select name="paham_sop[]" id="paham_sop" class="form-control">
+                          <option value="<?= $dao['paham_sop'] ?>"> <?= $dao['paham_sop'] ?></option>
+                          <?php foreach ($data_nilban as $dbn) : ?>
+                            <option value="<?= $dbn['nilai'] ?>"><?= $dbn['nama_nilai'] . ' - ' . $dbn['nilai'] ?></option>
+                            <?php foreach ($data_nilban1 as $dbn1) : ?>
+                              <?php if ($dbn1 != $dbn) : ?>
+                                <option value="<?= $dbn1['nilai'] / $dbn['nilai'] ?>"><?= '1 dibagi ' . $dbn['nama_nilai'] . ' - &sup' . $dbn1['nilai'] . ' / ' . $dbn['nilai'] ?></option>
+                              <?php endif; ?>
+                            <?php endforeach; ?>
+                          <?php endforeach; ?>
+                        </select>
+                      </td>
+                    <?php endif; ?>
+
+
+
+
+                    <?php if ($dao['paham_tools'] == 1) : ?>
+                      <td style="background-color: aqua;">
+                        <select name="paham_tools[]" id="paham_tools" class="form-control" style="background-color: aqua;">
+                          <option value="<?= $dao['paham_tools'] ?>"> <?= $dao['paham_tools'] ?></option>
+                          <?php foreach ($data_nilban as $dbn) : ?>
+                            <option value="<?= $dbn['nilai'] ?>"><?= $dbn['nama_nilai'] . ' - ' . $dbn['nilai'] ?></option>
+                            <?php foreach ($data_nilban1 as $dbn1) : ?>
+                              <?php if ($dbn1 != $dbn) : ?>
+                                <option value="<?= $dbn1['nilai'] / $dbn['nilai'] ?>"><?= '1 dibagi ' . $dbn['nama_nilai'] . ' - &sup' . $dbn1['nilai'] . ' / ' . $dbn['nilai'] ?></option>
+                              <?php endif; ?>
+                            <?php endforeach; ?>
+                          <?php endforeach; ?>
+                        </select>
+                      </td>
+                    <?php else : ?>
+                      <td>
+                        <select name="paham_tools[]" id="paham_tools" class="form-control">
+                          <option value="<?= $dao['paham_tools'] ?>"> <?= $dao['paham_tools'] ?></option>
+                          <?php foreach ($data_nilban as $dbn) : ?>
+                            <option value="<?= $dbn['nilai'] ?>"><?= $dbn['nama_nilai'] . ' - ' . $dbn['nilai'] ?></option>
+                            <?php foreach ($data_nilban1 as $dbn1) : ?>
+                              <?php if ($dbn1 != $dbn) : ?>
+                                <option value="<?= $dbn1['nilai'] / $dbn['nilai'] ?>"><?= '1 dibagi ' . $dbn['nama_nilai'] . ' - &sup' . $dbn1['nilai'] . ' / ' . $dbn['nilai'] ?></option>
+                              <?php endif; ?>
+                            <?php endforeach; ?>
+                          <?php endforeach; ?>
+                        </select>
+                      </td>
+                    <?php endif; ?>
+
+
+
+
+                    <?php if ($dao['hadir'] == 1) : ?>
+                      <td style="background-color: aqua;">
+                        <select name="hadir[]" id="hadir" class="form-control" style="background-color: aqua;">
+                          <option value="<?= $dao['hadir'] ?>"> <?= $dao['hadir'] ?></option>
+                          <?php foreach ($data_nilban as $dbn) : ?>
+                            <option value="<?= $dbn['nilai'] ?>"><?= $dbn['nama_nilai'] . ' - ' . $dbn['nilai'] ?></option>
+                            <?php foreach ($data_nilban1 as $dbn1) : ?>
+                              <?php if ($dbn1 != $dbn) : ?>
+                                <option value="<?= $dbn1['nilai'] / $dbn['nilai'] ?>"><?= '1 dibagi ' . $dbn['nama_nilai'] . ' - &sup' . $dbn1['nilai'] . ' / ' . $dbn['nilai'] ?></option>
+                              <?php endif; ?>
+                            <?php endforeach; ?>
+                          <?php endforeach; ?>
+                        </select>
+                      </td>
+                    <?php else : ?>
+                      <td>
+                        <select name="hadir[]" id="hadir" class="form-control">
+                          <option value="<?= $dao['hadir'] ?>"> <?= $dao['hadir'] ?></option>
+                          <?php foreach ($data_nilban as $dbn) : ?>
+                            <option value="<?= $dbn['nilai'] ?>"><?= $dbn['nama_nilai'] . ' - ' . $dbn['nilai'] ?></option>
+                            <?php foreach ($data_nilban1 as $dbn1) : ?>
+                              <?php if ($dbn1 != $dbn) : ?>
+                                <option value="<?= $dbn1['nilai'] / $dbn['nilai'] ?>"><?= '1 dibagi ' . $dbn['nama_nilai'] . ' - &sup' . $dbn1['nilai'] . ' / ' . $dbn['nilai'] ?></option>
+                              <?php endif; ?>
+                            <?php endforeach; ?>
+                          <?php endforeach; ?>
+                        </select>
+                      </td>
+                    <?php endif; ?>
+
+
+
+
+
+
+
+                    <?php if ($dao['disiplin'] == 1) : ?>
+                      <td style="background-color: aqua;">
+                        <select name="disiplin[]" id="disiplin" class="form-control" style="background-color: aqua;">
+                          <option value="<?= $dao['disiplin'] ?>"> <?= $dao['disiplin'] ?></option>
+                          <?php foreach ($data_nilban as $dbn) : ?>
+                            <option value="<?= $dbn['nilai'] ?>"><?= $dbn['nama_nilai'] . ' - ' . $dbn['nilai'] ?></option>
+                            <?php foreach ($data_nilban1 as $dbn1) : ?>
+                              <?php if ($dbn1 != $dbn) : ?>
+                                <option value="<?= $dbn1['nilai'] / $dbn['nilai'] ?>"><?= '1 dibagi ' . $dbn['nama_nilai'] . ' - &sup' . $dbn1['nilai'] . ' / ' . $dbn['nilai'] ?></option>
+                              <?php endif; ?>
+                            <?php endforeach; ?>
+                          <?php endforeach; ?>
+                        </select>
+                      </td>
+                    <?php else : ?>
+                      <td>
+                        <select name="disiplin[]" id="disiplin" class="form-control">
+                          <option value="<?= $dao['disiplin'] ?>"> <?= $dao['disiplin'] ?></option>
+                          <?php foreach ($data_nilban as $dbn) : ?>
+                            <option value="<?= $dbn['nilai'] ?>"><?= $dbn['nama_nilai'] . ' - ' . $dbn['nilai'] ?></option>
+                            <?php foreach ($data_nilban1 as $dbn1) : ?>
+                              <?php if ($dbn1 != $dbn) : ?>
+                                <option value="<?= $dbn1['nilai'] / $dbn['nilai'] ?>"><?= '1 dibagi ' . $dbn['nama_nilai'] . ' - &sup' . $dbn1['nilai'] . ' / ' . $dbn['nilai'] ?></option>
+                              <?php endif; ?>
+                            <?php endforeach; ?>
+                          <?php endforeach; ?>
+                        </select>
+                      </td>
+                    <?php endif; ?>
+
+
+
+
+
+                    <?php if ($dao['inisiatif'] == 1) : ?>
+                      <td style="background-color: aqua;">
+                        <select name="inisiatif[]" id="inisiatif" class="form-control" style="background-color: aqua;">
+                          <option value="<?= $dao['inisiatif'] ?>"> <?= $dao['inisiatif'] ?></option>
+                          <?php foreach ($data_nilban as $dbn) : ?>
+                            <option value="<?= $dbn['nilai'] ?>"><?= $dbn['nama_nilai'] . ' - ' . $dbn['nilai'] ?></option>
+                            <?php foreach ($data_nilban1 as $dbn1) : ?>
+                              <?php if ($dbn1 != $dbn) : ?>
+                                <option value="<?= $dbn1['nilai'] / $dbn['nilai'] ?>"><?= '1 dibagi ' . $dbn['nama_nilai'] . ' - &sup' . $dbn1['nilai'] . ' / ' . $dbn['nilai'] ?></option>
+                              <?php endif; ?>
+                            <?php endforeach; ?>
+                          <?php endforeach; ?>
+                        </select>
+                      </td>
+                    <?php else : ?>
+                      <td>
+                        <select name="inisiatif[]" id="inisiatif" class="form-control">
+                          <option value="<?= $dao['inisiatif'] ?>"> <?= $dao['inisiatif'] ?></option>
+                          <?php foreach ($data_nilban as $dbn) : ?>
+                            <option value="<?= $dbn['nilai'] ?>"><?= $dbn['nama_nilai'] . ' - ' . $dbn['nilai'] ?></option>
+                            <?php foreach ($data_nilban1 as $dbn1) : ?>
+                              <?php if ($dbn1 != $dbn) : ?>
+                                <option value="<?= $dbn1['nilai'] / $dbn['nilai'] ?>"><?= '1 dibagi ' . $dbn['nama_nilai'] . ' - &sup' . $dbn1['nilai'] . ' / ' . $dbn['nilai'] ?></option>
+                              <?php endif; ?>
+                            <?php endforeach; ?>
+                          <?php endforeach; ?>
+                        </select>
+                      </td>
+                    <?php endif; ?>
                   </tr>
+
                 <?php endforeach; ?>
 
-                <?php foreach ($data_sum as $dsm) : ?>
-                  <tr style="font-weight: bold; font-size:15px;">
-                    <td><strong>Total</strong></td>
-                    <td>
-                      <?= $dsm['sumProc']; ?>
-                    </td>
-                    <td>
-                      <?= $dsm['sumKdk']; ?>
-                    </td>
-                    <td>
-                      <?= $dsm['sump5r']; ?>
-                    </td>
-                    <td>
-                      <?= $dsm['sumDoc']; ?>
-                    </td>
-                    <td>
-                      <?= $dsm['sumplk3']; ?>
-                    </td>
-                    <td>
-                      <?= $dsm['sumPsop']; ?>
-                    </td>
-                    <td>
-                      <?= $dsm['sumPtls']; ?>
-                    </td>
-                    <td>
-                      <?= $dsm['sumHdr']; ?>
-                    </td>
-                    <td>
-                      <?= $dsm['sumDsp']; ?>
-                    </td>
-                    <td>
-                      <?= $dsm['sumInf']; ?>
-                    </td>
-                  </tr>
-                <?php endforeach; ?>
+
+                <tr style="font-weight: bold; font-size:15px;">
+                  <td><strong>Total</strong></td>
+                  <td>
+                    <?= $data_sum['sumProc']; ?>
+                  </td>
+                  <td>
+                    <?= $data_sum['sumKdk']; ?>
+                  </td>
+                  <td>
+                    <?= $data_sum['sump5r']; ?>
+                  </td>
+                  <td>
+                    <?= $data_sum['sumDoc']; ?>
+                  </td>
+                  <td>
+                    <?= $data_sum['sumplk3']; ?>
+                  </td>
+                  <td>
+                    <?= $data_sum['sumPsop']; ?>
+                  </td>
+                  <td>
+                    <?= $data_sum['sumPtls']; ?>
+                  </td>
+                  <td>
+                    <?= $data_sum['sumHdr']; ?>
+                  </td>
+                  <td>
+                    <?= $data_sum['sumDsp']; ?>
+                  </td>
+                  <td>
+                    <?= $data_sum['sumInf']; ?>
+                  </td>
+                </tr>
+
               </tbody>
               <tfoot>
                 <tr>

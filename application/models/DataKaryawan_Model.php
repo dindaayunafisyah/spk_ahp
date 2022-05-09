@@ -27,6 +27,6 @@ class DataKaryawan_Model extends CI_Model
    public function sumAnalyzeOP()
    {
       $query = "SELECT SUM(productivity) AS sumProc, SUM(kerjasamadankom) AS sumKdk, SUM(pelaksana5r) AS sump5r, SUM(dokumentasi) AS sumDoc, SUM(paham_laksana_k3) AS sumplk3, SUM(paham_sop) AS sumPsop, SUM(paham_tools) AS sumPtls, SUM(hadir) AS sumHdr, SUM(disiplin) AS sumDsp, SUM(inisiatif) AS sumInf FROM tb_analisa_op";
-      return $this->db->query($query)->result_array();
+      return $this->db->query($query)->row_array();
    }
 }
