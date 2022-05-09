@@ -505,6 +505,8 @@ class Master_data extends CI_Controller
         $data['data_nilban'] = $this->m_data_nilai->tampil_nilai()->result_array();
         $data['data_anop'] = $this->DataKaryawan_Model->showAnalyzeOP();
         $data['data_sum'] = $this->DataKaryawan_Model->sumAnalyzeOP();
+        $data['data_nilban'] = $this->m_data_nilai->tampil_nilai()->result_array();
+        $data['data_nilban1'] = $this->m_data_nilai->tampil_nilai_awal()->result_array();
         // ini adalah baris kode yang berfungsi menampilkan v_tampil dan membawa data dari tabel user
         $this->load->view('admin/tamplate/header');
         $this->load->view('admin/tamplate/sidebar');
@@ -691,16 +693,16 @@ class Master_data extends CI_Controller
 
     public function update_analisa_perbandingan()
     {
-        $pro = $this->input->post('Productivity[]');
-        $kdk = $this->input->post('Komunikasi_dan_Kerjasama[]');
-        $p5r = $this->input->post('Pelaksanaan_5R[]');
-        $doc = $this->input->post('Dokumentasi[]');
-        $ppk3 = $this->input->post('Pemahaman_dan_Pelaksanaan_K3[]');
-        $psop = $this->input->post('Pemahaman_SOP[]');
-        $ptls = $this->input->post('Pemahaman_Tools[]');
-        $hdr = $this->input->post('Kehadiran[]');
-        $dsp = $this->input->post('Kedisiplinan[]');
-        $inf = $this->input->post('Inisiatif[]');
+        $pro = $this->input->post('productivity[]');
+        $kdk = $this->input->post('kerjasamadankom[]');
+        $p5r = $this->input->post('pelaksana5r[]');
+        $doc = $this->input->post('dokumentasi[]');
+        $ppk3 = $this->input->post('paham_laksana_k3[]');
+        $psop = $this->input->post('paham_sop[]');
+        $ptls = $this->input->post('paham_tools[]');
+        $hdr = $this->input->post('hadir[]');
+        $dsp = $this->input->post('disiplin[]');
+        $inf = $this->input->post('inisiatif[]');
         $data = array();
         for ($x = 0; $x < sizeof($pro); $x++) {
             $data[] = [
@@ -726,7 +728,7 @@ class Master_data extends CI_Controller
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>'
             );
-            redirect('admin/master_data/analisa_perbandingan');
+            redirect('admin/master_data/tampil_kriteria_op');
         } else {
             $this->session->set_flashdata(
                 'message',
@@ -735,7 +737,7 @@ class Master_data extends CI_Controller
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>'
             );
-            redirect('admin/master_data/analisa_perbandingan');
+            redirect('admin/master_data/tampil_kriteria_op');
         }
     }
 
