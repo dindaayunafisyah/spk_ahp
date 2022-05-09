@@ -531,6 +531,227 @@
               </tfoot>
             </form>
           </table>
+
+          <table class="table table-bordered mb-5" id="dataTable" width="100%" cellspacing="0">
+            <thead>
+              <tr>
+                <th></th>
+                <?php
+                foreach ($data_matrix as $dax) : ?>
+                  <th>
+                    <?php
+                    switch ($dax):
+                      case $dax['id_matop'] == 1:
+                        echo 'Productivty';
+                        break;
+                      case $dax['id_matop'] == 2:
+                        echo 'Kerjasama dan Komunikasi';
+                        break;
+                      case $dax['id_matop'] == 3:
+                        echo 'Pelaksanaan 5 R';
+                        break;
+                      case $dax['id_matop'] == 4:
+                        echo 'Dokumentasi';
+                        break;
+                      case $dax['id_matop'] == 5:
+                        echo 'Pemahaman dan Pelaksanaan K3';
+                        break;
+                      case $dax['id_matop'] == 6:
+                        echo 'Pemahaman SOP';
+                        break;
+                      case $dax['id_matop'] == 7:
+                        echo 'Pemahaman Tools';
+                        break;
+                      case $dax['id_matop'] == 8:
+                        echo 'Kehadiran';
+                        break;
+                      case $dax['id_matop'] == 9:
+                        echo 'Kedisiplinan';
+                        break;
+                      case $dax['id_matop'] == 10:
+                        echo 'Inisiatif';
+                        break;
+                    ?>
+                    <?php endswitch; ?>
+                  </th>
+                <?php endforeach; ?>
+                <th>
+                  Jumlah
+                </th>
+                <th>
+                  Priotitas
+                </th>
+                <th>
+                  Eigen Value
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php
+              foreach ($data_matrix as $dax) : ?>
+                <tr>
+                  <td>
+                    <?php
+                    switch ($dax):
+                      case $dax['id_matop'] == 1:
+                        echo 'Productivty';
+                        break;
+                      case $dax['id_matop'] == 2:
+                        echo 'Kerjasama dan Komunikasi';
+                        break;
+                      case $dax['id_matop'] == 3:
+                        echo 'Pelaksanaan 5 R';
+                        break;
+                      case $dax['id_matop'] == 4:
+                        echo 'Dokumentasi';
+                        break;
+                      case $dax['id_matop'] == 5:
+                        echo 'Pemahaman dan Pelaksanaan K3';
+                        break;
+                      case $dax['id_matop'] == 6:
+                        echo 'Pemahaman SOP';
+                        break;
+                      case $dax['id_matop'] == 7:
+                        echo 'Pemahaman Tools';
+                        break;
+                      case $dax['id_matop'] == 8:
+                        echo 'Kehadiran';
+                        break;
+                      case $dax['id_matop'] == 9:
+                        echo 'Kedisiplinan';
+                        break;
+                      case $dax['id_matop'] == 10:
+                        echo 'Inisiatif';
+                        break;
+                    ?>
+                    <?php endswitch; ?>
+                  </td>
+                  <td>
+                    <?= $dax['productivity'] ?>
+                  </td>
+                  <td>
+                    <?= $dax['kerjasamadankom'] ?>
+                  </td>
+                  <td>
+                    <?= $dax['pelaksana5r'] ?>
+                  </td>
+                  <td>
+                    <?= $dax['dokumentasi'] ?>
+                  </td>
+                  <td>
+                    <?= $dax['paham_laksana_k3'] ?>
+                  </td>
+                  <td>
+                    <?= $dax['paham_sop'] ?>
+                  </td>
+                  <td>
+                    <?= $dax['paham_tools'] ?>
+                  </td>
+                  <td>
+                    <?= $dax['hadir'] ?>
+                  </td>
+                  <td>
+                    <?= $dax['disiplin'] ?>
+                  </td>
+                  <td>
+                    <?= $dax['inisiatif'] ?>
+                  </td>
+                  <td>
+                    <?= $dax['jumlah'] ?>
+                  </td>
+                  <td>
+                    <?= $dax['prioritas'] ?>
+                  </td>
+                  <td>
+                    <?= $dax['eigen_value'] ?>
+                  </td>
+                </tr>
+              <?php endforeach; ?>
+              <tr style="font-weight: bold; font-size:15px;">
+                <td><strong>Total</strong></td>
+                <td>
+                  <?= round($total_matrix['sumProc']); ?>
+                </td>
+                <td>
+                  <?= round($total_matrix['sumKdk']); ?>
+                </td>
+                <td>
+                  <?= round($total_matrix['sump5r']); ?>
+                </td>
+                <td>
+                  <?= round($total_matrix['sumDoc']); ?>
+                </td>
+                <td>
+                  <?= round($total_matrix['sumplk3']); ?>
+                </td>
+                <td>
+                  <?= round($total_matrix['sumPsop']); ?>
+                </td>
+                <td>
+                  <?= round($total_matrix['sumPtls']); ?>
+                </td>
+                <td>
+                  <?= round($total_matrix['sumHdr']); ?>
+                </td>
+                <td>
+                  <?= round($total_matrix['sumDsp']); ?>
+                </td>
+                <td>
+                  <?= round($total_matrix['sumInf']); ?>
+                </td>
+                <td>
+                  <?= round($total_matrix['sumJum']); ?>
+                </td>
+                <td>
+                  <?= round($total_matrix['sumPrior']); ?>
+                </td>
+                <td>
+                  <?= round($total_matrix['sumEig']); ?>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <tr>
+              <th>CI</th>
+              <th colspan="2">
+                <?php
+                $ci = (round($total_matrix['sumEig']) - $data_countop['jumKritOp']) / ($data_countop['jumKritOp'] - 1);
+                echo $ci;
+                ?>
+              </th>
+            </tr>
+            <tr>
+              <th>RI</th>
+              <th colspan="2">
+                <?php
+                echo $ri;
+                ?>
+              </th>
+            </tr>
+            <tr>
+              <th>CR</th>
+              <th>
+                <?php
+                $cr = $ci / $ri;
+                echo $cr;
+                ?>
+              </th>
+              <th>
+                <?php
+                if ($cr <= 0.1) : ?>
+                  <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    Konsisten
+                  </div>
+                <?php else : ?>
+                  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    Tidak Konsisten
+                  </div>
+                <?php endif; ?>
+              </th>
+            </tr>
+          </table>
         </div>
       </div>
 

@@ -507,7 +507,19 @@ class Master_data extends CI_Controller
         $data['data_sum'] = $this->DataKaryawan_Model->sumAnalyzeOP();
         $data['data_nilban'] = $this->m_data_nilai->tampil_nilai()->result_array();
         $data['data_nilban1'] = $this->m_data_nilai->tampil_nilai_awal()->result_array();
+        $data['data_matrix'] = $this->DataKaryawan_Model->showMatrixOp();
+        $data['total_matrix'] = $this->DataKaryawan_Model->totalNilaiMatriks();
+        $data['data_countop'] = $this->DataKaryawan_Model->countKritOp();
+        $data['ri'] = 1.49;
         // ini adalah baris kode yang berfungsi menampilkan v_tampil dan membawa data dari tabel user
+
+        // echo '<pre>';
+        // // print_r($data['data_countop']);
+        // $data[] = $data['data_sum1'];
+        // print_r($data);
+        // die;
+        // echo '</pre>';
+
         $this->load->view('admin/tamplate/header');
         $this->load->view('admin/tamplate/sidebar');
         $this->load->view('admin/v_kriteria_operator', $data);
@@ -651,6 +663,8 @@ class Master_data extends CI_Controller
 
     public function update_analisa_perbandingan()
     {
+
+
         $pro = $this->input->post('productivity[]');
         $kdk = $this->input->post('kerjasamadankom[]');
         $p5r = $this->input->post('pelaksana5r[]');
@@ -678,20 +692,77 @@ class Master_data extends CI_Controller
             ];
         }
         $query = $this->db->update_batch('tb_analisa_op', $data, 'id_anop');
+        //
+        // var_dump($query);
+        // die;
         if ($query) {
-            $this->session->set_flashdata(
-                'message',
-                '<div class="alert alert-success success-dismissible fade show" role="alert">
-                    Sukses dianalisa
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>'
-            );
-            redirect('admin/master_data/tampil_kriteria_op');
+            $data['data_sum'] = $this->DataKaryawan_Model->sumAnalyzeOP();
+            $proc = $data['data_sum']['sumProc'];
+            $kedako = $data['data_sum']['sumKdk'];
+            $pel5r = $data['data_sum']['sump5r'];
+            $docs = $data['data_sum']['sumDoc'];
+            $plk3 = $data['data_sum']['sumplk3'];
+            $pasop = $data['data_sum']['sumPsop'];
+            $patols = $data['data_sum']['sumPtls'];
+            $hadr = $data['data_sum']['sumHdr'];
+            $displ = $data['data_sum']['sumDsp'];
+            $inis = $data['data_sum']['sumInf'];
+            $data['data_countop'] = $this->DataKaryawan_Model->countKritOp();
+            $countKrit = $data['data_countop']['jumKritOp'];
+            $data['data_sum1'] = $this->DataKaryawan_Model->sumAnalyzeOPResArray();
+            $sumEigen = $data['data_sum1'];
+
+            // print_r($countKrit);
+            // die;
+
+            $data = array();
+            for ($x = 0; $x < sizeof($pro); $x++) {
+                $data1[] = [
+                    'productivity' => $pro[$x] / $proc,
+                    'kerjasamadankom' => $kdk[$x] / $kedako,
+                    'pelaksana5r' => $p5r[$x] / $pel5r,
+                    'dokumentasi' => $doc[$x] / $docs,
+                    'paham_laksana_k3' => $ppk3[$x] / $plk3,
+                    'paham_sop' => $psop[$x] / $pasop,
+                    'paham_tools' => $ptls[$x] / $patols,
+                    'hadir' => $hdr[$x] / $hadr,
+                    'disiplin' => $dsp[$x] / $displ,
+                    'inisiatif' => $inf[$x] / $inis,
+                    'jumlah' => (($pro[$x] / $proc) + ($kdk[$x] / $kedako) + ($p5r[$x] / $pel5r) + ($doc[$x] / $docs) + ($ppk3[$x] / $plk3) + ($psop[$x] / $pasop) + ($ptls[$x] / $patols) + ($hdr[$x] / $hadr) + ($dsp[$x] / $displ) + ($inf[$x] / $inis)),
+
+                    'prioritas' => (($pro[$x] / $proc) + ($kdk[$x] / $kedako) + ($p5r[$x] / $pel5r) + ($doc[$x] / $docs) + ($ppk3[$x] / $plk3) + ($psop[$x] / $pasop) + ($ptls[$x] / $patols) + ($hdr[$x] / $hadr) + ($dsp[$x] / $displ) + ($inf[$x] / $inis)) / $countKrit,
+
+                    'eigen_value' => ((($pro[$x] / $proc) + ($kdk[$x] / $kedako) + ($p5r[$x] / $pel5r) + ($doc[$x] / $docs) + ($ppk3[$x] / $plk3) + ($psop[$x] / $pasop) + ($ptls[$x] / $patols) + ($hdr[$x] / $hadr) + ($dsp[$x] / $displ) + ($inf[$x] / $inis)) / $countKrit) * $sumEigen[$x],
+
+                    'id_matop' => $x + 1,
+                ];
+            }
+            $query1 = $this->db->update_batch('tb_matriks_op', $data1, 'id_matop');
+
+            if ($query1) {
+                $this->session->set_flashdata(
+                    'message',
+                    '<div class="alert alert-success success-dismissible fade show" role="alert">
+                        Sukses dianalisa
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>'
+                );
+                redirect('admin/master_data/tampil_kriteria_op');
+            } else {
+                $this->session->set_flashdata(
+                    'message',
+                    '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        Gagal dianalisa
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>'
+                );
+                redirect('admin/master_data/tampil_kriteria_op');
+            }
         } else {
             $this->session->set_flashdata(
                 'message',
                 '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    Gagal dianalisa
+                    Gagal dianalisa tahap nilai
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>'
             );
