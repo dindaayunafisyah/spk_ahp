@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 09 Bulan Mei 2022 pada 19.21
+-- Waktu pembuatan: 10 Bulan Mei 2022 pada 17.47
 -- Versi server: 10.4.11-MariaDB
 -- Versi PHP: 7.3.13
 
@@ -296,15 +296,43 @@ INSERT INTO `tb_matriks_op` (`id_matop`, `productivity`, `kerjasamadankom`, `pel
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tb_subrange_kasi`
+-- Struktur dari tabel `tb_submatriks_productivity`
 --
 
-CREATE TABLE `tb_subrange_kasi` (
-  `id_subrange_kasi` int(11) NOT NULL,
-  `id_kriteria_kasi` varchar(10) NOT NULL,
-  `id_jabatan` varchar(10) NOT NULL,
-  `nama_subrange_kasi` int(11) NOT NULL
+CREATE TABLE `tb_submatriks_productivity` (
+  `id_subrange_proc` int(11) NOT NULL,
+  `pekerjaan_90` double DEFAULT NULL,
+  `pekerjaan_80_90` double DEFAULT NULL,
+  `pekerjaan_60_79` double DEFAULT NULL,
+  `pekerjaan_59` double DEFAULT NULL,
+  `jumlah` double DEFAULT NULL,
+  `prioritas` double DEFAULT NULL,
+  `eigen_value` double DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `tb_subrange_komdanker`
+--
+
+CREATE TABLE `tb_subrange_komdanker` (
+  `id_subrange_kdk` int(11) NOT NULL,
+  `sangat_baik` double DEFAULT NULL,
+  `baik` double DEFAULT NULL,
+  `kurang` double DEFAULT NULL,
+  `tidak_mampu` double DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `tb_subrange_komdanker`
+--
+
+INSERT INTO `tb_subrange_komdanker` (`id_subrange_kdk`, `sangat_baik`, `baik`, `kurang`, `tidak_mampu`) VALUES
+(1, NULL, NULL, NULL, NULL),
+(2, NULL, NULL, NULL, NULL),
+(3, NULL, NULL, NULL, NULL),
+(4, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -318,6 +346,30 @@ CREATE TABLE `tb_subrange_op` (
   `id_jabatan` varchar(10) NOT NULL,
   `nama_subrange_op` int(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `tb_subrange_productivity`
+--
+
+CREATE TABLE `tb_subrange_productivity` (
+  `id_subrange_proc` int(11) NOT NULL,
+  `pekerjaan_90` double DEFAULT NULL,
+  `pekerjaan_80_90` double DEFAULT NULL,
+  `pekerjaan_60_79` double DEFAULT NULL,
+  `pekerjaan_59` double DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `tb_subrange_productivity`
+--
+
+INSERT INTO `tb_subrange_productivity` (`id_subrange_proc`, `pekerjaan_90`, `pekerjaan_80_90`, `pekerjaan_60_79`, `pekerjaan_59`) VALUES
+(1, 1, 3, 5, 9),
+(2, 0.33333333333333, 1, 4, 6),
+(3, 0.2, 0.25, 1, 3),
+(4, 0.11111111111111, 0.16666666666667, 0.33333333333333, 1);
 
 -- --------------------------------------------------------
 
@@ -412,12 +464,16 @@ ALTER TABLE `tb_matriks_op`
   ADD PRIMARY KEY (`id_matop`);
 
 --
--- Indeks untuk tabel `tb_subrange_kasi`
+-- Indeks untuk tabel `tb_submatriks_productivity`
 --
-ALTER TABLE `tb_subrange_kasi`
-  ADD PRIMARY KEY (`id_subrange_kasi`),
-  ADD KEY `id_kriteria_kasi` (`id_kriteria_kasi`,`id_jabatan`),
-  ADD KEY `id_jabatan` (`id_jabatan`);
+ALTER TABLE `tb_submatriks_productivity`
+  ADD PRIMARY KEY (`id_subrange_proc`);
+
+--
+-- Indeks untuk tabel `tb_subrange_komdanker`
+--
+ALTER TABLE `tb_subrange_komdanker`
+  ADD PRIMARY KEY (`id_subrange_kdk`);
 
 --
 -- Indeks untuk tabel `tb_subrange_op`
@@ -426,6 +482,12 @@ ALTER TABLE `tb_subrange_op`
   ADD PRIMARY KEY (`id_subrange_op`),
   ADD KEY `id_kriteria_op` (`id_kriteria_op`,`id_jabatan`),
   ADD KEY `id_jabatan` (`id_jabatan`);
+
+--
+-- Indeks untuk tabel `tb_subrange_productivity`
+--
+ALTER TABLE `tb_subrange_productivity`
+  ADD PRIMARY KEY (`id_subrange_proc`);
 
 --
 -- Indeks untuk tabel `tb_user`
@@ -471,13 +533,6 @@ ALTER TABLE `data_kuisioner_op`
 ALTER TABLE `tb_karyawan`
   ADD CONSTRAINT `tb_karyawan_ibfk_1` FOREIGN KEY (`id_jabatan`) REFERENCES `tb_jabatan` (`id_jabatan`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `tb_karyawan_ibfk_2` FOREIGN KEY (`id_divisi`) REFERENCES `tb_divisi` (`id_divisi`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Ketidakleluasaan untuk tabel `tb_subrange_kasi`
---
-ALTER TABLE `tb_subrange_kasi`
-  ADD CONSTRAINT `tb_subrange_kasi_ibfk_1` FOREIGN KEY (`id_kriteria_kasi`) REFERENCES `tb_kriteria_kasi` (`id_kriteria_kasi`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `tb_subrange_kasi_ibfk_2` FOREIGN KEY (`id_jabatan`) REFERENCES `tb_jabatan` (`id_jabatan`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ketidakleluasaan untuk tabel `tb_subrange_op`
