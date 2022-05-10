@@ -53,4 +53,20 @@ class DataKaryawan_Model extends CI_Model
       $query = "SELECT SUM(productivity) AS sumProc, SUM(kerjasamadankom) AS sumKdk, SUM(pelaksana5r) AS sump5r, SUM(dokumentasi) AS sumDoc, SUM(paham_laksana_k3) AS sumplk3, SUM(paham_sop) AS sumPsop, SUM(paham_tools) AS sumPtls, SUM(hadir) AS sumHdr, SUM(disiplin) AS sumDsp, SUM(inisiatif) AS sumInf, SUM(jumlah) AS sumJum, SUM(prioritas) AS sumPrior, SUM(eigen_value) AS sumEig FROM tb_matriks_op";
       return $this->db->query($query)->row_array();
    }
+
+
+
+
+
+   //Subrange Kriteria
+   public function showSubrangeProductivity()
+   {
+      $query = "SELECT * FROM tb_subrange_productivity";
+      return $this->db->query($query)->result_array();
+   }
+   public function showSubrangeKomdanKer()
+   {
+      $query = "SELECT * FROM tb_subrange_komdanker";
+      return $this->db->query($query)->result_array();
+   }
 }

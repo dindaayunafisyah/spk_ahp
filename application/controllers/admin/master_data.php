@@ -502,15 +502,6 @@ class Master_data extends CI_Controller
         $data['title'] = 'Data Kriteria';
         // ini adalah variabel array $data yang memiliki index user, berguna untuk menyimpan data 
         $data['kriteria_op'] = $this->m_data_kriteria->tampil_kriteria_op()->result();
-        $data['data_nilban'] = $this->m_data_nilai->tampil_nilai()->result_array();
-        $data['data_anop'] = $this->DataKaryawan_Model->showAnalyzeOP();
-        $data['data_sum'] = $this->DataKaryawan_Model->sumAnalyzeOP();
-        $data['data_nilban'] = $this->m_data_nilai->tampil_nilai()->result_array();
-        $data['data_nilban1'] = $this->m_data_nilai->tampil_nilai_awal()->result_array();
-        $data['data_matrix'] = $this->DataKaryawan_Model->showMatrixOp();
-        $data['total_matrix'] = $this->DataKaryawan_Model->totalNilaiMatriks();
-        $data['data_countop'] = $this->DataKaryawan_Model->countKritOp();
-        $data['ri'] = 1.49;
         // ini adalah baris kode yang berfungsi menampilkan v_tampil dan membawa data dari tabel user
 
         // echo '<pre>';
@@ -747,7 +738,7 @@ class Master_data extends CI_Controller
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>'
                 );
-                redirect('admin/master_data/tampil_kriteria_op');
+                redirect('admin/master_data/pembobotan_KriOp');
             } else {
                 $this->session->set_flashdata(
                     'message',
@@ -756,7 +747,7 @@ class Master_data extends CI_Controller
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>'
                 );
-                redirect('admin/master_data/tampil_kriteria_op');
+                redirect('admin/master_data/pembobotan_KriOp');
             }
         } else {
             $this->session->set_flashdata(
@@ -766,7 +757,7 @@ class Master_data extends CI_Controller
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>'
             );
-            redirect('admin/master_data/tampil_kriteria_op');
+            redirect('admin/master_data/pembobotan_KriOp');
         }
     }
 
@@ -780,7 +771,132 @@ class Master_data extends CI_Controller
 
 
 
+
+
+
+    //---------------------- Pembobotan Kriteria Operator ----------------------
+    public function pembobotan_KriOp()
+    {
+        $data['title'] = 'Pembobotan Kriteria';
+        // ini adalah variabel array $data yang memiliki index user, berguna untuk menyimpan data 
+
+        $data['data_anop'] = $this->DataKaryawan_Model->showAnalyzeOP();
+        $data['data_sum'] = $this->DataKaryawan_Model->sumAnalyzeOP();
+        $data['data_nilban'] = $this->m_data_nilai->tampil_nilai()->result_array();
+        $data['data_nilban1'] = $this->m_data_nilai->tampil_nilai_awal()->result_array();
+        $data['data_matrix'] = $this->DataKaryawan_Model->showMatrixOp();
+        $data['total_matrix'] = $this->DataKaryawan_Model->totalNilaiMatriks();
+        $data['data_countop'] = $this->DataKaryawan_Model->countKritOp();
+        $data['ri'] = 1.49;
+        // ini adalah baris kode yang berfungsi menampilkan v_tampil dan membawa data dari tabel user
+
+        // echo '<pre>';
+        // // print_r($data['data_countop']);
+        // $data[] = $data['data_sum1'];
+        // print_r($data);
+        // die;
+        // echo '</pre>';
+
+        $this->load->view('admin/tamplate/header');
+        $this->load->view('admin/tamplate/sidebar');
+        $this->load->view('admin/v_pembobotan_kriop', $data);
+        $this->load->view('admin/tamplate/footer');
+    }
+
+    //---------------------- End Pembobotan Kriteria Operator ----------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //---------------------- Subrange Kriteria Operator ----------------------
+    public function subrange_KriOp()
+    {
+        $data['title'] = 'Subrange Kriteria';
+        $data['title1'] = 'Subrange Productivity';
+        $data['title2'] = 'Subrange Kerjasama dan Komunikasi';
+        $data['subrange_product'] = $this->DataKaryawan_Model->showSubrangeProductivity();
+        $data['subrange_komdanker'] = $this->DataKaryawan_Model->showSubrangeKomdanKer();
+
+        // 
+        $data['data_nilban'] = $this->m_data_nilai->tampil_nilai()->result_array();
+        $data['data_nilban1'] = $this->m_data_nilai->tampil_nilai_awal()->result_array();
+        // 
+
+
+        $this->load->view('admin/tamplate/header');
+        $this->load->view('admin/tamplate/sidebar');
+        $this->load->view('admin/v_subrange_op', $data);
+        $this->load->view('admin/tamplate/footer');
+    }
+    public function update_subrange_Productivity()
+    {
+        $_90 = $this->input->post('pekerjaan_90[]');
+        $_8090 = $this->input->post('pekerjaan_80_90[]');
+        $_6079 = $this->input->post('pekerjaan_60_79[]');
+        $_59 = $this->input->post('pekerjaan_59[]');
+        $data = array();
+        for ($x = 0; $x < sizeof($_90); $x++) {
+            $data[] = [
+                'pekerjaan_90' => $_90[$x],
+                'pekerjaan_80_90' => $_8090[$x],
+                'pekerjaan_60_79' => $_6079[$x],
+                'pekerjaan_59' => $_59[$x],
+                'id_subrange_proc' => $x + 1,
+            ];
+        }
+        $query = $this->db->update_batch('tb_subrange_productivity', $data, 'id_subrange_proc');
+        if ($query) {
+            $this->session->set_flashdata(
+                'message',
+                '<div class="alert alert-success success-dismissible fade show" role="alert">
+                    Sukses dianalisa
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>'
+            );
+            redirect('admin/master_data/subrange_KriOp');
+        } else {
+            $this->session->set_flashdata(
+                'message',
+                '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    Gagal dianalisa
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>'
+            );
+            redirect('admin/master_data/subrange_KriOp');
+        }
+    }
+    public function update_subrange_KomdanKer()
+    {
+    }
+    //---------------------- End Subrange Kriteria Operator ----------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     //
+
     public function tampil_kriteria_kasi()
     {
         // ini adalah variabel array $data yang memiliki index user, berguna untuk menyimpan data 

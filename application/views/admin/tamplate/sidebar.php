@@ -110,7 +110,7 @@
                                     Kriteria</a>
                                 <ul class="submenu ">
                                     <li class="submenu-item ">
-                                        <a href="component-alert.html">Operator</a>
+                                        <a href="<?= base_url('admin/master_data/pembobotan_KriOp') ?>">Operator</a>
                                     </li>
                                     <li class="submenu-item ">
                                         <a href="component-badge.html">Kepala Divisi</a>
@@ -123,7 +123,7 @@
                                     Subrange</a>
                                 <ul class="submenu ">
                                     <li class="submenu-item ">
-                                        <a href="component-alert.html">Operator</a>
+                                        <a href="<?= base_url('admin/master_data/subrange_KriOp') ?>">Operator</a>
                                     </li>
                                     <li class="submenu-item ">
                                         <a href="component-badge.html">Kepala Divisi</a>
