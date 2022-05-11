@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 10 Bulan Mei 2022 pada 17.47
+-- Waktu pembuatan: 11 Bulan Mei 2022 pada 11.31
 -- Versi server: 10.4.11-MariaDB
 -- Versi PHP: 7.3.13
 
@@ -300,7 +300,7 @@ INSERT INTO `tb_matriks_op` (`id_matop`, `productivity`, `kerjasamadankom`, `pel
 --
 
 CREATE TABLE `tb_submatriks_productivity` (
-  `id_subrange_proc` int(11) NOT NULL,
+  `id_submatrix_proc` int(11) NOT NULL,
   `pekerjaan_90` double DEFAULT NULL,
   `pekerjaan_80_90` double DEFAULT NULL,
   `pekerjaan_60_79` double DEFAULT NULL,
@@ -309,6 +309,16 @@ CREATE TABLE `tb_submatriks_productivity` (
   `prioritas` double DEFAULT NULL,
   `eigen_value` double DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `tb_submatriks_productivity`
+--
+
+INSERT INTO `tb_submatriks_productivity` (`id_submatrix_proc`, `pekerjaan_90`, `pekerjaan_80_90`, `pekerjaan_60_79`, `pekerjaan_59`, `jumlah`, `prioritas`, `eigen_value`) VALUES
+(1, 0.60810810810811, 0.67924528301887, 0.48387096774194, 0.47368421052632, 2.2449085693952, 0.56122714234881, 0.92290685630692),
+(2, 0.2027027027027, 0.22641509433962, 0.38709677419355, 0.31578947368421, 1.1320040449201, 0.28300101123002, 1.2499211329326),
+(3, 0.12162162162162, 0.056603773584906, 0.096774193548387, 0.15789473684211, 0.43289432559702, 0.10822358139925, 1.1183103411256),
+(4, 0.067567567567567, 0.037735849056605, 0.032258064516129, 0.052631578947368, 0.19019306008767, 0.047548265021917, 0.90341703541643);
 
 -- --------------------------------------------------------
 
@@ -467,7 +477,7 @@ ALTER TABLE `tb_matriks_op`
 -- Indeks untuk tabel `tb_submatriks_productivity`
 --
 ALTER TABLE `tb_submatriks_productivity`
-  ADD PRIMARY KEY (`id_subrange_proc`);
+  ADD PRIMARY KEY (`id_submatrix_proc`);
 
 --
 -- Indeks untuk tabel `tb_subrange_komdanker`
