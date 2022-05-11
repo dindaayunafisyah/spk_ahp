@@ -226,6 +226,21 @@
                                                             <?php endif; ?>
                                                         </tr>
                                                     <?php endforeach; ?>
+                                                    <tr>
+                                                        <td><strong>Total</strong></td>
+                                                        <td>
+                                                            <?= $sum_subproduct['sum90']; ?>
+                                                        </td>
+                                                        <td>
+                                                            <?= $sum_subproduct['sum8090']; ?>
+                                                        </td>
+                                                        <td>
+                                                            <?= $sum_subproduct['sum6079']; ?>
+                                                        </td>
+                                                        <td>
+                                                            <?= $sum_subproduct['sum59']; ?>
+                                                        </td>
+                                                    </tr>
                                                 </tbody>
                                                 <tfoot>
                                                     <tr>
@@ -237,6 +252,162 @@
                                                 </tfoot>
                                             </form>
                                         </table>
+
+                                        <table class="table table-bordered mb-5" id="dataTable" width="100%" cellspacing="0">
+                                            <thead>
+                                                <tr>
+                                                    <th></th>
+                                                    <?php
+                                                    foreach ($subrange_product as $supro) : ?>
+                                                        <th>
+                                                            <?php
+                                                            switch ($supro):
+                                                                case $supro['id_subrange_proc'] == 1:
+                                                                    echo 'Pekerjaan Selesai > 90 %';
+                                                                    break;
+                                                                case $supro['id_subrange_proc'] == 2:
+                                                                    echo 'Pekerjaan Selesai 80 % - 90 %';
+                                                                    break;
+                                                                case $supro['id_subrange_proc'] == 3:
+                                                                    echo 'Pekerjaan Selesai 60 % - 79 %';
+                                                                    break;
+                                                                case $supro['id_subrange_proc'] == 4:
+                                                                    echo 'Pekerjaan Selesai < 60 %';
+                                                                    break;
+                                                                default:
+                                                                    echo 'No One';
+                                                                    break;
+                                                            ?>
+                                                            <?php endswitch; ?>
+                                                        </th>
+                                                    <?php endforeach; ?>
+                                                    <th>
+                                                        Jumlah
+                                                    </th>
+                                                    <th>
+                                                        Priotitas
+                                                    </th>
+                                                    <th>
+                                                        Eigen Value
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php
+                                                foreach ($submatrix_product as $submproc) : ?>
+                                                    <tr>
+                                                        <td>
+                                                            <?php
+                                                            switch ($submproc):
+                                                                case $submproc['id_submatrix_proc'] == 1:
+                                                                    echo 'Pekerjaan Selesai > 90 %';
+                                                                    break;
+                                                                case $submproc['id_submatrix_proc'] == 2:
+                                                                    echo 'Pekerjaan Selesai 80 % - 90 %';
+                                                                    break;
+                                                                case $submproc['id_submatrix_proc'] == 3:
+                                                                    echo 'Pekerjaan Selesai 60 % - 79 %';
+                                                                    break;
+                                                                case $submproc['id_submatrix_proc'] == 4:
+                                                                    echo 'Pekerjaan Selesai < 60 %';
+                                                                    break;
+                                                                default:
+                                                                    echo 'No One';
+                                                                    break;
+                                                            ?>
+                                                            <?php endswitch; ?>
+                                                        </td>
+                                                        <td>
+                                                            <?= $submproc['pekerjaan_90'] ?>
+                                                        </td>
+                                                        <td>
+                                                            <?= $submproc['pekerjaan_80_90'] ?>
+                                                        </td>
+                                                        <td>
+                                                            <?= $submproc['pekerjaan_60_79'] ?>
+                                                        </td>
+                                                        <td>
+                                                            <?= $submproc['pekerjaan_59'] ?>
+                                                        </td>
+                                                        <td>
+                                                            <?= $submproc['jumlah'] ?>
+                                                        </td>
+                                                        <td>
+                                                            <?= $submproc['prioritas'] ?>
+                                                        </td>
+                                                        <td>
+                                                            <?= $submproc['eigen_value'] ?>
+                                                        </td>
+                                                    </tr>
+                                                <?php endforeach; ?>
+                                                <tr style="font-weight: bold; font-size:15px;">
+                                                    <td><strong>Total</strong></td>
+                                                    <td>
+                                                        <?= round($sum_submatrixproduct['sum90']); ?>
+                                                    </td>
+                                                    <td>
+                                                        <?= round($sum_submatrixproduct['sum8090']); ?>
+                                                    </td>
+                                                    <td>
+                                                        <?= round($sum_submatrixproduct['sum6079']); ?>
+                                                    </td>
+                                                    <td>
+                                                        <?= round($sum_submatrixproduct['sum59']); ?>
+                                                    </td>
+                                                    <td>
+                                                        <?= round($sum_submatrixproduct['submtxJum']); ?>
+                                                    </td>
+                                                    <td>
+                                                        <?= round($sum_submatrixproduct['submtxPrior']); ?>
+                                                    </td>
+                                                    <td>
+                                                        <?= round($sum_submatrixproduct['submtxEig']); ?>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+
+                                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                            <tr>
+                                                <th>CI</th>
+                                                <th colspan="2">
+                                                    <?php
+                                                    $ci = ($sum_submatrixproduct['submtxEig'] - $count_subproduct['jumSubProc']) / ($count_subproduct['jumSubProc'] - 1);
+                                                    echo $ci;
+                                                    ?>
+                                                </th>
+                                            </tr>
+                                            <tr>
+                                                <th>RI</th>
+                                                <th colspan="2">
+                                                    <?php
+                                                    echo $ri;
+                                                    ?>
+                                                </th>
+                                            </tr>
+                                            <tr>
+                                                <th>CR</th>
+                                                <th>
+                                                    <?php
+                                                    $cr = $ci / $ri;
+                                                    echo $cr;
+                                                    ?>
+                                                </th>
+                                                <th>
+                                                    <?php
+                                                    if ($cr <= 0.1) : ?>
+                                                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                                            Konsisten
+                                                        </div>
+                                                    <?php else : ?>
+                                                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                                            Tidak Konsisten
+                                                        </div>
+                                                    <?php endif; ?>
+                                                </th>
+                                            </tr>
+                                        </table>
+
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">

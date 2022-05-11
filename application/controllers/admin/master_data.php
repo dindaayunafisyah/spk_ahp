@@ -824,20 +824,29 @@ class Master_data extends CI_Controller
         $data['title'] = 'Subrange Kriteria';
         $data['title1'] = 'Subrange Productivity';
         $data['title2'] = 'Subrange Kerjasama dan Komunikasi';
+        //Productiviity
         $data['subrange_product'] = $this->DataKaryawan_Model->showSubrangeProductivity();
+        $data['submatrix_product'] = $this->DataKaryawan_Model->showSubmatrixProductivity();
+        $data['count_subproduct'] = $this->DataKaryawan_Model->countSubrangeProductivity();
+        $data['sum_subproduct'] = $this->DataKaryawan_Model->sumSubrangeProductivity();
+        $data['sum_submatrixproduct'] = $this->DataKaryawan_Model->sumSubmatrixProductivity();
+
+        //Kerjasama dan Komunikasi
         $data['subrange_komdanker'] = $this->DataKaryawan_Model->showSubrangeKomdanKer();
 
         // 
         $data['data_nilban'] = $this->m_data_nilai->tampil_nilai()->result_array();
         $data['data_nilban1'] = $this->m_data_nilai->tampil_nilai_awal()->result_array();
         // 
-
+        $data['ri'] = 0.9;
 
         $this->load->view('admin/tamplate/header');
         $this->load->view('admin/tamplate/sidebar');
         $this->load->view('admin/v_subrange_op', $data);
         $this->load->view('admin/tamplate/footer');
     }
+
+    //
     public function update_subrange_Productivity()
     {
         $_90 = $this->input->post('pekerjaan_90[]');
@@ -856,19 +865,57 @@ class Master_data extends CI_Controller
         }
         $query = $this->db->update_batch('tb_subrange_productivity', $data, 'id_subrange_proc');
         if ($query) {
-            $this->session->set_flashdata(
-                'message',
-                '<div class="alert alert-success success-dismissible fade show" role="alert">
-                    Sukses dianalisa
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>'
-            );
-            redirect('admin/master_data/subrange_KriOp');
+            $data['sum_subproduct'] = $this->DataKaryawan_Model->sumSubrangeProductivity();
+            $sum90 = $data['sum_subproduct']['sum90'];
+            $sum8090 = $data['sum_subproduct']['sum8090'];
+            $sum6079 = $data['sum_subproduct']['sum6079'];
+            $sum59 = $data['sum_subproduct']['sum59'];
+            $data['count_subproduct'] = $this->DataKaryawan_Model->countSubrangeProductivity();
+            $count_subproduct = $data['count_subproduct']['jumSubProc'];
+            $data['sumArray_subproduct'] = $this->DataKaryawan_Model->sumSubrangeProductivityOPResArray();
+            $sumSubProducEigen = $data['sumArray_subproduct'];
+
+            $data = array();
+            for ($x = 0; $x < sizeof($_90); $x++) {
+                $data[] = [
+                    'pekerjaan_90' => $_90[$x] / $sum90,
+                    'pekerjaan_80_90' => $_8090[$x] / $sum8090,
+                    'pekerjaan_60_79' => $_6079[$x] / $sum6079,
+                    'pekerjaan_59' => $_59[$x] / $sum59,
+                    'jumlah' => (($_90[$x] / $sum90) + ($_8090[$x] / $sum8090) + ($_6079[$x] / $sum6079) + ($_59[$x] / $sum59)),
+
+                    'prioritas' => (($_90[$x] / $sum90) + ($_8090[$x] / $sum8090) + ($_6079[$x] / $sum6079) + ($_59[$x] / $sum59)) / $count_subproduct,
+
+                    'eigen_value' => ((($_90[$x] / $sum90) + ($_8090[$x] / $sum8090) + ($_6079[$x] / $sum6079) + ($_59[$x] / $sum59)) / $count_subproduct) * $sumSubProducEigen[$x],
+
+                    'id_submatrix_proc' => $x + 1,
+                ];
+            }
+            $query1 = $this->db->update_batch('tb_submatriks_productivity', $data, 'id_submatrix_proc');
+            if ($query1) {
+                $this->session->set_flashdata(
+                    'message',
+                    '<div class="alert alert-success success-dismissible fade show" role="alert">
+                        Sukses dianalisa
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>'
+                );
+                redirect('admin/master_data/subrange_KriOp');
+            } else {
+                $this->session->set_flashdata(
+                    'message',
+                    '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        Gagal dianalisa
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>'
+                );
+                redirect('admin/master_data/subrange_KriOp');
+            }
         } else {
             $this->session->set_flashdata(
                 'message',
                 '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    Gagal dianalisa
+                    Gagal dianalisa tahap nilai
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>'
             );

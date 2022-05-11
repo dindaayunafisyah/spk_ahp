@@ -59,11 +59,39 @@ class DataKaryawan_Model extends CI_Model
 
 
    //Subrange Kriteria
+   // ------------- Productivity ------------- //
    public function showSubrangeProductivity()
    {
       $query = "SELECT * FROM tb_subrange_productivity";
       return $this->db->query($query)->result_array();
    }
+   public function showSubmatrixProductivity()
+   {
+      $query = "SELECT * FROM tb_submatriks_productivity";
+      return $this->db->query($query)->result_array();
+   }
+   public function sumSubrangeProductivity()
+   {
+      $query = "SELECT SUM(pekerjaan_90) AS sum90, SUM(pekerjaan_80_90) AS sum8090, SUM(pekerjaan_60_79) AS sum6079, SUM(pekerjaan_59) AS sum59 FROM tb_subrange_productivity";
+      return $this->db->query($query)->row_array();
+   }
+   public function sumSubmatrixProductivity()
+   {
+      $query = "SELECT SUM(pekerjaan_90) AS sum90, SUM(pekerjaan_80_90) AS sum8090, SUM(pekerjaan_60_79) AS sum6079, SUM(pekerjaan_59) AS sum59, SUM(jumlah) AS submtxJum, SUM(prioritas) AS submtxPrior, SUM(eigen_value) AS submtxEig FROM tb_submatriks_productivity";
+      return $this->db->query($query)->row_array();
+   }
+   public function sumSubrangeProductivityOPResArray()
+   {
+      $query = "SELECT SUM(pekerjaan_90) AS '0', SUM(pekerjaan_80_90) AS '1', SUM(pekerjaan_60_79) AS '2', SUM(pekerjaan_59) AS '3' FROM tb_subrange_productivity";
+      return $this->db->query($query)->row_array();
+   }
+   public function countSubrangeProductivity()
+   {
+      $query = "SELECT COUNT(tb_subrange_productivity.id_subrange_proc) AS jumSubProc FROM tb_subrange_productivity";
+      return $this->db->query($query)->row_array();
+   }
+
+   //Kerjasama dan Komunikasi
    public function showSubrangeKomdanKer()
    {
       $query = "SELECT * FROM tb_subrange_komdanker";
