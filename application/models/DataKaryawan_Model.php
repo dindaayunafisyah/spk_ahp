@@ -91,10 +91,40 @@ class DataKaryawan_Model extends CI_Model
       return $this->db->query($query)->row_array();
    }
 
+
+
+
+
+   // ------------ || ------------
    //Kerjasama dan Komunikasi
    public function showSubrangeKomdanKer()
    {
       $query = "SELECT * FROM tb_subrange_komdanker";
       return $this->db->query($query)->result_array();
+   }
+   public function showSubmatrixKomdanKer()
+   {
+      $query = "SELECT * FROM tb_submatriks_komdanker";
+      return $this->db->query($query)->result_array();
+   }
+   public function sumSubrangeKomdanKer()
+   {
+      $query = "SELECT SUM(sangat_baik) AS sumSB, SUM(baik) AS sumBaik, SUM(kurang) AS sumKurang, SUM(tidak_mampu) AS sumTK FROM tb_subrange_komdanker";
+      return $this->db->query($query)->row_array();
+   }
+   public function sumSubmatrixKomdanKer()
+   {
+      $query = "SELECT SUM(sangat_baik) AS sumSB, SUM(baik) AS sumBaik, SUM(kurang) AS sumKurang, SUM(tidak_mampu) AS sumTK, SUM(jumlah) AS submtxJum, SUM(prioritas) AS submtxPrior, SUM(eigen_value) AS submtxEig FROM tb_submatriks_komdanker";
+      return $this->db->query($query)->row_array();
+   }
+   public function sumSubrangeKomdanKerOPResArray()
+   {
+      $query = "SELECT SUM(sangat_baik) AS '0', SUM(baik) AS '1', SUM(kurang) AS '2', SUM(tidak_mampu) AS '3' FROM tb_subrange_komdanker";
+      return $this->db->query($query)->row_array();
+   }
+   public function countSubrangeKomdanKer()
+   {
+      $query = "SELECT COUNT(tb_subrange_komdanker.id_subrange_kdk) AS jumSubKdk FROM tb_subrange_komdanker";
+      return $this->db->query($query)->row_array();
    }
 }
