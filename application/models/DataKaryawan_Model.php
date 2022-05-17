@@ -58,6 +58,8 @@ class DataKaryawan_Model extends CI_Model
 
 
 
+
+
    //Subrange Kriteria
    // ------------- Productivity ------------- //
    public function showSubrangeProductivity()
@@ -95,6 +97,8 @@ class DataKaryawan_Model extends CI_Model
 
 
 
+
+
    // ------------ || ------------
    //Kerjasama dan Komunikasi
    public function showSubrangeKomdanKer()
@@ -125,6 +129,44 @@ class DataKaryawan_Model extends CI_Model
    public function countSubrangeKomdanKer()
    {
       $query = "SELECT COUNT(tb_subrange_komdanker.id_subrange_kdk) AS jumSubKdk FROM tb_subrange_komdanker";
+      return $this->db->query($query)->row_array();
+   }
+
+
+
+
+
+
+   // ------------ || ------------
+   //Pelaksana 5 R
+   public function showSubrangePelaksana5R()
+   {
+      $query = "SELECT * FROM tb_subrange_pelaksana5r";
+      return $this->db->query($query)->result_array();
+   }
+   public function showSubmatrixPelaksana5R()
+   {
+      $query = "SELECT * FROM tb_submatriks_pelaksana5r";
+      return $this->db->query($query)->result_array();
+   }
+   public function sumSubrangePelaksana5R()
+   {
+      $query = "SELECT SUM(melaksanakan) AS sumLaks, SUM(kurang_melaksanakan) AS sumKurLaks, SUM(tidak_melaksanakan) AS sumTidLaks FROM tb_subrange_pelaksana5r";
+      return $this->db->query($query)->row_array();
+   }
+   public function sumSubmatrixPelaksana5R()
+   {
+      $query = "SELECT SUM(melaksanakan) AS sumLaks, SUM(kurang_melaksanakan) AS sumKurLaks, SUM(tidak_melaksanakan) AS sumTidLaks, SUM(jumlah) AS submtxJum, SUM(prioritas) AS submtxPrior, SUM(eigen_value) AS submtxEig FROM tb_submatriks_pelaksana5r";
+      return $this->db->query($query)->row_array();
+   }
+   public function sumSubrangePelaksana5ROPResArray()
+   {
+      $query = "SELECT SUM(melaksanakan) AS '0', SUM(kurang_melaksanakan) AS '1', SUM(tidak_melaksanakan) AS '2' FROM tb_subrange_pelaksana5r";
+      return $this->db->query($query)->row_array();
+   }
+   public function countSubrangePelaksana5R()
+   {
+      $query = "SELECT COUNT(tb_subrange_pelaksana5r.id_subrange_p5r) AS jumSubp5r FROM tb_subrange_pelaksana5r";
       return $this->db->query($query)->row_array();
    }
 }
