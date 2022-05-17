@@ -15,7 +15,7 @@
                         <div class="card-body">
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
                                 <li class="nav-item" role="presentation">
-                                    <a class="nav-link active" id="productivity-tab" data-bs-toggle="tab" href="#productivity" role="tab" aria-controls="productivity" aria-selected="true"><?= $title1; ?></a>1
+                                    <a class="nav-link active" id="productivity-tab" data-bs-toggle="tab" href="#productivity" role="tab" aria-controls="productivity" aria-selected="true"><?= $title1; ?></a>
                                 </li>
                                 <li class="nav-item" role="presentation">
                                     <a class="nav-link" id="kerdankom-tab" data-bs-toggle="tab" href="#kerdankom" role="tab" aria-controls="kerdankom" aria-selected="false"><?= $title2 ?></a>
@@ -370,25 +370,25 @@
                                                 <tr style="font-weight: bold; font-size:15px;">
                                                     <td><strong>Total</strong></td>
                                                     <td>
-                                                        <?= round($sum_submatrixproduct['sum90']); ?>
+                                                        <?= $sum_submatrixproduct['sum90']; ?>
                                                     </td>
                                                     <td>
-                                                        <?= round($sum_submatrixproduct['sum8090']); ?>
+                                                        <?= $sum_submatrixproduct['sum8090']; ?>
                                                     </td>
                                                     <td>
-                                                        <?= round($sum_submatrixproduct['sum6079']); ?>
+                                                        <?= $sum_submatrixproduct['sum6079']; ?>
                                                     </td>
                                                     <td>
-                                                        <?= round($sum_submatrixproduct['sum59']); ?>
+                                                        <?= $sum_submatrixproduct['sum59']; ?>
                                                     </td>
                                                     <td>
-                                                        <?= round($sum_submatrixproduct['submtxJum']); ?>
+                                                        <?= $sum_submatrixproduct['submtxJum']; ?>
                                                     </td>
                                                     <td>
-                                                        <?= round($sum_submatrixproduct['submtxPrior']); ?>
+                                                        <?= $sum_submatrixproduct['submtxPrior']; ?>
                                                     </td>
                                                     <td>
-                                                        <?= round($sum_submatrixproduct['submtxEig']); ?>
+                                                        <?= $sum_submatrixproduct['submtxEig']; ?>
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -761,25 +761,25 @@
                                                 <tr style="font-weight: bold; font-size:15px;">
                                                     <td><strong>Total</strong></td>
                                                     <td>
-                                                        <?= round($sum_submatrixkomdanker['sumSB']); ?>
+                                                        <?= $sum_submatrixkomdanker['sumSB']; ?>
                                                     </td>
                                                     <td>
-                                                        <?= round($sum_submatrixkomdanker['sumBaik']); ?>
+                                                        <?= $sum_submatrixkomdanker['sumBaik']; ?>
                                                     </td>
                                                     <td>
-                                                        <?= round($sum_submatrixkomdanker['sumKurang']); ?>
+                                                        <?= $sum_submatrixkomdanker['sumKurang']; ?>
                                                     </td>
                                                     <td>
-                                                        <?= round($sum_submatrixkomdanker['sumTK']); ?>
+                                                        <?= $sum_submatrixkomdanker['sumTK']; ?>
                                                     </td>
                                                     <td>
-                                                        <?= round($sum_submatrixkomdanker['submtxJum']); ?>
+                                                        <?= $sum_submatrixkomdanker['submtxJum']; ?>
                                                     </td>
                                                     <td>
-                                                        <?= round($sum_submatrixkomdanker['submtxPrior']); ?>
+                                                        <?= $sum_submatrixkomdanker['submtxPrior']; ?>
                                                     </td>
                                                     <td>
-                                                        <?= round($sum_submatrixkomdanker['submtxEig']); ?>
+                                                        <?= $sum_submatrixkomdanker['submtxEig']; ?>
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -1108,22 +1108,22 @@
                                                 <tr style="font-weight: bold; font-size:15px;">
                                                     <td><strong>Total</strong></td>
                                                     <td>
-                                                        <?= round($sum_submatrixpelaksana5r['sumLaks']); ?>
+                                                        <?= $sum_submatrixpelaksana5r['sumLaks']; ?>
                                                     </td>
                                                     <td>
-                                                        <?= round($sum_submatrixpelaksana5r['sumKurLaks']); ?>
+                                                        <?= $sum_submatrixpelaksana5r['sumKurLaks']; ?>
                                                     </td>
                                                     <td>
-                                                        <?= round($sum_submatrixpelaksana5r['sumTidLaks']); ?>
+                                                        <?= $sum_submatrixpelaksana5r['sumTidLaks']; ?>
                                                     </td>
                                                     <td>
-                                                        <?= round($sum_submatrixpelaksana5r['submtxJum']); ?>
+                                                        <?= $sum_submatrixpelaksana5r['submtxJum']; ?>
                                                     </td>
                                                     <td>
-                                                        <?= round($sum_submatrixpelaksana5r['submtxPrior']); ?>
+                                                        <?= $sum_submatrixpelaksana5r['submtxPrior']; ?>
                                                     </td>
                                                     <td>
-                                                        <?= round($sum_submatrixpelaksana5r['submtxEig']); ?>
+                                                        <?= $sum_submatrixpelaksana5r['submtxEig']; ?>
                                                     </td>
                                                 </tr>
                                             </tbody>
