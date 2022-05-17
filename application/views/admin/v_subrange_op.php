@@ -27,22 +27,22 @@
                                     <a class="nav-link" id="dokumentasi-tab" data-bs-toggle="tab" href="#dokumentasi" role="tab" aria-controls="dokumentasi" aria-selected="false"><?= $title4 ?></a>
                                 </li>
                                 <li class="nav-item" role="presentation">
-                                    <a class="nav-link" id="dokumentasi-tab" data-bs-toggle="tab" href="#dokumentasi" role="tab" aria-controls="dokumentasi" aria-selected="false"><?= $title4 ?></a>
+                                    <a class="nav-link" id="<?= str_replace(" ", "_", $title5) ?>-tab" data-bs-toggle="tab" href="#<?= str_replace(" ", "_", $title5) ?>" role="tab" aria-controls="<?= str_replace(" ", "_", $title5) ?>" aria-selected="false"><?= $title5 ?></a>
                                 </li>
                                 <li class="nav-item" role="presentation">
-                                    <a class="nav-link" id="dokumentasi-tab" data-bs-toggle="tab" href="#dokumentasi" role="tab" aria-controls="dokumentasi" aria-selected="false"><?= $title4 ?></a>
+                                    <a class="nav-link" id="<?= str_replace(" ", "_", $title6) ?>-tab" data-bs-toggle="tab" href="#<?= str_replace(" ", "_", $title6) ?>" role="tab" aria-controls="<?= str_replace(" ", "_", $title6) ?>" aria-selected="false"><?= $title6 ?></a>
                                 </li>
                                 <li class="nav-item" role="presentation">
-                                    <a class="nav-link" id="dokumentasi-tab" data-bs-toggle="tab" href="#dokumentasi" role="tab" aria-controls="dokumentasi" aria-selected="false"><?= $title4 ?></a>
+                                    <a class="nav-link" id="<?= str_replace(" ", "_", $title7) ?>-tab" data-bs-toggle="tab" href="#<?= str_replace(" ", "_", $title7) ?>" role="tab" aria-controls="<?= str_replace(" ", "_", $title7) ?>" aria-selected="false"><?= $title7 ?></a>
                                 </li>
                                 <li class="nav-item" role="presentation">
-                                    <a class="nav-link" id="dokumentasi-tab" data-bs-toggle="tab" href="#dokumentasi" role="tab" aria-controls="dokumentasi" aria-selected="false"><?= $title4 ?></a>
+                                    <a class="nav-link" id="<?= str_replace(" ", "_", $title8) ?>-tab" data-bs-toggle="tab" href="#<?= str_replace(" ", "_", $title8) ?>" role="tab" aria-controls="<?= str_replace(" ", "_", $title8) ?>" aria-selected="false"><?= $title8 ?></a>
                                 </li>
                                 <li class="nav-item" role="presentation">
-                                    <a class="nav-link" id="dokumentasi-tab" data-bs-toggle="tab" href="#dokumentasi" role="tab" aria-controls="dokumentasi" aria-selected="false"><?= $title4 ?></a>
+                                    <a class="nav-link" id="<?= str_replace(" ", "_", $title9) ?>-tab" data-bs-toggle="tab" href="#<?= str_replace(" ", "_", $title9) ?>" role="tab" aria-controls="<?= str_replace(" ", "_", $title9) ?>" aria-selected="false"><?= $title9 ?></a>
                                 </li>
                                 <li class="nav-item" role="presentation">
-                                    <a class="nav-link" id="dokumentasi-tab" data-bs-toggle="tab" href="#dokumentasi" role="tab" aria-controls="dokumentasi" aria-selected="false"><?= $title4 ?></a>
+                                    <a class="nav-link" id="<?= str_replace(" ", "_", $title10) ?>-tab" data-bs-toggle="tab" href="#<?= str_replace(" ", "_", $title10) ?>" role="tab" aria-controls="<?= str_replace(" ", "_", $title10) ?>" aria-selected="false"><?= $title10 ?></a>
                                 </li>
                             </ul>
                             <!--  -->
@@ -1172,8 +1172,511 @@
 
                                     </div>
                                 </div>
+
+
+
+
+
+
+
+
+
+
+
+                                <!-- ------------------------------------------- Dokumentasi ------------------------------------------- -->
+
+
+
                                 <div class="tab-pane fade" id="dokumentasi" role="tabpanel" aria-labelledby="dokumentasi-tab">
-                                    <p class="mt-2">v</p>
+                                    <div class="card">
+                                        <table class="table table-responsive table-hover table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                            <thead>
+                                                <tr>
+                                                    <td colspan="11">
+                                                        <?php if (validation_errors()) : ?>
+                                                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                                                <?= validation_errors(); ?>
+                                                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                                            </div>
+                                                        <?php endif; ?>
+                                                        <?= $this->session->flashdata('message') ?>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th></th>
+                                                    <?php
+                                                    foreach ($subrange_dokumentasi as $subdoc) : ?>
+                                                        <th>
+                                                            <?php
+                                                            switch ($subdoc):
+                                                                case $subdoc['id_subrange_doc'] == 1:
+                                                                    echo 'Sangat Lengkap dan Sesuai';
+                                                                    break;
+                                                                case $subdoc['id_subrange_doc'] == 2:
+                                                                    echo 'Lengkap';
+                                                                    break;
+                                                                case $subdoc['id_subrange_doc'] == 3:
+                                                                    echo 'Kurang Lengkap dan Tidak Sesuai';
+                                                                    break;
+                                                                case $subdoc['id_subrange_doc'] == 4:
+                                                                    echo 'Tidak Mampu';
+                                                                    break;
+                                                                default:
+                                                                    echo 'No One';
+                                                                    break;
+                                                            ?>
+                                                            <?php endswitch; ?>
+                                                        </th>
+                                                    <?php endforeach; ?>
+                                                </tr>
+                                            </thead>
+                                            <form action="<?php echo base_url() . 'admin/master_data/update_subrange_Pelaksana5R'; ?>" method="POST">
+                                                <tbody>
+                                                    <tr>
+                                                    </tr>
+                                                    <?php
+                                                    foreach ($subrange_dokumentasi as $subdoc) : ?>
+                                                        <tr>
+                                                            <td>
+                                                                <?php
+                                                                switch ($subdoc):
+                                                                    case $subdoc['id_subrange_doc'] == 1:
+                                                                        echo 'Sangat Lengkap dan Sesuai';
+                                                                        break;
+                                                                    case $subdoc['id_subrange_doc'] == 2:
+                                                                        echo 'Lengkap';
+                                                                        break;
+                                                                    case $subdoc['id_subrange_doc'] == 3:
+                                                                        echo 'Kurang Lengkap dan Tidak Sesuai';
+                                                                        break;
+                                                                    case $subdoc['id_subrange_doc'] == 4:
+                                                                        echo 'Tidak Mampu';
+                                                                        break;
+                                                                    default:
+                                                                        echo 'No One';
+                                                                        break;
+                                                                ?>
+                                                                <?php endswitch; ?>
+                                                            </td>
+                                                            <?php if ($subdoc['sgt_lkp_sesuai'] == 1) : ?>
+                                                                <td style="background-color: aqua ;">
+                                                                    <select name="sangat_lengkap_sesuai[]" id="sangat_lengkap_sesuai" class="form-control" style="background-color: aqua;">
+                                                                        <option value="<?= $subdoc['sgt_lkp_sesuai'] ?>"> <?= $subdoc['sgt_lkp_sesuai'] ?></option>
+                                                                        <?php foreach ($data_nilban as $dbn) : ?>
+                                                                            <option value="<?= $dbn['nilai'] ?>"><?= $dbn['nama_nilai'] . ' - ' . $dbn['nilai'] ?></option>
+                                                                            <?php foreach ($data_nilban1 as $dbn1) : ?>
+                                                                                <?php if ($dbn1 != $dbn) : ?>
+                                                                                    <option value="<?= $dbn1['nilai'] / $dbn['nilai'] ?>"><?= '1 dibagi ' . $dbn['nama_nilai'] . ' - &sup' . $dbn1['nilai'] . ' / ' . $dbn['nilai'] ?></option>
+                                                                                <?php endif; ?>
+                                                                            <?php endforeach; ?>
+                                                                        <?php endforeach; ?>
+                                                                    </select>
+                                                                </td>
+                                                            <?php else : ?>
+                                                                <td>
+                                                                    <select name="sangat_lengkap_sesuai[]" id="sangat_lengkap_sesuai" class="form-control">
+                                                                        <option value="<?= $subdoc['sgt_lkp_sesuai'] ?>"> <?= $subdoc['sgt_lkp_sesuai'] ?></option>
+                                                                        <?php foreach ($data_nilban as $dbn) : ?>
+                                                                            <option value="<?= $dbn['nilai'] ?>"><?= $dbn['nama_nilai'] . ' - ' . $dbn['nilai'] ?></option>
+                                                                            <?php foreach ($data_nilban1 as $dbn1) : ?>
+                                                                                <?php if ($dbn1 != $dbn) : ?>
+                                                                                    <option value="<?= $dbn1['nilai'] / $dbn['nilai'] ?>"><?= '1 dibagi ' . $dbn['nama_nilai'] . ' - &sup' . $dbn1['nilai'] . ' / ' . $dbn['nilai'] ?></option>
+                                                                                <?php endif; ?>
+                                                                            <?php endforeach; ?>
+                                                                        <?php endforeach; ?>
+                                                                    </select>
+                                                                </td>
+                                                            <?php endif; ?>
+
+                                                            <!--  -->
+
+                                                            <?php if ($subdoc['lkp'] == 1) : ?>
+                                                                <td style="background-color: aqua ;">
+                                                                    <select name="lengkap[]" id="lengkap" class="form-control" style="background-color: aqua;">
+                                                                        <option value="<?= $subdoc['lkp'] ?>"> <?= $subdoc['lkp'] ?></option>
+                                                                        <?php foreach ($data_nilban as $dbn) : ?>
+                                                                            <option value="<?= $dbn['nilai'] ?>"><?= $dbn['nama_nilai'] . ' - ' . $dbn['nilai'] ?></option>
+                                                                            <?php foreach ($data_nilban1 as $dbn1) : ?>
+                                                                                <?php if ($dbn1 != $dbn) : ?>
+                                                                                    <option value="<?= $dbn1['nilai'] / $dbn['nilai'] ?>"><?= '1 dibagi ' . $dbn['nama_nilai'] . ' - &sup' . $dbn1['nilai'] . ' / ' . $dbn['nilai'] ?></option>
+                                                                                <?php endif; ?>
+                                                                            <?php endforeach; ?>
+                                                                        <?php endforeach; ?>
+                                                                    </select>
+                                                                </td>
+                                                            <?php else : ?>
+                                                                <td>
+                                                                    <select name="lengkap[]" id="lengkap" class="form-control">
+                                                                        <option value="<?= $subdoc['lkp'] ?>"> <?= $subdoc['lkp'] ?></option>
+                                                                        <?php foreach ($data_nilban as $dbn) : ?>
+                                                                            <option value="<?= $dbn['nilai'] ?>"><?= $dbn['nama_nilai'] . ' - ' . $dbn['nilai'] ?></option>
+                                                                            <?php foreach ($data_nilban1 as $dbn1) : ?>
+                                                                                <?php if ($dbn1 != $dbn) : ?>
+                                                                                    <option value="<?= $dbn1['nilai'] / $dbn['nilai'] ?>"><?= '1 dibagi ' . $dbn['nama_nilai'] . ' - &sup' . $dbn1['nilai'] . ' / ' . $dbn['nilai'] ?></option>
+                                                                                <?php endif; ?>
+                                                                            <?php endforeach; ?>
+                                                                        <?php endforeach; ?>
+                                                                    </select>
+                                                                </td>
+                                                            <?php endif; ?>
+
+                                                            <!--  -->
+
+                                                            <?php if ($subdoc['krg_lkp_tdk_sesuai'] == 1) : ?>
+                                                                <td style="background-color: aqua ;">
+                                                                    <select name="kurang_lengkap_tidak_sesuai[]" id="kurang_lengkap_tidak_sesuai" class="form-control" style="background-color: aqua;">
+                                                                        <option value="<?= $subdoc['krg_lkp_tdk_sesuai'] ?>"> <?= $subdoc['krg_lkp_tdk_sesuai'] ?></option>
+                                                                        <?php foreach ($data_nilban as $dbn) : ?>
+                                                                            <option value="<?= $dbn['nilai'] ?>"><?= $dbn['nama_nilai'] . ' - ' . $dbn['nilai'] ?></option>
+                                                                            <?php foreach ($data_nilban1 as $dbn1) : ?>
+                                                                                <?php if ($dbn1 != $dbn) : ?>
+                                                                                    <option value="<?= $dbn1['nilai'] / $dbn['nilai'] ?>"><?= '1 dibagi ' . $dbn['nama_nilai'] . ' - &sup' . $dbn1['nilai'] . ' / ' . $dbn['nilai'] ?></option>
+                                                                                <?php endif; ?>
+                                                                            <?php endforeach; ?>
+                                                                        <?php endforeach; ?>
+                                                                    </select>
+                                                                </td>
+                                                            <?php else : ?>
+                                                                <td>
+                                                                    <select name="kurang_lengkap_tidak_sesuai[]" id="kurang_lengkap_tidak_sesuai" class="form-control">
+                                                                        <option value="<?= $subdoc['krg_lkp_tdk_sesuai'] ?>"> <?= $subdoc['krg_lkp_tdk_sesuai'] ?></option>
+                                                                        <?php foreach ($data_nilban as $dbn) : ?>
+                                                                            <option value="<?= $dbn['nilai'] ?>"><?= $dbn['nama_nilai'] . ' - ' . $dbn['nilai'] ?></option>
+                                                                            <?php foreach ($data_nilban1 as $dbn1) : ?>
+                                                                                <?php if ($dbn1 != $dbn) : ?>
+                                                                                    <option value="<?= $dbn1['nilai'] / $dbn['nilai'] ?>"><?= '1 dibagi ' . $dbn['nama_nilai'] . ' - &sup' . $dbn1['nilai'] . ' / ' . $dbn['nilai'] ?></option>
+                                                                                <?php endif; ?>
+                                                                            <?php endforeach; ?>
+                                                                        <?php endforeach; ?>
+                                                                    </select>
+                                                                </td>
+                                                            <?php endif; ?>
+
+                                                            <!--  -->
+
+                                                            <?php if ($subdoc['tidak_mampu'] == 1) : ?>
+                                                                <td style="background-color: aqua ;">
+                                                                    <select name="tidak_mampu[]" id="tidak_mampu" class="form-control" style="background-color: aqua;">
+                                                                        <option value="<?= $subdoc['tidak_mampu'] ?>"> <?= $subdoc['tidak_mampu'] ?></option>
+                                                                        <?php foreach ($data_nilban as $dbn) : ?>
+                                                                            <option value="<?= $dbn['nilai'] ?>"><?= $dbn['nama_nilai'] . ' - ' . $dbn['nilai'] ?></option>
+                                                                            <?php foreach ($data_nilban1 as $dbn1) : ?>
+                                                                                <?php if ($dbn1 != $dbn) : ?>
+                                                                                    <option value="<?= $dbn1['nilai'] / $dbn['nilai'] ?>"><?= '1 dibagi ' . $dbn['nama_nilai'] . ' - &sup' . $dbn1['nilai'] . ' / ' . $dbn['nilai'] ?></option>
+                                                                                <?php endif; ?>
+                                                                            <?php endforeach; ?>
+                                                                        <?php endforeach; ?>
+                                                                    </select>
+                                                                </td>
+                                                            <?php else : ?>
+                                                                <td>
+                                                                    <select name="tidak_mampu[]" id="tidak_mampu" class="form-control">
+                                                                        <option value="<?= $subdoc['tidak_mampu'] ?>"> <?= $subdoc['tidak_mampu'] ?></option>
+                                                                        <?php foreach ($data_nilban as $dbn) : ?>
+                                                                            <option value="<?= $dbn['nilai'] ?>"><?= $dbn['nama_nilai'] . ' - ' . $dbn['nilai'] ?></option>
+                                                                            <?php foreach ($data_nilban1 as $dbn1) : ?>
+                                                                                <?php if ($dbn1 != $dbn) : ?>
+                                                                                    <option value="<?= $dbn1['nilai'] / $dbn['nilai'] ?>"><?= '1 dibagi ' . $dbn['nama_nilai'] . ' - &sup' . $dbn1['nilai'] . ' / ' . $dbn['nilai'] ?></option>
+                                                                                <?php endif; ?>
+                                                                            <?php endforeach; ?>
+                                                                        <?php endforeach; ?>
+                                                                    </select>
+                                                                </td>
+                                                            <?php endif; ?>
+
+                                                            <!--  -->
+                                                        </tr>
+                                                    <?php endforeach; ?>
+                                                    <tr>
+                                                        <td><strong>Total</strong></td>
+                                                        <td>
+                                                            <?= $sum_subdokumentasi['sumSLS']; ?>
+                                                        </td>
+                                                        <td>
+                                                            <?= $sum_subdokumentasi['sumLengkap']; ?>
+                                                        </td>
+                                                        <td>
+                                                            <?= $sum_subdokumentasi['sumKLTS']; ?>
+                                                        </td>
+                                                        <td>
+                                                            <?= $sum_subdokumentasi['sumTdkMampu']; ?>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                                <tfoot>
+                                                    <tr>
+                                                        <td colspan="2"></td>
+                                                        <td>
+                                                            <button type="submit" name="submit" class="btn btn-success btn-user btn-block">Analisa</button>
+                                                        </td>
+                                                    </tr>
+                                                </tfoot>
+                                            </form>
+                                        </table>
+
+                                        <table class="table table-bordered mb-5" id="dataTable" width="100%" cellspacing="0">
+                                            <thead>
+                                                <tr>
+                                                    <th></th>
+                                                    <?php
+                                                    foreach ($subrange_dokumentasi as $subdoc) : ?>
+                                                        <th>
+                                                            <?php
+                                                            switch ($subdoc):
+                                                                case $subdoc['id_subrange_doc'] == 1:
+                                                                    echo 'Sangat Lengkap dan Sesuai';
+                                                                    break;
+                                                                case $subdoc['id_subrange_doc'] == 2:
+                                                                    echo 'Lengkap';
+                                                                    break;
+                                                                case $subdoc['id_subrange_doc'] == 3:
+                                                                    echo 'Kurang Lengkap dan Tidak Sesuai';
+                                                                    break;
+                                                                case $subdoc['id_subrange_doc'] == 4:
+                                                                    echo 'Tidak Mampu';
+                                                                    break;
+                                                                default:
+                                                                    echo 'No One';
+                                                                    break;
+                                                            ?>
+                                                            <?php endswitch; ?>
+                                                        </th>
+                                                    <?php endforeach; ?>
+                                                    <th>
+                                                        Jumlah
+                                                    </th>
+                                                    <th>
+                                                        Priotitas
+                                                    </th>
+                                                    <th>
+                                                        Eigen Value
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php
+                                                foreach ($submatrix_dokumentasi as $smtxdoc) : ?>
+                                                    <tr>
+                                                        <td>
+                                                            <?php
+                                                            switch ($smtxdoc):
+                                                                case $smtxdoc['id_submatrix_doc'] == 1:
+                                                                    echo 'Sangat Lengkap dan Sesuai';
+                                                                    break;
+                                                                case $smtxdoc['id_submatrix_doc'] == 2:
+                                                                    echo 'Lengkap';
+                                                                    break;
+                                                                case $smtxdoc['id_submatrix_doc'] == 3:
+                                                                    echo 'Kurang Lengkap dan Tidak Sesuai';
+                                                                    break;
+                                                                case $smtxdoc['id_submatrix_doc'] == 4:
+                                                                    echo 'Tidak Mampu';
+                                                                    break;
+                                                                default:
+                                                                    echo 'No One';
+                                                                    break;
+                                                            ?>
+                                                            <?php endswitch; ?>
+                                                        </td>
+                                                        <td>
+                                                            <?= $smtxdoc['sgt_lkp_sesuai'] ?>
+                                                        </td>
+                                                        <td>
+                                                            <?= $smtxdoc['lkp'] ?>
+                                                        </td>
+                                                        <td>
+                                                            <?= $smtxdoc['krg_lkp_tdk_sesuai'] ?>
+                                                        </td>
+                                                        <td>
+                                                            <?= $smtxdoc['tidak_mampu'] ?>
+                                                        </td>
+                                                        <td>
+                                                            <?= $smtxdoc['jumlah'] ?>
+                                                        </td>
+                                                        <td>
+                                                            <?= $smtxdoc['prioritas'] ?>
+                                                        </td>
+                                                        <td>
+                                                            <?= $smtxdoc['eigen_value'] ?>
+                                                        </td>
+                                                    </tr>
+                                                <?php endforeach; ?>
+                                                <tr style="font-weight: bold; font-size:15px;">
+                                                    <td><strong>Total</strong></td>
+                                                    <td>
+                                                        <?= $sum_submatrixdokumentasi['sumSLS']; ?>
+                                                    </td>
+                                                    <td>
+                                                        <?= $sum_submatrixdokumentasi['sumLengkap']; ?>
+                                                    </td>
+                                                    <td>
+                                                        <?= $sum_submatrixdokumentasi['sumKLTS']; ?>
+                                                    </td>
+                                                    <td>
+                                                        <?= $sum_submatrixdokumentasi['sumTdkMampu']; ?>
+                                                    </td>
+                                                    <td>
+                                                        <?= $sum_submatrixdokumentasi['submtxJum']; ?>
+                                                    </td>
+                                                    <td>
+                                                        <?= $sum_submatrixdokumentasi['submtxPrior']; ?>
+                                                    </td>
+                                                    <td>
+                                                        <?= $sum_submatrixdokumentasi['submtxEig']; ?>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+
+                                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                            <tr>
+                                                <th>CI</th>
+                                                <th colspan="2">
+                                                    <?php
+                                                    $ci = ($sum_submatrixdokumentasi['submtxEig'] - $count_subdokumentasi['jumSubDoc']) / ($count_subdokumentasi['jumSubDoc'] - 1);
+                                                    echo $ci;
+                                                    ?>
+                                                </th>
+                                            </tr>
+                                            <tr>
+                                                <th>RI</th>
+                                                <th colspan="2">
+                                                    <?php
+                                                    echo $ri;
+                                                    ?>
+                                                </th>
+                                            </tr>
+                                            <tr>
+                                                <th>CR</th>
+                                                <th>
+                                                    <?php
+                                                    $cr = $ci / $ri;
+                                                    echo $cr;
+                                                    ?>
+                                                </th>
+                                                <th>
+                                                    <?php
+                                                    if ($cr <= 0.1) : ?>
+                                                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                                            Konsisten
+                                                        </div>
+                                                    <?php else : ?>
+                                                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                                            Tidak Konsisten
+                                                        </div>
+                                                    <?php endif; ?>
+                                                </th>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                <!-- ------------------------------------------- Pemahaman dan Pelaksanaan K3 ------------------------------------------- -->
+                                <div class="tab-pane fade" id="<?= str_replace(" ", "_", $title5) ?>" role="tabpanel" aria-labelledby="<?= str_replace(" ", "_", $title5) ?>-tab">
+                                    <p class="mt-2">v1</p>
+                                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                <!-- ------------------------------------------- Pemahaman SOP dan SPK ------------------------------------------- -->
+                                <div class="tab-pane fade" id="<?= str_replace(" ", "_", $title6) ?>" role="tabpanel" aria-labelledby="<?= str_replace(" ", "_", $title6) ?>-tab">
+                                    <p class="mt-2">v2</p>
+                                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                <!-- ------------------------------------------- Pemahaman Tools ------------------------------------------- -->
+                                <div class="tab-pane fade" id="<?= str_replace(" ", "_", $title7) ?>" role="tabpanel" aria-labelledby="<?= str_replace(" ", "_", $title7) ?>-tab">
+                                    <p class="mt-2">v3</p>
+                                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                <!-- ------------------------------------------- Kehadiran ------------------------------------------- -->
+                                <div class="tab-pane fade" id="<?= str_replace(" ", "_", $title8) ?>" role="tabpanel" aria-labelledby="<?= str_replace(" ", "_", $title8) ?>-tab">
+                                    <p class="mt-2">v4</p>
+                                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                <!-- ------------------------------------------- Kedisiplinan ------------------------------------------- -->
+                                <div class="tab-pane fade" id="<?= str_replace(" ", "_", $title9) ?>" role="tabpanel" aria-labelledby="<?= str_replace(" ", "_", $title9) ?>-tab">
+                                    <p class="mt-2">v5</p>
+                                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                <!-- ------------------------------------------- Inisiatif ------------------------------------------- -->
+                                <div class="tab-pane fade" id="<?= str_replace(" ", "_", $title10) ?>" role="tabpanel" aria-labelledby="<?= str_replace(" ", "_", $title10) ?>-tab">
+                                    <p class="mt-2">v6</p>
                                 </div>
                             </div>
                         </div>

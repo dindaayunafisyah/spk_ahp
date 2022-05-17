@@ -137,6 +137,7 @@ class DataKaryawan_Model extends CI_Model
 
 
 
+
    // ------------ || ------------
    //Pelaksana 5 R
    public function showSubrangePelaksana5R()
@@ -167,6 +168,45 @@ class DataKaryawan_Model extends CI_Model
    public function countSubrangePelaksana5R()
    {
       $query = "SELECT COUNT(tb_subrange_pelaksana5r.id_subrange_p5r) AS jumSubp5r FROM tb_subrange_pelaksana5r";
+      return $this->db->query($query)->row_array();
+   }
+
+
+
+
+
+
+
+   // ------------ || ------------
+   //Dokumentasi
+   public function showSubrangeDokumentasi()
+   {
+      $query = "SELECT * FROM tb_subrange_dokumentasi";
+      return $this->db->query($query)->result_array();
+   }
+   public function showSubmatrixDokumentasi()
+   {
+      $query = "SELECT * FROM tb_submatriks_dokumentasi";
+      return $this->db->query($query)->result_array();
+   }
+   public function sumSubrangeDokumentasi()
+   {
+      $query = "SELECT SUM(sgt_lkp_sesuai) AS sumSLS, SUM(lkp) AS sumLengkap, SUM(krg_lkp_tdk_sesuai) AS sumKLTS, SUM(tidak_mampu) AS sumTdkMampu FROM tb_subrange_dokumentasi";
+      return $this->db->query($query)->row_array();
+   }
+   public function sumSubmatrixDokumentasi()
+   {
+      $query = "SELECT SUM(sgt_lkp_sesuai) AS sumSLS, SUM(lkp) AS sumLengkap, SUM(krg_lkp_tdk_sesuai) AS sumKLTS, SUM(tidak_mampu) AS sumTdkMampu, SUM(jumlah) AS submtxJum, SUM(prioritas) AS submtxPrior, SUM(eigen_value) AS submtxEig FROM tb_submatriks_dokumentasi";
+      return $this->db->query($query)->row_array();
+   }
+   public function sumSubrangeDokumentasiOPResArray()
+   {
+      $query = "SELECT SUM(sgt_lkp_sesuai) AS '0', SUM(lkp) AS '1', SUM(krg_lkp_tdk_sesuai) AS '2', SUM(tidak_mampu) AS '3' FROM tb_subrange_dokumentasi";
+      return $this->db->query($query)->row_array();
+   }
+   public function countSubrangeDokumentasi()
+   {
+      $query = "SELECT COUNT(tb_subrange_dokumentasi.id_subrange_doc) AS jumSubDoc FROM tb_subrange_dokumentasi";
       return $this->db->query($query)->row_array();
    }
 }

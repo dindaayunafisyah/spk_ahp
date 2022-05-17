@@ -826,9 +826,12 @@ class Master_data extends CI_Controller
         $data['title2'] = 'Kerjasama dan Komunikasi';
         $data['title3'] = 'Pelaksanaan 5 R';
         $data['title4'] = 'Dokumentasi';
-        $data['title5'] = 'Kerjasama dan Komunikasi';
-        $data['title6'] = 'Kerjasama dan Komunikasi';
-        $data['title7'] = 'Kerjasama dan Komunikasi';
+        $data['title5'] = 'Pemahaman dan Pelaksanaan K3';
+        $data['title6'] = 'Pemahaman SOP dan SPK';
+        $data['title7'] = 'Pemahaman Tools';
+        $data['title8'] = 'Kehadiran';
+        $data['title9'] = 'Kedisiplinan';
+        $data['title10'] = 'Inisiatif';
         //Productiviity
         $data['subrange_product'] = $this->DataKaryawan_Model->showSubrangeProductivity();
         $data['submatrix_product'] = $this->DataKaryawan_Model->showSubmatrixProductivity();
@@ -849,6 +852,13 @@ class Master_data extends CI_Controller
         $data['count_subpelaksana5r'] = $this->DataKaryawan_Model->countSubrangePelaksana5R();
         $data['sum_subpelaksana5r'] = $this->DataKaryawan_Model->sumSubrangePelaksana5R();
         $data['sum_submatrixpelaksana5r'] = $this->DataKaryawan_Model->sumSubmatrixPelaksana5R();
+
+        //Dokumentasi
+        $data['subrange_dokumentasi'] = $this->DataKaryawan_Model->showSubrangeDokumentasi();
+        $data['submatrix_dokumentasi'] = $this->DataKaryawan_Model->showSubmatrixDokumentasi();
+        $data['count_subdokumentasi'] = $this->DataKaryawan_Model->countSubrangeDokumentasi();
+        $data['sum_subdokumentasi'] = $this->DataKaryawan_Model->sumSubrangeDokumentasi();
+        $data['sum_submatrixdokumentasi'] = $this->DataKaryawan_Model->sumSubmatrixDokumentasi();
 
         // 
         $data['data_nilban'] = $this->m_data_nilai->tampil_nilai()->result_array();
