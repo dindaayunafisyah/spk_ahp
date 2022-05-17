@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.2
+-- version 5.1.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 16 Bulan Mei 2022 pada 16.45
--- Versi server: 10.4.11-MariaDB
--- Versi PHP: 7.3.13
+-- Generation Time: May 17, 2022 at 04:32 PM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 7.4.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -25,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `data_kuisioner_kasi`
+-- Table structure for table `data_kuisioner_kasi`
 --
 
 CREATE TABLE `data_kuisioner_kasi` (
@@ -35,16 +34,25 @@ CREATE TABLE `data_kuisioner_kasi` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `data_kuisioner_kasi`
+-- Dumping data for table `data_kuisioner_kasi`
 --
 
 INSERT INTO `data_kuisioner_kasi` (`id_kuis_kasi`, `id_kriteria_kasi`, `kuis_kasi`) VALUES
-('KS001', 'KKS001', 'sadhusaydy');
+('KS001', 'KKS001', 'Bagaimana Kemapuan karyawan dalam memimpin, mengkoordinasi, dan mengatur anggota dalam mecapai target dalam divisi\r\n'),
+('KS002', 'KKS002', 'Berapa Prosentase Karyawan mampu menyelesaiakn pekerjaan dengan teliti sesuai waktu yang ditentukan \r\n'),
+('KS003', 'KKS003', 'Bagiaman kemampuan karyawan dalam melakukan pemecahan masalah \r\n'),
+('KS004', 'KKS004', 'Apakah karyawan mampu dalam merealisasikan SOP/SPK yang telah dibuat\r\n'),
+('KS005', 'KKS005', 'Bagaimana kelengkapan dokumentasi yang dilakukan oleh karyawan \r\n'),
+('KS006', 'KKS006', 'Bagaiamana kemampuan karyawan dalam melaksanakan kegaiatan 5R sehari hari\r\n'),
+('KS007', 'KKS007', 'Bagaimana kemapuan karyawan dalam melaksanakan K3 dilingkungan kerja \r\n'),
+('KS008', 'KKS008', 'Berapa Prosentase Kehadiran karyawan dalam bekerja\r\n'),
+('KS009', 'KKS009', 'Bagaimana Kedisiplinan dan Ketaan karyawan terhadap tata tertib yang berlaku\r\n'),
+('KS010', 'KSS010', 'Apakah karyawan memiliki inisiatif yang baik dalam pekerjaanya \r\n');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `data_kuisioner_op`
+-- Table structure for table `data_kuisioner_op`
 --
 
 CREATE TABLE `data_kuisioner_op` (
@@ -54,23 +62,25 @@ CREATE TABLE `data_kuisioner_op` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `data_kuisioner_op`
+-- Dumping data for table `data_kuisioner_op`
 --
 
 INSERT INTO `data_kuisioner_op` (`id_kuis_op`, `id_kriteria_op`, `kuis_op`) VALUES
-('KP001', 'KOP001', 'dadada'),
-('KP002', 'KOP001', 'lilili'),
-('KP003', 'KOP001', 'nananna'),
-('KP004', 'KOP001', 'y'),
-('KP005', 'KOP001', 'dadada'),
-('KP006', 'KOP001', 'yayys'),
-('KP007', 'KOP001', 'ghgkjgk'),
-('KP008', 'KOP001', 'fjgfyfyy');
+('KP001', 'KOP001', 'Berapa Prosentase produktivitas karyawan dalam bekerja sesuai dengan target waktu yang diberikan'),
+('KP002', 'KOP002', 'Bagaimana Kemampuan Karyawan dalam bekerjasama secara tim dan menjalin keharmonisan dengan karyawan lain \r\n'),
+('KP003', 'KOP003', 'Bagaimana Kemampuan Pelaksanaan 5R yang dilakukan karyawan\r\n'),
+('KP004', 'KOP004', 'Bagaimana kelengkapan Dokumentasi yang dilakukan oleh karyawan \r\n'),
+('KP005', 'KOP005', 'Apakah Karyawan mampu memamhmi dan melaksanakan terkait K3\r\n'),
+('KP006', 'KOP006', 'Apakah Karyawan mampu memahmi SOP/SPK yang telah dibuat \r\n'),
+('KP007', 'KOP007', 'Bagaimana Kemapuan Karyawan dalam memahami Tools yang digunakan\r\n'),
+('KP008', 'KOP008', 'Berapa Prosentase Kehadiran karyawan dalam bekerja \r\n'),
+('KP009', 'KOP009', 'Bagaimana Tingkat kedisiplinan kerja dan Tata Tertib yang dimiliki oleh karyawan \r\n'),
+('KP010', 'KOP01', 'Apakah Karyawan mampu dan memilki inisiatif yang baik dalam pekerjaanya \r\n');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `nilai_banding`
+-- Table structure for table `nilai_banding`
 --
 
 CREATE TABLE `nilai_banding` (
@@ -80,7 +90,7 @@ CREATE TABLE `nilai_banding` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `nilai_banding`
+-- Dumping data for table `nilai_banding`
 --
 
 INSERT INTO `nilai_banding` (`id_nilai`, `nama_nilai`, `nilai`) VALUES
@@ -97,7 +107,7 @@ INSERT INTO `nilai_banding` (`id_nilai`, `nama_nilai`, `nilai`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tb_admin`
+-- Table structure for table `tb_admin`
 --
 
 CREATE TABLE `tb_admin` (
@@ -110,7 +120,7 @@ CREATE TABLE `tb_admin` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tb_analisa_op`
+-- Table structure for table `tb_analisa_op`
 --
 
 CREATE TABLE `tb_analisa_op` (
@@ -128,7 +138,7 @@ CREATE TABLE `tb_analisa_op` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `tb_analisa_op`
+-- Dumping data for table `tb_analisa_op`
 --
 
 INSERT INTO `tb_analisa_op` (`id_anop`, `productivity`, `kerjasamadankom`, `pelaksana5r`, `dokumentasi`, `paham_laksana_k3`, `paham_sop`, `paham_tools`, `hadir`, `disiplin`, `inisiatif`) VALUES
@@ -146,7 +156,7 @@ INSERT INTO `tb_analisa_op` (`id_anop`, `productivity`, `kerjasamadankom`, `pela
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tb_divisi`
+-- Table structure for table `tb_divisi`
 --
 
 CREATE TABLE `tb_divisi` (
@@ -155,18 +165,34 @@ CREATE TABLE `tb_divisi` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `tb_divisi`
+-- Dumping data for table `tb_divisi`
 --
 
 INSERT INTO `tb_divisi` (`id_divisi`, `nama_divisi`) VALUES
-('DV001', 'Welding'),
-('DV002', 'Blower'),
-('DV003', 'Aoutomotive');
+('DV001', 'AUTOMOTIVE WELDING'),
+('DV002', 'INDUSTRIAL WELDING'),
+('DV003', 'BLOWER'),
+('DV004', 'GENERAL AFFAIR'),
+('DV005', 'INDUSTRIAL REPAIR'),
+('DV006', 'VACUUM PUMP'),
+('DV007', 'AUTOMOTIVE DAN MARKETING'),
+('DV008', 'FABRIKASI'),
+('DV009', 'COLTER'),
+('DV010', 'CONNECTING ROOD'),
+('DV011', 'CYLINDER COP'),
+('DV012', 'DIGITAL MAREKETING'),
+('DV013', 'ELECTRICAL'),
+('DV014', 'FINANCE'),
+('DV015', 'LATHE KONVENSIONAL'),
+('DV016', 'LINE BORING'),
+('DV017', 'MILLING'),
+('DV018', 'SURFACE GRIDING'),
+('DV019', 'WAREHOUSE');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tb_jabatan`
+-- Table structure for table `tb_jabatan`
 --
 
 CREATE TABLE `tb_jabatan` (
@@ -175,7 +201,7 @@ CREATE TABLE `tb_jabatan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `tb_jabatan`
+-- Dumping data for table `tb_jabatan`
 --
 
 INSERT INTO `tb_jabatan` (`id_jabatan`, `nama_jabatan`) VALUES
@@ -187,7 +213,7 @@ INSERT INTO `tb_jabatan` (`id_jabatan`, `nama_jabatan`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tb_karyawan`
+-- Table structure for table `tb_karyawan`
 --
 
 CREATE TABLE `tb_karyawan` (
@@ -195,24 +221,137 @@ CREATE TABLE `tb_karyawan` (
   `nik` varchar(16) NOT NULL,
   `id_jabatan` varchar(10) NOT NULL,
   `id_divisi` varchar(10) NOT NULL,
-  `nama_karyawan` varchar(50) NOT NULL
+  `nama_karyawan` varchar(50) NOT NULL,
+  `status_penilaian` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `tb_karyawan`
+-- Dumping data for table `tb_karyawan`
 --
 
-INSERT INTO `tb_karyawan` (`id_karyawan`, `nik`, `id_jabatan`, `id_divisi`, `nama_karyawan`) VALUES
-(2, '13333', 'JB004', 'DV003', 'Wilda Minisiti'),
-(3, '111110', 'JB004', 'DV002', 'Kusuma Wijaya'),
-(12, '15050', 'JB003', 'DV001', 'Usman Adi'),
-(13, '15050', 'JB004', 'DV001', 'Indra Kesma'),
-(14, '12345', 'JB003', 'DV002', 'Yuni Indrawan');
+INSERT INTO `tb_karyawan` (`id_karyawan`, `nik`, `id_jabatan`, `id_divisi`, `nama_karyawan`, `status_penilaian`) VALUES
+(15, '3511456211782002', 'JB004', 'DV001', 'MUH DEBI ANDRI', ''),
+(16, '3511082512000001', 'JB004', 'DV001', 'DONI IRAWAN', ''),
+(17, '3503342117820002', 'JB004', 'DV001', 'AKBAR AMUALAN', ''),
+(18, '3521998712000001', 'JB004', 'DV003', 'MUNGKI SATRIO', ''),
+(19, '3576447103910003', 'JB004', 'DV003', 'AFDAN SAKURO', ''),
+(20, '3528927821126002', 'JB004', 'DV003', 'SIGIT WIDARTO', ''),
+(21, '3503678178970002', 'JB004', 'DV003', 'ANDI FAISAL NUGROHO', ''),
+(22, '3527892512000001', 'JB004', 'DV003', 'WINAGIL CATUR ARIF', ''),
+(23, '3507892612730003', 'JB004', 'DV003', 'M. RIDHO ADHE', ''),
+(24, '3521998712678002', 'JB004', 'DV003', 'ABDUS SALAM', ''),
+(25, '3523347821227002', 'JB004', 'DV003', 'GUFRON ARIF', ''),
+(26, '3521998059600001', 'JB004', 'DV003', 'RAHMAT HIDAYAT', ''),
+(27, '3503343457820002', 'JB004', 'DV003', 'FERDIANSYAH WICAKSONO', ''),
+(28, '3501998712010001', 'JB004', 'DV003', 'SOFYAN ARIF', ''),
+(29, '3507892319860003', 'JB004', 'DV003', 'VICKY CANDRA LESMANA', ''),
+(30, '3521987678456000', 'JB004', 'DV003', 'AJI WAHYUDI', ''),
+(31, '3504567894320003', 'JB004', 'DV009', 'M. BUSER', ''),
+(32, '3517896452340001', 'JB004', 'DV009', 'NASIHUL UMAM', ''),
+(33, '3216052104810009', 'JB004', 'DV009', 'TRI WAHYUDI', ''),
+(34, '3216052205770004', 'JB004', 'DV009', 'AGUS PRIYANTO', ''),
+(35, '3506607108790002', 'JB004', 'DV009', 'ALVIAN RAGIL', ''),
+(36, '3506570804710005', 'JB004', 'DV009', 'M. RIDHO', ''),
+(37, '3506575711700004', 'JB004', 'DV009', 'ADI SAPUTRA', ''),
+(38, '3520986507770008', 'JB004', 'DV011', 'RENDI PERTAMADA', ''),
+(39, '3519870304770010', 'JB004', 'DV011', 'SATRIA AGIL', ''),
+(40, '3503342199820003', 'JB004', 'DV012', 'YAZIB HASBI', ''),
+(41, '3519972102720001', 'JB004', 'DV012', 'PRAYOGA DWI YANTO', ''),
+(42, '3520981301670002', 'JB004', 'DV012', 'ANANG MAHMUDI', ''),
+(43, '3506545610780003', 'JB004', 'DV013', 'RICKY ANDIKA FITRA R', ''),
+(44, '3507892211650004', 'JB004', 'DV013', 'BAGUS SUYANTO', ''),
+(45, '3503340106700007', 'JB004', 'DV013', 'MUHAMMAD AYUB AHDAN', ''),
+(46, '3504352906870003', 'JB004', 'DV013', 'MUHAMMAD IKHSAN', ''),
+(47, '3506571105680005', 'JB004', 'DV013', 'NURUL JAILANI', ''),
+(48, '3529672712920004', 'JB004', 'DV013', 'WISNU FIRMANSYAH', ''),
+(49, '3505836608900005', 'JB004', 'DV013', 'M. DICKY SYAHPUTRA', ''),
+(50, '3516026405680004', 'JB004', 'DV008', 'ADVAN CECON', ''),
+(51, '3504316401620002', 'JB004', 'DV008', 'M. MAULANA ISHAQ', ''),
+(52, '3507685508770011', 'JB004', 'DV008', 'NANANG HARIYANTO', ''),
+(53, '3507876001750002', 'JB004', 'DV008', 'NURHOLIS', ''),
+(54, '3520086401620002', 'JB004', 'DV008', 'KIKI KURNIAWAN', ''),
+(55, '3523346306790007', 'JB004', 'DV008', 'IQBAL', ''),
+(56, '3527635505790015', 'JB004', 'DV010', 'WAHYUDI', ''),
+(57, '3505540405430001', 'JB004', 'DV010', 'LUKMAN HAKIKI', ''),
+(58, '3509902402690004', 'JB004', 'DV010', 'MU\'AZD ROYNANSYAH', ''),
+(59, '3513023112720014', 'JB004', 'DV010', 'AHMAD NURRUDIN', ''),
+(60, '3524441711650004', 'JB004', 'DV007', 'SUWARNO', ''),
+(61, '3503346702860004', 'JB004', 'DV007', 'ROFI\'I', ''),
+(62, '3526661303780013', 'JB004', 'DV007', 'ANWAR ANAS', ''),
+(63, '3506290207810003', 'JB004', 'DV007', 'ERWIN SUTIONO', ''),
+(64, '3504881708770009', 'JB004', 'DV014', 'TRIVENA', ''),
+(65, '3517357012810005', 'JB004', 'DV014', 'JUFTITA DEWI', ''),
+(66, '3505524308750006', 'JB004', 'DV014', 'SITI ROHIMAH', ''),
+(67, '3506690912710004', 'JB004', 'DV014', 'NUR HAYANI', ''),
+(68, '3507646912660003', 'JB004', 'DV014', 'FARAH INTAN NUR OKTAVIA', ''),
+(69, '3503381505430003', 'JB004', 'DV002', 'BAMBANG SUTIONO', ''),
+(70, '3506676602800003', 'JB004', 'DV004', 'BASUKI HERMANU', ''),
+(71, '3502311812750006', 'JB004', 'DV004', 'FAIZAL ROZZI', ''),
+(72, '3505016310660004', 'JB004', 'DV004', 'TOTOK WIDYANTO', ''),
+(73, '3502974709870006', 'JB004', 'DV004', 'SUPARTONO', ''),
+(74, '3589906310940007', 'JB004', 'DV005', 'M.HASRUL RAMDANI', ''),
+(75, '3589764508840003', 'JB004', 'DV005', 'R.FAJAR ZAINI', ''),
+(76, '3518346109870002', 'JB004', 'DV005', 'M. FANIFATHUR ROHMAN', ''),
+(77, '3528860102620002', 'JB004', 'DV005', 'FARIZ NANDO', ''),
+(78, '3508230606680002', 'JB004', 'DV002', 'M. EFFENDI', ''),
+(79, '3519460611810007', 'JB004', 'DV002', 'ARIF ABDILLAH', ''),
+(80, '3507890801730006', 'JB004', 'DV002', 'DAUD MAULANA', ''),
+(81, '3525670804700001', 'JB004', 'DV002', 'FATHUR ROHMAN', ''),
+(82, '3516670901720007', 'JB004', 'DV002', 'ISMAIL', ''),
+(83, '3505551003760007', 'JB004', 'DV002', 'GALUH', ''),
+(84, '3506671312710003', 'JB004', 'DV016', 'AMIN', ''),
+(85, '3506231410880002', 'JB004', 'DV016', 'FAJAR S', ''),
+(86, '3528121509660003', 'JB004', 'DV016', 'PUGUH WIJI', ''),
+(87, '3504441509760007', 'JB004', 'DV016', 'MASCHOIRUL ANWAR', ''),
+(88, '3518901510830008', 'JB004', 'DV016', 'DIPTA BACHTIAR BAGASKARA', ''),
+(89, '3508871511920008', 'JB004', 'DV015', 'LUGAS PRIAMBODO', ''),
+(90, '3502221707900009', 'JB004', 'DV015', 'DAVID KURNIAWAN', ''),
+(91, '3507682104810009', 'JB004', 'DV015', 'M RIZKY SAMSURI', ''),
+(92, '3524952205770004', 'JB004', 'DV015', 'ALDI GUNAWAN', ''),
+(93, '3517772410670002', 'JB004', 'DV015', 'M. ROFIKI', ''),
+(94, '3507762412480001', 'JB004', 'DV015', 'GERY AFRIZAL', ''),
+(95, '3527752702660001', 'JB004', 'DV015', 'AHMAD FAWAID', ''),
+(96, '3529904105740007', 'JB004', 'DV015', 'GUNAWAN', ''),
+(97, '3508454306780004', 'JB004', 'DV015', 'FAISAL', ''),
+(98, '3516634312750003', 'JB004', 'DV017', 'DEDI BARATA', ''),
+(99, '3509764401750010', 'JB004', 'DV017', 'SITI FARIDATUL', ''),
+(100, '3526674612720004', 'JB004', 'DV017', 'SISWOKO', ''),
+(101, '3509994704800008', 'JB004', 'DV007', 'IWANDRI', ''),
+(102, '3504324710720006', 'JB004', 'DV007', 'M. HUSEIN', ''),
+(103, '3508364801780009', 'JB004', 'DV007', 'JUM\'I', ''),
+(104, '3507654904610003', 'JB004', 'DV007', 'FAHRUR ROZI', ''),
+(105, '3526215012780014', 'JB004', 'DV007', 'YUSAK SUSILO', ''),
+(106, '3504775205770007', 'JB004', 'DV018', 'AGUNG BUDI', ''),
+(107, '3507765702700005', 'JB004', 'DV018', 'AHMAD HAMDANI', ''),
+(108, '3510005909830005', 'JB004', 'DV018', 'LOUIS ALAN DIKA', ''),
+(109, '3505526010930007', 'JB004', 'DV018', 'LUKMANUL HAKIM', ''),
+(110, '3526896011840010', 'JB004', 'DV018', 'AHMAD FARHAN', ''),
+(111, '3507446505860002', 'JB004', 'DV019', 'MUHAMMAD IRFAN', ''),
+(112, '3506687001810003', 'JB004', 'DV019', 'FAUZI', ''),
+(113, '3509342808690005', 'JB004', 'DV019', 'RISKI HAKIKI', ''),
+(114, '3508921112930006', 'JB003', 'DV001', 'Zaenal Arifin', ''),
+(115, '3508861104670008', 'JB003', 'DV002', 'Bahrul Rosi', ''),
+(116, '3512110204740006', 'JB003', 'DV003', 'Cahyo Kumolo', ''),
+(117, '3506990108840003', 'JB003', 'DV004', 'Elysa Anggraini', ''),
+(118, '3527992809760003', 'JB003', 'DV005', 'Rufiyanto', ''),
+(119, '3528875705770012', 'JB003', 'DV007', 'Arief Setiawan', ''),
+(120, '3504941210740005', 'JB003', 'DV008', 'Dani Arief Bahtiar', ''),
+(121, '3504373006850003', 'JB003', 'DV009', 'M. Rodi', ''),
+(122, '3518505911790003', 'JB003', 'DV010', 'Rusmanto', ''),
+(123, '3529976402770002', 'JB003', 'DV011', 'Halimin Eko Budianto', ''),
+(124, '3528905212780008', 'JB003', 'DV012', 'Akbar Bintang', ''),
+(125, '3526605009720010', 'JB003', 'DV013', 'Ahmad Doni Bait', ''),
+(126, '3515335409720004', 'JB003', 'DV014', 'Denny Susanto', ''),
+(127, '3508675702730008', 'JB003', 'DV015', 'Singgih Andriyanto', ''),
+(128, '3506796312770001', 'JB003', 'DV016', 'Dhonny Ari', ''),
+(129, '3509774406800015', 'JB003', 'DV017', 'Taufik Ismail', ''),
+(130, '3507694303590003', 'JB003', 'DV018', 'Slamet Sulton', ''),
+(131, '3510051408820007', 'JB003', 'DV019', 'Dimas Eka', '');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tb_kriteria_kasi`
+-- Table structure for table `tb_kriteria_kasi`
 --
 
 CREATE TABLE `tb_kriteria_kasi` (
@@ -221,16 +360,25 @@ CREATE TABLE `tb_kriteria_kasi` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `tb_kriteria_kasi`
+-- Dumping data for table `tb_kriteria_kasi`
 --
 
 INSERT INTO `tb_kriteria_kasi` (`id_kriteria_kasi`, `nama_kriteria_kasi`) VALUES
-('KKS001', 'Leadership');
+('KKS001', 'Leadership'),
+('KKS002', 'Productivity 		'),
+('KKS003', 'Kemampuaan Pemecahan Masalah'),
+('KKS004', 'Realisasi SOP/SPK'),
+('KKS005', 'Dokumentasi'),
+('KKS006', 'Pelaksanaan 5R'),
+('KKS007', 'Pelaksanaan K3'),
+('KKS008', 'Kehadiran'),
+('KKS009', 'Kedisiplinan'),
+('KSS010', 'Inisiatif');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tb_kriteria_operator`
+-- Table structure for table `tb_kriteria_operator`
 --
 
 CREATE TABLE `tb_kriteria_operator` (
@@ -239,7 +387,7 @@ CREATE TABLE `tb_kriteria_operator` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `tb_kriteria_operator`
+-- Dumping data for table `tb_kriteria_operator`
 --
 
 INSERT INTO `tb_kriteria_operator` (`id_kriteria_op`, `nama_kriteria_op`) VALUES
@@ -257,7 +405,7 @@ INSERT INTO `tb_kriteria_operator` (`id_kriteria_op`, `nama_kriteria_op`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tb_matriks_op`
+-- Table structure for table `tb_matriks_op`
 --
 
 CREATE TABLE `tb_matriks_op` (
@@ -278,7 +426,7 @@ CREATE TABLE `tb_matriks_op` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `tb_matriks_op`
+-- Dumping data for table `tb_matriks_op`
 --
 
 INSERT INTO `tb_matriks_op` (`id_matop`, `productivity`, `kerjasamadankom`, `pelaksana5r`, `dokumentasi`, `paham_laksana_k3`, `paham_sop`, `paham_tools`, `hadir`, `disiplin`, `inisiatif`, `jumlah`, `prioritas`, `eigen_value`) VALUES
@@ -296,7 +444,7 @@ INSERT INTO `tb_matriks_op` (`id_matop`, `productivity`, `kerjasamadankom`, `pel
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tb_submatriks_komdanker`
+-- Table structure for table `tb_submatriks_komdanker`
 --
 
 CREATE TABLE `tb_submatriks_komdanker` (
@@ -311,7 +459,7 @@ CREATE TABLE `tb_submatriks_komdanker` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `tb_submatriks_komdanker`
+-- Dumping data for table `tb_submatriks_komdanker`
 --
 
 INSERT INTO `tb_submatriks_komdanker` (`id_submatrix_kdk`, `sangat_baik`, `baik`, `kurang`, `tidak_mampu`, `jumlah`, `prioritas`, `eigen_value`) VALUES
@@ -323,7 +471,7 @@ INSERT INTO `tb_submatriks_komdanker` (`id_submatrix_kdk`, `sangat_baik`, `baik`
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tb_submatriks_pelaksana5r`
+-- Table structure for table `tb_submatriks_pelaksana5r`
 --
 
 CREATE TABLE `tb_submatriks_pelaksana5r` (
@@ -337,18 +485,18 @@ CREATE TABLE `tb_submatriks_pelaksana5r` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `tb_submatriks_pelaksana5r`
+-- Dumping data for table `tb_submatriks_pelaksana5r`
 --
 
 INSERT INTO `tb_submatriks_pelaksana5r` (`id_submatrix_p5r`, `melaksanakan`, `kurang_melaksanakan`, `tidak_melaksanakan`, `jumlah`, `prioritas`, `eigen_value`) VALUES
-(1, 0.75471698113208, 0.61538461538462, 0.61538461538462, 1.9854862119013, 0.66182873730044, 0.87692307692308),
-(2, 0.15094339622642, 0.30769230769231, 0.30769230769231, 0.76632801161103, 0.25544267053701, 0.83018867924528),
-(3, 0.094339622641509, 0.076923076923077, 0.076923076923077, 0.24818577648766, 0.082728592162554, 1.0754716981132);
+(1, 0.75471698113208, 0.78947368421053, 0.66666666666667, 2.2108573320093, 0.73695244400309, 0.97646198830409),
+(2, 0.15094339622642, 0.15789473684211, 0.25, 0.55883813306852, 0.18627937768951, 1.1797693920335),
+(3, 0.094339622641509, 0.052631578947368, 0.083333333333333, 0.23030453492221, 0.076768178307404, 0.92121813968884);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tb_submatriks_productivity`
+-- Table structure for table `tb_submatriks_productivity`
 --
 
 CREATE TABLE `tb_submatriks_productivity` (
@@ -363,7 +511,7 @@ CREATE TABLE `tb_submatriks_productivity` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `tb_submatriks_productivity`
+-- Dumping data for table `tb_submatriks_productivity`
 --
 
 INSERT INTO `tb_submatriks_productivity` (`id_submatrix_proc`, `pekerjaan_90`, `pekerjaan_80_90`, `pekerjaan_60_79`, `pekerjaan_59`, `jumlah`, `prioritas`, `eigen_value`) VALUES
@@ -375,7 +523,7 @@ INSERT INTO `tb_submatriks_productivity` (`id_submatrix_proc`, `pekerjaan_90`, `
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tb_subrange_komdanker`
+-- Table structure for table `tb_subrange_komdanker`
 --
 
 CREATE TABLE `tb_subrange_komdanker` (
@@ -387,7 +535,7 @@ CREATE TABLE `tb_subrange_komdanker` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `tb_subrange_komdanker`
+-- Dumping data for table `tb_subrange_komdanker`
 --
 
 INSERT INTO `tb_subrange_komdanker` (`id_subrange_kdk`, `sangat_baik`, `baik`, `kurang`, `tidak_mampu`) VALUES
@@ -399,7 +547,7 @@ INSERT INTO `tb_subrange_komdanker` (`id_subrange_kdk`, `sangat_baik`, `baik`, `
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tb_subrange_op`
+-- Table structure for table `tb_subrange_op`
 --
 
 CREATE TABLE `tb_subrange_op` (
@@ -412,7 +560,7 @@ CREATE TABLE `tb_subrange_op` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tb_subrange_pelaksana5r`
+-- Table structure for table `tb_subrange_pelaksana5r`
 --
 
 CREATE TABLE `tb_subrange_pelaksana5r` (
@@ -423,18 +571,18 @@ CREATE TABLE `tb_subrange_pelaksana5r` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `tb_subrange_pelaksana5r`
+-- Dumping data for table `tb_subrange_pelaksana5r`
 --
 
 INSERT INTO `tb_subrange_pelaksana5r` (`id_subrange_p5r`, `melaksanakan`, `kurang_melaksanakan`, `tidak_melaksanakan`) VALUES
-(1, 1, 2, 8),
-(2, 0.2, 1, 4),
-(3, 0.125, 0.25, 1);
+(1, 1, 5, 8),
+(2, 0.2, 1, 3),
+(3, 0.125, 0.33333333333333, 1);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tb_subrange_productivity`
+-- Table structure for table `tb_subrange_productivity`
 --
 
 CREATE TABLE `tb_subrange_productivity` (
@@ -446,7 +594,7 @@ CREATE TABLE `tb_subrange_productivity` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `tb_subrange_productivity`
+-- Dumping data for table `tb_subrange_productivity`
 --
 
 INSERT INTO `tb_subrange_productivity` (`id_subrange_proc`, `pekerjaan_90`, `pekerjaan_80_90`, `pekerjaan_60_79`, `pekerjaan_59`) VALUES
@@ -458,7 +606,7 @@ INSERT INTO `tb_subrange_productivity` (`id_subrange_proc`, `pekerjaan_90`, `pek
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tb_user`
+-- Table structure for table `tb_user`
 --
 
 CREATE TABLE `tb_user` (
@@ -471,7 +619,7 @@ CREATE TABLE `tb_user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `tb_user`
+-- Dumping data for table `tb_user`
 --
 
 INSERT INTO `tb_user` (`id_user`, `nama_user`, `username`, `password`, `level`, `status`) VALUES
@@ -484,45 +632,45 @@ INSERT INTO `tb_user` (`id_user`, `nama_user`, `username`, `password`, `level`, 
 --
 
 --
--- Indeks untuk tabel `data_kuisioner_kasi`
+-- Indexes for table `data_kuisioner_kasi`
 --
 ALTER TABLE `data_kuisioner_kasi`
   ADD PRIMARY KEY (`id_kuis_kasi`),
   ADD KEY `id_kriteria_kasi` (`id_kriteria_kasi`);
 
 --
--- Indeks untuk tabel `data_kuisioner_op`
+-- Indexes for table `data_kuisioner_op`
 --
 ALTER TABLE `data_kuisioner_op`
   ADD PRIMARY KEY (`id_kuis_op`),
   ADD KEY `id_kriteria_op` (`id_kriteria_op`);
 
 --
--- Indeks untuk tabel `nilai_banding`
+-- Indexes for table `nilai_banding`
 --
 ALTER TABLE `nilai_banding`
   ADD PRIMARY KEY (`id_nilai`);
 
 --
--- Indeks untuk tabel `tb_analisa_op`
+-- Indexes for table `tb_analisa_op`
 --
 ALTER TABLE `tb_analisa_op`
   ADD PRIMARY KEY (`id_anop`);
 
 --
--- Indeks untuk tabel `tb_divisi`
+-- Indexes for table `tb_divisi`
 --
 ALTER TABLE `tb_divisi`
   ADD PRIMARY KEY (`id_divisi`);
 
 --
--- Indeks untuk tabel `tb_jabatan`
+-- Indexes for table `tb_jabatan`
 --
 ALTER TABLE `tb_jabatan`
   ADD PRIMARY KEY (`id_jabatan`);
 
 --
--- Indeks untuk tabel `tb_karyawan`
+-- Indexes for table `tb_karyawan`
 --
 ALTER TABLE `tb_karyawan`
   ADD PRIMARY KEY (`id_karyawan`),
@@ -530,49 +678,49 @@ ALTER TABLE `tb_karyawan`
   ADD KEY `id_divisi` (`id_divisi`);
 
 --
--- Indeks untuk tabel `tb_kriteria_kasi`
+-- Indexes for table `tb_kriteria_kasi`
 --
 ALTER TABLE `tb_kriteria_kasi`
   ADD PRIMARY KEY (`id_kriteria_kasi`);
 
 --
--- Indeks untuk tabel `tb_kriteria_operator`
+-- Indexes for table `tb_kriteria_operator`
 --
 ALTER TABLE `tb_kriteria_operator`
   ADD PRIMARY KEY (`id_kriteria_op`);
 
 --
--- Indeks untuk tabel `tb_matriks_op`
+-- Indexes for table `tb_matriks_op`
 --
 ALTER TABLE `tb_matriks_op`
   ADD PRIMARY KEY (`id_matop`);
 
 --
--- Indeks untuk tabel `tb_submatriks_komdanker`
+-- Indexes for table `tb_submatriks_komdanker`
 --
 ALTER TABLE `tb_submatriks_komdanker`
   ADD PRIMARY KEY (`id_submatrix_kdk`);
 
 --
--- Indeks untuk tabel `tb_submatriks_pelaksana5r`
+-- Indexes for table `tb_submatriks_pelaksana5r`
 --
 ALTER TABLE `tb_submatriks_pelaksana5r`
   ADD PRIMARY KEY (`id_submatrix_p5r`);
 
 --
--- Indeks untuk tabel `tb_submatriks_productivity`
+-- Indexes for table `tb_submatriks_productivity`
 --
 ALTER TABLE `tb_submatriks_productivity`
   ADD PRIMARY KEY (`id_submatrix_proc`);
 
 --
--- Indeks untuk tabel `tb_subrange_komdanker`
+-- Indexes for table `tb_subrange_komdanker`
 --
 ALTER TABLE `tb_subrange_komdanker`
   ADD PRIMARY KEY (`id_subrange_kdk`);
 
 --
--- Indeks untuk tabel `tb_subrange_op`
+-- Indexes for table `tb_subrange_op`
 --
 ALTER TABLE `tb_subrange_op`
   ADD PRIMARY KEY (`id_subrange_op`),
@@ -580,64 +728,64 @@ ALTER TABLE `tb_subrange_op`
   ADD KEY `id_jabatan` (`id_jabatan`);
 
 --
--- Indeks untuk tabel `tb_subrange_pelaksana5r`
+-- Indexes for table `tb_subrange_pelaksana5r`
 --
 ALTER TABLE `tb_subrange_pelaksana5r`
   ADD PRIMARY KEY (`id_subrange_p5r`);
 
 --
--- Indeks untuk tabel `tb_subrange_productivity`
+-- Indexes for table `tb_subrange_productivity`
 --
 ALTER TABLE `tb_subrange_productivity`
   ADD PRIMARY KEY (`id_subrange_proc`);
 
 --
--- Indeks untuk tabel `tb_user`
+-- Indexes for table `tb_user`
 --
 ALTER TABLE `tb_user`
   ADD PRIMARY KEY (`id_user`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `tb_karyawan`
+-- AUTO_INCREMENT for table `tb_karyawan`
 --
 ALTER TABLE `tb_karyawan`
-  MODIFY `id_karyawan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_karyawan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=132;
 
 --
--- AUTO_INCREMENT untuk tabel `tb_user`
+-- AUTO_INCREMENT for table `tb_user`
 --
 ALTER TABLE `tb_user`
   MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+-- Constraints for dumped tables
 --
 
 --
--- Ketidakleluasaan untuk tabel `data_kuisioner_kasi`
+-- Constraints for table `data_kuisioner_kasi`
 --
 ALTER TABLE `data_kuisioner_kasi`
   ADD CONSTRAINT `data_kuisioner_kasi_ibfk_1` FOREIGN KEY (`id_kriteria_kasi`) REFERENCES `tb_kriteria_kasi` (`id_kriteria_kasi`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `data_kuisioner_op`
+-- Constraints for table `data_kuisioner_op`
 --
 ALTER TABLE `data_kuisioner_op`
   ADD CONSTRAINT `data_kuisioner_op_ibfk_1` FOREIGN KEY (`id_kriteria_op`) REFERENCES `tb_kriteria_operator` (`id_kriteria_op`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `tb_karyawan`
+-- Constraints for table `tb_karyawan`
 --
 ALTER TABLE `tb_karyawan`
   ADD CONSTRAINT `tb_karyawan_ibfk_1` FOREIGN KEY (`id_jabatan`) REFERENCES `tb_jabatan` (`id_jabatan`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `tb_karyawan_ibfk_2` FOREIGN KEY (`id_divisi`) REFERENCES `tb_divisi` (`id_divisi`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `tb_subrange_op`
+-- Constraints for table `tb_subrange_op`
 --
 ALTER TABLE `tb_subrange_op`
   ADD CONSTRAINT `tb_subrange_op_ibfk_1` FOREIGN KEY (`id_kriteria_op`) REFERENCES `tb_kriteria_operator` (`id_kriteria_op`) ON DELETE CASCADE ON UPDATE CASCADE,
