@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 11 Bulan Mei 2022 pada 11.31
+-- Waktu pembuatan: 16 Bulan Mei 2022 pada 16.45
 -- Versi server: 10.4.11-MariaDB
 -- Versi PHP: 7.3.13
 
@@ -296,6 +296,58 @@ INSERT INTO `tb_matriks_op` (`id_matop`, `productivity`, `kerjasamadankom`, `pel
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `tb_submatriks_komdanker`
+--
+
+CREATE TABLE `tb_submatriks_komdanker` (
+  `id_submatrix_kdk` int(11) NOT NULL,
+  `sangat_baik` double DEFAULT NULL,
+  `baik` double DEFAULT NULL,
+  `kurang` double DEFAULT NULL,
+  `tidak_mampu` double DEFAULT NULL,
+  `jumlah` double DEFAULT NULL,
+  `prioritas` double DEFAULT NULL,
+  `eigen_value` double DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `tb_submatriks_komdanker`
+--
+
+INSERT INTO `tb_submatriks_komdanker` (`id_submatrix_kdk`, `sangat_baik`, `baik`, `kurang`, `tidak_mampu`, `jumlah`, `prioritas`, `eigen_value`) VALUES
+(1, 0.59659090909091, 0.66176470588235, 0.53571428571429, 0.4375, 2.2315699006876, 0.55789247517189, 0.93513405362145),
+(2, 0.19886363636364, 0.22058823529412, 0.32142857142857, 0.3125, 1.0533804430863, 0.26334511077158, 1.1938311688312),
+(3, 0.11931818181818, 0.073529411764705, 0.10714285714286, 0.1875, 0.48749045072574, 0.12187261268144, 1.1374777183601),
+(4, 0.085227272727271, 0.044117647058824, 0.035714285714285, 0.0625, 0.22755920550038, 0.056889801375095, 0.91023682200152);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `tb_submatriks_pelaksana5r`
+--
+
+CREATE TABLE `tb_submatriks_pelaksana5r` (
+  `id_submatrix_p5r` int(11) NOT NULL,
+  `melaksanakan` double DEFAULT NULL,
+  `kurang_melaksanakan` double DEFAULT NULL,
+  `tidak_melaksanakan` double DEFAULT NULL,
+  `jumlah` double DEFAULT NULL,
+  `prioritas` double DEFAULT NULL,
+  `eigen_value` double DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `tb_submatriks_pelaksana5r`
+--
+
+INSERT INTO `tb_submatriks_pelaksana5r` (`id_submatrix_p5r`, `melaksanakan`, `kurang_melaksanakan`, `tidak_melaksanakan`, `jumlah`, `prioritas`, `eigen_value`) VALUES
+(1, 0.75471698113208, 0.61538461538462, 0.61538461538462, 1.9854862119013, 0.66182873730044, 0.87692307692308),
+(2, 0.15094339622642, 0.30769230769231, 0.30769230769231, 0.76632801161103, 0.25544267053701, 0.83018867924528),
+(3, 0.094339622641509, 0.076923076923077, 0.076923076923077, 0.24818577648766, 0.082728592162554, 1.0754716981132);
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `tb_submatriks_productivity`
 --
 
@@ -339,10 +391,10 @@ CREATE TABLE `tb_subrange_komdanker` (
 --
 
 INSERT INTO `tb_subrange_komdanker` (`id_subrange_kdk`, `sangat_baik`, `baik`, `kurang`, `tidak_mampu`) VALUES
-(1, NULL, NULL, NULL, NULL),
-(2, NULL, NULL, NULL, NULL),
-(3, NULL, NULL, NULL, NULL),
-(4, NULL, NULL, NULL, NULL);
+(1, 1, 3, 5, 7),
+(2, 0.33333333333333, 1, 3, 5),
+(3, 0.2, 0.33333333333333, 1, 3),
+(4, 0.14285714285714, 0.2, 0.33333333333333, 1);
 
 -- --------------------------------------------------------
 
@@ -356,6 +408,28 @@ CREATE TABLE `tb_subrange_op` (
   `id_jabatan` varchar(10) NOT NULL,
   `nama_subrange_op` int(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `tb_subrange_pelaksana5r`
+--
+
+CREATE TABLE `tb_subrange_pelaksana5r` (
+  `id_subrange_p5r` int(11) NOT NULL,
+  `melaksanakan` double DEFAULT NULL,
+  `kurang_melaksanakan` double DEFAULT NULL,
+  `tidak_melaksanakan` double DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `tb_subrange_pelaksana5r`
+--
+
+INSERT INTO `tb_subrange_pelaksana5r` (`id_subrange_p5r`, `melaksanakan`, `kurang_melaksanakan`, `tidak_melaksanakan`) VALUES
+(1, 1, 2, 8),
+(2, 0.2, 1, 4),
+(3, 0.125, 0.25, 1);
 
 -- --------------------------------------------------------
 
@@ -474,6 +548,18 @@ ALTER TABLE `tb_matriks_op`
   ADD PRIMARY KEY (`id_matop`);
 
 --
+-- Indeks untuk tabel `tb_submatriks_komdanker`
+--
+ALTER TABLE `tb_submatriks_komdanker`
+  ADD PRIMARY KEY (`id_submatrix_kdk`);
+
+--
+-- Indeks untuk tabel `tb_submatriks_pelaksana5r`
+--
+ALTER TABLE `tb_submatriks_pelaksana5r`
+  ADD PRIMARY KEY (`id_submatrix_p5r`);
+
+--
 -- Indeks untuk tabel `tb_submatriks_productivity`
 --
 ALTER TABLE `tb_submatriks_productivity`
@@ -492,6 +578,12 @@ ALTER TABLE `tb_subrange_op`
   ADD PRIMARY KEY (`id_subrange_op`),
   ADD KEY `id_kriteria_op` (`id_kriteria_op`,`id_jabatan`),
   ADD KEY `id_jabatan` (`id_jabatan`);
+
+--
+-- Indeks untuk tabel `tb_subrange_pelaksana5r`
+--
+ALTER TABLE `tb_subrange_pelaksana5r`
+  ADD PRIMARY KEY (`id_subrange_p5r`);
 
 --
 -- Indeks untuk tabel `tb_subrange_productivity`
