@@ -209,4 +209,37 @@ class DataKaryawan_Model extends CI_Model
       $query = "SELECT COUNT(tb_subrange_dokumentasi.id_subrange_doc) AS jumSubDoc FROM tb_subrange_dokumentasi";
       return $this->db->query($query)->row_array();
    }
+
+   // ------------ || ------------
+   //Pemahaman dan Pelaksanaan K3
+   public function showSubrangePahamdanLaksanaK3()
+   {
+      $query = "SELECT * FROM tb_subrange_pahamdanlaksanak3";
+      return $this->db->query($query)->result_array();
+   }
+   public function showSubmatrixPahamdanLaksanaK3()
+   {
+      $query = "SELECT * FROM tb_submatriks_pahamdanlaksanak3";
+      return $this->db->query($query)->result_array();
+   }
+   public function sumSubrangePahamdanLaksanaK3()
+   {
+      $query = "SELECT SUM(paham) AS sumPHM, SUM(kurang_paham) AS sumKrgPhm, SUM(tidak_paham) AS sumTdkPhm FROM tb_subrange_pahamdanlaksanak3";
+      return $this->db->query($query)->row_array();
+   }
+   public function sumSubmatrixPahamdanLaksanaK3()
+   {
+      $query = "SELECT SUM(paham) AS sumPHM, SUM(kurang_paham) AS sumKrgPhm, SUM(tidak_paham) AS sumTdkPhm, SUM(jumlah) AS submtxJum, SUM(prioritas) AS submtxPrior, SUM(eigen_value) AS submtxEig FROM tb_submatriks_pahamdanlaksanak3";
+      return $this->db->query($query)->row_array();
+   }
+   public function sumSubrangePahamdanLaksanaK3OPResArray()
+   {
+      $query = "SELECT SUM(paham) AS '0', SUM(kurang_paham) AS '1', SUM(tidak_paham) AS '2' FROM tb_subrange_pahamdanlaksanak3";
+      return $this->db->query($query)->row_array();
+   }
+   public function countSubrangePahamdanLaksanaK3()
+   {
+      $query = "SELECT COUNT(tb_subrange_pahamdanlaksanak3.id_subrange_plk3) AS jumSubPLK3 FROM tb_subrange_pahamdanlaksanak3";
+      return $this->db->query($query)->row_array();
+   }
 }

@@ -860,6 +860,13 @@ class Master_data extends CI_Controller
         $data['sum_subdokumentasi'] = $this->DataKaryawan_Model->sumSubrangeDokumentasi();
         $data['sum_submatrixdokumentasi'] = $this->DataKaryawan_Model->sumSubmatrixDokumentasi();
 
+        //Pemahaman dan Pelaksanaan K3
+        $data['subrange_pahamdanlaksanak3'] = $this->DataKaryawan_Model->showSubrangePahamdanLaksanaK3();
+        $data['submatrix_pahamdanlaksanak3'] = $this->DataKaryawan_Model->showSubmatrixPahamdanLaksanaK3();
+        $data['count_subpahamdanlaksanak3'] = $this->DataKaryawan_Model->countSubrangePahamdanLaksanaK3();
+        $data['sum_subpahamdanlaksanak3'] = $this->DataKaryawan_Model->sumSubrangePahamdanLaksanaK3();
+        $data['sum_submatrixpahamdanlaksanak3'] = $this->DataKaryawan_Model->sumSubmatrixPahamdanLaksanaK3();
+
         // 
         $data['data_nilban'] = $this->m_data_nilai->tampil_nilai()->result_array();
         $data['data_nilban1'] = $this->m_data_nilai->tampil_nilai_awal()->result_array();
@@ -1117,6 +1124,176 @@ class Master_data extends CI_Controller
                     Gagal dianalisa tahap nilai Pelaksanaan 5 R
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>'
+            );
+            redirect('admin/master_data/subrange_KriOp');
+        }
+    }
+
+
+
+
+
+
+
+    //---------------------------------------------------------- Dokumentasi ------------------------------------------------------------
+    public function update_subrange_dokumentasi()
+    {
+        $_sgtlkpsesuai = $this->input->post('sangat_lengkap_sesuai[]');
+        $_lengkap = $this->input->post('lengkap[]');
+        $_krglkptdksesuai = $this->input->post('kurang_lengkap_tidak_sesuai[]');
+        $_tidakmampu = $this->input->post('tidak_mampu[]');
+        $data = array();
+        for ($x = 0; $x < sizeof($_sgtlkpsesuai); $x++) {
+            $data[] = [
+                'sgt_lkp_sesuai' => $_sgtlkpsesuai[$x],
+                'lkp' => $_lengkap[$x],
+                'krg_lkp_tdk_sesuai' => $_krglkptdksesuai[$x],
+                'tidak_mampu' => $_tidakmampu[$x],
+                'id_subrange_doc' => $x + 1,
+            ];
+        }
+        $query = $this->db->update_batch('tb_subrange_dokumentasi', $data, 'id_subrange_doc');
+        if ($query) {
+            $data['sum_subdokumentasi'] = $this->DataKaryawan_Model->sumSubrangeDokumentasi();
+            $sumSLS = $data['sum_subdokumentasi']['sumSLS'];
+            $sumLengkap = $data['sum_subdokumentasi']['sumLengkap'];
+            $sumKLTS = $data['sum_subdokumentasi']['sumKLTS'];
+            $sumTdkMampu = $data['sum_subdokumentasi']['sumTdkMampu'];
+
+            $data['count_subdokumentasi'] = $this->DataKaryawan_Model->countSubrangeDokumentasi();
+            $count_subdokumentasi = $data['count_subdokumentasi']['jumSubDoc'];
+
+            $data['sumArray_subdokumentasi'] = $this->DataKaryawan_Model->sumSubrangeDokumentasiOPResArray();
+            $sumSubDokumentasi = $data['sumArray_subdokumentasi'];
+
+            $data = array();
+            for ($x = 0; $x < sizeof($_sgtlkpsesuai); $x++) {
+                $data[] = [
+                    'sgt_lkp_sesuai' => $_sgtlkpsesuai[$x] / $sumSLS,
+                    'lkp' => $_lengkap[$x] / $sumLengkap,
+                    'krg_lkp_tdk_sesuai' => $_krglkptdksesuai[$x] / $sumKLTS,
+                    'tidak_mampu' => $_tidakmampu[$x] / $sumTdkMampu,
+                    'jumlah' => (($_sgtlkpsesuai[$x] / $sumSLS) + ($_lengkap[$x] / $sumLengkap) + ($_krglkptdksesuai[$x] / $sumKLTS) + ($_tidakmampu[$x] / $sumTdkMampu)),
+
+                    'prioritas' => (($_sgtlkpsesuai[$x] / $sumSLS) + ($_lengkap[$x] / $sumLengkap) + ($_krglkptdksesuai[$x] / $sumKLTS) + ($_tidakmampu[$x] / $sumTdkMampu)) / $count_subdokumentasi,
+
+                    'eigen_value' => ((($_sgtlkpsesuai[$x] / $sumSLS) + ($_lengkap[$x] / $sumLengkap) + ($_krglkptdksesuai[$x] / $sumKLTS) + ($_tidakmampu[$x] / $sumTdkMampu)) / $count_subdokumentasi) * $sumSubDokumentasi[$x],
+
+                    'id_submatrix_doc' => $x + 1,
+                ];
+            }
+            $query1 = $this->db->update_batch('tb_submatriks_dokumentasi', $data, 'id_submatrix_doc');
+            if ($query1) {
+                $this->session->set_flashdata(
+                    'message',
+                    '<div class="alert alert-success success-dismissible fade show" role="alert">
+                        Sukses dianalisa Subrange Dokeumentasi
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>'
+                );
+                redirect('admin/master_data/subrange_KriOp');
+            } else {
+                $this->session->set_flashdata(
+                    'message',
+                    '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        Gagal dianalisa Subrange Dokeumentasi
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>'
+                );
+                redirect('admin/master_data/subrange_KriOp');
+            }
+        } else {
+            $this->session->set_flashdata(
+                'message',
+                '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    Gagal dianalisa tahap nilai Dokeumentasi
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>'
+            );
+            redirect('admin/master_data/subrange_KriOp');
+        }
+    }
+
+
+
+
+
+
+
+    //---------------------------------------------------------- Pemahaman dan Pelaksanaan K3 ------------------------------------------------------------
+    public function update_subrange_pahamdanlaksanak3()
+    {
+        $_phm = $this->input->post('paham[]');
+        $_kurphm = $this->input->post('kurang_paham[]');
+        $_tidphm = $this->input->post('tidak_paham[]');
+        $data = array();
+        for ($x = 0; $x < sizeof($_phm); $x++) {
+            $data[] = [
+                'paham' => $_phm[$x],
+                'kurang_paham' => $_kurphm[$x],
+                'tidak_paham' => $_tidphm[$x],
+                'id_subrange_plk3' => $x + 1,
+            ];
+        }
+        // echo "<pre>";
+        // echo sizeof($_phm) + 1;
+        // die;
+        // echo "</pre>";
+        $query = $this->db->update_batch('tb_subrange_pahamdanlaksanak3', $data, 'id_subrange_plk3');
+        if ($query) {
+            $data['sum_subpahamdanlaksanak3'] = $this->DataKaryawan_Model->sumSubrangePahamdanLaksanaK3();
+            $sumPHM = $data['sum_subpahamdanlaksanak3']['sumPHM'];
+            $sumKrgPhm = $data['sum_subpahamdanlaksanak3']['sumKrgPhm'];
+            $sumTdkPhm = $data['sum_subpahamdanlaksanak3']['sumTdkPhm'];
+
+            $data['count_subpahamdanlaksanak3'] = $this->DataKaryawan_Model->countSubrangePahamdanLaksanaK3();
+            $count_subpahamdanlaksanak3 = $data['count_subpahamdanlaksanak3']['jumSubPLK3'];
+
+            $data['sumArray_subpahamdanlaksanak3'] = $this->DataKaryawan_Model->sumSubrangePahamdanLaksanaK3OPResArray();
+            $sumSubPahamdanLaksanaK3 = $data['sumArray_subpahamdanlaksanak3'];
+
+            $data = array();
+            for ($x = 0; $x < sizeof($_phm); $x++) {
+                $data[] = [
+                    'paham' => $_phm[$x] / $sumPHM,
+                    'kurang_paham' => $_kurphm[$x] / $sumKrgPhm,
+                    'tidak_paham' => $_tidphm[$x] / $sumTdkPhm,
+                    'jumlah' => (($_phm[$x] / $sumPHM) + ($_kurphm[$x] / $sumKrgPhm) + ($_tidphm[$x] / $sumTdkPhm)),
+
+                    'prioritas' => (($_phm[$x] / $sumPHM) + ($_kurphm[$x] / $sumKrgPhm) + ($_tidphm[$x] / $sumTdkPhm)) / $count_subpahamdanlaksanak3,
+
+                    'eigen_value' => ((($_phm[$x] / $sumPHM) + ($_kurphm[$x] / $sumKrgPhm) + ($_tidphm[$x] / $sumTdkPhm)) / $count_subpahamdanlaksanak3) * $sumSubPahamdanLaksanaK3[$x],
+
+                    'id_submatrix_plk3' => $x + 1,
+                ];
+            }
+            $query1 = $this->db->update_batch('tb_submatriks_pahamdanlaksanak3', $data, 'id_submatrix_plk3');
+            if ($query1) {
+                $this->session->set_flashdata(
+                    'message',
+                    '<div class="alert alert-success success-dismissible fade show" role="alert">
+                         Sukses dianalisa Subrange Pemahaman dan Laksana K 3
+                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                     </div>'
+                );
+                redirect('admin/master_data/subrange_KriOp');
+            } else {
+                $this->session->set_flashdata(
+                    'message',
+                    '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                         Gagal dianalisa Subrange Pemahaman dan Laksana K 3
+                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                     </div>'
+                );
+                redirect('admin/master_data/subrange_KriOp');
+            }
+        } else {
+            $this->session->set_flashdata(
+                'message',
+                '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                     Gagal dianalisa tahap nilai Pemahaman dan Laksana K 3
+                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                 </div>'
             );
             redirect('admin/master_data/subrange_KriOp');
         }
