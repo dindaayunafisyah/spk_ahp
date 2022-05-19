@@ -242,4 +242,103 @@ class DataKaryawan_Model extends CI_Model
       $query = "SELECT COUNT(tb_subrange_pahamdanlaksanak3.id_subrange_plk3) AS jumSubPLK3 FROM tb_subrange_pahamdanlaksanak3";
       return $this->db->query($query)->row_array();
    }
+
+   // ------------ || ------------
+   //Pemahaman dan Pelaksanaan K3
+   public function showSubrangePahamSOPSPK()
+   {
+      $query = "SELECT * FROM tb_subrange_pahamsopspk";
+      return $this->db->query($query)->result_array();
+   }
+   public function showSubmatrixPahamSOPSPK()
+   {
+      $query = "SELECT * FROM tb_submatriks_pahamsopspk";
+      return $this->db->query($query)->result_array();
+   }
+   public function sumSubrangePahamSOPSPK()
+   {
+      $query = "SELECT SUM(sangat_mampu) AS sumSgtMampu, SUM(mampu) AS sumMampu, SUM(kurang_mampu) AS sumKrgMampu, SUM(tidak_mampu) AS sumTdkMampu FROM tb_subrange_pahamsopspk";
+      return $this->db->query($query)->row_array();
+   }
+   public function sumSubmatrixPahamSOPSPK()
+   {
+      $query = "SELECT SUM(sangat_mampu) AS sumSgtMampu, SUM(mampu) AS sumMampu, SUM(kurang_mampu) AS sumKrgMampu, SUM(tidak_mampu) AS sumTdkMampu, SUM(jumlah) AS submtxJum, SUM(prioritas) AS submtxPrior, SUM(eigen_value) AS submtxEig FROM tb_submatriks_pahamsopspk";
+      return $this->db->query($query)->row_array();
+   }
+   public function sumSubrangePahamSOPSPKOPResArray()
+   {
+      $query = "SELECT SUM(sangat_mampu) AS '0', SUM(mampu) AS '1', SUM(kurang_mampu) AS '2', SUM(tidak_mampu) AS '3' FROM tb_subrange_pahamsopspk";
+      return $this->db->query($query)->row_array();
+   }
+   public function countSubrangePahamSOPSPK()
+   {
+      $query = "SELECT COUNT(tb_subrange_pahamsopspk.id_subrange_pss) AS jumSubPSS FROM tb_subrange_pahamsopspk";
+      return $this->db->query($query)->row_array();
+   }
+
+   // ------------ || ------------
+   //Pemahaman Tools
+   public function showSubrangePahamTools()
+   {
+      $query = "SELECT * FROM tb_subrange_pahamtools";
+      return $this->db->query($query)->result_array();
+   }
+   public function showSubmatrixPahamTools()
+   {
+      $query = "SELECT * FROM tb_submatriks_pahamtools";
+      return $this->db->query($query)->result_array();
+   }
+   public function sumSubrangePahamTools()
+   {
+      $query = "SELECT SUM(baik) AS sumBaik, SUM(kurang_baik) AS sumKrgBaik, SUM(tidak_baik) AS sumTdkBaik FROM tb_subrange_pahamtools";
+      return $this->db->query($query)->row_array();
+   }
+   public function sumSubmatrixPahamTools()
+   {
+      $query = "SELECT SUM(baik) AS sumBaik, SUM(kurang_baik) AS sumKrgBaik, SUM(tidak_baik) AS sumTdkBaik, SUM(jumlah) AS submtxJum, SUM(prioritas) AS submtxPrior, SUM(eigen_value) AS submtxEig FROM tb_submatriks_pahamtools";
+      return $this->db->query($query)->row_array();
+   }
+   public function sumSubrangePahamToolsOPResArray()
+   {
+      $query = "SELECT SUM(baik) AS '0', SUM(kurang_baik) AS '1', SUM(tidak_baik) AS '2' FROM tb_subrange_pahamtools";
+      return $this->db->query($query)->row_array();
+   }
+   public function countSubrangePahamTools()
+   {
+      $query = "SELECT COUNT(tb_subrange_pahamtools.id_subrange_ptls) AS jumSubPTLS FROM tb_subrange_pahamtools";
+      return $this->db->query($query)->row_array();
+   }
+
+   // ------------ || ------------
+   //Kehadiran
+   public function showSubrangeKehadiran()
+   {
+      $query = "SELECT * FROM tb_subrange_kehadiran";
+      return $this->db->query($query)->result_array();
+   }
+   public function showSubmatrixKehadiran()
+   {
+      $query = "SELECT * FROM tb_submatriks_kehadiran";
+      return $this->db->query($query)->result_array();
+   }
+   public function sumSubrangeKehadiran()
+   {
+      $query = "SELECT SUM(hadir100) AS sum100, SUM(hadir100t) AS sum100t, SUM(hadir90) AS sum90, SUM(hadir90t) AS sum90t, SUM(hadir80) AS sum80, SUM(hadir80t) AS sum80t, SUM(hadir70) AS sum70, SUM(hadir70t) AS sum70t FROM tb_subrange_kehadiran";
+      return $this->db->query($query)->row_array();
+   }
+   public function sumSubmatrixKehadiran()
+   {
+      $query = "SELECT SUM(hadir100) AS sum100, SUM(hadir100t) AS sum100t, SUM(hadir90) AS sum90, SUM(hadir90t) AS sum90t, SUM(hadir80) AS sum80, SUM(hadir80t) AS sum80t, SUM(hadir70) AS sum70, SUM(hadir70t) AS sum70t, SUM(jumlah) AS submtxJum, SUM(prioritas) AS submtxPrior, SUM(eigen_value) AS submtxEig FROM tb_submatriks_kehadiran";
+      return $this->db->query($query)->row_array();
+   }
+   public function sumSubrangeKehadiranOPResArray()
+   {
+      $query = "SELECT SUM(hadir100) AS '0', SUM(hadir100t) AS '1', SUM(hadir90) AS '2', SUM(hadir90t) AS '3', SUM(hadir80) AS '4', SUM(hadir80t) AS '5', SUM(hadir70) AS '6', SUM(hadir70t) AS '7' FROM tb_subrange_kehadiran";
+      return $this->db->query($query)->row_array();
+   }
+   public function countSubrangeKehadiran()
+   {
+      $query = "SELECT COUNT(tb_subrange_kehadiran.id_subrange_hdr) AS jumSubHDR FROM tb_subrange_kehadiran";
+      return $this->db->query($query)->row_array();
+   }
 }

@@ -280,7 +280,7 @@
                                             </form>
                                         </table>
 
-                                        <table class="table table-bordered mb-5" id="dataTable" width="100%" cellspacing="0">
+                                        <table class="table table-responsive table-bordered mb-5" id="dataTable" width="100%" cellspacing="0">
                                             <thead>
                                                 <tr>
                                                     <th></th>
@@ -671,7 +671,7 @@
                                             </form>
                                         </table>
 
-                                        <table class="table table-bordered mb-5" id="dataTable" width="100%" cellspacing="0">
+                                        <table class="table table-responsive table-bordered mb-5" id="dataTable" width="100%" cellspacing="0">
                                             <thead>
                                                 <tr>
                                                     <th></th>
@@ -1027,7 +1027,7 @@
                                             </form>
                                         </table>
 
-                                        <table class="table table-bordered mb-5" id="dataTable" width="100%" cellspacing="0">
+                                        <table class="table table-responsive table-bordered mb-5" id="dataTable" width="100%" cellspacing="0">
                                             <thead>
                                                 <tr>
                                                     <th></th>
@@ -1414,7 +1414,7 @@
                                             </form>
                                         </table>
 
-                                        <table class="table table-bordered mb-5" id="dataTable" width="100%" cellspacing="0">
+                                        <table class="table table-responsive table-bordered mb-5" id="dataTable" width="100%" cellspacing="0">
                                             <thead>
                                                 <tr>
                                                     <th></th>
@@ -1771,7 +1771,7 @@
                                             </form>
                                         </table>
 
-                                        <table class="table table-bordered mb-5" id="dataTable" width="100%" cellspacing="0">
+                                        <table class="table table-responsive table-bordered mb-5" id="dataTable" width="100%" cellspacing="0">
                                             <thead>
                                                 <tr>
                                                     <th></th>
@@ -1931,7 +1931,387 @@
 
                                 <!-- ------------------------------------------- Pemahaman SOP dan SPK ------------------------------------------- -->
                                 <div class="tab-pane fade" id="<?= str_replace(" ", "_", $title6) ?>" role="tabpanel" aria-labelledby="<?= str_replace(" ", "_", $title6) ?>-tab">
-                                    <p class="mt-2">v2</p>
+                                    <div class="card">
+                                        <table class="table table-responsive table-hover table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                            <thead>
+                                                <tr>
+                                                    <td colspan="11">
+                                                        <?php if (validation_errors()) : ?>
+                                                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                                                <?= validation_errors(); ?>
+                                                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                                            </div>
+                                                        <?php endif; ?>
+                                                        <?= $this->session->flashdata('message') ?>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th></th>
+                                                    <?php
+                                                    foreach ($subrange_pahamsopspk as $subpss) : ?>
+                                                        <th>
+                                                            <?php
+                                                            switch ($subpss):
+                                                                case $subpss['id_subrange_pss'] == 1:
+                                                                    echo 'Sangat Mampu';
+                                                                    break;
+                                                                case $subpss['id_subrange_pss'] == 2:
+                                                                    echo 'Mampu';
+                                                                    break;
+                                                                case $subpss['id_subrange_pss'] == 3:
+                                                                    echo 'Kurang Mampu';
+                                                                    break;
+                                                                case $subpss['id_subrange_pss'] == 4:
+                                                                    echo 'Tidak Mampu';
+                                                                    break;
+                                                                default:
+                                                                    echo 'No One';
+                                                                    break;
+                                                            ?>
+                                                            <?php endswitch; ?>
+                                                        </th>
+                                                    <?php endforeach; ?>
+                                                </tr>
+                                            </thead>
+                                            <form action="<?php echo base_url() . 'admin/master_data/update_subrange_pahamsopspk'; ?>" method="POST">
+                                                <tbody>
+                                                    <tr>
+                                                    </tr>
+                                                    <?php
+                                                    foreach ($subrange_pahamsopspk as $subpss) : ?>
+                                                        <tr>
+                                                            <td>
+                                                                <?php
+                                                                switch ($subpss):
+                                                                    case $subpss['id_subrange_pss'] == 1:
+                                                                        echo 'Sangat Mampu';
+                                                                        break;
+                                                                    case $subpss['id_subrange_pss'] == 2:
+                                                                        echo 'Mampu';
+                                                                        break;
+                                                                    case $subpss['id_subrange_pss'] == 3:
+                                                                        echo 'Kurang Mampu';
+                                                                        break;
+                                                                    case $subpss['id_subrange_pss'] == 4:
+                                                                        echo 'Tidak Mampu';
+                                                                        break;
+                                                                    default:
+                                                                        echo 'No One';
+                                                                        break;
+                                                                ?>
+                                                                <?php endswitch; ?>
+                                                            </td>
+                                                            <?php if ($subpss['sangat_mampu'] == 1) : ?>
+                                                                <td style="background-color: aqua ;">
+                                                                    <select name="sangat_mampu[]" id="sangat_mampu" class="form-control" style="background-color: aqua;">
+                                                                        <option value="<?= $subpss['sangat_mampu'] ?>"> <?= $subpss['sangat_mampu'] ?></option>
+                                                                        <?php foreach ($data_nilban as $dbn) : ?>
+                                                                            <option value="<?= $dbn['nilai'] ?>"><?= $dbn['nama_nilai'] . ' - ' . $dbn['nilai'] ?></option>
+                                                                            <?php foreach ($data_nilban1 as $dbn1) : ?>
+                                                                                <?php if ($dbn1 != $dbn) : ?>
+                                                                                    <option value="<?= $dbn1['nilai'] / $dbn['nilai'] ?>"><?= '1 dibagi ' . $dbn['nama_nilai'] . ' - &sup' . $dbn1['nilai'] . ' / ' . $dbn['nilai'] ?></option>
+                                                                                <?php endif; ?>
+                                                                            <?php endforeach; ?>
+                                                                        <?php endforeach; ?>
+                                                                    </select>
+                                                                </td>
+                                                            <?php else : ?>
+                                                                <td>
+                                                                    <select name="sangat_mampu[]" id="sangat_mampu" class="form-control">
+                                                                        <option value="<?= $subpss['sangat_mampu'] ?>"> <?= $subpss['sangat_mampu'] ?></option>
+                                                                        <?php foreach ($data_nilban as $dbn) : ?>
+                                                                            <option value="<?= $dbn['nilai'] ?>"><?= $dbn['nama_nilai'] . ' - ' . $dbn['nilai'] ?></option>
+                                                                            <?php foreach ($data_nilban1 as $dbn1) : ?>
+                                                                                <?php if ($dbn1 != $dbn) : ?>
+                                                                                    <option value="<?= $dbn1['nilai'] / $dbn['nilai'] ?>"><?= '1 dibagi ' . $dbn['nama_nilai'] . ' - &sup' . $dbn1['nilai'] . ' / ' . $dbn['nilai'] ?></option>
+                                                                                <?php endif; ?>
+                                                                            <?php endforeach; ?>
+                                                                        <?php endforeach; ?>
+                                                                    </select>
+                                                                </td>
+                                                            <?php endif; ?>
+
+                                                            <!--  -->
+
+                                                            <?php if ($subpss['mampu'] == 1) : ?>
+                                                                <td style="background-color: aqua ;">
+                                                                    <select name="mampu[]" id="mampu" class="form-control" style="background-color: aqua;">
+                                                                        <option value="<?= $subpss['mampu'] ?>"> <?= $subpss['mampu'] ?></option>
+                                                                        <?php foreach ($data_nilban as $dbn) : ?>
+                                                                            <option value="<?= $dbn['nilai'] ?>"><?= $dbn['nama_nilai'] . ' - ' . $dbn['nilai'] ?></option>
+                                                                            <?php foreach ($data_nilban1 as $dbn1) : ?>
+                                                                                <?php if ($dbn1 != $dbn) : ?>
+                                                                                    <option value="<?= $dbn1['nilai'] / $dbn['nilai'] ?>"><?= '1 dibagi ' . $dbn['nama_nilai'] . ' - &sup' . $dbn1['nilai'] . ' / ' . $dbn['nilai'] ?></option>
+                                                                                <?php endif; ?>
+                                                                            <?php endforeach; ?>
+                                                                        <?php endforeach; ?>
+                                                                    </select>
+                                                                </td>
+                                                            <?php else : ?>
+                                                                <td>
+                                                                    <select name="mampu[]" id="mampu" class="form-control">
+                                                                        <option value="<?= $subpss['mampu'] ?>"> <?= $subpss['mampu'] ?></option>
+                                                                        <?php foreach ($data_nilban as $dbn) : ?>
+                                                                            <option value="<?= $dbn['nilai'] ?>"><?= $dbn['nama_nilai'] . ' - ' . $dbn['nilai'] ?></option>
+                                                                            <?php foreach ($data_nilban1 as $dbn1) : ?>
+                                                                                <?php if ($dbn1 != $dbn) : ?>
+                                                                                    <option value="<?= $dbn1['nilai'] / $dbn['nilai'] ?>"><?= '1 dibagi ' . $dbn['nama_nilai'] . ' - &sup' . $dbn1['nilai'] . ' / ' . $dbn['nilai'] ?></option>
+                                                                                <?php endif; ?>
+                                                                            <?php endforeach; ?>
+                                                                        <?php endforeach; ?>
+                                                                    </select>
+                                                                </td>
+                                                            <?php endif; ?>
+
+                                                            <!--  -->
+
+                                                            <?php if ($subpss['kurang_mampu'] == 1) : ?>
+                                                                <td style="background-color: aqua ;">
+                                                                    <select name="kurang_mampu[]" id="kurang_mampu" class="form-control" style="background-color: aqua;">
+                                                                        <option value="<?= $subpss['kurang_mampu'] ?>"> <?= $subpss['kurang_mampu'] ?></option>
+                                                                        <?php foreach ($data_nilban as $dbn) : ?>
+                                                                            <option value="<?= $dbn['nilai'] ?>"><?= $dbn['nama_nilai'] . ' - ' . $dbn['nilai'] ?></option>
+                                                                            <?php foreach ($data_nilban1 as $dbn1) : ?>
+                                                                                <?php if ($dbn1 != $dbn) : ?>
+                                                                                    <option value="<?= $dbn1['nilai'] / $dbn['nilai'] ?>"><?= '1 dibagi ' . $dbn['nama_nilai'] . ' - &sup' . $dbn1['nilai'] . ' / ' . $dbn['nilai'] ?></option>
+                                                                                <?php endif; ?>
+                                                                            <?php endforeach; ?>
+                                                                        <?php endforeach; ?>
+                                                                    </select>
+                                                                </td>
+                                                            <?php else : ?>
+                                                                <td>
+                                                                    <select name="kurang_mampu[]" id="kurang_mampu" class="form-control">
+                                                                        <option value="<?= $subpss['kurang_mampu'] ?>"> <?= $subpss['kurang_mampu'] ?></option>
+                                                                        <?php foreach ($data_nilban as $dbn) : ?>
+                                                                            <option value="<?= $dbn['nilai'] ?>"><?= $dbn['nama_nilai'] . ' - ' . $dbn['nilai'] ?></option>
+                                                                            <?php foreach ($data_nilban1 as $dbn1) : ?>
+                                                                                <?php if ($dbn1 != $dbn) : ?>
+                                                                                    <option value="<?= $dbn1['nilai'] / $dbn['nilai'] ?>"><?= '1 dibagi ' . $dbn['nama_nilai'] . ' - &sup' . $dbn1['nilai'] . ' / ' . $dbn['nilai'] ?></option>
+                                                                                <?php endif; ?>
+                                                                            <?php endforeach; ?>
+                                                                        <?php endforeach; ?>
+                                                                    </select>
+                                                                </td>
+                                                            <?php endif; ?>
+
+                                                            <!--  -->
+
+                                                            <?php if ($subpss['tidak_mampu'] == 1) : ?>
+                                                                <td style="background-color: aqua ;">
+                                                                    <select name="tidak_mampu[]" id="tidak_mampu" class="form-control" style="background-color: aqua;">
+                                                                        <option value="<?= $subpss['tidak_mampu'] ?>"> <?= $subpss['tidak_mampu'] ?></option>
+                                                                        <?php foreach ($data_nilban as $dbn) : ?>
+                                                                            <option value="<?= $dbn['nilai'] ?>"><?= $dbn['nama_nilai'] . ' - ' . $dbn['nilai'] ?></option>
+                                                                            <?php foreach ($data_nilban1 as $dbn1) : ?>
+                                                                                <?php if ($dbn1 != $dbn) : ?>
+                                                                                    <option value="<?= $dbn1['nilai'] / $dbn['nilai'] ?>"><?= '1 dibagi ' . $dbn['nama_nilai'] . ' - &sup' . $dbn1['nilai'] . ' / ' . $dbn['nilai'] ?></option>
+                                                                                <?php endif; ?>
+                                                                            <?php endforeach; ?>
+                                                                        <?php endforeach; ?>
+                                                                    </select>
+                                                                </td>
+                                                            <?php else : ?>
+                                                                <td>
+                                                                    <select name="tidak_mampu[]" id="tidak_mampu" class="form-control">
+                                                                        <option value="<?= $subpss['tidak_mampu'] ?>"> <?= $subpss['tidak_mampu'] ?></option>
+                                                                        <?php foreach ($data_nilban as $dbn) : ?>
+                                                                            <option value="<?= $dbn['nilai'] ?>"><?= $dbn['nama_nilai'] . ' - ' . $dbn['nilai'] ?></option>
+                                                                            <?php foreach ($data_nilban1 as $dbn1) : ?>
+                                                                                <?php if ($dbn1 != $dbn) : ?>
+                                                                                    <option value="<?= $dbn1['nilai'] / $dbn['nilai'] ?>"><?= '1 dibagi ' . $dbn['nama_nilai'] . ' - &sup' . $dbn1['nilai'] . ' / ' . $dbn['nilai'] ?></option>
+                                                                                <?php endif; ?>
+                                                                            <?php endforeach; ?>
+                                                                        <?php endforeach; ?>
+                                                                    </select>
+                                                                </td>
+                                                            <?php endif; ?>
+
+                                                            <!--  -->
+                                                        </tr>
+                                                    <?php endforeach; ?>
+                                                    <tr>
+                                                        <td><strong>Total</strong></td>
+                                                        <td>
+                                                            <?= $sum_subpahamsopspk['sumSgtMampu']; ?>
+                                                        </td>
+                                                        <td>
+                                                            <?= $sum_subpahamsopspk['sumMampu']; ?>
+                                                        </td>
+                                                        <td>
+                                                            <?= $sum_subpahamsopspk['sumKrgMampu']; ?>
+                                                        </td>
+                                                        <td>
+                                                            <?= $sum_subpahamsopspk['sumTdkMampu']; ?>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                                <tfoot>
+                                                    <tr>
+                                                        <td colspan="2"></td>
+                                                        <td>
+                                                            <button type="submit" name="submit" class="btn btn-success btn-user btn-block">Analisa</button>
+                                                        </td>
+                                                    </tr>
+                                                </tfoot>
+                                            </form>
+                                        </table>
+
+                                        <table class="table table-responsive table-bordered mb-5" id="dataTable" width="100%" cellspacing="0">
+                                            <thead>
+                                                <tr>
+                                                    <th></th>
+                                                    <?php
+                                                    foreach ($subrange_pahamsopspk as $subpss) : ?>
+                                                        <th>
+                                                            <?php
+                                                            switch ($subpss):
+                                                                case $subpss['id_subrange_pss'] == 1:
+                                                                    echo 'Sangat Mampu';
+                                                                    break;
+                                                                case $subpss['id_subrange_pss'] == 2:
+                                                                    echo 'Mampu';
+                                                                    break;
+                                                                case $subpss['id_subrange_pss'] == 3:
+                                                                    echo 'Kurang Mampu';
+                                                                    break;
+                                                                case $subpss['id_subrange_pss'] == 4:
+                                                                    echo 'Tidak Mampu';
+                                                                    break;
+                                                                default:
+                                                                    echo 'No One';
+                                                                    break;
+                                                            ?>
+                                                            <?php endswitch; ?>
+                                                        </th>
+                                                    <?php endforeach; ?>
+                                                    <th>
+                                                        Jumlah
+                                                    </th>
+                                                    <th>
+                                                        Priotitas
+                                                    </th>
+                                                    <th>
+                                                        Eigen Value
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php
+                                                foreach ($submatrix_pahamsopspk as $smtxpss) : ?>
+                                                    <tr>
+                                                        <td>
+                                                            <?php
+                                                            switch ($smtxpss):
+                                                                case $smtxpss['id_submatrix_pss'] == 1:
+                                                                    echo 'Sangat Mampu';
+                                                                    break;
+                                                                case $smtxpss['id_submatrix_pss'] == 2:
+                                                                    echo 'Mampu';
+                                                                    break;
+                                                                case $smtxpss['id_submatrix_pss'] == 3:
+                                                                    echo 'Kurang Mampu';
+                                                                    break;
+                                                                case $smtxpss['id_submatrix_pss'] == 4:
+                                                                    echo 'Tidak Mampu';
+                                                                    break;
+                                                                default:
+                                                                    echo 'No One';
+                                                                    break;
+                                                            ?>
+                                                            <?php endswitch; ?>
+                                                        </td>
+                                                        <td>
+                                                            <?= $smtxpss['sangat_mampu'] ?>
+                                                        </td>
+                                                        <td>
+                                                            <?= $smtxpss['mampu'] ?>
+                                                        </td>
+                                                        <td>
+                                                            <?= $smtxpss['kurang_mampu'] ?>
+                                                        </td>
+                                                        <td>
+                                                            <?= $smtxpss['tidak_mampu'] ?>
+                                                        </td>
+                                                        <td>
+                                                            <?= $smtxpss['jumlah'] ?>
+                                                        </td>
+                                                        <td>
+                                                            <?= $smtxpss['prioritas'] ?>
+                                                        </td>
+                                                        <td>
+                                                            <?= $smtxpss['eigen_value'] ?>
+                                                        </td>
+                                                    </tr>
+                                                <?php endforeach; ?>
+                                                <tr style="font-weight: bold; font-size:15px;">
+                                                    <td><strong>Total</strong></td>
+                                                    <td>
+                                                        <?= $sum_submatrixpahamsopspk['sumSgtMampu']; ?>
+                                                    </td>
+                                                    <td>
+                                                        <?= $sum_submatrixpahamsopspk['sumMampu']; ?>
+                                                    </td>
+                                                    <td>
+                                                        <?= $sum_submatrixpahamsopspk['sumKrgMampu']; ?>
+                                                    </td>
+                                                    <td>
+                                                        <?= $sum_submatrixpahamsopspk['sumTdkMampu']; ?>
+                                                    </td>
+                                                    <td>
+                                                        <?= $sum_submatrixpahamsopspk['submtxJum']; ?>
+                                                    </td>
+                                                    <td>
+                                                        <?= $sum_submatrixpahamsopspk['submtxPrior']; ?>
+                                                    </td>
+                                                    <td>
+                                                        <?= $sum_submatrixpahamsopspk['submtxEig']; ?>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+
+                                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                            <tr>
+                                                <th>CI</th>
+                                                <th colspan="2">
+                                                    <?php
+                                                    $ci = ($sum_submatrixpahamsopspk['submtxEig'] - $count_subpahamsopspk['jumSubPSS']) / ($count_subpahamsopspk['jumSubPSS'] - 1);
+                                                    echo $ci;
+                                                    ?>
+                                                </th>
+                                            </tr>
+                                            <tr>
+                                                <th>RI</th>
+                                                <th colspan="2">
+                                                    <?php
+                                                    echo $ri;
+                                                    ?>
+                                                </th>
+                                            </tr>
+                                            <tr>
+                                                <th>CR</th>
+                                                <th>
+                                                    <?php
+                                                    $cr = $ci / $ri;
+                                                    echo $cr;
+                                                    ?>
+                                                </th>
+                                                <th>
+                                                    <?php
+                                                    if ($cr <= 0.1) : ?>
+                                                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                                            Konsisten
+                                                        </div>
+                                                    <?php else : ?>
+                                                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                                            Tidak Konsisten
+                                                        </div>
+                                                    <?php endif; ?>
+                                                </th>
+                                            </tr>
+                                        </table>
+                                    </div>
                                 </div>
 
 
@@ -1949,7 +2329,334 @@
 
                                 <!-- ------------------------------------------- Pemahaman Tools ------------------------------------------- -->
                                 <div class="tab-pane fade" id="<?= str_replace(" ", "_", $title7) ?>" role="tabpanel" aria-labelledby="<?= str_replace(" ", "_", $title7) ?>-tab">
-                                    <p class="mt-2">v3</p>
+                                    <div class="card">
+                                        <table class="table table-responsive table-hover table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                            <thead>
+                                                <tr>
+                                                    <td colspan="11">
+                                                        <?php if (validation_errors()) : ?>
+                                                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                                                <?= validation_errors(); ?>
+                                                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                                            </div>
+                                                        <?php endif; ?>
+                                                        <?= $this->session->flashdata('message') ?>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th></th>
+                                                    <?php
+                                                    foreach ($subrange_pahamtools as $subptls) : ?>
+                                                        <th>
+                                                            <?php
+                                                            switch ($subptls):
+                                                                case $subptls['id_subrange_ptls'] == 1:
+                                                                    echo 'Pemahaman Baik';
+                                                                    break;
+                                                                case $subptls['id_subrange_ptls'] == 2:
+                                                                    echo 'Pemahaman Kurang Baik';
+                                                                    break;
+                                                                case $subptls['id_subrange_ptls'] == 3:
+                                                                    echo 'Tidak Memahami';
+                                                                    break;
+                                                                default:
+                                                                    echo 'No One';
+                                                                    break;
+                                                            ?>
+                                                            <?php endswitch; ?>
+                                                        </th>
+                                                    <?php endforeach; ?>
+                                                </tr>
+                                            </thead>
+                                            <form action="<?php echo base_url() . 'admin/master_data/update_subrange_pahamtools'; ?>" method="POST">
+                                                <tbody>
+                                                    <tr>
+                                                    </tr>
+                                                    <?php
+                                                    foreach ($subrange_pahamtools as $subptls) : ?>
+                                                        <tr>
+                                                            <td>
+                                                                <?php
+                                                                switch ($subptls):
+                                                                    case $subptls['id_subrange_ptls'] == 1:
+                                                                        echo 'Pemahaman Baik';
+                                                                        break;
+                                                                    case $subptls['id_subrange_ptls'] == 2:
+                                                                        echo 'Pemahaman Kurang Baik';
+                                                                        break;
+                                                                    case $subptls['id_subrange_ptls'] == 3:
+                                                                        echo 'Tidak Memahami';
+                                                                        break;
+                                                                    default:
+                                                                        echo 'No One';
+                                                                        break;
+                                                                ?>
+                                                                <?php endswitch; ?>
+                                                            </td>
+                                                            <?php if ($subptls['baik'] == 1) : ?>
+                                                                <td style="background-color: aqua ;">
+                                                                    <select name="baik[]" id="baik" class="form-control" style="background-color: aqua;">
+                                                                        <option value="<?= $subptls['baik'] ?>"> <?= $subptls['baik'] ?></option>
+                                                                        <?php foreach ($data_nilban as $dbn) : ?>
+                                                                            <option value="<?= $dbn['nilai'] ?>"><?= $dbn['nama_nilai'] . ' - ' . $dbn['nilai'] ?></option>
+                                                                            <?php foreach ($data_nilban1 as $dbn1) : ?>
+                                                                                <?php if ($dbn1 != $dbn) : ?>
+                                                                                    <option value="<?= $dbn1['nilai'] / $dbn['nilai'] ?>"><?= '1 dibagi ' . $dbn['nama_nilai'] . ' - &sup' . $dbn1['nilai'] . ' / ' . $dbn['nilai'] ?></option>
+                                                                                <?php endif; ?>
+                                                                            <?php endforeach; ?>
+                                                                        <?php endforeach; ?>
+                                                                    </select>
+                                                                </td>
+                                                            <?php else : ?>
+                                                                <td>
+                                                                    <select name="baik[]" id="baik" class="form-control">
+                                                                        <option value="<?= $subptls['baik'] ?>"> <?= $subptls['baik'] ?></option>
+                                                                        <?php foreach ($data_nilban as $dbn) : ?>
+                                                                            <option value="<?= $dbn['nilai'] ?>"><?= $dbn['nama_nilai'] . ' - ' . $dbn['nilai'] ?></option>
+                                                                            <?php foreach ($data_nilban1 as $dbn1) : ?>
+                                                                                <?php if ($dbn1 != $dbn) : ?>
+                                                                                    <option value="<?= $dbn1['nilai'] / $dbn['nilai'] ?>"><?= '1 dibagi ' . $dbn['nama_nilai'] . ' - &sup' . $dbn1['nilai'] . ' / ' . $dbn['nilai'] ?></option>
+                                                                                <?php endif; ?>
+                                                                            <?php endforeach; ?>
+                                                                        <?php endforeach; ?>
+                                                                    </select>
+                                                                </td>
+                                                            <?php endif; ?>
+
+                                                            <!--  -->
+
+                                                            <?php if ($subptls['kurang_baik'] == 1) : ?>
+                                                                <td style="background-color: aqua ;">
+                                                                    <select name="kurang_baik[]" id="kurang_baik" class="form-control" style="background-color: aqua;">
+                                                                        <option value="<?= $subptls['kurang_baik'] ?>"> <?= $subptls['kurang_baik'] ?></option>
+                                                                        <?php foreach ($data_nilban as $dbn) : ?>
+                                                                            <option value="<?= $dbn['nilai'] ?>"><?= $dbn['nama_nilai'] . ' - ' . $dbn['nilai'] ?></option>
+                                                                            <?php foreach ($data_nilban1 as $dbn1) : ?>
+                                                                                <?php if ($dbn1 != $dbn) : ?>
+                                                                                    <option value="<?= $dbn1['nilai'] / $dbn['nilai'] ?>"><?= '1 dibagi ' . $dbn['nama_nilai'] . ' - &sup' . $dbn1['nilai'] . ' / ' . $dbn['nilai'] ?></option>
+                                                                                <?php endif; ?>
+                                                                            <?php endforeach; ?>
+                                                                        <?php endforeach; ?>
+                                                                    </select>
+                                                                </td>
+                                                            <?php else : ?>
+                                                                <td>
+                                                                    <select name="kurang_baik[]" id="kurang_baik" class="form-control">
+                                                                        <option value="<?= $subptls['kurang_baik'] ?>"> <?= $subptls['kurang_baik'] ?></option>
+                                                                        <?php foreach ($data_nilban as $dbn) : ?>
+                                                                            <option value="<?= $dbn['nilai'] ?>"><?= $dbn['nama_nilai'] . ' - ' . $dbn['nilai'] ?></option>
+                                                                            <?php foreach ($data_nilban1 as $dbn1) : ?>
+                                                                                <?php if ($dbn1 != $dbn) : ?>
+                                                                                    <option value="<?= $dbn1['nilai'] / $dbn['nilai'] ?>"><?= '1 dibagi ' . $dbn['nama_nilai'] . ' - &sup' . $dbn1['nilai'] . ' / ' . $dbn['nilai'] ?></option>
+                                                                                <?php endif; ?>
+                                                                            <?php endforeach; ?>
+                                                                        <?php endforeach; ?>
+                                                                    </select>
+                                                                </td>
+                                                            <?php endif; ?>
+
+                                                            <!--  -->
+
+                                                            <?php if ($subptls['tidak_baik'] == 1) : ?>
+                                                                <td style="background-color: aqua ;">
+                                                                    <select name="tidak_baik[]" id="tidak_baik" class="form-control" style="background-color: aqua;">
+                                                                        <option value="<?= $subptls['tidak_baik'] ?>"> <?= $subptls['tidak_baik'] ?></option>
+                                                                        <?php foreach ($data_nilban as $dbn) : ?>
+                                                                            <option value="<?= $dbn['nilai'] ?>"><?= $dbn['nama_nilai'] . ' - ' . $dbn['nilai'] ?></option>
+                                                                            <?php foreach ($data_nilban1 as $dbn1) : ?>
+                                                                                <?php if ($dbn1 != $dbn) : ?>
+                                                                                    <option value="<?= $dbn1['nilai'] / $dbn['nilai'] ?>"><?= '1 dibagi ' . $dbn['nama_nilai'] . ' - &sup' . $dbn1['nilai'] . ' / ' . $dbn['nilai'] ?></option>
+                                                                                <?php endif; ?>
+                                                                            <?php endforeach; ?>
+                                                                        <?php endforeach; ?>
+                                                                    </select>
+                                                                </td>
+                                                            <?php else : ?>
+                                                                <td>
+                                                                    <select name="tidak_baik[]" id="tidak_baik" class="form-control">
+                                                                        <option value="<?= $subptls['tidak_baik'] ?>"> <?= $subptls['tidak_baik'] ?></option>
+                                                                        <?php foreach ($data_nilban as $dbn) : ?>
+                                                                            <option value="<?= $dbn['nilai'] ?>"><?= $dbn['nama_nilai'] . ' - ' . $dbn['nilai'] ?></option>
+                                                                            <?php foreach ($data_nilban1 as $dbn1) : ?>
+                                                                                <?php if ($dbn1 != $dbn) : ?>
+                                                                                    <option value="<?= $dbn1['nilai'] / $dbn['nilai'] ?>"><?= '1 dibagi ' . $dbn['nama_nilai'] . ' - &sup' . $dbn1['nilai'] . ' / ' . $dbn['nilai'] ?></option>
+                                                                                <?php endif; ?>
+                                                                            <?php endforeach; ?>
+                                                                        <?php endforeach; ?>
+                                                                    </select>
+                                                                </td>
+                                                            <?php endif; ?>
+
+                                                            <!--  -->
+                                                        </tr>
+                                                    <?php endforeach; ?>
+                                                    <tr>
+                                                        <td><strong>Total</strong></td>
+                                                        <td>
+                                                            <?= $sum_subpahamtools['sumBaik']; ?>
+                                                        </td>
+                                                        <td>
+                                                            <?= $sum_subpahamtools['sumKrgBaik']; ?>
+                                                        </td>
+                                                        <td>
+                                                            <?= $sum_subpahamtools['sumTdkBaik']; ?>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                                <tfoot>
+                                                    <tr>
+                                                        <td colspan="2"></td>
+                                                        <td>
+                                                            <button type="submit" name="submit" class="btn btn-success btn-user btn-block">Analisa</button>
+                                                        </td>
+                                                    </tr>
+                                                </tfoot>
+                                            </form>
+                                        </table>
+
+                                        <table class="table table-responsive table-bordered mb-5" id="dataTable" width="100%" cellspacing="0">
+                                            <thead>
+                                                <tr>
+                                                    <th></th>
+                                                    <?php
+                                                    foreach ($subrange_pahamtools as $subptls) : ?>
+                                                        <th>
+                                                            <?php
+                                                            switch ($subptls):
+                                                                case $subptls['id_subrange_ptls'] == 1:
+                                                                    echo 'Pemahaman Baik';
+                                                                    break;
+                                                                case $subptls['id_subrange_ptls'] == 2:
+                                                                    echo 'Pemahaman Kurang Baik';
+                                                                    break;
+                                                                case $subptls['id_subrange_ptls'] == 3:
+                                                                    echo 'Tidak Memahami';
+                                                                    break;
+                                                                default:
+                                                                    echo 'No One';
+                                                                    break;
+                                                            ?>
+                                                            <?php endswitch; ?>
+                                                        </th>
+                                                    <?php endforeach; ?>
+                                                    <th>
+                                                        Jumlah
+                                                    </th>
+                                                    <th>
+                                                        Priotitas
+                                                    </th>
+                                                    <th>
+                                                        Eigen Value
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php
+                                                foreach ($submatrix_pahamtools as $smtxptls) : ?>
+                                                    <tr>
+                                                        <td>
+                                                            <?php
+                                                            switch ($smtxptls):
+                                                                case $smtxptls['id_submatrix_ptls'] == 1:
+                                                                    echo 'Pemahaman Baik';
+                                                                    break;
+                                                                case $smtxptls['id_submatrix_ptls'] == 2:
+                                                                    echo 'Pemahaman Kurang Baik';
+                                                                    break;
+                                                                case $smtxptls['id_submatrix_ptls'] == 3:
+                                                                    echo 'Tidak Memahami';
+                                                                    break;
+                                                                default:
+                                                                    echo 'No One';
+                                                                    break;
+                                                            ?>
+                                                            <?php endswitch; ?>
+                                                        </td>
+                                                        <td>
+                                                            <?= $smtxptls['baik'] ?>
+                                                        </td>
+                                                        <td>
+                                                            <?= $smtxptls['kurang_baik'] ?>
+                                                        </td>
+                                                        <td>
+                                                            <?= $smtxptls['tidak_baik'] ?>
+                                                        </td>
+                                                        <td>
+                                                            <?= $smtxptls['jumlah'] ?>
+                                                        </td>
+                                                        <td>
+                                                            <?= $smtxptls['prioritas'] ?>
+                                                        </td>
+                                                        <td>
+                                                            <?= $smtxptls['eigen_value'] ?>
+                                                        </td>
+                                                    </tr>
+                                                <?php endforeach; ?>
+                                                <tr style="font-weight: bold; font-size:15px;">
+                                                    <td><strong>Total</strong></td>
+                                                    <td>
+                                                        <?= $sum_submatrixpahamtools['sumBaik']; ?>
+                                                    </td>
+                                                    <td>
+                                                        <?= $sum_submatrixpahamtools['sumKrgBaik']; ?>
+                                                    </td>
+                                                    <td>
+                                                        <?= $sum_submatrixpahamtools['sumTdkBaik']; ?>
+                                                    </td>
+                                                    <td>
+                                                        <?= $sum_submatrixpahamtools['submtxJum']; ?>
+                                                    </td>
+                                                    <td>
+                                                        <?= $sum_submatrixpahamtools['submtxPrior']; ?>
+                                                    </td>
+                                                    <td>
+                                                        <?= $sum_submatrixpahamtools['submtxEig']; ?>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+
+                                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                            <tr>
+                                                <th>CI</th>
+                                                <th colspan="2">
+                                                    <?php
+                                                    $ci = ($sum_submatrixpahamtools['submtxEig'] - $count_subpahamtools['jumSubPTLS']) / ($count_subpahamtools['jumSubPTLS'] - 1);
+                                                    echo $ci;
+                                                    ?>
+                                                </th>
+                                            </tr>
+                                            <tr>
+                                                <th>RI</th>
+                                                <th colspan="2">
+                                                    <?php
+                                                    echo $ri3;
+                                                    ?>
+                                                </th>
+                                            </tr>
+                                            <tr>
+                                                <th>CR</th>
+                                                <th>
+                                                    <?php
+                                                    $cr = $ci / $ri3;
+                                                    echo $cr;
+                                                    ?>
+                                                </th>
+                                                <th>
+                                                    <?php
+                                                    if ($cr <= 0.1) : ?>
+                                                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                                            Konsisten
+                                                        </div>
+                                                    <?php else : ?>
+                                                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                                            Tidak Konsisten
+                                                        </div>
+                                                    <?php endif; ?>
+                                                </th>
+                                            </tr>
+                                        </table>
+                                    </div>
                                 </div>
 
 
@@ -1967,7 +2674,599 @@
 
                                 <!-- ------------------------------------------- Kehadiran ------------------------------------------- -->
                                 <div class="tab-pane fade" id="<?= str_replace(" ", "_", $title8) ?>" role="tabpanel" aria-labelledby="<?= str_replace(" ", "_", $title8) ?>-tab">
-                                    <p class="mt-2">v4</p>
+                                    <div class="card">
+                                        <table class="table table-responsive table-hover table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                            <thead>
+                                                <tr>
+                                                    <td colspan="11">
+                                                        <?php if (validation_errors()) : ?>
+                                                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                                                <?= validation_errors(); ?>
+                                                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                                            </div>
+                                                        <?php endif; ?>
+                                                        <?= $this->session->flashdata('message') ?>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th></th>
+                                                    <?php
+                                                    foreach ($subrange_kehadiran as $subhdr) : ?>
+                                                        <th>
+                                                            <?php
+                                                            switch ($subhdr):
+                                                                case $subhdr['id_subrange_hdr'] == 1:
+                                                                    echo 'Hadir 100%';
+                                                                    break;
+                                                                case $subhdr['id_subrange_hdr'] == 2:
+                                                                    echo 'Hadir 100% ada terlambat';
+                                                                    break;
+                                                                case $subhdr['id_subrange_hdr'] == 3:
+                                                                    echo 'Hadir >= 90%';
+                                                                    break;
+                                                                case $subhdr['id_subrange_hdr'] == 4:
+                                                                    echo 'Hadir > 90% ada terlambat';
+                                                                    break;
+                                                                case $subhdr['id_subrange_hdr'] == 5:
+                                                                    echo 'Hadir 80-90 %';
+                                                                    break;
+                                                                case $subhdr['id_subrange_hdr'] == 6:
+                                                                    echo 'Hadir 80-90% ada terlambat';
+                                                                    break;
+                                                                case $subhdr['id_subrange_hdr'] == 7:
+                                                                    echo 'Hadir < 80%';
+                                                                    break;
+                                                                case $subhdr['id_subrange_hdr'] == 8:
+                                                                    echo 'Hadir < 80% ada terlambat';
+                                                                    break;
+                                                                default:
+                                                                    echo 'No One';
+                                                                    break;
+                                                            ?>
+                                                            <?php endswitch; ?>
+                                                        </th>
+                                                    <?php endforeach; ?>
+                                                </tr>
+                                            </thead>
+                                            <form action="<?php echo base_url() . 'admin/master_data/update_subrange_kehadiran'; ?>" method="POST">
+                                                <tbody>
+                                                    <tr>
+                                                    </tr>
+                                                    <?php
+                                                    foreach ($subrange_kehadiran as $subhdr) : ?>
+                                                        <tr>
+                                                            <td>
+                                                                <?php
+                                                                switch ($subhdr):
+                                                                    case $subhdr['id_subrange_hdr'] == 1:
+                                                                        echo 'Hadir 100%';
+                                                                        break;
+                                                                    case $subhdr['id_subrange_hdr'] == 2:
+                                                                        echo 'Hadir 100% ada terlambat';
+                                                                        break;
+                                                                    case $subhdr['id_subrange_hdr'] == 3:
+                                                                        echo 'Hadir >= 90%';
+                                                                        break;
+                                                                    case $subhdr['id_subrange_hdr'] == 4:
+                                                                        echo 'Hadir > 90% ada terlambat';
+                                                                        break;
+                                                                    case $subhdr['id_subrange_hdr'] == 5:
+                                                                        echo 'Hadir 80-90 %';
+                                                                        break;
+                                                                    case $subhdr['id_subrange_hdr'] == 6:
+                                                                        echo 'Hadir 80-90% ada terlambat';
+                                                                        break;
+                                                                    case $subhdr['id_subrange_hdr'] == 7:
+                                                                        echo 'Hadir < 80%';
+                                                                        break;
+                                                                    case $subhdr['id_subrange_hdr'] == 8:
+                                                                        echo 'Hadir < 80% ada terlambat';
+                                                                        break;
+                                                                    default:
+                                                                        echo 'No One';
+                                                                        break;
+                                                                ?>
+                                                                <?php endswitch; ?>
+                                                            </td>
+                                                            <?php if ($subhdr['hadir100'] == 1) : ?>
+                                                                <td style="background-color: aqua ;">
+                                                                    <select name="hadir100[]" id="hadir100" class="form-control" style="background-color: aqua;">
+                                                                        <option value="<?= $subhdr['hadir100'] ?>"> <?= $subhdr['hadir100'] ?></option>
+                                                                        <?php foreach ($data_nilban as $dbn) : ?>
+                                                                            <option value="<?= $dbn['nilai'] ?>"><?= $dbn['nama_nilai'] . ' - ' . $dbn['nilai'] ?></option>
+                                                                            <?php foreach ($data_nilban1 as $dbn1) : ?>
+                                                                                <?php if ($dbn1 != $dbn) : ?>
+                                                                                    <option value="<?= $dbn1['nilai'] / $dbn['nilai'] ?>"><?= '1 dibagi ' . $dbn['nama_nilai'] . ' - &sup' . $dbn1['nilai'] . ' / ' . $dbn['nilai'] ?></option>
+                                                                                <?php endif; ?>
+                                                                            <?php endforeach; ?>
+                                                                        <?php endforeach; ?>
+                                                                    </select>
+                                                                </td>
+                                                            <?php else : ?>
+                                                                <td>
+                                                                    <select name="hadir100[]" id="hadir100" class="form-control">
+                                                                        <option value="<?= $subhdr['hadir100'] ?>"> <?= $subhdr['hadir100'] ?></option>
+                                                                        <?php foreach ($data_nilban as $dbn) : ?>
+                                                                            <option value="<?= $dbn['nilai'] ?>"><?= $dbn['nama_nilai'] . ' - ' . $dbn['nilai'] ?></option>
+                                                                            <?php foreach ($data_nilban1 as $dbn1) : ?>
+                                                                                <?php if ($dbn1 != $dbn) : ?>
+                                                                                    <option value="<?= $dbn1['nilai'] / $dbn['nilai'] ?>"><?= '1 dibagi ' . $dbn['nama_nilai'] . ' - &sup' . $dbn1['nilai'] . ' / ' . $dbn['nilai'] ?></option>
+                                                                                <?php endif; ?>
+                                                                            <?php endforeach; ?>
+                                                                        <?php endforeach; ?>
+                                                                    </select>
+                                                                </td>
+                                                            <?php endif; ?>
+
+                                                            <!--  -->
+
+                                                            <?php if ($subhdr['hadir100t'] == 1) : ?>
+                                                                <td style="background-color: aqua ;">
+                                                                    <select name="hadir100t[]" id="hadir100t" class="form-control" style="background-color: aqua;">
+                                                                        <option value="<?= $subhdr['hadir100t'] ?>"> <?= $subhdr['hadir100t'] ?></option>
+                                                                        <?php foreach ($data_nilban as $dbn) : ?>
+                                                                            <option value="<?= $dbn['nilai'] ?>"><?= $dbn['nama_nilai'] . ' - ' . $dbn['nilai'] ?></option>
+                                                                            <?php foreach ($data_nilban1 as $dbn1) : ?>
+                                                                                <?php if ($dbn1 != $dbn) : ?>
+                                                                                    <option value="<?= $dbn1['nilai'] / $dbn['nilai'] ?>"><?= '1 dibagi ' . $dbn['nama_nilai'] . ' - &sup' . $dbn1['nilai'] . ' / ' . $dbn['nilai'] ?></option>
+                                                                                <?php endif; ?>
+                                                                            <?php endforeach; ?>
+                                                                        <?php endforeach; ?>
+                                                                    </select>
+                                                                </td>
+                                                            <?php else : ?>
+                                                                <td>
+                                                                    <select name="hadir100t[]" id="hadir100t" class="form-control">
+                                                                        <option value="<?= $subhdr['hadir100t'] ?>"> <?= $subhdr['hadir100t'] ?></option>
+                                                                        <?php foreach ($data_nilban as $dbn) : ?>
+                                                                            <option value="<?= $dbn['nilai'] ?>"><?= $dbn['nama_nilai'] . ' - ' . $dbn['nilai'] ?></option>
+                                                                            <?php foreach ($data_nilban1 as $dbn1) : ?>
+                                                                                <?php if ($dbn1 != $dbn) : ?>
+                                                                                    <option value="<?= $dbn1['nilai'] / $dbn['nilai'] ?>"><?= '1 dibagi ' . $dbn['nama_nilai'] . ' - &sup' . $dbn1['nilai'] . ' / ' . $dbn['nilai'] ?></option>
+                                                                                <?php endif; ?>
+                                                                            <?php endforeach; ?>
+                                                                        <?php endforeach; ?>
+                                                                    </select>
+                                                                </td>
+                                                            <?php endif; ?>
+
+                                                            <!--  -->
+
+                                                            <?php if ($subhdr['hadir90'] == 1) : ?>
+                                                                <td style="background-color: aqua ;">
+                                                                    <select name="hadir90[]" id="hadir90" class="form-control" style="background-color: aqua;">
+                                                                        <option value="<?= $subhdr['hadir90'] ?>"> <?= $subhdr['hadir90'] ?></option>
+                                                                        <?php foreach ($data_nilban as $dbn) : ?>
+                                                                            <option value="<?= $dbn['nilai'] ?>"><?= $dbn['nama_nilai'] . ' - ' . $dbn['nilai'] ?></option>
+                                                                            <?php foreach ($data_nilban1 as $dbn1) : ?>
+                                                                                <?php if ($dbn1 != $dbn) : ?>
+                                                                                    <option value="<?= $dbn1['nilai'] / $dbn['nilai'] ?>"><?= '1 dibagi ' . $dbn['nama_nilai'] . ' - &sup' . $dbn1['nilai'] . ' / ' . $dbn['nilai'] ?></option>
+                                                                                <?php endif; ?>
+                                                                            <?php endforeach; ?>
+                                                                        <?php endforeach; ?>
+                                                                    </select>
+                                                                </td>
+                                                            <?php else : ?>
+                                                                <td>
+                                                                    <select name="hadir90[]" id="hadir90" class="form-control">
+                                                                        <option value="<?= $subhdr['hadir90'] ?>"> <?= $subhdr['hadir90'] ?></option>
+                                                                        <?php foreach ($data_nilban as $dbn) : ?>
+                                                                            <option value="<?= $dbn['nilai'] ?>"><?= $dbn['nama_nilai'] . ' - ' . $dbn['nilai'] ?></option>
+                                                                            <?php foreach ($data_nilban1 as $dbn1) : ?>
+                                                                                <?php if ($dbn1 != $dbn) : ?>
+                                                                                    <option value="<?= $dbn1['nilai'] / $dbn['nilai'] ?>"><?= '1 dibagi ' . $dbn['nama_nilai'] . ' - &sup' . $dbn1['nilai'] . ' / ' . $dbn['nilai'] ?></option>
+                                                                                <?php endif; ?>
+                                                                            <?php endforeach; ?>
+                                                                        <?php endforeach; ?>
+                                                                    </select>
+                                                                </td>
+                                                            <?php endif; ?>
+
+                                                            <!--  -->
+
+                                                            <?php if ($subhdr['hadir90t'] == 1) : ?>
+                                                                <td style="background-color: aqua ;">
+                                                                    <select name="hadir90t[]" id="hadir90t" class="form-control" style="background-color: aqua;">
+                                                                        <option value="<?= $subhdr['hadir90t'] ?>"> <?= $subhdr['hadir90t'] ?></option>
+                                                                        <?php foreach ($data_nilban as $dbn) : ?>
+                                                                            <option value="<?= $dbn['nilai'] ?>"><?= $dbn['nama_nilai'] . ' - ' . $dbn['nilai'] ?></option>
+                                                                            <?php foreach ($data_nilban1 as $dbn1) : ?>
+                                                                                <?php if ($dbn1 != $dbn) : ?>
+                                                                                    <option value="<?= $dbn1['nilai'] / $dbn['nilai'] ?>"><?= '1 dibagi ' . $dbn['nama_nilai'] . ' - &sup' . $dbn1['nilai'] . ' / ' . $dbn['nilai'] ?></option>
+                                                                                <?php endif; ?>
+                                                                            <?php endforeach; ?>
+                                                                        <?php endforeach; ?>
+                                                                    </select>
+                                                                </td>
+                                                            <?php else : ?>
+                                                                <td>
+                                                                    <select name="hadir90t[]" id="hadir90t" class="form-control">
+                                                                        <option value="<?= $subhdr['hadir90t'] ?>"> <?= $subhdr['hadir90t'] ?></option>
+                                                                        <?php foreach ($data_nilban as $dbn) : ?>
+                                                                            <option value="<?= $dbn['nilai'] ?>"><?= $dbn['nama_nilai'] . ' - ' . $dbn['nilai'] ?></option>
+                                                                            <?php foreach ($data_nilban1 as $dbn1) : ?>
+                                                                                <?php if ($dbn1 != $dbn) : ?>
+                                                                                    <option value="<?= $dbn1['nilai'] / $dbn['nilai'] ?>"><?= '1 dibagi ' . $dbn['nama_nilai'] . ' - &sup' . $dbn1['nilai'] . ' / ' . $dbn['nilai'] ?></option>
+                                                                                <?php endif; ?>
+                                                                            <?php endforeach; ?>
+                                                                        <?php endforeach; ?>
+                                                                    </select>
+                                                                </td>
+                                                            <?php endif; ?>
+
+                                                            <!--  -->
+
+                                                            <?php if ($subhdr['hadir80'] == 1) : ?>
+                                                                <td style="background-color: aqua ;">
+                                                                    <select name="hadir80[]" id="hadir80" class="form-control" style="background-color: aqua;">
+                                                                        <option value="<?= $subhdr['hadir80'] ?>"> <?= $subhdr['hadir80'] ?></option>
+                                                                        <?php foreach ($data_nilban as $dbn) : ?>
+                                                                            <option value="<?= $dbn['nilai'] ?>"><?= $dbn['nama_nilai'] . ' - ' . $dbn['nilai'] ?></option>
+                                                                            <?php foreach ($data_nilban1 as $dbn1) : ?>
+                                                                                <?php if ($dbn1 != $dbn) : ?>
+                                                                                    <option value="<?= $dbn1['nilai'] / $dbn['nilai'] ?>"><?= '1 dibagi ' . $dbn['nama_nilai'] . ' - &sup' . $dbn1['nilai'] . ' / ' . $dbn['nilai'] ?></option>
+                                                                                <?php endif; ?>
+                                                                            <?php endforeach; ?>
+                                                                        <?php endforeach; ?>
+                                                                    </select>
+                                                                </td>
+                                                            <?php else : ?>
+                                                                <td>
+                                                                    <select name="hadir80[]" id="hadir80" class="form-control">
+                                                                        <option value="<?= $subhdr['hadir80'] ?>"> <?= $subhdr['hadir80'] ?></option>
+                                                                        <?php foreach ($data_nilban as $dbn) : ?>
+                                                                            <option value="<?= $dbn['nilai'] ?>"><?= $dbn['nama_nilai'] . ' - ' . $dbn['nilai'] ?></option>
+                                                                            <?php foreach ($data_nilban1 as $dbn1) : ?>
+                                                                                <?php if ($dbn1 != $dbn) : ?>
+                                                                                    <option value="<?= $dbn1['nilai'] / $dbn['nilai'] ?>"><?= '1 dibagi ' . $dbn['nama_nilai'] . ' - &sup' . $dbn1['nilai'] . ' / ' . $dbn['nilai'] ?></option>
+                                                                                <?php endif; ?>
+                                                                            <?php endforeach; ?>
+                                                                        <?php endforeach; ?>
+                                                                    </select>
+                                                                </td>
+                                                            <?php endif; ?>
+
+                                                            <!--  -->
+
+                                                            <?php if ($subhdr['hadir80t'] == 1) : ?>
+                                                                <td style="background-color: aqua ;">
+                                                                    <select name="hadir80t[]" id="hadir80t" class="form-control" style="background-color: aqua;">
+                                                                        <option value="<?= $subhdr['hadir80t'] ?>"> <?= $subhdr['hadir80t'] ?></option>
+                                                                        <?php foreach ($data_nilban as $dbn) : ?>
+                                                                            <option value="<?= $dbn['nilai'] ?>"><?= $dbn['nama_nilai'] . ' - ' . $dbn['nilai'] ?></option>
+                                                                            <?php foreach ($data_nilban1 as $dbn1) : ?>
+                                                                                <?php if ($dbn1 != $dbn) : ?>
+                                                                                    <option value="<?= $dbn1['nilai'] / $dbn['nilai'] ?>"><?= '1 dibagi ' . $dbn['nama_nilai'] . ' - &sup' . $dbn1['nilai'] . ' / ' . $dbn['nilai'] ?></option>
+                                                                                <?php endif; ?>
+                                                                            <?php endforeach; ?>
+                                                                        <?php endforeach; ?>
+                                                                    </select>
+                                                                </td>
+                                                            <?php else : ?>
+                                                                <td>
+                                                                    <select name="hadir80t[]" id="hadir80t" class="form-control">
+                                                                        <option value="<?= $subhdr['hadir80t'] ?>"> <?= $subhdr['hadir80t'] ?></option>
+                                                                        <?php foreach ($data_nilban as $dbn) : ?>
+                                                                            <option value="<?= $dbn['nilai'] ?>"><?= $dbn['nama_nilai'] . ' - ' . $dbn['nilai'] ?></option>
+                                                                            <?php foreach ($data_nilban1 as $dbn1) : ?>
+                                                                                <?php if ($dbn1 != $dbn) : ?>
+                                                                                    <option value="<?= $dbn1['nilai'] / $dbn['nilai'] ?>"><?= '1 dibagi ' . $dbn['nama_nilai'] . ' - &sup' . $dbn1['nilai'] . ' / ' . $dbn['nilai'] ?></option>
+                                                                                <?php endif; ?>
+                                                                            <?php endforeach; ?>
+                                                                        <?php endforeach; ?>
+                                                                    </select>
+                                                                </td>
+                                                            <?php endif; ?>
+
+                                                            <!--  -->
+
+                                                            <?php if ($subhdr['hadir70'] == 1) : ?>
+                                                                <td style="background-color: aqua ;">
+                                                                    <select name="hadir70[]" id="hadir70" class="form-control" style="background-color: aqua;">
+                                                                        <option value="<?= $subhdr['hadir70'] ?>"> <?= $subhdr['hadir70'] ?></option>
+                                                                        <?php foreach ($data_nilban as $dbn) : ?>
+                                                                            <option value="<?= $dbn['nilai'] ?>"><?= $dbn['nama_nilai'] . ' - ' . $dbn['nilai'] ?></option>
+                                                                            <?php foreach ($data_nilban1 as $dbn1) : ?>
+                                                                                <?php if ($dbn1 != $dbn) : ?>
+                                                                                    <option value="<?= $dbn1['nilai'] / $dbn['nilai'] ?>"><?= '1 dibagi ' . $dbn['nama_nilai'] . ' - &sup' . $dbn1['nilai'] . ' / ' . $dbn['nilai'] ?></option>
+                                                                                <?php endif; ?>
+                                                                            <?php endforeach; ?>
+                                                                        <?php endforeach; ?>
+                                                                    </select>
+                                                                </td>
+                                                            <?php else : ?>
+                                                                <td>
+                                                                    <select name="hadir70[]" id="hadir70" class="form-control">
+                                                                        <option value="<?= $subhdr['hadir70'] ?>"> <?= $subhdr['hadir70'] ?></option>
+                                                                        <?php foreach ($data_nilban as $dbn) : ?>
+                                                                            <option value="<?= $dbn['nilai'] ?>"><?= $dbn['nama_nilai'] . ' - ' . $dbn['nilai'] ?></option>
+                                                                            <?php foreach ($data_nilban1 as $dbn1) : ?>
+                                                                                <?php if ($dbn1 != $dbn) : ?>
+                                                                                    <option value="<?= $dbn1['nilai'] / $dbn['nilai'] ?>"><?= '1 dibagi ' . $dbn['nama_nilai'] . ' - &sup' . $dbn1['nilai'] . ' / ' . $dbn['nilai'] ?></option>
+                                                                                <?php endif; ?>
+                                                                            <?php endforeach; ?>
+                                                                        <?php endforeach; ?>
+                                                                    </select>
+                                                                </td>
+                                                            <?php endif; ?>
+
+                                                            <!--  -->
+
+                                                            <?php if ($subhdr['hadir70t'] == 1) : ?>
+                                                                <td style="background-color: aqua ;">
+                                                                    <select name="hadir70t[]" id="hadir70t" class="form-control" style="background-color: aqua;">
+                                                                        <option value="<?= $subhdr['hadir70t'] ?>"> <?= $subhdr['hadir70t'] ?></option>
+                                                                        <?php foreach ($data_nilban as $dbn) : ?>
+                                                                            <option value="<?= $dbn['nilai'] ?>"><?= $dbn['nama_nilai'] . ' - ' . $dbn['nilai'] ?></option>
+                                                                            <?php foreach ($data_nilban1 as $dbn1) : ?>
+                                                                                <?php if ($dbn1 != $dbn) : ?>
+                                                                                    <option value="<?= $dbn1['nilai'] / $dbn['nilai'] ?>"><?= '1 dibagi ' . $dbn['nama_nilai'] . ' - &sup' . $dbn1['nilai'] . ' / ' . $dbn['nilai'] ?></option>
+                                                                                <?php endif; ?>
+                                                                            <?php endforeach; ?>
+                                                                        <?php endforeach; ?>
+                                                                    </select>
+                                                                </td>
+                                                            <?php else : ?>
+                                                                <td>
+                                                                    <select name="hadir70t[]" id="hadir70t" class="form-control">
+                                                                        <option value="<?= $subhdr['hadir70t'] ?>"> <?= $subhdr['hadir70t'] ?></option>
+                                                                        <?php foreach ($data_nilban as $dbn) : ?>
+                                                                            <option value="<?= $dbn['nilai'] ?>"><?= $dbn['nama_nilai'] . ' - ' . $dbn['nilai'] ?></option>
+                                                                            <?php foreach ($data_nilban1 as $dbn1) : ?>
+                                                                                <?php if ($dbn1 != $dbn) : ?>
+                                                                                    <option value="<?= $dbn1['nilai'] / $dbn['nilai'] ?>"><?= '1 dibagi ' . $dbn['nama_nilai'] . ' - &sup' . $dbn1['nilai'] . ' / ' . $dbn['nilai'] ?></option>
+                                                                                <?php endif; ?>
+                                                                            <?php endforeach; ?>
+                                                                        <?php endforeach; ?>
+                                                                    </select>
+                                                                </td>
+                                                            <?php endif; ?>
+
+                                                            <!--  -->
+                                                        </tr>
+                                                    <?php endforeach; ?>
+                                                    <tr>
+                                                        <td><strong>Total</strong></td>
+                                                        <td>
+                                                            <?= $sum_subkehadiran['sum100']; ?>
+                                                        </td>
+                                                        <td>
+                                                            <?= $sum_subkehadiran['sum100t']; ?>
+                                                        </td>
+                                                        <td>
+                                                            <?= $sum_subkehadiran['sum90']; ?>
+                                                        </td>
+                                                        <td>
+                                                            <?= $sum_subkehadiran['sum90t']; ?>
+                                                        </td>
+                                                        <td>
+                                                            <?= $sum_subkehadiran['sum80']; ?>
+                                                        </td>
+                                                        <td>
+                                                            <?= $sum_subkehadiran['sum80t']; ?>
+                                                        </td>
+                                                        <td>
+                                                            <?= $sum_subkehadiran['sum70']; ?>
+                                                        </td>
+                                                        <td>
+                                                            <?= $sum_subkehadiran['sum70t']; ?>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                                <tfoot>
+                                                    <tr>
+                                                        <td colspan="4"></td>
+                                                        <td>
+                                                            <button type="submit" name="submit" class="btn btn-success btn-user btn-block">Analisa</button>
+                                                        </td>
+                                                    </tr>
+                                                </tfoot>
+                                            </form>
+                                        </table>
+
+                                        <table class="table table-responsive table-bordered mb-5" id="dataTable" width="100%" cellspacing="0">
+                                            <thead>
+                                                <tr>
+                                                    <th></th>
+                                                    <?php
+                                                    foreach ($subrange_kehadiran as $subhdr) : ?>
+                                                        <th>
+                                                            <?php
+                                                            switch ($subhdr):
+                                                                case $subhdr['id_subrange_hdr'] == 1:
+                                                                    echo 'Hadir 100%';
+                                                                    break;
+                                                                case $subhdr['id_subrange_hdr'] == 2:
+                                                                    echo 'Hadir 100% ada terlambat';
+                                                                    break;
+                                                                case $subhdr['id_subrange_hdr'] == 3:
+                                                                    echo 'Hadir >= 90%';
+                                                                    break;
+                                                                case $subhdr['id_subrange_hdr'] == 4:
+                                                                    echo 'Hadir > 90% ada terlambat';
+                                                                    break;
+                                                                case $subhdr['id_subrange_hdr'] == 5:
+                                                                    echo 'Hadir 80-90 %';
+                                                                    break;
+                                                                case $subhdr['id_subrange_hdr'] == 6:
+                                                                    echo 'Hadir 80-90% ada terlambat';
+                                                                    break;
+                                                                case $subhdr['id_subrange_hdr'] == 7:
+                                                                    echo 'Hadir < 80%';
+                                                                    break;
+                                                                case $subhdr['id_subrange_hdr'] == 8:
+                                                                    echo 'Hadir < 80% ada terlambat';
+                                                                    break;
+                                                                default:
+                                                                    echo 'No One';
+                                                                    break;
+                                                            ?>
+                                                            <?php endswitch; ?>
+                                                        </th>
+                                                    <?php endforeach; ?>
+                                                    <th>
+                                                        Jumlah
+                                                    </th>
+                                                    <th>
+                                                        Priotitas
+                                                    </th>
+                                                    <th>
+                                                        Eigen Value
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php
+                                                foreach ($submatrix_kehadiran as $smtxhdr) : ?>
+                                                    <tr>
+                                                        <td>
+                                                            <?php
+                                                            switch ($smtxhdr):
+                                                                case $smtxhdr['id_submatrix_hdr'] == 1:
+                                                                    echo 'Hadir 100%';
+                                                                    break;
+                                                                case $smtxhdr['id_submatrix_hdr'] == 2:
+                                                                    echo 'Hadir 100% ada terlambat';
+                                                                    break;
+                                                                case $smtxhdr['id_submatrix_hdr'] == 3:
+                                                                    echo 'Hadir >= 90%';
+                                                                    break;
+                                                                case $smtxhdr['id_submatrix_hdr'] == 4:
+                                                                    echo 'Hadir > 90% ada terlambat';
+                                                                    break;
+                                                                case $smtxhdr['id_submatrix_hdr'] == 5:
+                                                                    echo 'Hadir 80-90 %';
+                                                                    break;
+                                                                case $smtxhdr['id_submatrix_hdr'] == 6:
+                                                                    echo 'Hadir 80-90% ada terlambat';
+                                                                    break;
+                                                                case $smtxhdr['id_submatrix_hdr'] == 7:
+                                                                    echo 'Hadir < 80%';
+                                                                    break;
+                                                                case $smtxhdr['id_submatrix_hdr'] == 8:
+                                                                    echo 'Hadir < 80% ada terlambat';
+                                                                    break;
+                                                                default:
+                                                                    echo 'No One';
+                                                                    break;
+                                                            ?>
+                                                            <?php endswitch; ?>
+                                                        </td>
+                                                        <td>
+                                                            <?= $smtxhdr['hadir100'] ?>
+                                                        </td>
+                                                        <td>
+                                                            <?= $smtxhdr['hadir100t'] ?>
+                                                        </td>
+                                                        <td>
+                                                            <?= $smtxhdr['hadir90'] ?>
+                                                        </td>
+                                                        <td>
+                                                            <?= $smtxhdr['hadir90t'] ?>
+                                                        </td>
+                                                        <td>
+                                                            <?= $smtxhdr['hadir80'] ?>
+                                                        </td>
+                                                        <td>
+                                                            <?= $smtxhdr['hadir80t'] ?>
+                                                        </td>
+                                                        <td>
+                                                            <?= $smtxhdr['hadir70'] ?>
+                                                        </td>
+                                                        <td>
+                                                            <?= $smtxhdr['hadir70t'] ?>
+                                                        </td>
+                                                        <td>
+                                                            <?= $smtxhdr['jumlah'] ?>
+                                                        </td>
+                                                        <td>
+                                                            <?= $smtxhdr['prioritas'] ?>
+                                                        </td>
+                                                        <td>
+                                                            <?= $smtxhdr['eigen_value'] ?>
+                                                        </td>
+                                                    </tr>
+                                                <?php endforeach; ?>
+                                                <tr style="font-weight: bold; font-size:15px;">
+                                                    <td><strong>Total</strong></td>
+                                                    <td>
+                                                        <?= $sum_submatrixkehadiran['sum100']; ?>
+                                                    </td>
+                                                    <td>
+                                                        <?= $sum_submatrixkehadiran['sum100t']; ?>
+                                                    </td>
+                                                    <td>
+                                                        <?= $sum_submatrixkehadiran['sum90']; ?>
+                                                    </td>
+                                                    <td>
+                                                        <?= $sum_submatrixkehadiran['sum90t']; ?>
+                                                    </td>
+                                                    <td>
+                                                        <?= $sum_submatrixkehadiran['sum80']; ?>
+                                                    </td>
+                                                    <td>
+                                                        <?= $sum_submatrixkehadiran['sum80t']; ?>
+                                                    </td>
+                                                    <td>
+                                                        <?= $sum_submatrixkehadiran['sum70']; ?>
+                                                    </td>
+                                                    <td>
+                                                        <?= $sum_submatrixkehadiran['sum70t']; ?>
+                                                    </td>
+                                                    <td>
+                                                        <?= $sum_submatrixkehadiran['submtxJum']; ?>
+                                                    </td>
+                                                    <td>
+                                                        <?= $sum_submatrixkehadiran['submtxPrior']; ?>
+                                                    </td>
+                                                    <td>
+                                                        <?= $sum_submatrixkehadiran['submtxEig']; ?>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+
+                                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                            <tr>
+                                                <th>CI</th>
+                                                <th colspan="2">
+                                                    <?php
+                                                    $ci = ($sum_submatrixkehadiran['submtxEig'] - $count_subkehadiran['jumSubHDR']) / ($count_subkehadiran['jumSubHDR'] - 1);
+                                                    echo $ci;
+                                                    ?>
+                                                </th>
+                                            </tr>
+                                            <tr>
+                                                <th>RI</th>
+                                                <th colspan="2">
+                                                    <?php
+                                                    echo $ri8;
+                                                    ?>
+                                                </th>
+                                            </tr>
+                                            <tr>
+                                                <th>CR</th>
+                                                <th>
+                                                    <?php
+                                                    $cr = $ci / $ri8;
+                                                    echo $cr;
+                                                    ?>
+                                                </th>
+                                                <th>
+                                                    <?php
+                                                    if ($cr <= 0.1) : ?>
+                                                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                                            Konsisten
+                                                        </div>
+                                                    <?php else : ?>
+                                                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                                            Tidak Konsisten
+                                                        </div>
+                                                    <?php endif; ?>
+                                                </th>
+                                            </tr>
+                                        </table>
+                                    </div>
                                 </div>
 
 

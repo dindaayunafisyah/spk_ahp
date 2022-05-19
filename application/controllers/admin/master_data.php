@@ -867,6 +867,29 @@ class Master_data extends CI_Controller
         $data['sum_subpahamdanlaksanak3'] = $this->DataKaryawan_Model->sumSubrangePahamdanLaksanaK3();
         $data['sum_submatrixpahamdanlaksanak3'] = $this->DataKaryawan_Model->sumSubmatrixPahamdanLaksanaK3();
 
+        //Pemahaman SOP dan SPK
+        $data['subrange_pahamsopspk'] = $this->DataKaryawan_Model->showSubrangePahamSOPSPK();
+        $data['submatrix_pahamsopspk'] = $this->DataKaryawan_Model->showSubmatrixPahamSOPSPK();
+        $data['count_subpahamsopspk'] = $this->DataKaryawan_Model->countSubrangePahamSOPSPK();
+        $data['sum_subpahamsopspk'] = $this->DataKaryawan_Model->sumSubrangePahamSOPSPK();
+        $data['sum_submatrixpahamsopspk'] = $this->DataKaryawan_Model->sumSubmatrixPahamSOPSPK();
+
+        //Pemahaman SOP dan SPK
+        $data['subrange_pahamtools'] = $this->DataKaryawan_Model->showSubrangePahamTools();
+        $data['submatrix_pahamtools'] = $this->DataKaryawan_Model->showSubmatrixPahamTools();
+        $data['count_subpahamtools'] = $this->DataKaryawan_Model->countSubrangePahamTools();
+        $data['sum_subpahamtools'] = $this->DataKaryawan_Model->sumSubrangePahamTools();
+        $data['sum_submatrixpahamtools'] = $this->DataKaryawan_Model->sumSubmatrixPahamTools();
+
+
+        //Pemahaman Kehadiran
+        $data['subrange_kehadiran'] = $this->DataKaryawan_Model->showSubrangeKehadiran();
+        $data['submatrix_kehadiran'] = $this->DataKaryawan_Model->showSubmatrixKehadiran();
+        $data['count_subkehadiran'] = $this->DataKaryawan_Model->countSubrangeKehadiran();
+        $data['sum_subkehadiran'] = $this->DataKaryawan_Model->sumSubrangeKehadiran();
+        $data['sum_submatrixkehadiran'] = $this->DataKaryawan_Model->sumSubmatrixKehadiran();
+
+
         // 
         $data['data_nilban'] = $this->m_data_nilai->tampil_nilai()->result_array();
         $data['data_nilban1'] = $this->m_data_nilai->tampil_nilai_awal()->result_array();
@@ -874,6 +897,8 @@ class Master_data extends CI_Controller
         $data['ri'] = 0.90;
         //
         $data['ri3'] = 0.58;
+        //
+        $data['ri8'] = 1.41;
 
         $this->load->view('admin/tamplate/header');
         $this->load->view('admin/tamplate/sidebar');
@@ -1292,6 +1317,285 @@ class Master_data extends CI_Controller
                 'message',
                 '<div class="alert alert-danger alert-dismissible fade show" role="alert">
                      Gagal dianalisa tahap nilai Pemahaman dan Laksana K 3
+                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                 </div>'
+            );
+            redirect('admin/master_data/subrange_KriOp');
+        }
+    }
+
+
+
+
+
+
+
+    //---------------------------------------------------------- Pemahaman SOP dan SPK ------------------------------------------------------------
+    public function update_subrange_pahamsopspk()
+    {
+        $_sgt_mampu = $this->input->post('sangat_mampu[]');
+        $_mampu = $this->input->post('mampu[]');
+        $_krg_mampu = $this->input->post('kurang_mampu[]');
+        $_tdk_mampu = $this->input->post('tidak_mampu[]');
+        $data = array();
+        for ($x = 0; $x < sizeof($_sgt_mampu); $x++) {
+            $data[] = [
+                'sangat_mampu' => $_sgt_mampu[$x],
+                'mampu' => $_mampu[$x],
+                'kurang_mampu' => $_krg_mampu[$x],
+                'tidak_mampu' => $_tdk_mampu[$x],
+                'id_subrange_pss' => $x + 1,
+            ];
+        }
+        // echo "<pre>";
+        // echo sizeof($_phm) + 1;
+        // die;
+        // echo "</pre>";
+        $query = $this->db->update_batch('tb_subrange_pahamsopspk', $data, 'id_subrange_pss');
+        if ($query) {
+            $data['sum_subpahamsopspk'] = $this->DataKaryawan_Model->sumSubrangePahamSOPSPK();
+            $sumSgtMampu = $data['sum_subpahamsopspk']['sumSgtMampu'];
+            $sumMampu = $data['sum_subpahamsopspk']['sumMampu'];
+            $sumKrgMampu = $data['sum_subpahamsopspk']['sumKrgMampu'];
+            $sumTdkMampu = $data['sum_subpahamsopspk']['sumTdkMampu'];
+
+            $data['count_subpahamsopspk'] = $this->DataKaryawan_Model->countSubrangePahamSOPSPK();
+            $count_subpahamsopspk = $data['count_subpahamsopspk']['jumSubPSS'];
+
+            $data['sumArray_subpahamsopspk'] = $this->DataKaryawan_Model->sumSubrangePahamSOPSPKOPResArray();
+            $sumSubPahamSOPSPK = $data['sumArray_subpahamsopspk'];
+
+            $data = array();
+            for ($x = 0; $x < sizeof($_sgt_mampu); $x++) {
+                $data[] = [
+                    'sangat_mampu' => $_sgt_mampu[$x] / $sumSgtMampu,
+                    'mampu' => $_mampu[$x] / $sumMampu,
+                    'kurang_mampu' => $_krg_mampu[$x] / $sumKrgMampu,
+                    'tidak_mampu' => $_tdk_mampu[$x] / $sumTdkMampu,
+                    'jumlah' => (($_sgt_mampu[$x] / $sumSgtMampu) + ($_mampu[$x] / $sumMampu) + ($_krg_mampu[$x] / $sumKrgMampu) + ($_tdk_mampu[$x] / $sumTdkMampu)),
+
+                    'prioritas' => (($_sgt_mampu[$x] / $sumSgtMampu) + ($_mampu[$x] / $sumMampu) + ($_krg_mampu[$x] / $sumKrgMampu) + ($_tdk_mampu[$x] / $sumTdkMampu)) / $count_subpahamsopspk,
+
+                    'eigen_value' => ((($_sgt_mampu[$x] / $sumSgtMampu) + ($_mampu[$x] / $sumMampu) + ($_krg_mampu[$x] / $sumKrgMampu) + ($_tdk_mampu[$x] / $sumTdkMampu)) / $count_subpahamsopspk) * $sumSubPahamSOPSPK[$x],
+
+                    'id_submatrix_pss' => $x + 1,
+                ];
+            }
+            $query1 = $this->db->update_batch('tb_submatriks_pahamsopspk', $data, 'id_submatrix_pss');
+            if ($query1) {
+                $this->session->set_flashdata(
+                    'message',
+                    '<div class="alert alert-success success-dismissible fade show" role="alert">
+                         Sukses dianalisa Subrange Pemahaman SOP dan SPK
+                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                     </div>'
+                );
+                redirect('admin/master_data/subrange_KriOp');
+            } else {
+                $this->session->set_flashdata(
+                    'message',
+                    '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                         Gagal dianalisa Subrange Pemahaman SOP dan SPK
+                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                     </div>'
+                );
+                redirect('admin/master_data/subrange_KriOp');
+            }
+        } else {
+            $this->session->set_flashdata(
+                'message',
+                '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                     Gagal dianalisa tahap nilai Pemahaman SOP dan SPK
+                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                 </div>'
+            );
+            redirect('admin/master_data/subrange_KriOp');
+        }
+    }
+
+
+
+
+
+
+
+    //---------------------------------------------------------- Pemahaman Tools ------------------------------------------------------------
+    public function update_subrange_pahamtools()
+    {
+        $_baik = $this->input->post('baik[]');
+        $_krg_baik = $this->input->post('kurang_baik[]');
+        $_tdk_baik = $this->input->post('tidak_baik[]');
+        $data = array();
+        for ($x = 0; $x < sizeof($_baik); $x++) {
+            $data[] = [
+                'baik' => $_baik[$x],
+                'kurang_baik' => $_krg_baik[$x],
+                'tidak_baik' => $_tdk_baik[$x],
+                'id_subrange_ptls' => $x + 1,
+            ];
+        }
+        // echo "<pre>";
+        // echo sizeof($_phm) + 1;
+        // die;
+        // echo "</pre>";
+        $query = $this->db->update_batch('tb_subrange_pahamtools', $data, 'id_subrange_ptls');
+        if ($query) {
+            $data['sum_subpahamtools'] = $this->DataKaryawan_Model->sumSubrangePahamTools();
+            $sumBaik = $data['sum_subpahamtools']['sumBaik'];
+            $sumKrgBaik = $data['sum_subpahamtools']['sumKrgBaik'];
+            $sumTdkBaik = $data['sum_subpahamtools']['sumTdkBaik'];
+
+            $data['count_subpahamtools'] = $this->DataKaryawan_Model->countSubrangePahamTools();
+            $count_subpahamtools = $data['count_subpahamtools']['jumSubPTLS'];
+
+            $data['sumArray_subpahamtools'] = $this->DataKaryawan_Model->sumSubrangePahamToolsOPResArray();
+            $sumSubPahamTools = $data['sumArray_subpahamtools'];
+
+            $data = array();
+            for ($x = 0; $x < sizeof($_baik); $x++) {
+                $data[] = [
+                    'baik' => $_baik[$x] / $sumBaik,
+                    'kurang_baik' => $_krg_baik[$x] / $sumKrgBaik,
+                    'tidak_baik' => $_tdk_baik[$x] / $sumTdkBaik,
+                    'jumlah' => (($_baik[$x] / $sumBaik) + ($_krg_baik[$x] / $sumKrgBaik) + ($_tdk_baik[$x] / $sumTdkBaik)),
+
+                    'prioritas' => (($_baik[$x] / $sumBaik) + ($_krg_baik[$x] / $sumKrgBaik) + ($_tdk_baik[$x] / $sumTdkBaik)) / $count_subpahamtools,
+
+                    'eigen_value' => ((($_baik[$x] / $sumBaik) + ($_krg_baik[$x] / $sumKrgBaik) + ($_tdk_baik[$x] / $sumTdkBaik)) / $count_subpahamtools) * $sumSubPahamTools[$x],
+
+                    'id_submatrix_ptls' => $x + 1,
+                ];
+            }
+            $query1 = $this->db->update_batch('tb_submatriks_pahamtools', $data, 'id_submatrix_ptls');
+            if ($query1) {
+                $this->session->set_flashdata(
+                    'message',
+                    '<div class="alert alert-success success-dismissible fade show" role="alert">
+                         Sukses dianalisa Subrange Pemahaman Tools
+                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                     </div>'
+                );
+                redirect('admin/master_data/subrange_KriOp');
+            } else {
+                $this->session->set_flashdata(
+                    'message',
+                    '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                         Gagal dianalisa Subrange Pemahaman Tools
+                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                     </div>'
+                );
+                redirect('admin/master_data/subrange_KriOp');
+            }
+        } else {
+            $this->session->set_flashdata(
+                'message',
+                '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                     Gagal dianalisa tahap nilai Pemahaman Tools
+                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                 </div>'
+            );
+            redirect('admin/master_data/subrange_KriOp');
+        }
+    }
+
+
+
+
+
+
+
+    //---------------------------------------------------------- Kehadiran ------------------------------------------------------------
+    public function update_subrange_kehadiran()
+    {
+        $_hadir100 = $this->input->post('hadir100[]');
+        $_hadir100t = $this->input->post('hadir100t[]');
+        $_hadir90 = $this->input->post('hadir90[]');
+        $_hadir90t = $this->input->post('hadir90t[]');
+        $_hadir80 = $this->input->post('hadir80[]');
+        $_hadir80t = $this->input->post('hadir80t[]');
+        $_hadir70 = $this->input->post('hadir70[]');
+        $_hadir70t = $this->input->post('hadir70t[]');
+        $data = array();
+        for ($x = 0; $x < sizeof($_hadir100); $x++) {
+            $data[] = [
+                'hadir100' => $_hadir100[$x],
+                'hadir100t' => $_hadir100t[$x],
+                'hadir90' => $_hadir90[$x],
+                'hadir90t' => $_hadir90t[$x],
+                'hadir80' => $_hadir80[$x],
+                'hadir80t' => $_hadir80t[$x],
+                'hadir70' => $_hadir70[$x],
+                'hadir70t' => $_hadir70t[$x],
+                'id_subrange_hdr' => $x + 1,
+            ];
+        }
+        // echo "<pre>";
+        // echo sizeof($_phm) + 1;
+        // die;
+        // echo "</pre>";
+        $query = $this->db->update_batch('tb_subrange_kehadiran', $data, 'id_subrange_hdr');
+        if ($query) {
+            $data['sum_subkehadiran'] = $this->DataKaryawan_Model->sumSubrangeKehadiran();
+            $sum100 = $data['sum_subkehadiran']['sum100'];
+            $sum100t = $data['sum_subkehadiran']['sum100t'];
+            $sum90 = $data['sum_subkehadiran']['sum90'];
+            $sum90t = $data['sum_subkehadiran']['sum90t'];
+            $sum80 = $data['sum_subkehadiran']['sum80'];
+            $sum80t = $data['sum_subkehadiran']['sum80t'];
+            $sum70 = $data['sum_subkehadiran']['sum70'];
+            $sum70t = $data['sum_subkehadiran']['sum70t'];
+
+            $data['count_subkehadiran'] = $this->DataKaryawan_Model->countSubrangeKehadiran();
+            $count_subkehadiran = $data['count_subkehadiran']['jumSubHDR'];
+
+            $data['sumArray_subkehadiran'] = $this->DataKaryawan_Model->sumSubrangeKehadiranOPResArray();
+            $sumSubKehadiran = $data['sumArray_subkehadiran'];
+
+            $data = array();
+            for ($x = 0; $x < sizeof($_hadir100); $x++) {
+                $data[] = [
+                    'hadir100' => $_hadir100[$x] / $sum100,
+                    'hadir100t' => $_hadir100t[$x] / $sum100t,
+                    'hadir90' => $_hadir90[$x] / $sum90,
+                    'hadir90t' => $_hadir90t[$x] / $sum90t,
+                    'hadir80' => $_hadir80[$x] / $sum80,
+                    'hadir80t' => $_hadir80t[$x] / $sum80t,
+                    'hadir70' => $_hadir70[$x] / $sum70,
+                    'hadir70t' => $_hadir70t[$x] / $sum70t,
+                    'jumlah' => (($_hadir100[$x] / $sum100) + ($_hadir100t[$x] / $sum100t) + ($_hadir90[$x] / $sum90) + ($_hadir90t[$x] / $sum90t) + ($_hadir80[$x] / $sum80) + ($_hadir80t[$x] / $sum80t) + ($_hadir70[$x] / $sum70) + ($_hadir70t[$x] / $sum70t)),
+
+                    'prioritas' => (($_hadir100[$x] / $sum100) + ($_hadir100t[$x] / $sum100t) + ($_hadir90[$x] / $sum90) + ($_hadir90t[$x] / $sum90t) + ($_hadir80[$x] / $sum80) + ($_hadir80t[$x] / $sum80t) + ($_hadir70[$x] / $sum70) + ($_hadir70t[$x] / $sum70t)) / $count_subkehadiran,
+
+                    'eigen_value' => ((($_hadir100[$x] / $sum100) + ($_hadir100t[$x] / $sum100t) + ($_hadir90[$x] / $sum90) + ($_hadir90t[$x] / $sum90t) + ($_hadir80[$x] / $sum80) + ($_hadir80t[$x] / $sum80t) + ($_hadir70[$x] / $sum70) + ($_hadir70t[$x] / $sum70t)) / $count_subkehadiran) * $sumSubKehadiran[$x],
+
+                    'id_submatrix_hdr' => $x + 1,
+                ];
+            }
+            $query1 = $this->db->update_batch('tb_submatriks_kehadiran', $data, 'id_submatrix_hdr');
+            if ($query1) {
+                $this->session->set_flashdata(
+                    'message',
+                    '<div class="alert alert-success success-dismissible fade show" role="alert">
+                         Sukses dianalisa Subrange Kehadiran
+                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                     </div>'
+                );
+                redirect('admin/master_data/subrange_KriOp');
+            } else {
+                $this->session->set_flashdata(
+                    'message',
+                    '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                         Gagal dianalisa Subrange Kehadiran
+                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                     </div>'
+                );
+                redirect('admin/master_data/subrange_KriOp');
+            }
+        } else {
+            $this->session->set_flashdata(
+                'message',
+                '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                     Gagal dianalisa tahap nilai Kehadiran
                      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                  </div>'
             );
