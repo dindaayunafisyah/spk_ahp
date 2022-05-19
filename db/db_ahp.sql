@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 17 Bulan Mei 2022 pada 17.46
+-- Waktu pembuatan: 19 Bulan Mei 2022 pada 18.48
 -- Versi server: 10.4.11-MariaDB
 -- Versi PHP: 7.3.13
 
@@ -315,10 +315,45 @@ CREATE TABLE `tb_submatriks_dokumentasi` (
 --
 
 INSERT INTO `tb_submatriks_dokumentasi` (`id_submatrix_doc`, `sgt_lkp_sesuai`, `lkp`, `krg_lkp_tdk_sesuai`, `tidak_mampu`, `jumlah`, `prioritas`, `eigen_value`) VALUES
-(1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(2, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(3, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(4, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+(1, 0.54263565891473, 0.58536585365854, 0.48780487804878, 0.38888888888889, 2.0046952795109, 0.50117381987773, 0.92359175377468),
+(2, 0.27131782945736, 0.29268292682927, 0.39024390243902, 0.33333333333333, 1.287577992059, 0.32189449801475, 1.0998062015504),
+(3, 0.10852713178295, 0.073170731707317, 0.097560975609756, 0.22222222222222, 0.50148106132224, 0.12537026533056, 1.2850452196382),
+(4, 0.07751937984496, 0.048780487804879, 0.024390243902439, 0.055555555555556, 0.20624566710783, 0.051561416776958, 0.92810550198525);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `tb_submatriks_kehadiran`
+--
+
+CREATE TABLE `tb_submatriks_kehadiran` (
+  `id_submatrix_hdr` int(11) NOT NULL,
+  `hadir100` double DEFAULT NULL,
+  `hadir100t` double DEFAULT NULL,
+  `hadir90` double DEFAULT NULL,
+  `hadir90t` double DEFAULT NULL,
+  `hadir80` double DEFAULT NULL,
+  `hadir80t` double DEFAULT NULL,
+  `hadir70` double DEFAULT NULL,
+  `hadir70t` double DEFAULT NULL,
+  `jumlah` double DEFAULT NULL,
+  `prioritas` double DEFAULT NULL,
+  `eigen_value` double DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `tb_submatriks_kehadiran`
+--
+
+INSERT INTO `tb_submatriks_kehadiran` (`id_submatrix_hdr`, `hadir100`, `hadir100t`, `hadir90`, `hadir90t`, `hadir80`, `hadir80t`, `hadir70`, `hadir70t`, `jumlah`, `prioritas`, `eigen_value`) VALUES
+(1, 0.38900895338067, 0.45759941892137, 0.48533872598584, 0.38556871385293, 0.27985074626866, 0.23225806451613, 0.19718309859155, 0.19565217391304, 2.6224598954302, 0.32780748692878, 0.84267337314468),
+(2, 0.19450447669034, 0.22879970946069, 0.24266936299292, 0.30845497108235, 0.27985074626866, 0.23225806451613, 0.19718309859155, 0.19565217391304, 1.8793726035157, 0.23492157543946, 1.0267564412263),
+(3, 0.097252238345168, 0.11439985473034, 0.12133468149646, 0.15422748554117, 0.22388059701493, 0.19354838709677, 0.16901408450704, 0.17391304347826, 1.2475703722101, 0.15594629652627, 1.2852573938707),
+(4, 0.077801790676135, 0.057199927365172, 0.060667340748231, 0.077113742770587, 0.11194029850746, 0.19354838709677, 0.19718309859155, 0.17391304347826, 0.94936762923417, 0.11867095365427, 1.5389079739952),
+(5, 0.077801790676135, 0.045759941892137, 0.030333670374115, 0.038556871385293, 0.055970149253731, 0.07741935483871, 0.14084507042254, 0.1304347826087, 0.59712163145135, 0.074640203931419, 1.3335716435747),
+(6, 0.064834825563447, 0.038133284910115, 0.024266936299292, 0.015422748554117, 0.027985074626866, 0.038709677419355, 0.056338028169014, 0.065217391304348, 0.33090796684655, 0.041363495855819, 1.0685569762753),
+(7, 0.055572707625809, 0.032685672780097, 0.020222446916077, 0.011016248967226, 0.011194029850746, 0.019354838709677, 0.028169014084507, 0.043478260869565, 0.22169321980371, 0.027711652475463, 0.98376366287895),
+(8, 0.043223217042297, 0.025422189940076, 0.015166835187058, 0.0096392178463233, 0.0093283582089554, 0.012903225806451, 0.014084507042254, 0.021739130434783, 0.1515066815082, 0.018938335188525, 0.87116341867213);
 
 -- --------------------------------------------------------
 
@@ -346,6 +381,83 @@ INSERT INTO `tb_submatriks_komdanker` (`id_submatrix_kdk`, `sangat_baik`, `baik`
 (2, 0.19886363636364, 0.22058823529412, 0.32142857142857, 0.3125, 1.0533804430863, 0.26334511077158, 1.1938311688312),
 (3, 0.11931818181818, 0.073529411764705, 0.10714285714286, 0.1875, 0.48749045072574, 0.12187261268144, 1.1374777183601),
 (4, 0.085227272727271, 0.044117647058824, 0.035714285714285, 0.0625, 0.22755920550038, 0.056889801375095, 0.91023682200152);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `tb_submatriks_pahamdanlaksanak3`
+--
+
+CREATE TABLE `tb_submatriks_pahamdanlaksanak3` (
+  `id_submatrix_plk3` int(11) NOT NULL,
+  `paham` double DEFAULT NULL,
+  `kurang_paham` double DEFAULT NULL,
+  `tidak_paham` double DEFAULT NULL,
+  `jumlah` double DEFAULT NULL,
+  `prioritas` double DEFAULT NULL,
+  `eigen_value` double DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `tb_submatriks_pahamdanlaksanak3`
+--
+
+INSERT INTO `tb_submatriks_pahamdanlaksanak3` (`id_submatrix_plk3`, `paham`, `kurang_paham`, `tidak_paham`, `jumlah`, `prioritas`, `eigen_value`) VALUES
+(1, 0.75471698113208, 0.78947368421053, 0.66666666666667, 2.2108573320093, 0.73695244400309, 0.97646198830409),
+(2, 0.15094339622642, 0.15789473684211, 0.25, 0.55883813306852, 0.18627937768951, 1.1797693920335),
+(3, 0.094339622641509, 0.052631578947368, 0.083333333333333, 0.23030453492221, 0.076768178307404, 0.92121813968884);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `tb_submatriks_pahamsopspk`
+--
+
+CREATE TABLE `tb_submatriks_pahamsopspk` (
+  `id_submatrix_pss` int(11) NOT NULL,
+  `sangat_mampu` double DEFAULT NULL,
+  `mampu` double DEFAULT NULL,
+  `kurang_mampu` double DEFAULT NULL,
+  `tidak_mampu` double DEFAULT NULL,
+  `jumlah` double DEFAULT NULL,
+  `prioritas` double DEFAULT NULL,
+  `eigen_value` double DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `tb_submatriks_pahamsopspk`
+--
+
+INSERT INTO `tb_submatriks_pahamsopspk` (`id_submatrix_pss`, `sangat_mampu`, `mampu`, `kurang_mampu`, `tidak_mampu`, `jumlah`, `prioritas`, `eigen_value`) VALUES
+(1, 0.64864864864865, 0.72289156626506, 0.58064516129032, 0.47058823529412, 2.4227736114981, 0.60569340287454, 0.93377732943158),
+(2, 0.16216216216216, 0.18072289156627, 0.29032258064516, 0.29411764705882, 0.92732528143241, 0.2318313203581, 1.2827999726482),
+(3, 0.10810810810811, 0.060240963855421, 0.096774193548387, 0.17647058823529, 0.44159385374721, 0.1103984634368, 1.1407841221803),
+(4, 0.081081081081081, 0.036144578313253, 0.032258064516129, 0.058823529411765, 0.20830725332223, 0.052076813330557, 0.88530582661947);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `tb_submatriks_pahamtools`
+--
+
+CREATE TABLE `tb_submatriks_pahamtools` (
+  `id_submatrix_ptls` int(11) NOT NULL,
+  `baik` double DEFAULT NULL,
+  `kurang_baik` double DEFAULT NULL,
+  `tidak_baik` double DEFAULT NULL,
+  `jumlah` double DEFAULT NULL,
+  `prioritas` double DEFAULT NULL,
+  `eigen_value` double DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `tb_submatriks_pahamtools`
+--
+
+INSERT INTO `tb_submatriks_pahamtools` (`id_submatrix_ptls`, `baik`, `kurang_baik`, `tidak_baik`, `jumlah`, `prioritas`, `eigen_value`) VALUES
+(1, 0.74468085106383, 0.8, 0.58333333333333, 2.1280141843972, 0.70933806146572, 0.95253968253968),
+(2, 0.14893617021277, 0.16, 0.33333333333333, 0.6422695035461, 0.21408983451537, 1.338061465721),
+(3, 0.1063829787234, 0.04, 0.083333333333333, 0.22971631205674, 0.076572104018912, 0.91886524822694);
 
 -- --------------------------------------------------------
 
@@ -418,10 +530,42 @@ CREATE TABLE `tb_subrange_dokumentasi` (
 --
 
 INSERT INTO `tb_subrange_dokumentasi` (`id_subrange_doc`, `sgt_lkp_sesuai`, `lkp`, `krg_lkp_tdk_sesuai`, `tidak_mampu`) VALUES
-(1, NULL, NULL, NULL, NULL),
-(2, NULL, NULL, NULL, NULL),
-(3, NULL, NULL, NULL, NULL),
-(4, NULL, NULL, NULL, NULL);
+(1, 1, 2, 5, 7),
+(2, 0.5, 1, 4, 6),
+(3, 0.2, 0.25, 1, 4),
+(4, 0.14285714285714, 0.16666666666667, 0.25, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `tb_subrange_kehadiran`
+--
+
+CREATE TABLE `tb_subrange_kehadiran` (
+  `id_subrange_hdr` int(11) NOT NULL,
+  `hadir100` double DEFAULT NULL,
+  `hadir100t` double DEFAULT NULL,
+  `hadir90` double DEFAULT NULL,
+  `hadir90t` double DEFAULT NULL,
+  `hadir80` double DEFAULT NULL,
+  `hadir80t` double DEFAULT NULL,
+  `hadir70` double DEFAULT NULL,
+  `hadir70t` double DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `tb_subrange_kehadiran`
+--
+
+INSERT INTO `tb_subrange_kehadiran` (`id_subrange_hdr`, `hadir100`, `hadir100t`, `hadir90`, `hadir90t`, `hadir80`, `hadir80t`, `hadir70`, `hadir70t`) VALUES
+(1, 1, 2, 4, 5, 5, 6, 7, 9),
+(2, 0.5, 1, 2, 4, 5, 6, 7, 9),
+(3, 0.25, 0.5, 1, 2, 4, 5, 6, 8),
+(4, 0.2, 0.25, 0.5, 1, 2, 5, 7, 8),
+(5, 0.2, 0.2, 0.25, 0.5, 1, 2, 5, 6),
+(6, 0.16666666666667, 0.16666666666667, 0.2, 0.2, 0.5, 1, 2, 3),
+(7, 0.14285714285714, 0.14285714285714, 0.16666666666667, 0.14285714285714, 0.2, 0.5, 1, 2),
+(8, 0.11111111111111, 0.11111111111111, 0.125, 0.125, 0.16666666666667, 0.33333333333333, 0.5, 1);
 
 -- --------------------------------------------------------
 
@@ -446,6 +590,74 @@ INSERT INTO `tb_subrange_komdanker` (`id_subrange_kdk`, `sangat_baik`, `baik`, `
 (2, 0.33333333333333, 1, 3, 5),
 (3, 0.2, 0.33333333333333, 1, 3),
 (4, 0.14285714285714, 0.2, 0.33333333333333, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `tb_subrange_pahamdanlaksanak3`
+--
+
+CREATE TABLE `tb_subrange_pahamdanlaksanak3` (
+  `id_subrange_plk3` int(11) NOT NULL,
+  `paham` double DEFAULT NULL,
+  `kurang_paham` double DEFAULT NULL,
+  `tidak_paham` double DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `tb_subrange_pahamdanlaksanak3`
+--
+
+INSERT INTO `tb_subrange_pahamdanlaksanak3` (`id_subrange_plk3`, `paham`, `kurang_paham`, `tidak_paham`) VALUES
+(1, 1, 5, 8),
+(2, 0.2, 1, 3),
+(3, 0.125, 0.33333333333333, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `tb_subrange_pahamsopspk`
+--
+
+CREATE TABLE `tb_subrange_pahamsopspk` (
+  `id_subrange_pss` int(11) NOT NULL,
+  `sangat_mampu` double DEFAULT NULL,
+  `mampu` double DEFAULT NULL,
+  `kurang_mampu` double DEFAULT NULL,
+  `tidak_mampu` double DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `tb_subrange_pahamsopspk`
+--
+
+INSERT INTO `tb_subrange_pahamsopspk` (`id_subrange_pss`, `sangat_mampu`, `mampu`, `kurang_mampu`, `tidak_mampu`) VALUES
+(1, 1, 4, 6, 8),
+(2, 0.25, 1, 3, 5),
+(3, 0.16666666666667, 0.33333333333333, 1, 3),
+(4, 0.125, 0.2, 0.33333333333333, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `tb_subrange_pahamtools`
+--
+
+CREATE TABLE `tb_subrange_pahamtools` (
+  `id_subrange_ptls` int(11) NOT NULL,
+  `baik` double DEFAULT NULL,
+  `kurang_baik` double DEFAULT NULL,
+  `tidak_baik` double DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `tb_subrange_pahamtools`
+--
+
+INSERT INTO `tb_subrange_pahamtools` (`id_subrange_ptls`, `baik`, `kurang_baik`, `tidak_baik`) VALUES
+(1, 1, 5, 7),
+(2, 0.2, 1, 4),
+(3, 0.14285714285714, 0.25, 1);
 
 -- --------------------------------------------------------
 
@@ -592,10 +804,34 @@ ALTER TABLE `tb_submatriks_dokumentasi`
   ADD PRIMARY KEY (`id_submatrix_doc`);
 
 --
+-- Indeks untuk tabel `tb_submatriks_kehadiran`
+--
+ALTER TABLE `tb_submatriks_kehadiran`
+  ADD PRIMARY KEY (`id_submatrix_hdr`);
+
+--
 -- Indeks untuk tabel `tb_submatriks_komdanker`
 --
 ALTER TABLE `tb_submatriks_komdanker`
   ADD PRIMARY KEY (`id_submatrix_kdk`);
+
+--
+-- Indeks untuk tabel `tb_submatriks_pahamdanlaksanak3`
+--
+ALTER TABLE `tb_submatriks_pahamdanlaksanak3`
+  ADD PRIMARY KEY (`id_submatrix_plk3`);
+
+--
+-- Indeks untuk tabel `tb_submatriks_pahamsopspk`
+--
+ALTER TABLE `tb_submatriks_pahamsopspk`
+  ADD PRIMARY KEY (`id_submatrix_pss`);
+
+--
+-- Indeks untuk tabel `tb_submatriks_pahamtools`
+--
+ALTER TABLE `tb_submatriks_pahamtools`
+  ADD PRIMARY KEY (`id_submatrix_ptls`);
 
 --
 -- Indeks untuk tabel `tb_submatriks_pelaksana5r`
@@ -616,10 +852,34 @@ ALTER TABLE `tb_subrange_dokumentasi`
   ADD PRIMARY KEY (`id_subrange_doc`);
 
 --
+-- Indeks untuk tabel `tb_subrange_kehadiran`
+--
+ALTER TABLE `tb_subrange_kehadiran`
+  ADD PRIMARY KEY (`id_subrange_hdr`);
+
+--
 -- Indeks untuk tabel `tb_subrange_komdanker`
 --
 ALTER TABLE `tb_subrange_komdanker`
   ADD PRIMARY KEY (`id_subrange_kdk`);
+
+--
+-- Indeks untuk tabel `tb_subrange_pahamdanlaksanak3`
+--
+ALTER TABLE `tb_subrange_pahamdanlaksanak3`
+  ADD PRIMARY KEY (`id_subrange_plk3`);
+
+--
+-- Indeks untuk tabel `tb_subrange_pahamsopspk`
+--
+ALTER TABLE `tb_subrange_pahamsopspk`
+  ADD PRIMARY KEY (`id_subrange_pss`);
+
+--
+-- Indeks untuk tabel `tb_subrange_pahamtools`
+--
+ALTER TABLE `tb_subrange_pahamtools`
+  ADD PRIMARY KEY (`id_subrange_ptls`);
 
 --
 -- Indeks untuk tabel `tb_subrange_pelaksana5r`
