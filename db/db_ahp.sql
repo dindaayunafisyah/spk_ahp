@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 19 Bulan Mei 2022 pada 18.48
+-- Waktu pembuatan: 20 Bulan Mei 2022 pada 12.47
 -- Versi server: 10.4.11-MariaDB
 -- Versi PHP: 7.3.13
 
@@ -323,6 +323,58 @@ INSERT INTO `tb_submatriks_dokumentasi` (`id_submatrix_doc`, `sgt_lkp_sesuai`, `
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `tb_submatriks_inisiatif`
+--
+
+CREATE TABLE `tb_submatriks_inisiatif` (
+  `id_submatrix_inf` int(11) NOT NULL,
+  `sangat_bagus` double DEFAULT NULL,
+  `bagus` double DEFAULT NULL,
+  `kurang_bagus` double DEFAULT NULL,
+  `tidak_bagus` double DEFAULT NULL,
+  `jumlah` double DEFAULT NULL,
+  `prioritas` double DEFAULT NULL,
+  `eigen_value` double DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `tb_submatriks_inisiatif`
+--
+
+INSERT INTO `tb_submatriks_inisiatif` (`id_submatrix_inf`, `sangat_bagus`, `bagus`, `kurang_bagus`, `tidak_bagus`, `jumlah`, `prioritas`, `eigen_value`) VALUES
+(1, 0.60301507537689, 0.67415730337079, 0.48387096774194, 0.47058823529412, 2.2316315817837, 0.55790789544593, 0.92519725994783),
+(2, 0.20100502512563, 0.2247191011236, 0.38709677419355, 0.29411764705882, 1.1069385475016, 0.2767346368754, 1.2314691340955),
+(3, 0.12060301507538, 0.056179775280899, 0.096774193548387, 0.17647058823529, 0.45002757213996, 0.11250689303499, 1.1625712280282),
+(4, 0.075376884422111, 0.044943820224719, 0.032258064516129, 0.058823529411765, 0.21140229857472, 0.052850574643681, 0.89845976894257);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `tb_submatriks_kedisiplinan`
+--
+
+CREATE TABLE `tb_submatriks_kedisiplinan` (
+  `id_submatrix_dsp` int(11) NOT NULL,
+  `tidak_melanggar` double DEFAULT NULL,
+  `sedikit_melanggar` double DEFAULT NULL,
+  `banyak_melanggar` double DEFAULT NULL,
+  `jumlah` double DEFAULT NULL,
+  `prioritas` double DEFAULT NULL,
+  `eigen_value` double DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `tb_submatriks_kedisiplinan`
+--
+
+INSERT INTO `tb_submatriks_kedisiplinan` (`id_submatrix_dsp`, `tidak_melanggar`, `sedikit_melanggar`, `banyak_melanggar`, `jumlah`, `prioritas`, `eigen_value`) VALUES
+(1, 0.75471698113208, 0.78947368421053, 0.66666666666667, 2.2108573320093, 0.73695244400309, 0.97646198830409),
+(2, 0.15094339622642, 0.15789473684211, 0.25, 0.55883813306852, 0.18627937768951, 1.1797693920335),
+(3, 0.094339622641509, 0.052631578947368, 0.083333333333333, 0.23030453492221, 0.076768178307404, 0.92121813968884);
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `tb_submatriks_kehadiran`
 --
 
@@ -534,6 +586,52 @@ INSERT INTO `tb_subrange_dokumentasi` (`id_subrange_doc`, `sgt_lkp_sesuai`, `lkp
 (2, 0.5, 1, 4, 6),
 (3, 0.2, 0.25, 1, 4),
 (4, 0.14285714285714, 0.16666666666667, 0.25, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `tb_subrange_inisiatif`
+--
+
+CREATE TABLE `tb_subrange_inisiatif` (
+  `id_subrange_inf` int(11) NOT NULL,
+  `sangat_bagus` double DEFAULT NULL,
+  `bagus` double DEFAULT NULL,
+  `kurang_bagus` double DEFAULT NULL,
+  `tidak_bagus` double DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `tb_subrange_inisiatif`
+--
+
+INSERT INTO `tb_subrange_inisiatif` (`id_subrange_inf`, `sangat_bagus`, `bagus`, `kurang_bagus`, `tidak_bagus`) VALUES
+(1, 1, 3, 5, 8),
+(2, 0.33333333333333, 1, 4, 5),
+(3, 0.2, 0.25, 1, 3),
+(4, 0.125, 0.2, 0.33333333333333, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `tb_subrange_kedisiplinan`
+--
+
+CREATE TABLE `tb_subrange_kedisiplinan` (
+  `id_subrange_dsp` int(11) NOT NULL,
+  `tidak_melanggar` double DEFAULT NULL,
+  `sedikit_melanggar` double DEFAULT NULL,
+  `banyak_melanggar` double DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `tb_subrange_kedisiplinan`
+--
+
+INSERT INTO `tb_subrange_kedisiplinan` (`id_subrange_dsp`, `tidak_melanggar`, `sedikit_melanggar`, `banyak_melanggar`) VALUES
+(1, 1, 5, 8),
+(2, 0.2, 1, 3),
+(3, 0.125, 0.33333333333333, 1);
 
 -- --------------------------------------------------------
 
@@ -804,6 +902,18 @@ ALTER TABLE `tb_submatriks_dokumentasi`
   ADD PRIMARY KEY (`id_submatrix_doc`);
 
 --
+-- Indeks untuk tabel `tb_submatriks_inisiatif`
+--
+ALTER TABLE `tb_submatriks_inisiatif`
+  ADD PRIMARY KEY (`id_submatrix_inf`);
+
+--
+-- Indeks untuk tabel `tb_submatriks_kedisiplinan`
+--
+ALTER TABLE `tb_submatriks_kedisiplinan`
+  ADD PRIMARY KEY (`id_submatrix_dsp`);
+
+--
 -- Indeks untuk tabel `tb_submatriks_kehadiran`
 --
 ALTER TABLE `tb_submatriks_kehadiran`
@@ -850,6 +960,18 @@ ALTER TABLE `tb_submatriks_productivity`
 --
 ALTER TABLE `tb_subrange_dokumentasi`
   ADD PRIMARY KEY (`id_subrange_doc`);
+
+--
+-- Indeks untuk tabel `tb_subrange_inisiatif`
+--
+ALTER TABLE `tb_subrange_inisiatif`
+  ADD PRIMARY KEY (`id_subrange_inf`);
+
+--
+-- Indeks untuk tabel `tb_subrange_kedisiplinan`
+--
+ALTER TABLE `tb_subrange_kedisiplinan`
+  ADD PRIMARY KEY (`id_subrange_dsp`);
 
 --
 -- Indeks untuk tabel `tb_subrange_kehadiran`
