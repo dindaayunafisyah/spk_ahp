@@ -832,12 +832,15 @@ class Master_data extends CI_Controller
         $data['title8'] = 'Kehadiran';
         $data['title9'] = 'Kedisiplinan';
         $data['title10'] = 'Inisiatif';
+
+
         //Productiviity
         $data['subrange_product'] = $this->DataKaryawan_Model->showSubrangeProductivity();
         $data['submatrix_product'] = $this->DataKaryawan_Model->showSubmatrixProductivity();
         $data['count_subproduct'] = $this->DataKaryawan_Model->countSubrangeProductivity();
         $data['sum_subproduct'] = $this->DataKaryawan_Model->sumSubrangeProductivity();
         $data['sum_submatrixproduct'] = $this->DataKaryawan_Model->sumSubmatrixProductivity();
+
 
         //Kerjasama dan Komunikasi
         $data['subrange_komdanker'] = $this->DataKaryawan_Model->showSubrangeKomdanKer();
@@ -846,12 +849,14 @@ class Master_data extends CI_Controller
         $data['sum_subkomdanker'] = $this->DataKaryawan_Model->sumSubrangeKomdanKer();
         $data['sum_submatrixkomdanker'] = $this->DataKaryawan_Model->sumSubmatrixKomdanKer();
 
+
         //Pelaksanaan 5 R
         $data['subrange_pelaksana5r'] = $this->DataKaryawan_Model->showSubrangePelaksana5R();
         $data['submatrix_pelaksana5r'] = $this->DataKaryawan_Model->showSubmatrixPelaksana5R();
         $data['count_subpelaksana5r'] = $this->DataKaryawan_Model->countSubrangePelaksana5R();
         $data['sum_subpelaksana5r'] = $this->DataKaryawan_Model->sumSubrangePelaksana5R();
         $data['sum_submatrixpelaksana5r'] = $this->DataKaryawan_Model->sumSubmatrixPelaksana5R();
+
 
         //Dokumentasi
         $data['subrange_dokumentasi'] = $this->DataKaryawan_Model->showSubrangeDokumentasi();
@@ -860,12 +865,14 @@ class Master_data extends CI_Controller
         $data['sum_subdokumentasi'] = $this->DataKaryawan_Model->sumSubrangeDokumentasi();
         $data['sum_submatrixdokumentasi'] = $this->DataKaryawan_Model->sumSubmatrixDokumentasi();
 
+
         //Pemahaman dan Pelaksanaan K3
         $data['subrange_pahamdanlaksanak3'] = $this->DataKaryawan_Model->showSubrangePahamdanLaksanaK3();
         $data['submatrix_pahamdanlaksanak3'] = $this->DataKaryawan_Model->showSubmatrixPahamdanLaksanaK3();
         $data['count_subpahamdanlaksanak3'] = $this->DataKaryawan_Model->countSubrangePahamdanLaksanaK3();
         $data['sum_subpahamdanlaksanak3'] = $this->DataKaryawan_Model->sumSubrangePahamdanLaksanaK3();
         $data['sum_submatrixpahamdanlaksanak3'] = $this->DataKaryawan_Model->sumSubmatrixPahamdanLaksanaK3();
+
 
         //Pemahaman SOP dan SPK
         $data['subrange_pahamsopspk'] = $this->DataKaryawan_Model->showSubrangePahamSOPSPK();
@@ -874,7 +881,8 @@ class Master_data extends CI_Controller
         $data['sum_subpahamsopspk'] = $this->DataKaryawan_Model->sumSubrangePahamSOPSPK();
         $data['sum_submatrixpahamsopspk'] = $this->DataKaryawan_Model->sumSubmatrixPahamSOPSPK();
 
-        //Pemahaman SOP dan SPK
+
+        //Pemahaman Tools
         $data['subrange_pahamtools'] = $this->DataKaryawan_Model->showSubrangePahamTools();
         $data['submatrix_pahamtools'] = $this->DataKaryawan_Model->showSubmatrixPahamTools();
         $data['count_subpahamtools'] = $this->DataKaryawan_Model->countSubrangePahamTools();
@@ -882,12 +890,28 @@ class Master_data extends CI_Controller
         $data['sum_submatrixpahamtools'] = $this->DataKaryawan_Model->sumSubmatrixPahamTools();
 
 
-        //Pemahaman Kehadiran
+        //Kehadiran
         $data['subrange_kehadiran'] = $this->DataKaryawan_Model->showSubrangeKehadiran();
         $data['submatrix_kehadiran'] = $this->DataKaryawan_Model->showSubmatrixKehadiran();
         $data['count_subkehadiran'] = $this->DataKaryawan_Model->countSubrangeKehadiran();
         $data['sum_subkehadiran'] = $this->DataKaryawan_Model->sumSubrangeKehadiran();
         $data['sum_submatrixkehadiran'] = $this->DataKaryawan_Model->sumSubmatrixKehadiran();
+
+
+        //Kedisiplinan
+        $data['subrange_kedisiplinan'] = $this->DataKaryawan_Model->showSubrangeKedisiplinan();
+        $data['submatrix_kedisiplinan'] = $this->DataKaryawan_Model->showSubmatrixKedisiplinan();
+        $data['count_subkedisiplinan'] = $this->DataKaryawan_Model->countSubrangeKedisiplinan();
+        $data['sum_subkedisiplinan'] = $this->DataKaryawan_Model->sumSubrangeKedisiplinan();
+        $data['sum_submatrixkedisiplinan'] = $this->DataKaryawan_Model->sumSubmatrixKedisiplinan();
+
+
+        //Inisiatif
+        $data['subrange_inisiatif'] = $this->DataKaryawan_Model->showSubrangeInisiatif();
+        $data['submatrix_inisiatif'] = $this->DataKaryawan_Model->showSubmatrixInisiatif();
+        $data['count_subinisiatif'] = $this->DataKaryawan_Model->countSubrangeInisiatif();
+        $data['sum_subinisiatif'] = $this->DataKaryawan_Model->sumSubrangeInisiatif();
+        $data['sum_submatrixinisiatif'] = $this->DataKaryawan_Model->sumSubmatrixInisiatif();
 
 
         // 
@@ -1596,6 +1620,180 @@ class Master_data extends CI_Controller
                 'message',
                 '<div class="alert alert-danger alert-dismissible fade show" role="alert">
                      Gagal dianalisa tahap nilai Kehadiran
+                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                 </div>'
+            );
+            redirect('admin/master_data/subrange_KriOp');
+        }
+    }
+
+
+
+
+
+
+
+    //---------------------------------------------------------- Kedisiplinan ------------------------------------------------------------
+    public function update_subrange_kedisiplinan()
+    {
+        $_tidak_melanggar = $this->input->post('tidak_melanggar[]');
+        $_sedikit_melanggar = $this->input->post('sedikit_melanggar[]');
+        $_banyak_melanggar = $this->input->post('banyak_melanggar[]');
+        $data = array();
+        for ($x = 0; $x < sizeof($_tidak_melanggar); $x++) {
+            $data[] = [
+                'tidak_melanggar' => $_tidak_melanggar[$x],
+                'sedikit_melanggar' => $_sedikit_melanggar[$x],
+                'banyak_melanggar' => $_banyak_melanggar[$x],
+                'id_subrange_dsp' => $x + 1,
+            ];
+        }
+        // echo "<pre>";
+        // echo sizeof($_phm) + 1;
+        // die;
+        // echo "</pre>";
+        $query = $this->db->update_batch('tb_subrange_kedisiplinan', $data, 'id_subrange_dsp');
+        if ($query) {
+            $data['sum_subkedisiplinan'] = $this->DataKaryawan_Model->sumSubrangeKedisiplinan();
+            $sumTDK_MLGR = $data['sum_subkedisiplinan']['sumTDK_MLGR'];
+            $sumSDK_MLGR = $data['sum_subkedisiplinan']['sumSDK_MLGR'];
+            $sumBYK_MLGR = $data['sum_subkedisiplinan']['sumBYK_MLGR'];
+
+            $data['count_subkedisiplinan'] = $this->DataKaryawan_Model->countSubrangeKedisiplinan();
+            $count_subkedisiplinan = $data['count_subkedisiplinan']['jumSubDSP'];
+
+            $data['sumArray_subkedisiplinan'] = $this->DataKaryawan_Model->sumSubrangeKedisiplinanOPResArray();
+            $sumSubDisiplin = $data['sumArray_subkedisiplinan'];
+
+            $data = array();
+            for ($x = 0; $x < sizeof($_tidak_melanggar); $x++) {
+                $data[] = [
+                    'tidak_melanggar' => $_tidak_melanggar[$x] / $sumTDK_MLGR,
+                    'sedikit_melanggar' => $_sedikit_melanggar[$x] / $sumSDK_MLGR,
+                    'banyak_melanggar' => $_banyak_melanggar[$x] / $sumBYK_MLGR,
+                    'jumlah' => (($_tidak_melanggar[$x] / $sumTDK_MLGR) + ($_sedikit_melanggar[$x] / $sumSDK_MLGR) + ($_banyak_melanggar[$x] / $sumBYK_MLGR)),
+
+                    'prioritas' => (($_tidak_melanggar[$x] / $sumTDK_MLGR) + ($_sedikit_melanggar[$x] / $sumSDK_MLGR) + ($_banyak_melanggar[$x] / $sumBYK_MLGR)) / $count_subkedisiplinan,
+
+                    'eigen_value' => ((($_tidak_melanggar[$x] / $sumTDK_MLGR) + ($_sedikit_melanggar[$x] / $sumSDK_MLGR) + ($_banyak_melanggar[$x] / $sumBYK_MLGR)) / $count_subkedisiplinan) * $sumSubDisiplin[$x],
+
+                    'id_submatrix_dsp' => $x + 1,
+                ];
+            }
+            $query1 = $this->db->update_batch('tb_submatriks_kedisiplinan', $data, 'id_submatrix_dsp');
+            if ($query1) {
+                $this->session->set_flashdata(
+                    'message',
+                    '<div class="alert alert-success success-dismissible fade show" role="alert">
+                         Sukses dianalisa Subrange Kedisiplinan
+                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                     </div>'
+                );
+                redirect('admin/master_data/subrange_KriOp');
+            } else {
+                $this->session->set_flashdata(
+                    'message',
+                    '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                         Gagal dianalisa Subrange Kedisiplinan
+                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                     </div>'
+                );
+                redirect('admin/master_data/subrange_KriOp');
+            }
+        } else {
+            $this->session->set_flashdata(
+                'message',
+                '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                     Gagal dianalisa tahap nilai Kedisiplinan
+                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                 </div>'
+            );
+            redirect('admin/master_data/subrange_KriOp');
+        }
+    }
+
+
+
+
+
+
+
+    //---------------------------------------------------------- Inisiatif ------------------------------------------------------------
+    public function update_subrange_inisiatif()
+    {
+        $_sangat_bagus = $this->input->post('sangat_bagus[]');
+        $_bagus = $this->input->post('bagus[]');
+        $_kurang_bagus = $this->input->post('kurang_bagus[]');
+        $_tidak_bagus = $this->input->post('tidak_bagus[]');
+        $data = array();
+        for ($x = 0; $x < sizeof($_sangat_bagus); $x++) {
+            $data[] = [
+                'sangat_bagus' => $_sangat_bagus[$x],
+                'bagus' => $_bagus[$x],
+                'kurang_bagus' => $_kurang_bagus[$x],
+                'tidak_bagus' => $_tidak_bagus[$x],
+                'id_subrange_inf' => $x + 1,
+            ];
+        }
+        // echo "<pre>";
+        // echo sizeof($_phm) + 1;
+        // die;
+        // echo "</pre>";
+        $query = $this->db->update_batch('tb_subrange_inisiatif', $data, 'id_subrange_inf');
+        if ($query) {
+            $data['sum_subinisiatif'] = $this->DataKaryawan_Model->sumSubrangeInisiatif();
+            $sumSGT_BGS = $data['sum_subinisiatif']['sumSGT_BGS'];
+            $sumBGS = $data['sum_subinisiatif']['sumBGS'];
+            $sumKRG_BGS = $data['sum_subinisiatif']['sumKRG_BGS'];
+            $sumTDK_BGS = $data['sum_subinisiatif']['sumTDK_BGS'];
+
+            $data['count_subinisiatif'] = $this->DataKaryawan_Model->countSubrangeInisiatif();
+            $count_subinisiatif = $data['count_subinisiatif']['jumSubINF'];
+
+            $data['sumArray_subinisiatif'] = $this->DataKaryawan_Model->sumSubrangeInisiatifOPResArray();
+            $sumSubInisiatif = $data['sumArray_subinisiatif'];
+
+            $data = array();
+            for ($x = 0; $x < sizeof($_sangat_bagus); $x++) {
+                $data[] = [
+                    'sangat_bagus' => $_sangat_bagus[$x] / $sumSGT_BGS,
+                    'bagus' => $_bagus[$x] / $sumBGS,
+                    'kurang_bagus' => $_kurang_bagus[$x] / $sumKRG_BGS,
+                    'tidak_bagus' => $_tidak_bagus[$x] / $sumTDK_BGS,
+                    'jumlah' => (($_sangat_bagus[$x] / $sumSGT_BGS) + ($_bagus[$x] / $sumBGS) + ($_kurang_bagus[$x] / $sumKRG_BGS) + ($_tidak_bagus[$x] / $sumTDK_BGS)),
+
+                    'prioritas' => (($_sangat_bagus[$x] / $sumSGT_BGS) + ($_bagus[$x] / $sumBGS) + ($_kurang_bagus[$x] / $sumKRG_BGS) + ($_tidak_bagus[$x] / $sumTDK_BGS)) / $count_subinisiatif,
+
+                    'eigen_value' => ((($_sangat_bagus[$x] / $sumSGT_BGS) + ($_bagus[$x] / $sumBGS) + ($_kurang_bagus[$x] / $sumKRG_BGS) + ($_tidak_bagus[$x] / $sumTDK_BGS)) / $count_subinisiatif) * $sumSubInisiatif[$x],
+
+                    'id_submatrix_inf' => $x + 1,
+                ];
+            }
+            $query1 = $this->db->update_batch('tb_submatriks_inisiatif', $data, 'id_submatrix_inf');
+            if ($query1) {
+                $this->session->set_flashdata(
+                    'message',
+                    '<div class="alert alert-success success-dismissible fade show" role="alert">
+                         Sukses dianalisa Subrange Inisiatif
+                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                     </div>'
+                );
+                redirect('admin/master_data/subrange_KriOp');
+            } else {
+                $this->session->set_flashdata(
+                    'message',
+                    '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                         Gagal dianalisa Subrange Inisiatif
+                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                     </div>'
+                );
+                redirect('admin/master_data/subrange_KriOp');
+            }
+        } else {
+            $this->session->set_flashdata(
+                'message',
+                '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                     Gagal dianalisa tahap nilai Inisiatif
                      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                  </div>'
             );

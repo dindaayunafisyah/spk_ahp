@@ -341,4 +341,70 @@ class DataKaryawan_Model extends CI_Model
       $query = "SELECT COUNT(tb_subrange_kehadiran.id_subrange_hdr) AS jumSubHDR FROM tb_subrange_kehadiran";
       return $this->db->query($query)->row_array();
    }
+
+   // ------------ || ------------
+   //Kehadiran
+   public function showSubrangeKedisiplinan()
+   {
+      $query = "SELECT * FROM tb_subrange_kedisiplinan";
+      return $this->db->query($query)->result_array();
+   }
+   public function showSubmatrixKedisiplinan()
+   {
+      $query = "SELECT * FROM tb_submatriks_kedisiplinan";
+      return $this->db->query($query)->result_array();
+   }
+   public function sumSubrangeKedisiplinan()
+   {
+      $query = "SELECT SUM(tidak_melanggar) AS sumTDK_MLGR, SUM(sedikit_melanggar) AS sumSDK_MLGR, SUM(banyak_melanggar) AS sumBYK_MLGR FROM tb_subrange_kedisiplinan";
+      return $this->db->query($query)->row_array();
+   }
+   public function sumSubmatrixKedisiplinan()
+   {
+      $query = "SELECT SUM(tidak_melanggar) AS sumTDK_MLGR, SUM(sedikit_melanggar) AS sumSDK_MLGR, SUM(banyak_melanggar) AS sumBYK_MLGR, SUM(jumlah) AS submtxJum, SUM(prioritas) AS submtxPrior, SUM(eigen_value) AS submtxEig FROM tb_submatriks_kedisiplinan";
+      return $this->db->query($query)->row_array();
+   }
+   public function sumSubrangeKedisiplinanOPResArray()
+   {
+      $query = "SELECT SUM(tidak_melanggar) AS '0', SUM(sedikit_melanggar) AS '1', SUM(banyak_melanggar) AS '2' FROM tb_subrange_kedisiplinan";
+      return $this->db->query($query)->row_array();
+   }
+   public function countSubrangeKedisiplinan()
+   {
+      $query = "SELECT COUNT(tb_subrange_kedisiplinan.id_subrange_dsp) AS jumSubDSP FROM tb_subrange_kedisiplinan";
+      return $this->db->query($query)->row_array();
+   }
+
+   // ------------ || ------------
+   //Inisiatif
+   public function showSubrangeInisiatif()
+   {
+      $query = "SELECT * FROM tb_subrange_inisiatif";
+      return $this->db->query($query)->result_array();
+   }
+   public function showSubmatrixInisiatif()
+   {
+      $query = "SELECT * FROM tb_submatriks_inisiatif";
+      return $this->db->query($query)->result_array();
+   }
+   public function sumSubrangeInisiatif()
+   {
+      $query = "SELECT SUM(sangat_bagus) AS sumSGT_BGS, SUM(bagus) AS sumBGS, SUM(kurang_bagus) AS sumKRG_BGS, SUM(tidak_bagus) AS sumTDK_BGS FROM tb_subrange_inisiatif";
+      return $this->db->query($query)->row_array();
+   }
+   public function sumSubmatrixInisiatif()
+   {
+      $query = "SELECT SUM(sangat_bagus) AS sumSGT_BGS, SUM(bagus) AS sumBGS, SUM(kurang_bagus) AS sumKRG_BGS, SUM(tidak_bagus) AS sumTDK_BGS, SUM(jumlah) AS submtxJum, SUM(prioritas) AS submtxPrior, SUM(eigen_value) AS submtxEig FROM tb_submatriks_inisiatif";
+      return $this->db->query($query)->row_array();
+   }
+   public function sumSubrangeInisiatifOPResArray()
+   {
+      $query = "SELECT SUM(sangat_bagus) AS '0', SUM(bagus) AS '1', SUM(kurang_bagus) AS '2', SUM(tidak_bagus) AS '3' FROM tb_subrange_inisiatif";
+      return $this->db->query($query)->row_array();
+   }
+   public function countSubrangeInisiatif()
+   {
+      $query = "SELECT COUNT(tb_subrange_inisiatif.id_subrange_inf) AS jumSubINF FROM tb_subrange_inisiatif";
+      return $this->db->query($query)->row_array();
+   }
 }
