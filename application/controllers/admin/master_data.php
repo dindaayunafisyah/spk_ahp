@@ -12,7 +12,7 @@ class Master_data extends CI_Controller
         $this->load->model('m_data_divisi');
         $this->load->model('m_data_kriteria');
         $this->load->model('m_data_nilai');
-        $this->load->model('m_data_kuis');
+        $this->load->model('M_data_kuis', 'mdk');
         $this->load->model('DataKaryawan_Model');
         $this->load->helper('url', 'form', 'file');
 
@@ -2076,16 +2076,322 @@ class Master_data extends CI_Controller
         redirect('admin/master_data/tampil_nilai');
     }
 
-    public function tampil_kuisioner_op()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // -------------------- Kuisioner Operator --------------------
+    public function kuisioner_op()
     {
-        // ini adalah variabel array $data yang memiliki index user, berguna untuk menyimpan data 
-        $data['kriteria_op'] = $this->m_data_kriteria->tampil_kriteria_op()->result();
-        // ini adalah baris kode yang berfungsi menampilkan v_tampil dan membawa data dari tabel user
-        $this->load->view('admin/tamplate/header');
-        $this->load->view('admin/tamplate/sidebar');
-        $this->load->view('admin/v_kuisioner_op', $data);
-        $this->load->view('admin/tamplate/footer');
+        $this->form_validation->set_rules('idk_productivity', 'ID Productivity', 'required', [
+            'required' => '%s tidak boleh kosong',
+        ]);
+        $this->form_validation->set_rules('kuis_productivity', 'Kuis Productivity', 'required', [
+            'required' => '%s tidak boleh kosong',
+        ]);
+        // <===>
+        $this->form_validation->set_rules('idk_komker', 'ID Komunikasi dan Kerjasama', 'required', [
+            'required' => '%s tidak boleh kosong',
+        ]);
+        $this->form_validation->set_rules('kuis_komker', 'Kuis Komunikasi dan Kerjasama', 'required', [
+            'required' => '%s tidak boleh kosong',
+        ]);
+        // <===>
+        $this->form_validation->set_rules('idk_pelaksana5r', 'ID Pelaksanaan 5 R', 'required', [
+            'required' => '%s tidak boleh kosong',
+        ]);
+        $this->form_validation->set_rules('kuis_pelaksana5r', 'Kuis Pelaksanaan 5 R', 'required', [
+            'required' => '%s tidak boleh kosong',
+        ]);
+        // <===>
+        $this->form_validation->set_rules('idk_dokumentasi', 'ID Dokumentasi', 'required', [
+            'required' => '%s tidak boleh kosong',
+        ]);
+        $this->form_validation->set_rules('kuis_dokumentasi', 'Kuis Dokumentasi', 'required', [
+            'required' => '%s tidak boleh kosong',
+        ]);
+        // <===>
+        $this->form_validation->set_rules('idk_pahamdanlaksanak3', 'ID Pemahaman dan Pelaksanaan K3', 'required', [
+            'required' => '%s tidak boleh kosong',
+        ]);
+        $this->form_validation->set_rules('kuis_pahamdanlaksanak3', 'Kuis Pemahaman dan Pelaksanaan K3', 'required', [
+            'required' => '%s tidak boleh kosong',
+        ]);
+        // <===>
+        $this->form_validation->set_rules('idk_pahamsop', 'ID Paham SOP dan SPK', 'required', [
+            'required' => '%s tidak boleh kosong',
+        ]);
+        $this->form_validation->set_rules('kuis_pahamsop', 'Kuis Paham SOP dan SPK', 'required', [
+            'required' => '%s tidak boleh kosong',
+        ]);
+        // <===>
+        $this->form_validation->set_rules('idk_pahamtools', 'ID Paham Tools', 'required', [
+            'required' => '%s tidak boleh kosong',
+        ]);
+        $this->form_validation->set_rules('kuis_pahamtools', 'Kuis Paham Tools', 'required', [
+            'required' => '%s tidak boleh kosong',
+        ]);
+        // <===>
+        $this->form_validation->set_rules('idk_kehadiran', 'ID Kehadiran', 'required', [
+            'required' => '%s tidak boleh kosong',
+        ]);
+        $this->form_validation->set_rules('kuis_kehadiran', 'Kuis Kehadiran', 'required', [
+            'required' => '%s tidak boleh kosong',
+        ]);
+        // <===>
+        $this->form_validation->set_rules('idk_disiplin', 'ID Kedisiplinan', 'required', [
+            'required' => '%s tidak boleh kosong',
+        ]);
+        $this->form_validation->set_rules('kuis_disiplin', 'Kuis Kedisiplinan', 'required', [
+            'required' => '%s tidak boleh kosong',
+        ]);
+        // <===>
+        $this->form_validation->set_rules('idk_inisiatif', 'ID Inisiatif', 'required', [
+            'required' => '%s tidak boleh kosong',
+        ]);
+        $this->form_validation->set_rules('kuis_inisiatif', 'Kuis Inisiatif', 'required', [
+            'required' => '%s tidak boleh kosong',
+        ]);
+        // <===>
+        $this->form_validation->set_rules('status_kuis', 'Status', 'required', [
+            'required' => '%s tidak boleh kosong',
+        ]);
+
+
+        if ($this->form_validation->run() == false) {
+            $data['title'] = 'Data Kuisioner Operator';
+            // ini adalah variabel array $data yang memiliki index user, berguna untuk menyimpan data 
+            $data['header'] = $this->db->list_fields('data_kuisioner');
+            $data['data'] = $this->mdk->showQuisionerOperator();
+            $data['data_kriteria'] = $this->m_data_kriteria->tampil_kriteria_op()->result_array();
+            // ini adalah baris kode yang berfungsi menampilkan v_tampil dan membawa data dari tabel user
+            $this->load->view('admin/tamplate/header');
+            $this->load->view('admin/tamplate/sidebar');
+            $this->load->view('admin/v_kuisioner_op', $data);
+            $this->load->view('admin/tamplate/footer');
+        } else {
+            $data = [
+                'idk_productivity' => $this->input->post('idk_productivity'),
+                'kuis_productivity' => $this->input->post('kuis_productivity'),
+                // <===>
+                'idk_komker' => $this->input->post('idk_komker'),
+                'kuis_komker' => $this->input->post('kuis_komker'),
+                // <===>
+                'idk_pelaksana5r' => $this->input->post('idk_pelaksana5r'),
+                'kuis_pelaksana5r' => $this->input->post('kuis_pelaksana5r'),
+                // <===>
+                'idk_dokumentasi' => $this->input->post('idk_dokumentasi'),
+                'kuis_dokumentasi' => $this->input->post('kuis_dokumentasi'),
+                // <===>
+                'idk_pahamdanlaksanak3' => $this->input->post('idk_pahamdanlaksanak3'),
+                'kuis_pahamdanlaksanak3' => $this->input->post('kuis_pahamdanlaksanak3'),
+                // <===>
+                'idk_pahamsop' => $this->input->post('idk_pahamsop'),
+                'kuis_pahamsop' => $this->input->post('kuis_pahamsop'),
+                // <===>
+                'idk_pahamtools' => $this->input->post('idk_pahamtools'),
+                'kuis_pahamtools' => $this->input->post('kuis_pahamtools'),
+                // <===>
+                'idk_kehadiran' => $this->input->post('idk_kehadiran'),
+                'kuis_kehadiran' => $this->input->post('kuis_kehadiran'),
+                // <===>
+                'idk_disiplin' => $this->input->post('idk_disiplin'),
+                'kuis_disiplin' => $this->input->post('kuis_disiplin'),
+                // <===>
+                'idk_inisiatif' => $this->input->post('idk_inisiatif'),
+                'kuis_inisiatif' => $this->input->post('kuis_inisiatif'),
+                // <===>
+                'status_kuis' => $this->input->post('status_kuis'),
+            ];
+
+            $query = $this->db->insert('data_kuisioner', $data);
+            if ($query) {
+                $this->session->set_flashdata(
+                    'message',
+                    '<div class="alert alert-primary alert-dismissible fade show" role="alert">
+                        Sukses ditambah
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>'
+                );
+                redirect('admin/master_data/kuisioner_op');
+            } else {
+                $this->session->set_flashdata(
+                    'message',
+                    '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        Gagal ditambah
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>'
+                );
+                redirect('admin/master_data/kuisioner_op');
+            }
+        }
     }
+    // ---------------- UPDATE ----------------
+    public function update_kuisioner_op()
+    {
+        $this->form_validation->set_rules('idk_productivity', 'ID Productivity', 'required', [
+            'required' => '%s tidak boleh kosong',
+        ]);
+        $this->form_validation->set_rules('kuis_productivity', 'Kuis Productivity', 'required', [
+            'required' => '%s tidak boleh kosong',
+        ]);
+        // <===>
+        $this->form_validation->set_rules('idk_komker', 'ID Komunikasi dan Kerjasama', 'required', [
+            'required' => '%s tidak boleh kosong',
+        ]);
+        $this->form_validation->set_rules('kuis_komker', 'Kuis Komunikasi dan Kerjasama', 'required', [
+            'required' => '%s tidak boleh kosong',
+        ]);
+        // <===>
+        $this->form_validation->set_rules('idk_pelaksana5r', 'ID Pelaksanaan 5 R', 'required', [
+            'required' => '%s tidak boleh kosong',
+        ]);
+        $this->form_validation->set_rules('kuis_pelaksana5r', 'Kuis Pelaksanaan 5 R', 'required', [
+            'required' => '%s tidak boleh kosong',
+        ]);
+        // <===>
+        $this->form_validation->set_rules('idk_dokumentasi', 'ID Dokumentasi', 'required', [
+            'required' => '%s tidak boleh kosong',
+        ]);
+        $this->form_validation->set_rules('kuis_dokumentasi', 'Kuis Dokumentasi', 'required', [
+            'required' => '%s tidak boleh kosong',
+        ]);
+        // <===>
+        $this->form_validation->set_rules('idk_pahamdanlaksanak3', 'ID Pemahaman dan Pelaksanaan K3', 'required', [
+            'required' => '%s tidak boleh kosong',
+        ]);
+        $this->form_validation->set_rules('kuis_pahamdanlaksanak3', 'Kuis Pemahaman dan Pelaksanaan K3', 'required', [
+            'required' => '%s tidak boleh kosong',
+        ]);
+        // <===>
+        $this->form_validation->set_rules('idk_pahamsop', 'ID Paham SOP dan SPK', 'required', [
+            'required' => '%s tidak boleh kosong',
+        ]);
+        $this->form_validation->set_rules('kuis_pahamsop', 'Kuis Paham SOP dan SPK', 'required', [
+            'required' => '%s tidak boleh kosong',
+        ]);
+        // <===>
+        $this->form_validation->set_rules('idk_pahamtools', 'ID Paham Tools', 'required', [
+            'required' => '%s tidak boleh kosong',
+        ]);
+        $this->form_validation->set_rules('kuis_pahamtools', 'Kuis Paham Tools', 'required', [
+            'required' => '%s tidak boleh kosong',
+        ]);
+        // <===>
+        $this->form_validation->set_rules('idk_kehadiran', 'ID Kehadiran', 'required', [
+            'required' => '%s tidak boleh kosong',
+        ]);
+        $this->form_validation->set_rules('kuis_kehadiran', 'Kuis Kehadiran', 'required', [
+            'required' => '%s tidak boleh kosong',
+        ]);
+        // <===>
+        $this->form_validation->set_rules('idk_disiplin', 'ID Kedisiplinan', 'required', [
+            'required' => '%s tidak boleh kosong',
+        ]);
+        $this->form_validation->set_rules('kuis_disiplin', 'Kuis Kedisiplinan', 'required', [
+            'required' => '%s tidak boleh kosong',
+        ]);
+        // <===>
+        $this->form_validation->set_rules('idk_inisiatif', 'ID Inisiatif', 'required', [
+            'required' => '%s tidak boleh kosong',
+        ]);
+        $this->form_validation->set_rules('kuis_inisiatif', 'Kuis Inisiatif', 'required', [
+            'required' => '%s tidak boleh kosong',
+        ]);
+        // <===>
+        $this->form_validation->set_rules('status_kuis', 'Status', 'required', [
+            'required' => '%s tidak boleh kosong',
+        ]);
+
+
+        if ($this->form_validation->run() == false) {
+            $data['title'] = 'Data Kuisioner Operator';
+            // ini adalah variabel array $data yang memiliki index user, berguna untuk menyimpan data 
+            $data['header'] = $this->db->list_fields('data_kuisioner');
+            $data['data'] = $this->mdk->showQuisionerOperator();
+            $data['data_kriteria'] = $this->m_data_kriteria->tampil_kriteria_op()->result_array();
+            // ini adalah baris kode yang berfungsi menampilkan v_tampil dan membawa data dari tabel user
+            $this->load->view('admin/tamplate/header');
+            $this->load->view('admin/tamplate/sidebar');
+            $this->load->view('admin/v_kuisioner_op', $data);
+            $this->load->view('admin/tamplate/footer');
+        } else {
+            $id = $this->input->post('id');
+            $data = [
+                'idk_productivity' => $this->input->post('idk_productivity'),
+                'kuis_productivity' => $this->input->post('kuis_productivity'),
+                // <===>
+                'idk_komker' => $this->input->post('idk_komker'),
+                'kuis_komker' => $this->input->post('kuis_komker'),
+                // <===>
+                'idk_pelaksana5r' => $this->input->post('idk_pelaksana5r'),
+                'kuis_pelaksana5r' => $this->input->post('kuis_pelaksana5r'),
+                // <===>
+                'idk_dokumentasi' => $this->input->post('idk_dokumentasi'),
+                'kuis_dokumentasi' => $this->input->post('kuis_dokumentasi'),
+                // <===>
+                'idk_pahamdanlaksanak3' => $this->input->post('idk_pahamdanlaksanak3'),
+                'kuis_pahamdanlaksanak3' => $this->input->post('kuis_pahamdanlaksanak3'),
+                // <===>
+                'idk_pahamsop' => $this->input->post('idk_pahamsop'),
+                'kuis_pahamsop' => $this->input->post('kuis_pahamsop'),
+                // <===>
+                'idk_pahamtools' => $this->input->post('idk_pahamtools'),
+                'kuis_pahamtools' => $this->input->post('kuis_pahamtools'),
+                // <===>
+                'idk_kehadiran' => $this->input->post('idk_kehadiran'),
+                'kuis_kehadiran' => $this->input->post('kuis_kehadiran'),
+                // <===>
+                'idk_disiplin' => $this->input->post('idk_disiplin'),
+                'kuis_disiplin' => $this->input->post('kuis_disiplin'),
+                // <===>
+                'idk_inisiatif' => $this->input->post('idk_inisiatif'),
+                'kuis_inisiatif' => $this->input->post('kuis_inisiatif'),
+                // <===>
+                'status_kuis' => $this->input->post('status_kuis'),
+            ];
+            $this->db->where('id_kuis', $id);
+            $query = $this->db->update('data_kuisioner', $data);
+            if ($query) {
+                $this->session->set_flashdata(
+                    'message',
+                    '<div class="alert alert-primary alert-dismissible fade show" role="alert">
+                        Sukses diupdate
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>'
+                );
+                redirect('admin/master_data/kuisioner_op');
+            } else {
+                $this->session->set_flashdata(
+                    'message',
+                    '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        Gagal diupdate
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>'
+                );
+                redirect('admin/master_data/kuisioner_op');
+            }
+        }
+    }
+    // -------------------- END Kuisioner Operator --------------------
+
+
+
+
+
 
     function detail_kuisioner_op($id)
     {

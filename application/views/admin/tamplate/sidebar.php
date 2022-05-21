@@ -88,10 +88,10 @@
                                 Data Kuisioner</a>
                             <ul class="submenu ">
                                 <li class="submenu-item ">
-                                    <a href="<?= base_url('admin/master_data/tampil_kuisioner_op') ?>">Operator</a>
+                                    <a href="<?= base_url('admin/master_data/kuisioner_op') ?>">Operator</a>
                                 </li>
                                 <li class="submenu-item ">
-                                    <a href="<?= base_url('admin/master_data/tampil_kuisioner_kasi') ?>">Kepala Divisi</a>
+                                    <a href="<?= base_url('admin/master_data/kuisioner_kadis') ?>">Kepala Divisi</a>
                                 </li>
                             </ul>
                         </li>

@@ -2,7 +2,54 @@
 //  berfungsi untuk melayani segala query CRUD database
 class M_data_kuis extends CI_Model
 {
+  public function showQuisionerOperator()
+  {
+    $query = "SELECT * FROM data_kuisioner WHERE status_kuis = 'Operator'";
+    return $this->db->query($query)->result_array();
+  }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  //--- ex ----
   public function tampil_kuisop_where($where, $table)
 
   {
@@ -11,7 +58,7 @@ class M_data_kuis extends CI_Model
       "tb_kriteria_operator.id_kriteria_op",
       "tb_kriteria_operator.nama_kriteria_op",
       "data_kuisioner_op.kuis_op"
-    
+
     );
 
     $this->db->select($fields);
@@ -42,7 +89,7 @@ class M_data_kuis extends CI_Model
       "tb_kriteria_kasi.id_kriteria_kasi",
       "tb_kriteria_kasi.nama_kriteria_kasi",
       "data_kuisioner_kasi.kuis_kasi"
-    
+
     );
 
     $this->db->select($fields);
@@ -69,5 +116,3 @@ class M_data_kuis extends CI_Model
     $this->db->delete($table, $where);
   }
 }
- 
-
