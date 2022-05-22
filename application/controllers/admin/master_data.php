@@ -23,13 +23,14 @@ class Master_data extends CI_Controller
     //  method yang akan diakses saat controller ini diakses
     public function tampil_jabatan()
     {
+        $data['title'] = 'tampil_jabatan';
         // ini adalah variabel array $data yang memiliki index user, berguna untuk menyimpan data 
         $data['jabatan'] = $this->m_data_jabatan->tampil_jabatan()->result();
         // ini adalah baris kode yang berfungsi menampilkan v_tampil dan membawa data dari tabel user
-        $this->load->view('admin/tamplate/header');
-        $this->load->view('admin/tamplate/sidebar');
+        $this->load->view('admin/tamplate/header', $data);
+        $this->load->view('admin/tamplate/sidebar', $data);
         $this->load->view('admin/v_jabatan', $data);
-        $this->load->view('admin/tamplate/footer');
+        $this->load->view('admin/tamplate/footer', $data);
     }
 
     public function tambah_jabatan()
@@ -69,10 +70,10 @@ class Master_data extends CI_Controller
         $data = array(
             'id_jabatan' => $id_jabatan
         );
-        $this->load->view('admin/tamplate/header');
-        $this->load->view('admin/tamplate/sidebar');
+        $this->load->view('admin/tamplate/header', $data);
+        $this->load->view('admin/tamplate/sidebar', $data);
         $this->load->view('admin/v_tambah_jabatan', $data);
-        $this->load->view('admin/tamplate/footer');
+        $this->load->view('admin/tamplate/footer', $data);
     }
     public function aksitambah_jabatan()
     {
@@ -114,13 +115,14 @@ class Master_data extends CI_Controller
 
     public function tampil_divisi()
     {
+        $data['title'] = 'tampil_divisi';
         // ini adalah variabel array $data yang memiliki index user, berguna untuk menyimpan data 
         $data['divisi'] = $this->m_data_divisi->tampil_divisi()->result();
         // ini adalah baris kode yang berfungsi menampilkan v_tampil dan membawa data dari tabel user
-        $this->load->view('admin/tamplate/header');
-        $this->load->view('admin/tamplate/sidebar');
+        $this->load->view('admin/tamplate/header', $data);
+        $this->load->view('admin/tamplate/sidebar', $data);
         $this->load->view('admin/v_divisi', $data);
-        $this->load->view('admin/tamplate/footer');
+        $this->load->view('admin/tamplate/footer', $data);
     }
 
     public function tambah_divisi()
@@ -160,10 +162,10 @@ class Master_data extends CI_Controller
         $data = array(
             'id_divisi' => $id_divisi
         );
-        $this->load->view('admin/tamplate/header');
-        $this->load->view('admin/tamplate/sidebar');
+        $this->load->view('admin/tamplate/header', $data);
+        $this->load->view('admin/tamplate/sidebar', $data);
         $this->load->view('admin/v_tambah_divisi', $data);
-        $this->load->view('admin/tamplate/footer');
+        $this->load->view('admin/tamplate/footer', $data);
     }
     public function aksitambah_divisi()
     {
@@ -227,14 +229,14 @@ class Master_data extends CI_Controller
         ]);
 
         if ($this->form_validation->run() == false) {
-            $data['title'] = 'Data Operator';
+            $data['title'] = 'data_operator';
             $data['data_operator'] = $this->DataKaryawan_Model->showDataOperator();
             $data['data_divisi'] = $this->m_data_divisi->showDataDivisi();
             // $data['data_jabatan'] = $this->m_data_jabatan->tampil_jabatan()->result();
-            $this->load->view('admin/tamplate/header');
-            $this->load->view('admin/tamplate/sidebar');
+            $this->load->view('admin/tamplate/header', $data);
+            $this->load->view('admin/tamplate/sidebar', $data);
             $this->load->view('admin/data_operator', $data);
-            $this->load->view('admin/tamplate/footer');
+            $this->load->view('admin/tamplate/footer', $data);
         } else {
             $data = [
                 'nik' => $this->input->post('nik'),
@@ -285,10 +287,10 @@ class Master_data extends CI_Controller
             $data['data_operator'] = $this->DataKaryawan_Model->showDataOperator();
             $data['data_divisi'] = $this->m_data_divisi->showDataDivisi();
             // $data['data_jabatan'] = $this->m_data_jabatan->tampil_jabatan()->result();
-            $this->load->view('admin/tamplate/header');
-            $this->load->view('admin/tamplate/sidebar');
+            $this->load->view('admin/tamplate/header', $data);
+            $this->load->view('admin/tamplate/sidebar', $data);
             $this->load->view('admin/data_operator', $data);
-            $this->load->view('admin/tamplate/footer');
+            $this->load->view('admin/tamplate/footer', $data);
         } else {
             $id = $this->input->post('id');
             $data = [
@@ -366,14 +368,14 @@ class Master_data extends CI_Controller
         ]);
 
         if ($this->form_validation->run() == false) {
-            $data['title'] = 'Kepala Divisi';
+            $data['title'] = 'data_kepdis';
             $data['data_kepdis'] = $this->DataKaryawan_Model->showDataKepdis();
             $data['data_divisi'] = $this->m_data_divisi->showDataDivisi();
             // $data['data_jabatan'] = $this->m_data_jabatan->tampil_jabatan()->result();
-            $this->load->view('admin/tamplate/header');
-            $this->load->view('admin/tamplate/sidebar');
+            $this->load->view('admin/tamplate/header', $data);
+            $this->load->view('admin/tamplate/sidebar', $data);
             $this->load->view('admin/data_kepdis', $data);
-            $this->load->view('admin/tamplate/footer');
+            $this->load->view('admin/tamplate/footer', $data);
         } else {
             $data = [
                 'nik' => $this->input->post('nik'),
@@ -424,10 +426,10 @@ class Master_data extends CI_Controller
             $data['data_kepdis'] = $this->DataKaryawan_Model->showDataKepdis();
             $data['data_divisi'] = $this->m_data_divisi->showDataDivisi();
             // $data['data_jabatan'] = $this->m_data_jabatan->tampil_jabatan()->result();
-            $this->load->view('admin/tamplate/header');
-            $this->load->view('admin/tamplate/sidebar');
+            $this->load->view('admin/tamplate/header', $data);
+            $this->load->view('admin/tamplate/sidebar', $data);
             $this->load->view('admin/data_kepdis', $data);
-            $this->load->view('admin/tamplate/footer');
+            $this->load->view('admin/tamplate/footer', $data);
         } else {
             $id = $this->input->post('id');
             $data = [
@@ -499,7 +501,7 @@ class Master_data extends CI_Controller
     // ---------------------- Kriteria OP ----------------------
     public function tampil_kriteria_op()
     {
-        $data['title'] = 'Data Kriteria';
+        $data['title'] = 'tampil_kriteria_op';
         // ini adalah variabel array $data yang memiliki index user, berguna untuk menyimpan data 
         $data['kriteria_op'] = $this->m_data_kriteria->tampil_kriteria_op()->result();
         // ini adalah baris kode yang berfungsi menampilkan v_tampil dan membawa data dari tabel user
@@ -511,10 +513,10 @@ class Master_data extends CI_Controller
         // die;
         // echo '</pre>';
 
-        $this->load->view('admin/tamplate/header');
-        $this->load->view('admin/tamplate/sidebar');
+        $this->load->view('admin/tamplate/header', $data);
+        $this->load->view('admin/tamplate/sidebar', $data);
         $this->load->view('admin/v_kriteria_operator', $data);
-        $this->load->view('admin/tamplate/footer');
+        $this->load->view('admin/tamplate/footer', $data);
     }
 
     public function update_kriteria_op()
@@ -531,10 +533,10 @@ class Master_data extends CI_Controller
         $this->db->where('id_kriteria_op', $id);
         $true = $this->db->update('tb_kriteria_operator', $update);
         if ($true) {
-            $this->load->view('admin/tamplate/header');
-            $this->load->view('admin/tamplate/sidebar');
+            $this->load->view('admin/tamplate/header', $data);
+            $this->load->view('admin/tamplate/sidebar', $data);
             $this->load->view('admin/v_kriteria_operator', $data);
-            $this->load->view('admin/tamplate/footer');
+            $this->load->view('admin/tamplate/footer', $data);
             $this->session->set_flashdata(
                 'pesan_update_kriteria_op',
                 '<div class="alert alert-primary alert-dismissible fade show" role="alert">
@@ -544,10 +546,10 @@ class Master_data extends CI_Controller
             );
             redirect('admin/master_data/tampil_kriteria_op');
         } else {
-            $this->load->view('admin/tamplate/header');
-            $this->load->view('admin/tamplate/sidebar');
+            $this->load->view('admin/tamplate/header', $data);
+            $this->load->view('admin/tamplate/sidebar', $data);
             $this->load->view('admin/v_kriteria_operator', $data);
-            $this->load->view('admin/tamplate/footer');
+            $this->load->view('admin/tamplate/footer', $data);
             $this->session->set_flashdata(
                 'pesan_update_kriteria_op',
                 '<div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -598,10 +600,10 @@ class Master_data extends CI_Controller
             'id_kriteria_op' =>  $id_kriteria_op
         );
         $data['data_nilban'] = $this->m_data_nilai->tampil_nilai()->result_array();
-        $this->load->view('admin/tamplate/header');
-        $this->load->view('admin/tamplate/sidebar');
+        $this->load->view('admin/tamplate/header', $data);
+        $this->load->view('admin/tamplate/sidebar', $data);
         $this->load->view('admin/v_tambah_kriteria_op', $data);
-        $this->load->view('admin/tamplate/footer');
+        $this->load->view('admin/tamplate/footer', $data);
     }
     public function aksitambah_kriteria_op()
     {
@@ -651,6 +653,40 @@ class Master_data extends CI_Controller
 
 
     //---------------------- Analisa Perbandingan ----------------------
+
+
+
+
+    //---------------------- Pembobotan Kriteria Operator ----------------------
+    public function pembobotan_KriOp()
+    {
+        $data['title'] = 'pembobotan_KriOp';
+        // ini adalah variabel array $data yang memiliki index user, berguna untuk menyimpan data 
+
+        $data['data_anop'] = $this->DataKaryawan_Model->showAnalyzeOP();
+        $data['data_sum'] = $this->DataKaryawan_Model->sumAnalyzeOP();
+        $data['data_nilban'] = $this->m_data_nilai->tampil_nilai()->result_array();
+        $data['data_nilban1'] = $this->m_data_nilai->tampil_nilai_awal()->result_array();
+        $data['data_matrix'] = $this->DataKaryawan_Model->showMatrixOp();
+        $data['total_matrix'] = $this->DataKaryawan_Model->totalNilaiMatriks();
+        $data['data_countop'] = $this->DataKaryawan_Model->countKritOp();
+        $data['ri'] = 1.49;
+        // ini adalah baris kode yang berfungsi menampilkan v_tampil dan membawa data dari tabel user
+
+        // echo '<pre>';
+        // // print_r($data['data_countop']);
+        // $data[] = $data['data_sum1'];
+        // print_r($data);
+        // die;
+        // echo '</pre>';
+
+        $this->load->view('admin/tamplate/header', $data);
+        $this->load->view('admin/tamplate/sidebar', $data);
+        $this->load->view('admin/v_pembobotan_kriop', $data);
+        $this->load->view('admin/tamplate/footer', $data);
+    }
+
+    //---------------------- End Pembobotan Kriteria Operator ----------------------
 
     public function update_analisa_perbandingan()
     {
@@ -761,6 +797,7 @@ class Master_data extends CI_Controller
         }
     }
 
+
     //---------------------- End Analisa Perbandingan ----------------------
 
 
@@ -773,11 +810,10 @@ class Master_data extends CI_Controller
 
 
 
-
     //---------------------- Pembobotan Kriteria Operator ----------------------
-    public function pembobotan_KriOp()
+    public function pembobotan_KriKepdis()
     {
-        $data['title'] = 'Pembobotan Kriteria';
+        $data['title'] = 'pembobotan_KriKepdis';
         // ini adalah variabel array $data yang memiliki index user, berguna untuk menyimpan data 
 
         $data['data_anop'] = $this->DataKaryawan_Model->showAnalyzeOP();
@@ -797,13 +833,24 @@ class Master_data extends CI_Controller
         // die;
         // echo '</pre>';
 
-        $this->load->view('admin/tamplate/header');
-        $this->load->view('admin/tamplate/sidebar');
+        $this->load->view('admin/tamplate/header', $data);
+        $this->load->view('admin/tamplate/sidebar', $data);
         $this->load->view('admin/v_pembobotan_kriop', $data);
-        $this->load->view('admin/tamplate/footer');
+        $this->load->view('admin/tamplate/footer', $data);
     }
 
     //---------------------- End Pembobotan Kriteria Operator ----------------------
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -924,10 +971,11 @@ class Master_data extends CI_Controller
         //
         $data['ri8'] = 1.41;
 
-        $this->load->view('admin/tamplate/header');
-        $this->load->view('admin/tamplate/sidebar');
+        $data['title'] = 'subrange_KriOp';
+        $this->load->view('admin/tamplate/header', $data);
+        $this->load->view('admin/tamplate/sidebar', $data);
         $this->load->view('admin/v_subrange_op', $data);
-        $this->load->view('admin/tamplate/footer');
+        $this->load->view('admin/tamplate/footer', $data);
     }
 
 
@@ -1821,13 +1869,14 @@ class Master_data extends CI_Controller
 
     public function tampil_kriteria_kasi()
     {
+        $data['title'] = 'tampil_kriteria_kasi';
         // ini adalah variabel array $data yang memiliki index user, berguna untuk menyimpan data 
         $data['kriteria_kasi'] = $this->m_data_kriteria->tampil_kriteria_kasi()->result();
         // ini adalah baris kode yang berfungsi menampilkan v_tampil dan membawa data dari tabel user
-        $this->load->view('admin/tamplate/header');
-        $this->load->view('admin/tamplate/sidebar');
+        $this->load->view('admin/tamplate/header', $data);
+        $this->load->view('admin/tamplate/sidebar', $data);
         $this->load->view('admin/v_kriteria_kasi', $data);
-        $this->load->view('admin/tamplate/footer');
+        $this->load->view('admin/tamplate/footer', $data);
     }
 
     public function tambah_kriteria_kasi()
@@ -1868,10 +1917,10 @@ class Master_data extends CI_Controller
         $data = array(
             'id_kriteria_kasi' =>  $id_kriteria_kasi
         );
-        $this->load->view('admin/tamplate/header');
-        $this->load->view('admin/tamplate/sidebar');
+        $this->load->view('admin/tamplate/header', $data);
+        $this->load->view('admin/tamplate/sidebar', $data);
         $this->load->view('admin/v_tambah_kriteria_kasi', $data);
-        $this->load->view('admin/tamplate/footer');
+        $this->load->view('admin/tamplate/footer', $data);
     }
     public function aksitambah_kriteria_kasi()
     {
@@ -1923,14 +1972,14 @@ class Master_data extends CI_Controller
     //
     public function tampil_nilai()
     {
-        $data['title'] = 'Nilai Banding';
+        $data['title'] = 'tampil_nilai';
         // ini adalah variabel array $data yang memiliki index user, berguna untuk menyimpan data 
         $data['nilai'] = $this->m_data_nilai->tampil_nilai()->result();
         // ini adalah baris kode yang berfungsi menampilkan v_tampil dan membawa data dari tabel user
-        $this->load->view('admin/tamplate/header');
-        $this->load->view('admin/tamplate/sidebar');
+        $this->load->view('admin/tamplate/header', $data);
+        $this->load->view('admin/tamplate/sidebar', $data);
         $this->load->view('admin/v_nilai_banding', $data);
-        $this->load->view('admin/tamplate/footer');
+        $this->load->view('admin/tamplate/footer', $data);
     }
     public function update_nilai_banding()
     {
@@ -1946,10 +1995,10 @@ class Master_data extends CI_Controller
         $this->db->where('id_nilai', $id);
         $true = $this->db->update('nilai_banding', $update);
         if ($true) {
-            $this->load->view('admin/tamplate/header');
-            $this->load->view('admin/tamplate/sidebar');
+            $this->load->view('admin/tamplate/header', $data);
+            $this->load->view('admin/tamplate/sidebar', $data);
             $this->load->view('admin/v_nilai_banding', $data);
-            $this->load->view('admin/tamplate/footer');
+            $this->load->view('admin/tamplate/footer', $data);
             $this->session->set_flashdata(
                 'message',
                 '<div class="alert alert-primary alert-dismissible fade show" role="alert">
@@ -1959,10 +2008,10 @@ class Master_data extends CI_Controller
             );
             redirect('admin/master_data/tampil_nilai');
         } else {
-            $this->load->view('admin/tamplate/header');
-            $this->load->view('admin/tamplate/sidebar');
+            $this->load->view('admin/tamplate/header', $data);
+            $this->load->view('admin/tamplate/sidebar', $data);
             $this->load->view('admin/v_nilai_banding', $data);
-            $this->load->view('admin/tamplate/footer');
+            $this->load->view('admin/tamplate/footer', $data);
             $this->session->set_flashdata(
                 'message',
                 '<div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -2046,10 +2095,10 @@ class Master_data extends CI_Controller
         $data = array(
             'id_nilai' =>  $id_nilai
         );
-        $this->load->view('admin/tamplate/header');
-        $this->load->view('admin/tamplate/sidebar');
+        $this->load->view('admin/tamplate/header', $data);
+        $this->load->view('admin/tamplate/sidebar', $data);
         $this->load->view('admin/v_tambah_nilai', $data);
-        $this->load->view('admin/tamplate/footer');
+        $this->load->view('admin/tamplate/footer', $data);
     }
     public function aksitambah_nilai()
     {
@@ -2172,16 +2221,16 @@ class Master_data extends CI_Controller
 
 
         if ($this->form_validation->run() == false) {
-            $data['title'] = 'Data Kuisioner Operator';
+            $data['title'] = 'kuisioner_op';
             // ini adalah variabel array $data yang memiliki index user, berguna untuk menyimpan data 
             $data['header'] = $this->db->list_fields('data_kuisioner');
             $data['data'] = $this->mdk->showQuisionerOperator();
             $data['data_kriteria'] = $this->m_data_kriteria->tampil_kriteria_op()->result_array();
             // ini adalah baris kode yang berfungsi menampilkan v_tampil dan membawa data dari tabel user
-            $this->load->view('admin/tamplate/header');
-            $this->load->view('admin/tamplate/sidebar');
+            $this->load->view('admin/tamplate/header', $data);
+            $this->load->view('admin/tamplate/sidebar', $data);
             $this->load->view('admin/v_kuisioner_op', $data);
-            $this->load->view('admin/tamplate/footer');
+            $this->load->view('admin/tamplate/footer', $data);
         } else {
             $data = [
                 'idk_productivity' => $this->input->post('idk_productivity'),
@@ -2324,10 +2373,10 @@ class Master_data extends CI_Controller
             $data['data'] = $this->mdk->showQuisionerOperator();
             $data['data_kriteria'] = $this->m_data_kriteria->tampil_kriteria_op()->result_array();
             // ini adalah baris kode yang berfungsi menampilkan v_tampil dan membawa data dari tabel user
-            $this->load->view('admin/tamplate/header');
-            $this->load->view('admin/tamplate/sidebar');
+            $this->load->view('admin/tamplate/header', $data);
+            $this->load->view('admin/tamplate/sidebar', $data);
             $this->load->view('admin/v_kuisioner_op', $data);
-            $this->load->view('admin/tamplate/footer');
+            $this->load->view('admin/tamplate/footer', $data);
         } else {
             $id = $this->input->post('id');
             $data = [
@@ -2406,10 +2455,10 @@ class Master_data extends CI_Controller
             'data_kuisioner_op' => $resultKuisioner
         );
 
-        $this->load->view('admin/tamplate/header');
-        $this->load->view('admin/tamplate/sidebar');
+        $this->load->view('admin/tamplate/header', $data);
+        $this->load->view('admin/tamplate/sidebar', $data);
         $this->load->view('admin/v_detailkuis_op', $data);
-        $this->load->view('admin/tamplate/footer');
+        $this->load->view('admin/tamplate/footer', $data);
     }
     public function tambah_kuis_op($id)
     {
@@ -2450,10 +2499,10 @@ class Master_data extends CI_Controller
             'id_kuis_op' =>  $id_kuis_op,
             'tb_kriteria_operator' => $result
         );
-        $this->load->view('admin/tamplate/header');
-        $this->load->view('admin/tamplate/sidebar');
+        $this->load->view('admin/tamplate/header', $data);
+        $this->load->view('admin/tamplate/sidebar', $data);
         $this->load->view('admin/v_tambah_kuisop', $data);
-        $this->load->view('admin/tamplate/footer');
+        $this->load->view('admin/tamplate/footer', $data);
     }
 
     public function aksitambah_kuisop()
@@ -2499,10 +2548,10 @@ class Master_data extends CI_Controller
         // ini adalah variabel array $data yang memiliki index user, berguna untuk menyimpan data 
         $data['kriteria_kasi'] = $this->m_data_kriteria->tampil_kriteria_kasi()->result();
         // ini adalah baris kode yang berfungsi menampilkan v_tampil dan membawa data dari tabel user
-        $this->load->view('admin/tamplate/header');
-        $this->load->view('admin/tamplate/sidebar');
+        $this->load->view('admin/tamplate/header', $data);
+        $this->load->view('admin/tamplate/sidebar', $data);
         $this->load->view('admin/v_kuisioner_kasi', $data);
-        $this->load->view('admin/tamplate/footer');
+        $this->load->view('admin/tamplate/footer', $data);
     }
 
     function detail_kuisioner_kasi($id)
@@ -2518,10 +2567,10 @@ class Master_data extends CI_Controller
             'data_kuisioner_kasi' => $resultKuisionerkasi
         );
 
-        $this->load->view('admin/tamplate/header');
-        $this->load->view('admin/tamplate/sidebar');
+        $this->load->view('admin/tamplate/header', $data);
+        $this->load->view('admin/tamplate/sidebar', $data);
         $this->load->view('admin/v_detailkuis_kasi', $data);
-        $this->load->view('admin/tamplate/footer');
+        $this->load->view('admin/tamplate/footer', $data);
     }
     public function tambah_kuis_kasi($id)
     {
@@ -2562,10 +2611,10 @@ class Master_data extends CI_Controller
             'id_kuis_kasi' =>  $id_kuis_kasi,
             'tb_kriteria_kasi' => $result
         );
-        $this->load->view('admin/tamplate/header');
-        $this->load->view('admin/tamplate/sidebar');
+        $this->load->view('admin/tamplate/header', $data);
+        $this->load->view('admin/tamplate/sidebar', $data);
         $this->load->view('admin/v_tambah_kuiskasi', $data);
-        $this->load->view('admin/tamplate/footer');
+        $this->load->view('admin/tamplate/footer', $data);
     }
 
     public function aksitambah_kuiskasi()

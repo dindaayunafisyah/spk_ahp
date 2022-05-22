@@ -18,79 +18,79 @@
                     <ul class="menu">
                         <li class="sidebar-title">Menu</li>
 
-                        <li class="sidebar-item active ">
+                        <li class="sidebar-item <?= (($this->uri->uri_string() == 'admin/dashboard') ? 'active' : '');  ?>">
                             <a href="<?= base_url('admin/dashboard') ?>" class='sidebar-link'>
                                 <i class="bi bi-grid-fill"></i>
                                 <span>Dashboard</span>
                             </a>
                         </li>
 
-                        <li class="sidebar-item  has-sub">
+                        <li class="sidebar-item has-sub<?= $this->uri->segment(3) == $title ? ' active' : '' ?>">
                             <a href="#" class='sidebar-link'>
                                 <i class="bi bi-stack"></i>
                                 <span>Master Data</span>
                             </a>
-                            <ul class="submenu ">
-                                <li class="submenu-item ">
+                            <ul class="submenu<?= $this->uri->segment(3) == $title ? ' active' : '' ?>">
+                                <li class="submenu-item<?= $this->uri->segment(3) == $title ? ' active' : '' ?>">
                                 <li class="sidebar-title"><a href="<?= base_url('admin/master_data/tampil_jabatan') ?>">
                                         Data Jabatan</a></li>
-                                <li class="submenu-item ">
+                                <li class="submenu-item<?= $this->uri->segment(3) == $title ? ' active' : '' ?>">
                                 <li class="sidebar-title"><a href="<?= base_url('admin/master_data/tampil_divisi') ?>">
                                         Data Divisi</a></li>
                         </li>
-                        <li class="submenu-item ">
+                        <li class="submenu-item<?= $this->uri->segment(3) == $title ? ' active' : '' ?>">
                         <li class="sidebar-title"><a href="<?= base_url('admin/master_data/tampil_nilai') ?>">
                                 Nilai Banding</a>
                         </li>
                         </li>
-                        <li class="submenu-item ">
+                        <li class="submenu-item<?= $this->uri->segment(3) == $title ? ' active' : '' ?>">
                         <li class="sidebar-item  has-sub">
                             <a href="#" class='sidebar-link'>
                                 Data Karyawan</a>
-                            <ul class="submenu ">
-                                <li class="submenu-item ">
+                            <ul class="submenu<?= $this->uri->segment(3) == $title ? ' active' : '' ?>">
+                                <li class="submenu-item<?= $this->uri->segment(3) == $title ? ' active' : '' ?>">
                                     <a href="<?= base_url('admin/master_data/data_operator') ?>">Operator</a>
                                 </li>
-                                <li class="submenu-item ">
+                                <li class="submenu-item<?= $this->uri->segment(3) == $title ? ' active' : '' ?>">
                                     <a href="<?= base_url('admin/master_data/data_kepdis') ?>">Kepala Divisi</a>
                                 </li>
                             </ul>
                         </li>
-                        <li class="submenu-item ">
+                        <li class="submenu-item<?= $this->uri->segment(3) == $title ? ' active' : '' ?>">
                         <li class="sidebar-item  has-sub">
                             <a href="#" class='sidebar-link'>
                                 Data Kriteria</a>
-                            <ul class="submenu ">
-                                <li class="submenu-item ">
+                            <ul class="submenu<?= $this->uri->segment(3) == $title ? ' active' : '' ?>">
+                                <li class="submenu-item<?= $this->uri->segment(3) == $title ? ' active' : '' ?>">
                                     <a href="<?= base_url('admin/master_data/tampil_kriteria_op') ?>"> Operator</a>
                                 </li>
-                                <li class="submenu-item ">
+                                <li class="submenu-item<?= $this->uri->segment(3) == $title ? ' active' : '' ?>">
                                     <a href="<?= base_url('admin/master_data/tampil_kriteria_kasi') ?>">Kepala Divisi</a>
                                 </li>
                             </ul>
                         </li>
-                        <li class="submenu-item ">
+                        <li class="submenu-item<?= $this->uri->segment(3) == $title ? ' active' : '' ?>">
                         <li class="sidebar-item  has-sub">
                             <a href="#" class='sidebar-link'>
                                 Data Subrange</a>
-                            <ul class="submenu ">
-                                <li class="submenu-item ">
+                            <ul class="submenu<?= $this->uri->segment(3) == $title ? ' active' : '' ?>">
+                                <li class="submenu-item<?= $this->uri->segment(3) == $title ? ' active' : '' ?>">
                                     <a href="component-alert.html">Operator</a>
                                 </li>
-                                <li class="submenu-item ">
+                                <li class="submenu-item<?= $this->uri->segment(3) == $title ? ' active' : '' ?>">
                                     <a href="component-badge.html">Kepala Divisi</a>
                                 </li>
                             </ul>
                         </li>
-                        <li class="submenu-item ">
+                        <li class="submenu-item<?= $this->uri->segment(3) == $title ? ' active' : '' ?>">
                         <li class="sidebar-item  has-sub">
                             <a href="#" class='sidebar-link'>
                                 Data Kuisioner</a>
-                            <ul class="submenu ">
-                                <li class="submenu-item ">
+                            <ul class="submenu<?= $this->uri->segment(3) == $title ? ' active' : '' ?>">
+                                <li class="submenu-item<?= $this->uri->segment(3) == $title ? ' active' : '' ?>">
                                     <a href="<?= base_url('admin/master_data/kuisioner_op') ?>">Operator</a>
                                 </li>
-                                <li class="submenu-item ">
+                                <li class="submenu-item<?= $this->uri->segment(3) == $title ? ' active' : '' ?>">
                                     <a href="<?= base_url('admin/master_data/kuisioner_kadis') ?>">Kepala Divisi</a>
                                 </li>
                             </ul>
@@ -103,29 +103,29 @@
                             <i class="bi bi-collection-fill"></i>
                             <span>Pembobotan</span>
                         </a>
-                        <ul class="submenu ">
-                            <li class="submenu-item ">
+                        <ul class="submenu<?= $this->uri->segment(3) == $title ? ' active' : '' ?>">
+                            <li class="submenu-item<?= $this->uri->segment(3) == $title ? ' active' : '' ?>">
                             <li class="sidebar-item  has-sub">
                                 <a href="#" class='sidebar-link'>
                                     Kriteria</a>
-                                <ul class="submenu ">
-                                    <li class="submenu-item ">
+                                <ul class="submenu<?= $this->uri->segment(3) == $title ? ' active' : '' ?>">
+                                    <li class="submenu-item<?= $this->uri->segment(3) == $title ? ' active' : '' ?>">
                                         <a href="<?= base_url('admin/master_data/pembobotan_KriOp') ?>">Operator</a>
                                     </li>
-                                    <li class="submenu-item ">
-                                        <a href="component-badge.html">Kepala Divisi</a>
+                                    <li class="submenu-item<?= $this->uri->segment(3) == $title ? ' active' : '' ?>">
+                                        <a href="<?= base_url('admin/master_data/pembobotan_KriKepdis') ?>">Kepala Divisi</a>
                                     </li>
                                 </ul>
                             </li>
-                            <li class="submenu-item ">
+                            <li class="submenu-item<?= $this->uri->segment(3) == $title ? ' active' : '' ?>">
                             <li class="sidebar-item  has-sub">
                                 <a href="#" class='sidebar-link'>
                                     Subrange</a>
-                                <ul class="submenu ">
-                                    <li class="submenu-item ">
+                                <ul class="submenu<?= $this->uri->segment(3) == $title ? ' active' : '' ?>">
+                                    <li class="submenu-item<?= $this->uri->segment(3) == $title ? ' active' : '' ?>">
                                         <a href="<?= base_url('admin/master_data/subrange_KriOp') ?>">Operator</a>
                                     </li>
-                                    <li class="submenu-item ">
+                                    <li class="submenu-item<?= $this->uri->segment(3) == $title ? ' active' : '' ?>">
                                         <a href="component-badge.html">Kepala Divisi</a>
                                     </li>
                                 </ul>
