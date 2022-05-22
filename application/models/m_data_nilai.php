@@ -29,4 +29,18 @@ class M_data_nilai extends CI_Model
     $query = "SELECT * FROM tb_analisa_op ORDER BY tb_analisa_op.id_anop ASC";
     return $this->db->query($query);
   }
+
+  // 
+  public function showPenilaianOP()
+  {
+    $query = "SELECT *, SUM(productivity + komker + pelaksana5r + dokumentasi + pahamdanlaksanak3 + pahamsop + pahamtools + kehadiran + kedisiplinan + inisiatif) AS totalNilai FROM tb_penilaian ORDER BY tb_penilaian.id_penilaian ASC";
+    return $this->db->query($query);
+  }
+
+  // 
+  public function ajax_show_karyawan($nama_karyawan)
+  {
+    $query = "SELECT * FROM tb_karyawan WHERE tb_karyawan.nama_karyawan = '$nama_karyawan' ORDER BY tb_karyawan.id_jabatan ASC";
+    return $this->db->query($query)->row_array();
+  }
 }

@@ -7,7 +7,67 @@ class M_data_kuis extends CI_Model
     $query = "SELECT * FROM data_kuisioner WHERE status_kuis = 'Operator'";
     return $this->db->query($query)->result_array();
   }
+  public function showQuisionerKepalaDivisi()
+  {
+    $query = "SELECT * FROM data_kuisioner WHERE status_kuis = 'Kepala Divisi'";
+    return $this->db->query($query)->result_array();
+  }
+  public function showPrioritasProductivity()
+  {
+    $query = "SELECT id_submatrix_proc, prioritas FROM tb_submatriks_productivity";
+    return $this->db->query($query)->result_array();
+  }
+  public function showPrioritasKomKer()
+  {
+    $query = "SELECT id_submatrix_kdk, prioritas FROM tb_submatriks_komdanker";
+    return $this->db->query($query)->result_array();
+  }
+  public function showPrioritasPelaksana5r()
+  {
+    $query = "SELECT id_submatrix_p5r, prioritas FROM tb_submatriks_pelaksana5r";
+    return $this->db->query($query)->result_array();
+  }
+  public function showPrioritasDokumentasi()
+  {
+    $query = "SELECT id_submatrix_doc, prioritas FROM tb_submatriks_dokumentasi";
+    return $this->db->query($query)->result_array();
+  }
+  public function showPrioritasPahamdanLaksanaK3()
+  {
+    $query = "SELECT id_submatrix_plk3, prioritas FROM tb_submatriks_pahamdanlaksanak3";
+    return $this->db->query($query)->result_array();
+  }
+  public function showPrioritasPahamSOP()
+  {
+    $query = "SELECT id_submatrix_pss, prioritas FROM tb_submatriks_pahamsopspk";
+    return $this->db->query($query)->result_array();
+  }
+  public function showPrioritasPahamTools()
+  {
+    $query = "SELECT id_submatrix_ptls, prioritas FROM tb_submatriks_pahamtools";
+    return $this->db->query($query)->result_array();
+  }
+  public function showPrioritasKehadiran()
+  {
+    $query = "SELECT id_submatrix_hdr, prioritas FROM tb_submatriks_kehadiran";
+    return $this->db->query($query)->result_array();
+  }
+  public function showPrioritasDisiplin()
+  {
+    $query = "SELECT id_submatrix_dsp, prioritas FROM tb_submatriks_kedisiplinan";
+    return $this->db->query($query)->result_array();
+  }
+  public function showPrioritasInisiatif()
+  {
+    $query = "SELECT id_submatrix_inf, prioritas FROM tb_submatriks_inisiatif";
+    return $this->db->query($query)->result_array();
+  }
 
+  public function showPriorMatrixOP()
+  {
+    $query = "SELECT prioritas FROM tb_matriks_op";
+    return $this->db->query($query)->result_array();
+  }
 
 
 

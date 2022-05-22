@@ -1,5 +1,5 @@
 <div class="page-heading">
-    <h3>Sitem Penilaian Kinerja Operator</h3>
+    <h3>Sistem Penilaian Kinerja Operator</h3>
 </div>
 
 <div class="page-heading">
