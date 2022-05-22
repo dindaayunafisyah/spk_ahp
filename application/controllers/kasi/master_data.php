@@ -133,6 +133,8 @@ class master_data extends CI_Controller
             $q9 = doubleval($p9) * $dsp;
             $q10 = doubleval($p10) * $inf;
 
+            $total = $q1 + $q2 + $q3 + $q4 + $q5 + $q6 + $q7 + $q8 + $q9 + $q10;
+
 
             $data = [
                 'productivity' => $q1,
@@ -158,6 +160,8 @@ class master_data extends CI_Controller
                 'nama_karyawan' => $this->input->post('nama_karyawan'),
                 'id_divisi' => $this->input->post('id_divisi'),
                 'id_jabatan' => $this->input->post('id_jabatan'),
+                // 
+                'total' => $total
             ];
 
             // echo "<pre>";

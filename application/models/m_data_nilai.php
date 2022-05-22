@@ -33,7 +33,7 @@ class M_data_nilai extends CI_Model
   // 
   public function showPenilaianOP()
   {
-    $query = "SELECT *, SUM(productivity + komker + pelaksana5r + dokumentasi + pahamdanlaksanak3 + pahamsop + pahamtools + kehadiran + kedisiplinan + inisiatif) AS totalNilai FROM tb_penilaian ORDER BY tb_penilaian.id_penilaian ASC";
+    $query = "SELECT * FROM tb_penilaian ORDER BY tb_penilaian.id_penilaian ASC";
     return $this->db->query($query);
   }
 

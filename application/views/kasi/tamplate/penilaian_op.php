@@ -103,11 +103,11 @@
                                             <?= $dt['inisiatif']; ?>
                                         </td>
                                         <td>
-                                            <?= $dt['totalNilai'] * 1000; ?>
+                                            <?= $dt['total'] * 1000; ?>
                                         </td>
                                         <td>
                                             <?php
-                                            $nilai = $dt['totalNilai'] * 1000;
+                                            $nilai = $dt['total'] * 1000;
                                             if ($nilai < 200) {
                                                 echo "D";
                                             } elseif ($nilai >= 200 && $nilai < 300) {
@@ -121,7 +121,7 @@
                                         </td>
                                         <td>
                                             <?php
-                                            $nilai = $dt['totalNilai'] * 1000;
+                                            $nilai = $dt['total'] * 1000;
                                             if ($nilai < 200) {
                                                 echo "25% dari pembagaian omset per divisi";
                                             } elseif ($nilai >= 200 && $nilai < 300) {
