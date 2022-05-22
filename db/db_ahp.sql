@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 22 Bulan Mei 2022 pada 06.07
+-- Waktu pembuatan: 22 Bulan Mei 2022 pada 07.24
 -- Versi server: 10.4.11-MariaDB
 -- Versi PHP: 7.3.13
 
@@ -306,15 +306,17 @@ CREATE TABLE `tb_penilaian` (
   `pahamtools` double DEFAULT NULL,
   `kehadiran` double DEFAULT NULL,
   `kedisiplinan` double DEFAULT NULL,
-  `inisiatif` double DEFAULT NULL
+  `inisiatif` double DEFAULT NULL,
+  `total` double DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `tb_penilaian`
 --
 
-INSERT INTO `tb_penilaian` (`id_penilaian`, `id_jabatan`, `id_divisi`, `nama_karyawan`, `productivity`, `komker`, `pelaksana5r`, `dokumentasi`, `pahamdanlaksanak3`, `pahamsop`, `pahamtools`, `kehadiran`, `kedisiplinan`, `inisiatif`) VALUES
-(1, 'JB004', 'DV001', 'Indra Kesma', 0.087879158803558, 0.026619010646194, 0.040314424922164, 0.022579420576957, 0.0047444795832713, 0.007859509042202, 0.0062539958362214, 0.029169992422484, 0.017983892447284, 0.025284247963916);
+INSERT INTO `tb_penilaian` (`id_penilaian`, `id_jabatan`, `id_divisi`, `nama_karyawan`, `productivity`, `komker`, `pelaksana5r`, `dokumentasi`, `pahamdanlaksanak3`, `pahamsop`, `pahamtools`, `kehadiran`, `kedisiplinan`, `inisiatif`, `total`) VALUES
+(1, 'JB004', 'DV002', 'Kusuma Wijaya', 0.087879158803558, 0.026619010646194, 0.040314424922164, 0.022579420576957, 0.0047444795832713, 0.007859509042202, 0.020721195347374, 0.029169992422484, 0.017983892447284, 0.025284247963916, 0.2831553317554),
+(2, 'JB004', 'DV003', 'Wilda Minisiti', 0.17427559340857, 0.056391955379469, 0.040314424922164, 0.035155041577197, 0.018769956544747, 0.020534122694644, 0.020721195347374, 0.061316889998316, 0.071147293146991, 0.050974036820091, 0.54960050983957);
 
 -- --------------------------------------------------------
 
@@ -1063,7 +1065,7 @@ ALTER TABLE `tb_karyawan`
 -- AUTO_INCREMENT untuk tabel `tb_penilaian`
 --
 ALTER TABLE `tb_penilaian`
-  MODIFY `id_penilaian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_penilaian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_user`
