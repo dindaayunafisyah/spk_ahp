@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 20 Bulan Mei 2022 pada 12.47
+-- Waktu pembuatan: 22 Bulan Mei 2022 pada 06.07
 -- Versi server: 10.4.11-MariaDB
 -- Versi PHP: 7.3.13
 
@@ -25,47 +25,40 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `data_kuisioner_kasi`
+-- Struktur dari tabel `data_kuisioner`
 --
 
-CREATE TABLE `data_kuisioner_kasi` (
-  `id_kuis_kasi` varchar(10) NOT NULL,
-  `id_kriteria_kasi` varchar(10) NOT NULL,
-  `kuis_kasi` varchar(255) NOT NULL
+CREATE TABLE `data_kuisioner` (
+  `id_kuis` int(11) NOT NULL,
+  `idk_productivity` varchar(10) DEFAULT NULL,
+  `kuis_productivity` varchar(255) DEFAULT NULL,
+  `idk_komker` varchar(10) DEFAULT NULL,
+  `kuis_komker` varchar(256) DEFAULT NULL,
+  `idk_pelaksana5r` varchar(10) DEFAULT NULL,
+  `kuis_pelaksana5r` varchar(256) DEFAULT NULL,
+  `idk_dokumentasi` varchar(10) DEFAULT NULL,
+  `kuis_dokumentasi` varchar(256) DEFAULT NULL,
+  `idk_pahamdanlaksanak3` varchar(10) DEFAULT NULL,
+  `kuis_pahamdanlaksanak3` varchar(256) DEFAULT NULL,
+  `idk_pahamsop` varchar(10) DEFAULT NULL,
+  `kuis_pahamsop` varchar(256) DEFAULT NULL,
+  `idk_pahamtools` varchar(10) DEFAULT NULL,
+  `kuis_pahamtools` varchar(256) DEFAULT NULL,
+  `idk_kehadiran` varchar(10) DEFAULT NULL,
+  `kuis_kehadiran` varchar(256) DEFAULT NULL,
+  `idk_disiplin` varchar(10) DEFAULT NULL,
+  `kuis_disiplin` varchar(256) DEFAULT NULL,
+  `idk_inisiatif` varchar(10) DEFAULT NULL,
+  `kuis_inisiatif` varchar(256) DEFAULT NULL,
+  `status_kuis` varchar(56) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `data_kuisioner_kasi`
+-- Dumping data untuk tabel `data_kuisioner`
 --
 
-INSERT INTO `data_kuisioner_kasi` (`id_kuis_kasi`, `id_kriteria_kasi`, `kuis_kasi`) VALUES
-('KS001', 'KKS001', 'sadhusaydy');
-
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `data_kuisioner_op`
---
-
-CREATE TABLE `data_kuisioner_op` (
-  `id_kuis_op` varchar(10) NOT NULL,
-  `id_kriteria_op` varchar(10) NOT NULL,
-  `kuis_op` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data untuk tabel `data_kuisioner_op`
---
-
-INSERT INTO `data_kuisioner_op` (`id_kuis_op`, `id_kriteria_op`, `kuis_op`) VALUES
-('KP001', 'KOP001', 'dadada'),
-('KP002', 'KOP001', 'lilili'),
-('KP003', 'KOP001', 'nananna'),
-('KP004', 'KOP001', 'y'),
-('KP005', 'KOP001', 'dadada'),
-('KP006', 'KOP001', 'yayys'),
-('KP007', 'KOP001', 'ghgkjgk'),
-('KP008', 'KOP001', 'fjgfyfyy');
+INSERT INTO `data_kuisioner` (`id_kuis`, `idk_productivity`, `kuis_productivity`, `idk_komker`, `kuis_komker`, `idk_pelaksana5r`, `kuis_pelaksana5r`, `idk_dokumentasi`, `kuis_dokumentasi`, `idk_pahamdanlaksanak3`, `kuis_pahamdanlaksanak3`, `idk_pahamsop`, `kuis_pahamsop`, `idk_pahamtools`, `kuis_pahamtools`, `idk_kehadiran`, `kuis_kehadiran`, `idk_disiplin`, `kuis_disiplin`, `idk_inisiatif`, `kuis_inisiatif`, `status_kuis`) VALUES
+(1, 'KOP001', 'A1aaa', 'KOP002', 'B1', 'KOP003', 'C', 'KOP004', 'D', 'KOP005', 'E', 'KOP006', 'F', 'KOP007', 'G', 'KOP008', 'H', 'KOP009', 'I', 'KOP01', 'J', 'Operator');
 
 -- --------------------------------------------------------
 
@@ -292,6 +285,36 @@ INSERT INTO `tb_matriks_op` (`id_matop`, `productivity`, `kerjasamadankom`, `pel
 (8, 0.11854360711262, 0.27272727272727, 0.19834710743802, 0.21818181818182, 0.15151515151515, 0.16129032258065, 0.15384615384615, 0.16393442622951, 0.22641509433962, 0.20571428571429, 1.8705152396851, 0.18705152396851, 1.1410142962079),
 (9, 0.07112616426757, 0.045454545454545, 0.099173553719008, 0.10909090909091, 0.12121212121212, 0.12903225806452, 0.12307692307692, 0.054644808743169, 0.075471698113208, 0.13714285714286, 0.96542583888483, 0.096542583888483, 1.2791892365224),
 (10, 0.07112616426757, 0.045454545454545, 0.099173553719008, 0.16363636363636, 0.12121212121212, 0.12903225806452, 0.12307692307692, 0.054644808743169, 0.037735849056604, 0.068571428571429, 0.91366401580225, 0.091366401580225, 1.3324266897116);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `tb_penilaian`
+--
+
+CREATE TABLE `tb_penilaian` (
+  `id_penilaian` int(11) NOT NULL,
+  `id_jabatan` varchar(26) DEFAULT NULL,
+  `id_divisi` varchar(26) DEFAULT NULL,
+  `nama_karyawan` varchar(128) DEFAULT NULL,
+  `productivity` double DEFAULT NULL,
+  `komker` double DEFAULT NULL,
+  `pelaksana5r` double DEFAULT NULL,
+  `dokumentasi` double DEFAULT NULL,
+  `pahamdanlaksanak3` double DEFAULT NULL,
+  `pahamsop` double DEFAULT NULL,
+  `pahamtools` double DEFAULT NULL,
+  `kehadiran` double DEFAULT NULL,
+  `kedisiplinan` double DEFAULT NULL,
+  `inisiatif` double DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `tb_penilaian`
+--
+
+INSERT INTO `tb_penilaian` (`id_penilaian`, `id_jabatan`, `id_divisi`, `nama_karyawan`, `productivity`, `komker`, `pelaksana5r`, `dokumentasi`, `pahamdanlaksanak3`, `pahamsop`, `pahamtools`, `kehadiran`, `kedisiplinan`, `inisiatif`) VALUES
+(1, 'JB004', 'DV001', 'Indra Kesma', 0.087879158803558, 0.026619010646194, 0.040314424922164, 0.022579420576957, 0.0047444795832713, 0.007859509042202, 0.0062539958362214, 0.029169992422484, 0.017983892447284, 0.025284247963916);
 
 -- --------------------------------------------------------
 
@@ -832,18 +855,11 @@ INSERT INTO `tb_user` (`id_user`, `nama_user`, `username`, `password`, `level`, 
 --
 
 --
--- Indeks untuk tabel `data_kuisioner_kasi`
+-- Indeks untuk tabel `data_kuisioner`
 --
-ALTER TABLE `data_kuisioner_kasi`
-  ADD PRIMARY KEY (`id_kuis_kasi`),
-  ADD KEY `id_kriteria_kasi` (`id_kriteria_kasi`);
-
---
--- Indeks untuk tabel `data_kuisioner_op`
---
-ALTER TABLE `data_kuisioner_op`
-  ADD PRIMARY KEY (`id_kuis_op`),
-  ADD KEY `id_kriteria_op` (`id_kriteria_op`);
+ALTER TABLE `data_kuisioner`
+  ADD PRIMARY KEY (`id_kuis`),
+  ADD KEY `id_kriteria_op` (`idk_productivity`);
 
 --
 -- Indeks untuk tabel `nilai_banding`
@@ -894,6 +910,12 @@ ALTER TABLE `tb_kriteria_operator`
 --
 ALTER TABLE `tb_matriks_op`
   ADD PRIMARY KEY (`id_matop`);
+
+--
+-- Indeks untuk tabel `tb_penilaian`
+--
+ALTER TABLE `tb_penilaian`
+  ADD PRIMARY KEY (`id_penilaian`);
 
 --
 -- Indeks untuk tabel `tb_submatriks_dokumentasi`
@@ -1026,10 +1048,22 @@ ALTER TABLE `tb_user`
 --
 
 --
+-- AUTO_INCREMENT untuk tabel `data_kuisioner`
+--
+ALTER TABLE `data_kuisioner`
+  MODIFY `id_kuis` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT untuk tabel `tb_karyawan`
 --
 ALTER TABLE `tb_karyawan`
   MODIFY `id_karyawan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT untuk tabel `tb_penilaian`
+--
+ALTER TABLE `tb_penilaian`
+  MODIFY `id_penilaian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_user`
@@ -1040,18 +1074,6 @@ ALTER TABLE `tb_user`
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
 --
-
---
--- Ketidakleluasaan untuk tabel `data_kuisioner_kasi`
---
-ALTER TABLE `data_kuisioner_kasi`
-  ADD CONSTRAINT `data_kuisioner_kasi_ibfk_1` FOREIGN KEY (`id_kriteria_kasi`) REFERENCES `tb_kriteria_kasi` (`id_kriteria_kasi`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Ketidakleluasaan untuk tabel `data_kuisioner_op`
---
-ALTER TABLE `data_kuisioner_op`
-  ADD CONSTRAINT `data_kuisioner_op_ibfk_1` FOREIGN KEY (`id_kriteria_op`) REFERENCES `tb_kriteria_operator` (`id_kriteria_op`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ketidakleluasaan untuk tabel `tb_karyawan`
