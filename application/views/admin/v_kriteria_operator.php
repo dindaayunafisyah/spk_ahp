@@ -6,7 +6,7 @@
   <!-- DataTales Example -->
   <div class="card shadow mb-4">
     <div class="card-header py-3">
-      <h6 class="m-0 font-weight-bold text-primary">Tabel Data Kriteria untuk Operator</h6>
+      <h6 class="m-0 font-weight-bold text-primary">Tabel Data <?= $title; ?></h6>
     </div>
     <div class="card-content collapse show">
       <div class="card-body">

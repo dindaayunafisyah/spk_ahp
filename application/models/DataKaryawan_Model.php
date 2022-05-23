@@ -16,22 +16,71 @@ class DataKaryawan_Model extends CI_Model
    }
 
 
-   //Data analisa OP
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   // ------------------------------------------------------- DATA KRITERIA
+   //Data KRITERIA OP
    public function showAnalyzeOP()
    {
-      $query = "SELECT * FROM tb_analisa_op";
+      $query = "SELECT * FROM tb_analisa_op 
+                  WHERE tb_analisa_op.id_anop >= 1 AND tb_analisa_op.id_anop <= 10 
+                     ORDER BY tb_analisa_op.id_anop LIMIT 10";
       return $this->db->query($query)->result_array();
    }
 
+   //Data KRITERIA KASI
+   public function showAnalyzeKasi()
+   {
+      $query = "SELECT * FROM tb_analisa_op 
+                  WHERE tb_analisa_op.id_anop >= 11 AND tb_analisa_op.id_anop <= 20
+                     ORDER BY tb_analisa_op.id_anop LIMIT 10";
+      return $this->db->query($query)->result_array();
+   }
+
+   // ------------------------------------------------------- DATA KRITERIA
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   // ------------------------------------ Package1
    //Data TB Kriteria OP
    public function sumAnalyzeOP()
    {
-      $query = "SELECT SUM(productivity) AS sumProc, SUM(kerjasamadankom) AS sumKdk, SUM(pelaksana5r) AS sump5r, SUM(dokumentasi) AS sumDoc, SUM(paham_laksana_k3) AS sumplk3, SUM(paham_sop) AS sumPsop, SUM(paham_tools) AS sumPtls, SUM(hadir) AS sumHdr, SUM(disiplin) AS sumDsp, SUM(inisiatif) AS sumInf FROM tb_analisa_op";
+      $query = "SELECT SUM(productivity) AS sumProc, SUM(kerjasamadankom) AS sumKdk, SUM(pelaksana5r) AS sump5r, SUM(dokumentasi) AS sumDoc, SUM(paham_laksana_k3) AS sumplk3, SUM(paham_sop) AS sumPsop, SUM(paham_tools) AS sumPtls, SUM(hadir) AS sumHdr, SUM(disiplin) AS sumDsp, SUM(inisiatif) AS sumInf FROM tb_analisa_op WHERE tb_analisa_op.id_anop >= 1 AND tb_analisa_op.id_anop <= 10 
+      ORDER BY tb_analisa_op.id_anop LIMIT 10";
       return $this->db->query($query)->row_array();
    }
    public function sumAnalyzeOPResArray()
    {
-      $query = "SELECT SUM(productivity) AS '0', SUM(kerjasamadankom) AS '1', SUM(pelaksana5r) AS '2', SUM(dokumentasi) AS '3', SUM(paham_laksana_k3) AS '4', SUM(paham_sop) AS '5', SUM(paham_tools) AS '6', SUM(hadir) AS '7', SUM(disiplin) AS '8', SUM(inisiatif) AS '9' FROM tb_analisa_op";
+      $query = "SELECT SUM(productivity) AS '0', SUM(kerjasamadankom) AS '1', SUM(pelaksana5r) AS '2', SUM(dokumentasi) AS '3', SUM(paham_laksana_k3) AS '4', SUM(paham_sop) AS '5', SUM(paham_tools) AS '6', SUM(hadir) AS '7', SUM(disiplin) AS '8', SUM(inisiatif) AS '9' FROM tb_analisa_op WHERE tb_analisa_op.id_anop >= 1 AND tb_analisa_op.id_anop <= 10 
+      ORDER BY tb_analisa_op.id_anop LIMIT 10";
       return $this->db->query($query)->row_array();
    }
 
@@ -42,18 +91,84 @@ class DataKaryawan_Model extends CI_Model
       return $this->db->query($query)->row_array();
    }
 
-   //Total Matrik Nilai Kriteria
-   public function showMatrixOp()
+
+
+
+
+   // ===========================<>===========================
+
+
+
+
+
+   //Data TB Kriteria OP
+   public function sumAnalyzeKasi()
    {
-      $query = "SELECT * FROM tb_matriks_op";
-      return $this->db->query($query)->result_array();
+      $query = "SELECT SUM(productivity) AS sumProc, SUM(kerjasamadankom) AS sumKdk, SUM(pelaksana5r) AS sump5r, SUM(dokumentasi) AS sumDoc, SUM(paham_laksana_k3) AS sumplk3, SUM(paham_sop) AS sumPsop, SUM(paham_tools) AS sumPtls, SUM(hadir) AS sumHdr, SUM(disiplin) AS sumDsp, SUM(inisiatif) AS sumInf FROM tb_analisa_op WHERE tb_analisa_op.id_anop >= 11 AND tb_analisa_op.id_anop <= 20 
+      ORDER BY tb_analisa_op.id_anop LIMIT 10";
+      return $this->db->query($query)->row_array();
    }
-   public function totalNilaiMatriks()
+   public function sumAnalyzeKasiResArray()
    {
-      $query = "SELECT SUM(productivity) AS sumProc, SUM(kerjasamadankom) AS sumKdk, SUM(pelaksana5r) AS sump5r, SUM(dokumentasi) AS sumDoc, SUM(paham_laksana_k3) AS sumplk3, SUM(paham_sop) AS sumPsop, SUM(paham_tools) AS sumPtls, SUM(hadir) AS sumHdr, SUM(disiplin) AS sumDsp, SUM(inisiatif) AS sumInf, SUM(jumlah) AS sumJum, SUM(prioritas) AS sumPrior, SUM(eigen_value) AS sumEig FROM tb_matriks_op";
+      $query = "SELECT SUM(productivity) AS '0', SUM(kerjasamadankom) AS '1', SUM(pelaksana5r) AS '2', SUM(dokumentasi) AS '3', SUM(paham_laksana_k3) AS '4', SUM(paham_sop) AS '5', SUM(paham_tools) AS '6', SUM(hadir) AS '7', SUM(disiplin) AS '8', SUM(inisiatif) AS '9' FROM tb_analisa_op WHERE tb_analisa_op.id_anop >= 11 AND tb_analisa_op.id_anop <= 20 
+      ORDER BY tb_analisa_op.id_anop LIMIT 10";
       return $this->db->query($query)->row_array();
    }
 
+   //Data Count Kriteria OP
+   public function countKritKasi()
+   {
+      $query = "SELECT COUNT(tb_kriteria_kasi.nama_kriteria_kasi) AS jumKritKasi FROM tb_kriteria_kasi";
+      return $this->db->query($query)->row_array();
+   }
+   // ------------------------------------ Package1
+
+
+
+
+
+
+
+
+   // ------------------------------------------------------- DATA KRITERIA MATRIX
+   //Total Matrik Nilai Kriteria
+   public function showMatrixOp()
+   {
+      $query = "SELECT * FROM tb_matriks_op WHERE tb_matriks_op.id_matop >= 1 AND tb_matriks_op.id_matop <= 10 
+      ORDER BY tb_matriks_op.id_matop LIMIT 10";
+      return $this->db->query($query)->result_array();
+   }
+   //Total Matrik Nilai Kriteria
+   public function showMatrixKasi()
+   {
+      $query = "SELECT * FROM tb_matriks_op WHERE tb_matriks_op.id_matop >= 11 AND tb_matriks_op.id_matop <= 20 
+      ORDER BY tb_matriks_op.id_matop LIMIT 10";
+      return $this->db->query($query)->result_array();
+   }
+   // ------------------------------------------------------- DATA KRITERIA MATRIX
+
+
+
+
+
+
+
+   // ------------------------------------------------------- Total Matriks
+   public function totalNilaiMatriks()
+   {
+      $query = "SELECT SUM(productivity) AS sumProc, SUM(kerjasamadankom) AS sumKdk, SUM(pelaksana5r) AS sump5r, SUM(dokumentasi) AS sumDoc, SUM(paham_laksana_k3) AS sumplk3, SUM(paham_sop) AS sumPsop, SUM(paham_tools) AS sumPtls, SUM(hadir) AS sumHdr, SUM(disiplin) AS sumDsp, SUM(inisiatif) AS sumInf, SUM(jumlah) AS sumJum, SUM(prioritas) AS sumPrior, SUM(eigen_value) AS sumEig FROM tb_matriks_op 
+      WHERE tb_matriks_op.id_matop >= 1 AND tb_matriks_op.id_matop <= 10 
+      ORDER BY tb_matriks_op.id_matop LIMIT 10";
+      return $this->db->query($query)->row_array();
+   }
+   public function totalNilaiMatriksKasi()
+   {
+      $query = "SELECT SUM(productivity) AS sumProc, SUM(kerjasamadankom) AS sumKdk, SUM(pelaksana5r) AS sump5r, SUM(dokumentasi) AS sumDoc, SUM(paham_laksana_k3) AS sumplk3, SUM(paham_sop) AS sumPsop, SUM(paham_tools) AS sumPtls, SUM(hadir) AS sumHdr, SUM(disiplin) AS sumDsp, SUM(inisiatif) AS sumInf, SUM(jumlah) AS sumJum, SUM(prioritas) AS sumPrior, SUM(eigen_value) AS sumEig FROM tb_matriks_op 
+      WHERE tb_matriks_op.id_matop >= 11 AND tb_matriks_op.id_matop <= 20 
+      ORDER BY tb_matriks_op.id_matop LIMIT 10";
+      return $this->db->query($query)->row_array();
+   }
+   // ------------------------------------------------------- Total Matriks
 
 
 

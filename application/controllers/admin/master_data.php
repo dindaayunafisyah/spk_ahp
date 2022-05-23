@@ -521,7 +521,7 @@ class Master_data extends CI_Controller
 
     public function update_kriteria_op()
     {
-        $data['title'] = 'Data Kriteria';
+        $data['title'] = 'update_kriteria_op';
         // ini adalah variabel array $data yang memiliki index user, berguna untuk menyimpan data 
         $data['kriteria_op'] = $this->m_data_kriteria->tampil_kriteria_op()->result();
         $data['data_nilban'] = $this->m_data_nilai->tampil_nilai()->result_array();
@@ -563,6 +563,7 @@ class Master_data extends CI_Controller
 
     public function tambah_kriteria_op()
     {
+
         $idDivisiInt = 0;
         // Membuat fungsi untuk melakukan penambahan id produk secara otomatis
         // Mendapatkan jumlah produk yang ada di database
@@ -600,6 +601,7 @@ class Master_data extends CI_Controller
             'id_kriteria_op' =>  $id_kriteria_op
         );
         $data['data_nilban'] = $this->m_data_nilai->tampil_nilai()->result_array();
+        $data['title'] = 'tambah_kriteria_op';
         $this->load->view('admin/tamplate/header', $data);
         $this->load->view('admin/tamplate/sidebar', $data);
         $this->load->view('admin/v_tambah_kriteria_op', $data);
@@ -687,6 +689,11 @@ class Master_data extends CI_Controller
     }
 
     //---------------------- End Pembobotan Kriteria Operator ----------------------
+
+
+
+
+
 
     public function update_analisa_perbandingan()
     {
@@ -798,7 +805,6 @@ class Master_data extends CI_Controller
     }
 
 
-    //---------------------- End Analisa Perbandingan ----------------------
 
 
 
@@ -809,20 +815,19 @@ class Master_data extends CI_Controller
 
 
 
-
-    //---------------------- Pembobotan Kriteria Operator ----------------------
+    //---------------------- Pembobotan Kriteria KASI ----------------------
     public function pembobotan_KriKepdis()
     {
         $data['title'] = 'pembobotan_KriKepdis';
         // ini adalah variabel array $data yang memiliki index user, berguna untuk menyimpan data 
 
-        $data['data_anop'] = $this->DataKaryawan_Model->showAnalyzeOP();
-        $data['data_sum'] = $this->DataKaryawan_Model->sumAnalyzeOP();
+        $data['data_anop'] = $this->DataKaryawan_Model->showAnalyzeKasi();
+        $data['data_sum'] = $this->DataKaryawan_Model->sumAnalyzeKasi();
         $data['data_nilban'] = $this->m_data_nilai->tampil_nilai()->result_array();
         $data['data_nilban1'] = $this->m_data_nilai->tampil_nilai_awal()->result_array();
-        $data['data_matrix'] = $this->DataKaryawan_Model->showMatrixOp();
-        $data['total_matrix'] = $this->DataKaryawan_Model->totalNilaiMatriks();
-        $data['data_countop'] = $this->DataKaryawan_Model->countKritOp();
+        $data['data_matrix'] = $this->DataKaryawan_Model->showMatrixKasi();
+        $data['total_matrix'] = $this->DataKaryawan_Model->totalNilaiMatriksKasi();
+        $data['data_countop'] = $this->DataKaryawan_Model->countKritKasi();
         $data['ri'] = 1.49;
         // ini adalah baris kode yang berfungsi menampilkan v_tampil dan membawa data dari tabel user
 
@@ -835,11 +840,132 @@ class Master_data extends CI_Controller
 
         $this->load->view('admin/tamplate/header', $data);
         $this->load->view('admin/tamplate/sidebar', $data);
-        $this->load->view('admin/v_pembobotan_kriop', $data);
+        $this->load->view('admin/v_pembobotan_krikepdis', $data);
         $this->load->view('admin/tamplate/footer', $data);
     }
 
-    //---------------------- End Pembobotan Kriteria Operator ----------------------
+
+
+
+
+    public function update_analisa_kasi()
+    {
+
+
+        $pro = $this->input->post('productivity[]');
+        $kdk = $this->input->post('kerjasamadankom[]');
+        $p5r = $this->input->post('pelaksana5r[]');
+        $doc = $this->input->post('dokumentasi[]');
+        $ppk3 = $this->input->post('paham_laksana_k3[]');
+        $psop = $this->input->post('paham_sop[]');
+        $ptls = $this->input->post('paham_tools[]');
+        $hdr = $this->input->post('hadir[]');
+        $dsp = $this->input->post('disiplin[]');
+        $inf = $this->input->post('inisiatif[]');
+        $data = array();
+        for ($x = 0; $x < sizeof($pro); $x++) {
+            $data[] = [
+                'productivity' => $pro[$x],
+                'kerjasamadankom' => $kdk[$x],
+                'pelaksana5r' => $p5r[$x],
+                'dokumentasi' => $doc[$x],
+                'paham_laksana_k3' => $ppk3[$x],
+                'paham_sop' => $psop[$x],
+                'paham_tools' => $ptls[$x],
+                'hadir' => $hdr[$x],
+                'disiplin' => $dsp[$x],
+                'inisiatif' => $inf[$x],
+                'id_anop' => $x + 1 + sizeof($pro),
+            ];
+        }
+        // echo "<pre>";
+        // print_r($query);
+        // die;
+        // echo "</pre>";
+        $query = $this->db->update_batch('tb_analisa_op', $data, 'id_anop');
+        //
+        if ($query) {
+            $data['data_sum'] = $this->DataKaryawan_Model->sumAnalyzeKasi();
+            $proc = $data['data_sum']['sumProc'];
+            $kedako = $data['data_sum']['sumKdk'];
+            $pel5r = $data['data_sum']['sump5r'];
+            $docs = $data['data_sum']['sumDoc'];
+            $plk3 = $data['data_sum']['sumplk3'];
+            $pasop = $data['data_sum']['sumPsop'];
+            $patols = $data['data_sum']['sumPtls'];
+            $hadr = $data['data_sum']['sumHdr'];
+            $displ = $data['data_sum']['sumDsp'];
+            $inis = $data['data_sum']['sumInf'];
+            $data['data_countop'] = $this->DataKaryawan_Model->countKritKasi();
+            $countKrit = $data['data_countop']['jumKritKasi'];
+            $data['data_sum1'] = $this->DataKaryawan_Model->sumAnalyzeKasiResArray();
+            $sumEigen = $data['data_sum1'];
+
+            // print_r($countKrit);
+            // die;
+
+            $data = array();
+            for ($x = 0; $x < sizeof($pro); $x++) {
+                $data1[] = [
+                    'productivity' => $pro[$x] / $proc,
+                    'kerjasamadankom' => $kdk[$x] / $kedako,
+                    'pelaksana5r' => $p5r[$x] / $pel5r,
+                    'dokumentasi' => $doc[$x] / $docs,
+                    'paham_laksana_k3' => $ppk3[$x] / $plk3,
+                    'paham_sop' => $psop[$x] / $pasop,
+                    'paham_tools' => $ptls[$x] / $patols,
+                    'hadir' => $hdr[$x] / $hadr,
+                    'disiplin' => $dsp[$x] / $displ,
+                    'inisiatif' => $inf[$x] / $inis,
+                    'jumlah' => (($pro[$x] / $proc) + ($kdk[$x] / $kedako) + ($p5r[$x] / $pel5r) + ($doc[$x] / $docs) + ($ppk3[$x] / $plk3) + ($psop[$x] / $pasop) + ($ptls[$x] / $patols) + ($hdr[$x] / $hadr) + ($dsp[$x] / $displ) + ($inf[$x] / $inis)),
+
+                    'prioritas' => (($pro[$x] / $proc) + ($kdk[$x] / $kedako) + ($p5r[$x] / $pel5r) + ($doc[$x] / $docs) + ($ppk3[$x] / $plk3) + ($psop[$x] / $pasop) + ($ptls[$x] / $patols) + ($hdr[$x] / $hadr) + ($dsp[$x] / $displ) + ($inf[$x] / $inis)) / $countKrit,
+
+                    'eigen_value' => ((($pro[$x] / $proc) + ($kdk[$x] / $kedako) + ($p5r[$x] / $pel5r) + ($doc[$x] / $docs) + ($ppk3[$x] / $plk3) + ($psop[$x] / $pasop) + ($ptls[$x] / $patols) + ($hdr[$x] / $hadr) + ($dsp[$x] / $displ) + ($inf[$x] / $inis)) / $countKrit) * $sumEigen[$x],
+
+                    'id_matop' => $x + 1 + sizeof($pro),
+                ];
+            }
+            // echo "<pre>";
+            // print_r($data1);
+            // die;
+            // echo "</pre>";
+            $query1 = $this->db->update_batch('tb_matriks_op', $data1, 'id_matop');
+
+            if ($query1) {
+                $this->session->set_flashdata(
+                    'message',
+                    '<div class="alert alert-success success-dismissible fade show" role="alert">
+                        Sukses dianalisa
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>'
+                );
+                redirect('admin/master_data/pembobotan_KriKepdis');
+            } else {
+                $this->session->set_flashdata(
+                    'message',
+                    '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        Gagal dianalisa
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>'
+                );
+                redirect('admin/master_data/pembobotan_KriKepdis');
+            }
+        } else {
+            $this->session->set_flashdata(
+                'message',
+                '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    Gagal dianalisa tahap nilai
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>'
+            );
+            redirect('admin/master_data/pembobotan_KriKepdis');
+        }
+    }
+
+    //---------------------- End Pembobotan Kriteria KASI ----------------------
+
+    //---------------------- End Analisa Perbandingan ----------------------
 
 
 
@@ -1881,6 +2007,7 @@ class Master_data extends CI_Controller
 
     public function tambah_kriteria_kasi()
     {
+
         $idDivisiInt = 0;
         // Membuat fungsi untuk melakukan penambahan id produk secara otomatis
         // Mendapatkan jumlah produk yang ada di database
@@ -1917,6 +2044,7 @@ class Master_data extends CI_Controller
         $data = array(
             'id_kriteria_kasi' =>  $id_kriteria_kasi
         );
+        $data['title'] = 'tambah_kriteria_kasi';
         $this->load->view('admin/tamplate/header', $data);
         $this->load->view('admin/tamplate/sidebar', $data);
         $this->load->view('admin/v_tambah_kriteria_kasi', $data);
