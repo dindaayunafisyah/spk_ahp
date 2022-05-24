@@ -126,7 +126,7 @@
                                         <a href="<?= base_url('admin/master_data/subrange_KriOp') ?>">Operator</a>
                                     </li>
                                     <li class="submenu-item<?= $this->uri->segment(3) == $title ? ' active' : '' ?>">
-                                        <a href="component-badge.html">Kepala Divisi</a>
+                                        <a href="<?= base_url('admin/master_data/subrange_KriKasi') ?>">Kepala Divisi</a>
                                     </li>
                                 </ul>
                             </li>

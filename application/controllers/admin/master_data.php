@@ -1991,6 +1991,190 @@ class Master_data extends CI_Controller
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //---------------------- Subrange Kriteria Kasi ----------------------
+    public function subrange_KriKasi()
+    {
+        $data['title'] = 'Subrange Kriteria';
+        $data['title1'] = 'Productivity';
+        $data['title2'] = 'Leadership';
+        $data['title3'] = 'Pelaksanaan 5 R';
+        $data['title4'] = 'Dokumentasi';
+        $data['title5'] = 'Pemahaman dan Pelaksanaan K3';
+        $data['title6'] = 'Pemahaman SOP dan SPK';
+        $data['title7'] = 'Kemampuan pemecahan masalah';
+        $data['title8'] = 'Kehadiran';
+        $data['title9'] = 'Kedisiplinan';
+        $data['title10'] = 'Inisiatif';
+
+
+        //Productiviity
+        $data['subrange_product'] = $this->DataKaryawan_Model->showSubrangeProductivity();
+        $data['submatrix_product'] = $this->DataKaryawan_Model->showSubmatrixProductivity();
+        $data['count_subproduct'] = $this->DataKaryawan_Model->countSubrangeProductivity();
+        $data['sum_subproduct'] = $this->DataKaryawan_Model->sumSubrangeProductivity();
+        $data['sum_submatrixproduct'] = $this->DataKaryawan_Model->sumSubmatrixProductivity();
+
+
+        //Kerjasama dan Komunikasi
+        $data['subrange_komdanker'] = $this->DataKaryawan_Model->showSubrangeKomdanKer();
+        $data['submatrix_komdanker'] = $this->DataKaryawan_Model->showSubmatrixKomdanKer();
+        $data['count_subkomdanker'] = $this->DataKaryawan_Model->countSubrangeKomdanKer();
+        $data['sum_subkomdanker'] = $this->DataKaryawan_Model->sumSubrangeKomdanKer();
+        $data['sum_submatrixkomdanker'] = $this->DataKaryawan_Model->sumSubmatrixKomdanKer();
+
+
+        //Pelaksanaan 5 R
+        $data['subrange_pelaksana5r'] = $this->DataKaryawan_Model->showSubrangePelaksana5R();
+        $data['submatrix_pelaksana5r'] = $this->DataKaryawan_Model->showSubmatrixPelaksana5R();
+        $data['count_subpelaksana5r'] = $this->DataKaryawan_Model->countSubrangePelaksana5R();
+        $data['sum_subpelaksana5r'] = $this->DataKaryawan_Model->sumSubrangePelaksana5R();
+        $data['sum_submatrixpelaksana5r'] = $this->DataKaryawan_Model->sumSubmatrixPelaksana5R();
+
+
+        //Dokumentasi
+        $data['subrange_dokumentasi'] = $this->DataKaryawan_Model->showSubrangeDokumentasi();
+        $data['submatrix_dokumentasi'] = $this->DataKaryawan_Model->showSubmatrixDokumentasi();
+        $data['count_subdokumentasi'] = $this->DataKaryawan_Model->countSubrangeDokumentasi();
+        $data['sum_subdokumentasi'] = $this->DataKaryawan_Model->sumSubrangeDokumentasi();
+        $data['sum_submatrixdokumentasi'] = $this->DataKaryawan_Model->sumSubmatrixDokumentasi();
+
+
+        //Pemahaman dan Pelaksanaan K3
+        $data['subrange_pahamdanlaksanak3'] = $this->DataKaryawan_Model->showSubrangePahamdanLaksanaK3();
+        $data['submatrix_pahamdanlaksanak3'] = $this->DataKaryawan_Model->showSubmatrixPahamdanLaksanaK3();
+        $data['count_subpahamdanlaksanak3'] = $this->DataKaryawan_Model->countSubrangePahamdanLaksanaK3();
+        $data['sum_subpahamdanlaksanak3'] = $this->DataKaryawan_Model->sumSubrangePahamdanLaksanaK3();
+        $data['sum_submatrixpahamdanlaksanak3'] = $this->DataKaryawan_Model->sumSubmatrixPahamdanLaksanaK3();
+
+
+        //Pemahaman SOP dan SPK
+        $data['subrange_pahamsopspk'] = $this->DataKaryawan_Model->showSubrangePahamSOPSPK();
+        $data['submatrix_pahamsopspk'] = $this->DataKaryawan_Model->showSubmatrixPahamSOPSPK();
+        $data['count_subpahamsopspk'] = $this->DataKaryawan_Model->countSubrangePahamSOPSPK();
+        $data['sum_subpahamsopspk'] = $this->DataKaryawan_Model->sumSubrangePahamSOPSPK();
+        $data['sum_submatrixpahamsopspk'] = $this->DataKaryawan_Model->sumSubmatrixPahamSOPSPK();
+
+
+        //Pemahaman Tools
+        $data['subrange_pahamtools'] = $this->DataKaryawan_Model->showSubrangePahamTools();
+        $data['submatrix_pahamtools'] = $this->DataKaryawan_Model->showSubmatrixPahamTools();
+        $data['count_subpahamtools'] = $this->DataKaryawan_Model->countSubrangePahamTools();
+        $data['sum_subpahamtools'] = $this->DataKaryawan_Model->sumSubrangePahamTools();
+        $data['sum_submatrixpahamtools'] = $this->DataKaryawan_Model->sumSubmatrixPahamTools();
+
+
+        //Kehadiran
+        $data['subrange_kehadiran'] = $this->DataKaryawan_Model->showSubrangeKehadiran();
+        $data['submatrix_kehadiran'] = $this->DataKaryawan_Model->showSubmatrixKehadiran();
+        $data['count_subkehadiran'] = $this->DataKaryawan_Model->countSubrangeKehadiran();
+        $data['sum_subkehadiran'] = $this->DataKaryawan_Model->sumSubrangeKehadiran();
+        $data['sum_submatrixkehadiran'] = $this->DataKaryawan_Model->sumSubmatrixKehadiran();
+
+
+        //Kedisiplinan
+        $data['subrange_kedisiplinan'] = $this->DataKaryawan_Model->showSubrangeKedisiplinan();
+        $data['submatrix_kedisiplinan'] = $this->DataKaryawan_Model->showSubmatrixKedisiplinan();
+        $data['count_subkedisiplinan'] = $this->DataKaryawan_Model->countSubrangeKedisiplinan();
+        $data['sum_subkedisiplinan'] = $this->DataKaryawan_Model->sumSubrangeKedisiplinan();
+        $data['sum_submatrixkedisiplinan'] = $this->DataKaryawan_Model->sumSubmatrixKedisiplinan();
+
+
+        //Inisiatif
+        $data['subrange_inisiatif'] = $this->DataKaryawan_Model->showSubrangeInisiatif();
+        $data['submatrix_inisiatif'] = $this->DataKaryawan_Model->showSubmatrixInisiatif();
+        $data['count_subinisiatif'] = $this->DataKaryawan_Model->countSubrangeInisiatif();
+        $data['sum_subinisiatif'] = $this->DataKaryawan_Model->sumSubrangeInisiatif();
+        $data['sum_submatrixinisiatif'] = $this->DataKaryawan_Model->sumSubmatrixInisiatif();
+
+
+        // 
+        $data['data_nilban'] = $this->m_data_nilai->tampil_nilai()->result_array();
+        $data['data_nilban1'] = $this->m_data_nilai->tampil_nilai_awal()->result_array();
+        // 
+        $data['ri'] = 0.90;
+        //
+        $data['ri3'] = 0.58;
+        //
+        $data['ri8'] = 1.41;
+
+        $data['title'] = 'subrange_KriKasi';
+        $this->load->view('admin/tamplate/header', $data);
+        $this->load->view('admin/tamplate/sidebar', $data);
+        $this->load->view('admin/v_subrange_op', $data);
+        $this->load->view('admin/tamplate/footer', $data);
+    }
+    //---------------------- End Subrange Kriteria Kasi ----------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     //
 
     public function tampil_kriteria_kasi()
