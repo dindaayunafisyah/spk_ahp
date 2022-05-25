@@ -176,37 +176,108 @@ class DataKaryawan_Model extends CI_Model
 
 
    //Subrange Kriteria
-   // ------------- Productivity ------------- //
+   // ------------ || ------------
+   // ------------- Productivity OPERATOR ------------- //
    public function showSubrangeProductivity()
    {
-      $query = "SELECT * FROM tb_subrange_productivity";
+      $query = "SELECT * FROM tb_subrange_productivity 
+                  WHERE tb_subrange_productivity.id_subrange_proc >= 1 AND tb_subrange_productivity.id_subrange_proc <= 4 
+                     ORDER BY tb_subrange_productivity.id_subrange_proc LIMIT 4 ";
       return $this->db->query($query)->result_array();
    }
    public function showSubmatrixProductivity()
    {
-      $query = "SELECT * FROM tb_submatriks_productivity";
+      $query = "SELECT * FROM tb_submatriks_productivity
+                  WHERE tb_submatriks_productivity.id_submatrix_proc >= 1 AND tb_submatriks_productivity.id_submatrix_proc <= 4 
+                     ORDER BY tb_submatriks_productivity.id_submatrix_proc LIMIT 4";
       return $this->db->query($query)->result_array();
    }
    public function sumSubrangeProductivity()
    {
-      $query = "SELECT SUM(pekerjaan_90) AS sum90, SUM(pekerjaan_80_90) AS sum8090, SUM(pekerjaan_60_79) AS sum6079, SUM(pekerjaan_59) AS sum59 FROM tb_subrange_productivity";
+      $query = "SELECT SUM(pekerjaan_90) AS sum90, SUM(pekerjaan_80_90) AS sum8090, SUM(pekerjaan_60_79) AS sum6079, SUM(pekerjaan_59) AS sum59 FROM tb_subrange_productivity
+                  WHERE tb_subrange_productivity.id_subrange_proc >= 1 AND tb_subrange_productivity.id_subrange_proc <= 4 
+                     ORDER BY tb_subrange_productivity.id_subrange_proc LIMIT 4";
       return $this->db->query($query)->row_array();
    }
    public function sumSubmatrixProductivity()
    {
-      $query = "SELECT SUM(pekerjaan_90) AS sum90, SUM(pekerjaan_80_90) AS sum8090, SUM(pekerjaan_60_79) AS sum6079, SUM(pekerjaan_59) AS sum59, SUM(jumlah) AS submtxJum, SUM(prioritas) AS submtxPrior, SUM(eigen_value) AS submtxEig FROM tb_submatriks_productivity";
+      $query = "SELECT SUM(pekerjaan_90) AS sum90, 
+                  SUM(pekerjaan_80_90) AS sum8090, 
+                  SUM(pekerjaan_60_79) AS sum6079, 
+                  SUM(pekerjaan_59) AS sum59, 
+                  SUM(jumlah) AS submtxJum, 
+                  SUM(prioritas) AS submtxPrior, 
+                  SUM(eigen_value) AS submtxEig FROM tb_submatriks_productivity
+                     WHERE tb_submatriks_productivity.id_submatrix_proc >= 1 AND tb_submatriks_productivity.id_submatrix_proc <= 4 
+                        ORDER BY tb_submatriks_productivity.id_submatrix_proc LIMIT 4";
       return $this->db->query($query)->row_array();
    }
    public function sumSubrangeProductivityOPResArray()
    {
-      $query = "SELECT SUM(pekerjaan_90) AS '0', SUM(pekerjaan_80_90) AS '1', SUM(pekerjaan_60_79) AS '2', SUM(pekerjaan_59) AS '3' FROM tb_subrange_productivity";
+      $query = "SELECT SUM(pekerjaan_90) AS '0', SUM(pekerjaan_80_90) AS '1', SUM(pekerjaan_60_79) AS '2', SUM(pekerjaan_59) AS '3' FROM tb_subrange_productivity
+                  WHERE tb_subrange_productivity.id_subrange_proc >= 1 AND tb_subrange_productivity.id_subrange_proc <= 4 
+                     ORDER BY tb_subrange_productivity.id_subrange_proc LIMIT 4";
       return $this->db->query($query)->row_array();
    }
    public function countSubrangeProductivity()
    {
-      $query = "SELECT COUNT(tb_subrange_productivity.id_subrange_proc) AS jumSubProc FROM tb_subrange_productivity";
+      $query = "SELECT COUNT(tb_subrange_productivity.id_subrange_proc) AS jumSubProc FROM tb_subrange_productivity
+                  WHERE tb_subrange_productivity.id_subrange_proc >= 1 AND tb_subrange_productivity.id_subrange_proc <= 4 
+                     ORDER BY tb_subrange_productivity.id_subrange_proc LIMIT 4";
       return $this->db->query($query)->row_array();
    }
+   // ------------- END Productivity OPERATOR ------------- //
+
+
+
+   // ------------- Productivity KASI ------------- //
+   public function showSubrangeProductivityKasi()
+   {
+      $query = "SELECT * FROM tb_subrange_productivity
+                  WHERE tb_subrange_productivity.id_subrange_proc >= 5 AND tb_subrange_productivity.id_subrange_proc <= 8 
+                     ORDER BY tb_subrange_productivity.id_subrange_proc LIMIT 4";
+      return $this->db->query($query)->result_array();
+   }
+   public function showSubmatrixProductivityKasi()
+   {
+      $query = "SELECT * FROM tb_submatriks_productivity
+                  WHERE tb_submatriks_productivity.id_submatrix_proc >= 5 AND tb_submatriks_productivity.id_submatrix_proc <= 8 
+                     ORDER BY tb_submatriks_productivity.id_submatrix_proc LIMIT 4";
+      return $this->db->query($query)->result_array();
+   }
+   public function sumSubrangeProductivityKasi()
+   {
+      $query = "SELECT SUM(pekerjaan_90) AS sum90, SUM(pekerjaan_80_90) AS sum8090, SUM(pekerjaan_60_79) AS sum6079, SUM(pekerjaan_59) AS sum59 FROM tb_subrange_productivity
+                  WHERE tb_subrange_productivity.id_subrange_proc >= 5 AND tb_subrange_productivity.id_subrange_proc <= 8 
+                     ORDER BY tb_subrange_productivity.id_subrange_proc LIMIT 4";
+      return $this->db->query($query)->row_array();
+   }
+   public function sumSubmatrixProductivityKasi()
+   {
+      $query = "SELECT SUM(pekerjaan_90) AS sum90, SUM(pekerjaan_80_90) AS sum8090, SUM(pekerjaan_60_79) AS sum6079, SUM(pekerjaan_59) AS sum59, SUM(jumlah) AS submtxJum, SUM(prioritas) AS submtxPrior, SUM(eigen_value) AS submtxEig FROM tb_submatriks_productivity
+               WHERE tb_submatriks_productivity.id_submatrix_proc >= 5 AND tb_submatriks_productivity.id_submatrix_proc <= 8 
+                     ORDER BY tb_submatriks_productivity.id_submatrix_proc LIMIT 4";
+      return $this->db->query($query)->row_array();
+   }
+   public function sumSubrangeProductivityKasiOPResArray()
+   {
+      $query = "SELECT SUM(pekerjaan_90) AS '0', SUM(pekerjaan_80_90) AS '1', SUM(pekerjaan_60_79) AS '2', SUM(pekerjaan_59) AS '3' FROM tb_subrange_productivity
+                  WHERE tb_subrange_productivity.id_subrange_proc >= 5 AND tb_subrange_productivity.id_subrange_proc <= 8 
+                     ORDER BY tb_subrange_productivity.id_subrange_proc LIMIT 4";
+      return $this->db->query($query)->row_array();
+   }
+   public function countSubrangeProductivityKasi()
+   {
+      $query = "SELECT COUNT(tb_subrange_productivity.id_subrange_proc) AS jumSubProcKasi FROM tb_subrange_productivity
+                  WHERE tb_subrange_productivity.id_subrange_proc >= 5 AND tb_subrange_productivity.id_subrange_proc <= 8 
+                     ORDER BY tb_subrange_productivity.id_subrange_proc LIMIT 4";
+      return $this->db->query($query)->row_array();
+   }
+   // ------------- END Productivity KASI ------------- //
+   // ------------ || ------------
+
+
+
 
 
 
@@ -215,37 +286,99 @@ class DataKaryawan_Model extends CI_Model
 
 
    // ------------ || ------------
-   //Kerjasama dan Komunikasi
+   //Kerjasama dan Komunikasi OPERATOR
    public function showSubrangeKomdanKer()
    {
-      $query = "SELECT * FROM tb_subrange_komdanker";
+      $query = "SELECT * FROM tb_subrange_komdanker
+                   WHERE tb_subrange_komdanker.id_subrange_kdk >= 1 AND tb_subrange_komdanker.id_subrange_kdk <= 4 
+                     ORDER BY tb_subrange_komdanker.id_subrange_kdk LIMIT 4";
       return $this->db->query($query)->result_array();
    }
    public function showSubmatrixKomdanKer()
    {
-      $query = "SELECT * FROM tb_submatriks_komdanker";
+      $query = "SELECT * FROM tb_submatriks_komdanker
+                  WHERE tb_submatriks_komdanker.id_submatrix_kdk >= 1 AND tb_submatriks_komdanker.id_submatrix_kdk <= 4 
+                     ORDER BY tb_submatriks_komdanker.id_submatrix_kdk LIMIT 4";
       return $this->db->query($query)->result_array();
    }
    public function sumSubrangeKomdanKer()
    {
-      $query = "SELECT SUM(sangat_baik) AS sumSB, SUM(baik) AS sumBaik, SUM(kurang) AS sumKurang, SUM(tidak_mampu) AS sumTK FROM tb_subrange_komdanker";
+      $query = "SELECT SUM(sangat_baik) AS sumSB, SUM(baik) AS sumBaik, SUM(kurang) AS sumKurang, SUM(tidak_mampu) AS sumTK FROM tb_subrange_komdanker
+                   WHERE tb_subrange_komdanker.id_subrange_kdk >= 1 AND tb_subrange_komdanker.id_subrange_kdk <= 4 
+                     ORDER BY tb_subrange_komdanker.id_subrange_kdk LIMIT 4";
       return $this->db->query($query)->row_array();
    }
    public function sumSubmatrixKomdanKer()
    {
-      $query = "SELECT SUM(sangat_baik) AS sumSB, SUM(baik) AS sumBaik, SUM(kurang) AS sumKurang, SUM(tidak_mampu) AS sumTK, SUM(jumlah) AS submtxJum, SUM(prioritas) AS submtxPrior, SUM(eigen_value) AS submtxEig FROM tb_submatriks_komdanker";
+      $query = "SELECT SUM(sangat_baik) AS sumSB, SUM(baik) AS sumBaik, SUM(kurang) AS sumKurang, SUM(tidak_mampu) AS sumTK, SUM(jumlah) AS submtxJum, SUM(prioritas) AS submtxPrior, SUM(eigen_value) AS submtxEig FROM tb_submatriks_komdanker
+                  WHERE tb_submatriks_komdanker.id_submatrix_kdk >= 1 AND tb_submatriks_komdanker.id_submatrix_kdk <= 4 
+                     ORDER BY tb_submatriks_komdanker.id_submatrix_kdk LIMIT 4";
       return $this->db->query($query)->row_array();
    }
    public function sumSubrangeKomdanKerOPResArray()
    {
-      $query = "SELECT SUM(sangat_baik) AS '0', SUM(baik) AS '1', SUM(kurang) AS '2', SUM(tidak_mampu) AS '3' FROM tb_subrange_komdanker";
+      $query = "SELECT SUM(sangat_baik) AS '0', SUM(baik) AS '1', SUM(kurang) AS '2', SUM(tidak_mampu) AS '3' FROM tb_subrange_komdanker
+                   WHERE tb_subrange_komdanker.id_subrange_kdk >= 1 AND tb_subrange_komdanker.id_subrange_kdk <= 4 
+                     ORDER BY tb_subrange_komdanker.id_subrange_kdk LIMIT 4";
       return $this->db->query($query)->row_array();
    }
    public function countSubrangeKomdanKer()
    {
-      $query = "SELECT COUNT(tb_subrange_komdanker.id_subrange_kdk) AS jumSubKdk FROM tb_subrange_komdanker";
+      $query = "SELECT COUNT(tb_subrange_komdanker.id_subrange_kdk) AS jumSubKdk FROM tb_subrange_komdanker
+                   WHERE tb_subrange_komdanker.id_subrange_kdk >= 1 AND tb_subrange_komdanker.id_subrange_kdk <= 4 
+                     ORDER BY tb_subrange_komdanker.id_subrange_kdk LIMIT 4";
       return $this->db->query($query)->row_array();
    }
+   //END Kerjasama dan Komunikasi OPERATOR
+
+   //Leadership KASI
+   public function showSubrangeKomdanKerKasi()
+   {
+      $query = "SELECT * FROM tb_subrange_komdanker
+                  WHERE tb_subrange_komdanker.id_subrange_kdk >= 5 AND tb_subrange_komdanker.id_subrange_kdk <= 8 
+                     ORDER BY tb_subrange_komdanker.id_subrange_kdk LIMIT 4";
+      return $this->db->query($query)->result_array();
+   }
+   public function showSubmatrixKomdanKerKasi()
+   {
+      $query = "SELECT * FROM tb_submatriks_komdanker
+                  WHERE tb_submatriks_komdanker.id_submatrix_kdk >= 5 AND tb_submatriks_komdanker.id_submatrix_kdk <= 8 
+                     ORDER BY tb_submatriks_komdanker.id_submatrix_kdk LIMIT 4";
+      return $this->db->query($query)->result_array();
+   }
+   public function sumSubrangeKomdanKerKasi()
+   {
+      $query = "SELECT SUM(sangat_baik) AS sumSB, SUM(baik) AS sumBaik, SUM(kurang) AS sumKurang, SUM(tidak_mampu) AS sumTK FROM tb_subrange_komdanker
+                  WHERE tb_subrange_komdanker.id_subrange_kdk >= 5 AND tb_subrange_komdanker.id_subrange_kdk <= 8 
+                     ORDER BY tb_subrange_komdanker.id_subrange_kdk LIMIT 4";
+      return $this->db->query($query)->row_array();
+   }
+   public function sumSubmatrixKomdanKerKasi()
+   {
+      $query = "SELECT SUM(sangat_baik) AS sumSB, SUM(baik) AS sumBaik, SUM(kurang) AS sumKurang, SUM(tidak_mampu) AS sumTK, SUM(jumlah) AS submtxJum, SUM(prioritas) AS submtxPrior, SUM(eigen_value) AS submtxEig FROM tb_submatriks_komdanker
+                  WHERE tb_submatriks_komdanker.id_submatrix_kdk >= 5 AND tb_submatriks_komdanker.id_submatrix_kdk <= 8 
+                     ORDER BY tb_submatriks_komdanker.id_submatrix_kdk LIMIT 4";
+      return $this->db->query($query)->row_array();
+   }
+   public function sumSubrangeKomdanKerKasiOPResArray()
+   {
+      $query = "SELECT SUM(sangat_baik) AS '0', SUM(baik) AS '1', SUM(kurang) AS '2', SUM(tidak_mampu) AS '3' FROM tb_subrange_komdanker
+                  WHERE tb_subrange_komdanker.id_subrange_kdk >= 5 AND tb_subrange_komdanker.id_subrange_kdk <= 8 
+                     ORDER BY tb_subrange_komdanker.id_subrange_kdk LIMIT 4";
+      return $this->db->query($query)->row_array();
+   }
+   public function countSubrangeKomdanKerKasi()
+   {
+      $query = "SELECT COUNT(tb_subrange_komdanker.id_subrange_kdk) AS jumSubKdk FROM tb_subrange_komdanker
+                  WHERE tb_subrange_komdanker.id_subrange_kdk >= 5 AND tb_subrange_komdanker.id_subrange_kdk <= 8 
+                     ORDER BY tb_subrange_komdanker.id_subrange_kdk LIMIT 4";
+      return $this->db->query($query)->row_array();
+   }
+   //END Leadership KASI
+   // ------------ || ------------
+
+
+
 
 
 
@@ -254,37 +387,102 @@ class DataKaryawan_Model extends CI_Model
 
 
    // ------------ || ------------
-   //Pelaksana 5 R
+   //Pelaksanaan 5 R OPERATOR
    public function showSubrangePelaksana5R()
    {
-      $query = "SELECT * FROM tb_subrange_pelaksana5r";
+      $query = "SELECT * FROM tb_subrange_pelaksana5r
+                  WHERE tb_subrange_pelaksana5r.id_subrange_p5r >= 1 AND tb_subrange_pelaksana5r.id_subrange_p5r <= 3 
+                     ORDER BY tb_subrange_pelaksana5r.id_subrange_p5r LIMIT 3";
       return $this->db->query($query)->result_array();
    }
    public function showSubmatrixPelaksana5R()
    {
-      $query = "SELECT * FROM tb_submatriks_pelaksana5r";
+      $query = "SELECT * FROM tb_submatriks_pelaksana5r
+                  WHERE tb_submatriks_pelaksana5r.id_submatrix_p5r >= 1 AND tb_submatriks_pelaksana5r.id_submatrix_p5r <= 3 
+                     ORDER BY tb_submatriks_pelaksana5r.id_submatrix_p5r LIMIT 3";
       return $this->db->query($query)->result_array();
    }
    public function sumSubrangePelaksana5R()
    {
-      $query = "SELECT SUM(melaksanakan) AS sumLaks, SUM(kurang_melaksanakan) AS sumKurLaks, SUM(tidak_melaksanakan) AS sumTidLaks FROM tb_subrange_pelaksana5r";
+      $query = "SELECT SUM(melaksanakan) AS sumLaks, SUM(kurang_melaksanakan) AS sumKurLaks, SUM(tidak_melaksanakan) AS sumTidLaks FROM tb_subrange_pelaksana5r
+                  WHERE tb_subrange_pelaksana5r.id_subrange_p5r >= 1 AND tb_subrange_pelaksana5r.id_subrange_p5r <= 3 
+                     ORDER BY tb_subrange_pelaksana5r.id_subrange_p5r LIMIT 3";
       return $this->db->query($query)->row_array();
    }
    public function sumSubmatrixPelaksana5R()
    {
-      $query = "SELECT SUM(melaksanakan) AS sumLaks, SUM(kurang_melaksanakan) AS sumKurLaks, SUM(tidak_melaksanakan) AS sumTidLaks, SUM(jumlah) AS submtxJum, SUM(prioritas) AS submtxPrior, SUM(eigen_value) AS submtxEig FROM tb_submatriks_pelaksana5r";
+      $query = "SELECT SUM(melaksanakan) AS sumLaks, SUM(kurang_melaksanakan) AS sumKurLaks, SUM(tidak_melaksanakan) AS sumTidLaks, SUM(jumlah) AS submtxJum, SUM(prioritas) AS submtxPrior, SUM(eigen_value) AS submtxEig FROM tb_submatriks_pelaksana5r
+                  WHERE tb_submatriks_pelaksana5r.id_submatrix_p5r >= 1 AND tb_submatriks_pelaksana5r.id_submatrix_p5r <= 3 
+                     ORDER BY tb_submatriks_pelaksana5r.id_submatrix_p5r LIMIT 3";
       return $this->db->query($query)->row_array();
    }
    public function sumSubrangePelaksana5ROPResArray()
    {
-      $query = "SELECT SUM(melaksanakan) AS '0', SUM(kurang_melaksanakan) AS '1', SUM(tidak_melaksanakan) AS '2' FROM tb_subrange_pelaksana5r";
+      $query = "SELECT SUM(melaksanakan) AS '0', SUM(kurang_melaksanakan) AS '1', SUM(tidak_melaksanakan) AS '2' FROM tb_subrange_pelaksana5r
+                  WHERE tb_subrange_pelaksana5r.id_subrange_p5r >= 1 AND tb_subrange_pelaksana5r.id_subrange_p5r <= 3 
+                     ORDER BY tb_subrange_pelaksana5r.id_subrange_p5r LIMIT 3";
       return $this->db->query($query)->row_array();
    }
    public function countSubrangePelaksana5R()
    {
-      $query = "SELECT COUNT(tb_subrange_pelaksana5r.id_subrange_p5r) AS jumSubp5r FROM tb_subrange_pelaksana5r";
+      $query = "SELECT COUNT(tb_subrange_pelaksana5r.id_subrange_p5r) AS jumSubp5r FROM tb_subrange_pelaksana5r
+                   WHERE tb_subrange_pelaksana5r.id_subrange_p5r >= 1 AND tb_subrange_pelaksana5r.id_subrange_p5r <= 3 
+                     ORDER BY tb_subrange_pelaksana5r.id_subrange_p5r LIMIT 3";
       return $this->db->query($query)->row_array();
    }
+
+
+
+
+
+   //Pelaksanaan 5 R KASI
+   public function showSubrangePelaksana5RKasi()
+   {
+      $query = "SELECT * FROM tb_subrange_pelaksana5r
+                  WHERE tb_subrange_pelaksana5r.id_subrange_p5r >= 4 AND tb_subrange_pelaksana5r.id_subrange_p5r <= 6 
+                     ORDER BY tb_subrange_pelaksana5r.id_subrange_p5r LIMIT 3";
+      return $this->db->query($query)->result_array();
+   }
+   public function showSubmatrixPelaksana5RKasi()
+   {
+      $query = "SELECT * FROM tb_submatriks_pelaksana5r
+                  WHERE tb_submatriks_pelaksana5r.id_submatrix_p5r >= 4 AND tb_submatriks_pelaksana5r.id_submatrix_p5r <= 6 
+                     ORDER BY tb_submatriks_pelaksana5r.id_submatrix_p5r LIMIT 3";
+      return $this->db->query($query)->result_array();
+   }
+   public function sumSubrangePelaksana5RKasi()
+   {
+      $query = "SELECT SUM(melaksanakan) AS sumLaks, SUM(kurang_melaksanakan) AS sumKurLaks, SUM(tidak_melaksanakan) AS sumTidLaks FROM tb_subrange_pelaksana5r
+                  WHERE tb_subrange_pelaksana5r.id_subrange_p5r >= 4 AND tb_subrange_pelaksana5r.id_subrange_p5r <= 6 
+                     ORDER BY tb_subrange_pelaksana5r.id_subrange_p5r LIMIT 3";
+      return $this->db->query($query)->row_array();
+   }
+   public function sumSubmatrixPelaksana5RKasi()
+   {
+      $query = "SELECT SUM(melaksanakan) AS sumLaks, SUM(kurang_melaksanakan) AS sumKurLaks, SUM(tidak_melaksanakan) AS sumTidLaks, SUM(jumlah) AS submtxJum, SUM(prioritas) AS submtxPrior, SUM(eigen_value) AS submtxEig FROM tb_submatriks_pelaksana5r
+                  WHERE tb_submatriks_pelaksana5r.id_submatrix_p5r >= 4 AND tb_submatriks_pelaksana5r.id_submatrix_p5r <= 6 
+                     ORDER BY tb_submatriks_pelaksana5r.id_submatrix_p5r LIMIT 3";
+      return $this->db->query($query)->row_array();
+   }
+   public function sumSubrangePelaksana5RKasiResArray()
+   {
+      $query = "SELECT SUM(melaksanakan) AS '0', SUM(kurang_melaksanakan) AS '1', SUM(tidak_melaksanakan) AS '2' FROM tb_subrange_pelaksana5r
+                  WHERE tb_subrange_pelaksana5r.id_subrange_p5r >= 4 AND tb_subrange_pelaksana5r.id_subrange_p5r <= 6 
+                     ORDER BY tb_subrange_pelaksana5r.id_subrange_p5r LIMIT 3";
+      return $this->db->query($query)->row_array();
+   }
+   public function countSubrangePelaksana5RKasi()
+   {
+      $query = "SELECT COUNT(tb_subrange_pelaksana5r.id_subrange_p5r) AS jumSubp5r FROM tb_subrange_pelaksana5r
+                   WHERE tb_subrange_pelaksana5r.id_subrange_p5r >= 4 AND tb_subrange_pelaksana5r.id_subrange_p5r <= 6 
+                     ORDER BY tb_subrange_pelaksana5r.id_subrange_p5r LIMIT 3";
+      return $this->db->query($query)->row_array();
+   }
+   //END Pelaksanaan KASI
+   // ------------ || ------------
+
+
+
 
 
 
@@ -293,73 +491,214 @@ class DataKaryawan_Model extends CI_Model
 
 
    // ------------ || ------------
-   //Dokumentasi
+   //Dokumentasi OPERATOR
    public function showSubrangeDokumentasi()
    {
-      $query = "SELECT * FROM tb_subrange_dokumentasi";
+      $query = "SELECT * FROM tb_subrange_dokumentasi
+                  WHERE tb_subrange_dokumentasi.id_subrange_doc >= 1 AND tb_subrange_dokumentasi.id_subrange_doc <= 4
+                  ORDER BY tb_subrange_dokumentasi.id_subrange_doc LIMIT 4";
       return $this->db->query($query)->result_array();
    }
    public function showSubmatrixDokumentasi()
    {
-      $query = "SELECT * FROM tb_submatriks_dokumentasi";
+      $query = "SELECT * FROM tb_submatriks_dokumentasi
+                  WHERE tb_submatriks_dokumentasi.id_submatrix_doc >= 1 AND tb_submatriks_dokumentasi.id_submatrix_doc <= 4
+                  ORDER BY tb_submatriks_dokumentasi.id_submatrix_doc LIMIT 4";
       return $this->db->query($query)->result_array();
    }
    public function sumSubrangeDokumentasi()
    {
-      $query = "SELECT SUM(sgt_lkp_sesuai) AS sumSLS, SUM(lkp) AS sumLengkap, SUM(krg_lkp_tdk_sesuai) AS sumKLTS, SUM(tidak_mampu) AS sumTdkMampu FROM tb_subrange_dokumentasi";
+      $query = "SELECT SUM(sgt_lkp_sesuai) AS sumSLS, SUM(lkp) AS sumLengkap, SUM(krg_lkp_tdk_sesuai) AS sumKLTS, SUM(tidak_mampu) AS sumTdkMampu FROM tb_subrange_dokumentasi
+                  WHERE tb_subrange_dokumentasi.id_subrange_doc >= 1 AND tb_subrange_dokumentasi.id_subrange_doc <= 4
+                  ORDER BY tb_subrange_dokumentasi.id_subrange_doc LIMIT 4";
       return $this->db->query($query)->row_array();
    }
    public function sumSubmatrixDokumentasi()
    {
-      $query = "SELECT SUM(sgt_lkp_sesuai) AS sumSLS, SUM(lkp) AS sumLengkap, SUM(krg_lkp_tdk_sesuai) AS sumKLTS, SUM(tidak_mampu) AS sumTdkMampu, SUM(jumlah) AS submtxJum, SUM(prioritas) AS submtxPrior, SUM(eigen_value) AS submtxEig FROM tb_submatriks_dokumentasi";
+      $query = "SELECT SUM(sgt_lkp_sesuai) AS sumSLS, SUM(lkp) AS sumLengkap, SUM(krg_lkp_tdk_sesuai) AS sumKLTS, SUM(tidak_mampu) AS sumTdkMampu, SUM(jumlah) AS submtxJum, SUM(prioritas) AS submtxPrior, SUM(eigen_value) AS submtxEig FROM tb_submatriks_dokumentasi
+                  WHERE tb_submatriks_dokumentasi.id_submatrix_doc >= 1 AND tb_submatriks_dokumentasi.id_submatrix_doc <= 4
+                  ORDER BY tb_submatriks_dokumentasi.id_submatrix_doc LIMIT 4";
       return $this->db->query($query)->row_array();
    }
    public function sumSubrangeDokumentasiOPResArray()
    {
-      $query = "SELECT SUM(sgt_lkp_sesuai) AS '0', SUM(lkp) AS '1', SUM(krg_lkp_tdk_sesuai) AS '2', SUM(tidak_mampu) AS '3' FROM tb_subrange_dokumentasi";
+      $query = "SELECT SUM(sgt_lkp_sesuai) AS '0', SUM(lkp) AS '1', SUM(krg_lkp_tdk_sesuai) AS '2', SUM(tidak_mampu) AS '3' FROM tb_subrange_dokumentasi
+                  WHERE tb_subrange_dokumentasi.id_subrange_doc >= 1 AND tb_subrange_dokumentasi.id_subrange_doc <= 4
+                  ORDER BY tb_subrange_dokumentasi.id_subrange_doc LIMIT 4";
       return $this->db->query($query)->row_array();
    }
    public function countSubrangeDokumentasi()
    {
-      $query = "SELECT COUNT(tb_subrange_dokumentasi.id_subrange_doc) AS jumSubDoc FROM tb_subrange_dokumentasi";
+      $query = "SELECT COUNT(tb_subrange_dokumentasi.id_subrange_doc) AS jumSubDoc FROM tb_subrange_dokumentasi
+                  WHERE tb_subrange_dokumentasi.id_subrange_doc >= 1 AND tb_subrange_dokumentasi.id_subrange_doc <= 4
+                  ORDER BY tb_subrange_dokumentasi.id_subrange_doc LIMIT 4";
       return $this->db->query($query)->row_array();
    }
 
+
+
+
+
+   //Dokumentasi KASI
+   public function showSubrangeDokumentasiKasi()
+   {
+      $query = "SELECT * FROM tb_subrange_dokumentasi
+                  WHERE tb_subrange_dokumentasi.id_subrange_doc >= 5 AND tb_subrange_dokumentasi.id_subrange_doc <= 8
+                  ORDER BY tb_subrange_dokumentasi.id_subrange_doc LIMIT 4";
+      return $this->db->query($query)->result_array();
+   }
+   public function showSubmatrixDokumentasiKasi()
+   {
+      $query = "SELECT * FROM tb_submatriks_dokumentasi
+                  WHERE tb_submatriks_dokumentasi.id_submatrix_doc >= 5 AND tb_submatriks_dokumentasi.id_submatrix_doc <= 8
+                  ORDER BY tb_submatriks_dokumentasi.id_submatrix_doc LIMIT 4";
+      return $this->db->query($query)->result_array();
+   }
+   public function sumSubrangeDokumentasiKasi()
+   {
+      $query = "SELECT SUM(sgt_lkp_sesuai) AS sumSLS, SUM(lkp) AS sumLengkap, SUM(krg_lkp_tdk_sesuai) AS sumKLTS, SUM(tidak_mampu) AS sumTdkMampu FROM tb_subrange_dokumentasi
+                  WHERE tb_subrange_dokumentasi.id_subrange_doc >= 5 AND tb_subrange_dokumentasi.id_subrange_doc <= 8
+                  ORDER BY tb_subrange_dokumentasi.id_subrange_doc LIMIT 4";
+      return $this->db->query($query)->row_array();
+   }
+   public function sumSubmatrixDokumentasiKasi()
+   {
+      $query = "SELECT SUM(sgt_lkp_sesuai) AS sumSLS, SUM(lkp) AS sumLengkap, SUM(krg_lkp_tdk_sesuai) AS sumKLTS, SUM(tidak_mampu) AS sumTdkMampu, SUM(jumlah) AS submtxJum, SUM(prioritas) AS submtxPrior, SUM(eigen_value) AS submtxEig FROM tb_submatriks_dokumentasi
+                  WHERE tb_submatriks_dokumentasi.id_submatrix_doc >= 5 AND tb_submatriks_dokumentasi.id_submatrix_doc <= 8
+                  ORDER BY tb_submatriks_dokumentasi.id_submatrix_doc LIMIT 4";
+      return $this->db->query($query)->row_array();
+   }
+   public function sumSubrangeDokumentasiKasiResArray()
+   {
+      $query = "SELECT SUM(sgt_lkp_sesuai) AS '0', SUM(lkp) AS '1', SUM(krg_lkp_tdk_sesuai) AS '2', SUM(tidak_mampu) AS '3' FROM tb_subrange_dokumentasi
+                  WHERE tb_subrange_dokumentasi.id_subrange_doc >= 5 AND tb_subrange_dokumentasi.id_subrange_doc <= 8
+                  ORDER BY tb_subrange_dokumentasi.id_subrange_doc LIMIT 4";
+      return $this->db->query($query)->row_array();
+   }
+   public function countSubrangeDokumentasiKasi()
+   {
+      $query = "SELECT COUNT(tb_subrange_dokumentasi.id_subrange_doc) AS jumSubDoc FROM tb_subrange_dokumentasi
+                  WHERE tb_subrange_dokumentasi.id_subrange_doc >= 5 AND tb_subrange_dokumentasi.id_subrange_doc <= 8
+                  ORDER BY tb_subrange_dokumentasi.id_subrange_doc LIMIT 4";
+      return $this->db->query($query)->row_array();
+   }
    // ------------ || ------------
-   //Pemahaman dan Pelaksanaan K3
+
+
+
+
+
+
+
+
+
+
+   // ------------ || ------------
+   //Pemahaman dan Pelaksanaan K3 OPERATOR
    public function showSubrangePahamdanLaksanaK3()
    {
-      $query = "SELECT * FROM tb_subrange_pahamdanlaksanak3";
+      $query = "SELECT * FROM tb_subrange_pahamdanlaksanak3
+                  WHERE tb_subrange_pahamdanlaksanak3.id_subrange_plk3 >= 1 AND tb_subrange_pahamdanlaksanak3.id_subrange_plk3 <= 3
+                     ORDER BY tb_subrange_pahamdanlaksanak3.id_subrange_plk3 LIMIT 3";
       return $this->db->query($query)->result_array();
    }
    public function showSubmatrixPahamdanLaksanaK3()
    {
-      $query = "SELECT * FROM tb_submatriks_pahamdanlaksanak3";
+      $query = "SELECT * FROM tb_submatriks_pahamdanlaksanak3
+                  WHERE tb_submatriks_pahamdanlaksanak3.id_submatrix_plk3 >= 1 AND tb_submatriks_pahamdanlaksanak3.id_submatrix_plk3 <= 3
+                     ORDER BY tb_submatriks_pahamdanlaksanak3.id_submatrix_plk3 LIMIT 3";
       return $this->db->query($query)->result_array();
    }
    public function sumSubrangePahamdanLaksanaK3()
    {
-      $query = "SELECT SUM(paham) AS sumPHM, SUM(kurang_paham) AS sumKrgPhm, SUM(tidak_paham) AS sumTdkPhm FROM tb_subrange_pahamdanlaksanak3";
+      $query = "SELECT SUM(paham) AS sumPHM, SUM(kurang_paham) AS sumKrgPhm, SUM(tidak_paham) AS sumTdkPhm FROM tb_subrange_pahamdanlaksanak3
+                  WHERE tb_subrange_pahamdanlaksanak3.id_subrange_plk3 >= 1 AND tb_subrange_pahamdanlaksanak3.id_subrange_plk3 <= 3
+                     ORDER BY tb_subrange_pahamdanlaksanak3.id_subrange_plk3 LIMIT 3";
       return $this->db->query($query)->row_array();
    }
    public function sumSubmatrixPahamdanLaksanaK3()
    {
-      $query = "SELECT SUM(paham) AS sumPHM, SUM(kurang_paham) AS sumKrgPhm, SUM(tidak_paham) AS sumTdkPhm, SUM(jumlah) AS submtxJum, SUM(prioritas) AS submtxPrior, SUM(eigen_value) AS submtxEig FROM tb_submatriks_pahamdanlaksanak3";
+      $query = "SELECT SUM(paham) AS sumPHM, SUM(kurang_paham) AS sumKrgPhm, SUM(tidak_paham) AS sumTdkPhm, SUM(jumlah) AS submtxJum, SUM(prioritas) AS submtxPrior, SUM(eigen_value) AS submtxEig FROM tb_submatriks_pahamdanlaksanak3
+                  WHERE tb_submatriks_pahamdanlaksanak3.id_submatrix_plk3 >= 1 AND tb_submatriks_pahamdanlaksanak3.id_submatrix_plk3 <= 3
+                     ORDER BY tb_submatriks_pahamdanlaksanak3.id_submatrix_plk3 LIMIT 3";
       return $this->db->query($query)->row_array();
    }
    public function sumSubrangePahamdanLaksanaK3OPResArray()
    {
-      $query = "SELECT SUM(paham) AS '0', SUM(kurang_paham) AS '1', SUM(tidak_paham) AS '2' FROM tb_subrange_pahamdanlaksanak3";
+      $query = "SELECT SUM(paham) AS '0', SUM(kurang_paham) AS '1', SUM(tidak_paham) AS '2' FROM tb_subrange_pahamdanlaksanak3
+                  WHERE tb_subrange_pahamdanlaksanak3.id_subrange_plk3 >= 1 AND tb_subrange_pahamdanlaksanak3.id_subrange_plk3 <= 3
+                     ORDER BY tb_subrange_pahamdanlaksanak3.id_subrange_plk3 LIMIT 3";
       return $this->db->query($query)->row_array();
    }
    public function countSubrangePahamdanLaksanaK3()
    {
-      $query = "SELECT COUNT(tb_subrange_pahamdanlaksanak3.id_subrange_plk3) AS jumSubPLK3 FROM tb_subrange_pahamdanlaksanak3";
+      $query = "SELECT COUNT(tb_subrange_pahamdanlaksanak3.id_subrange_plk3) AS jumSubPLK3 FROM tb_subrange_pahamdanlaksanak3
+                  WHERE tb_subrange_pahamdanlaksanak3.id_subrange_plk3 >= 1 AND tb_subrange_pahamdanlaksanak3.id_subrange_plk3 <= 3
+                     ORDER BY tb_subrange_pahamdanlaksanak3.id_subrange_plk3 LIMIT 3";
       return $this->db->query($query)->row_array();
    }
 
+
+
+
+
    // ------------ || ------------
-   //Pemahaman dan Pelaksanaan K3
+   //Pemahaman dan Pelaksanaan K3 KASI
+   public function showSubrangePahamdanLaksanaK3Kasi()
+   {
+      $query = "SELECT * FROM tb_subrange_pahamdanlaksanak3
+                  WHERE tb_subrange_pahamdanlaksanak3.id_subrange_plk3 >= 4 AND tb_subrange_pahamdanlaksanak3.id_subrange_plk3 <= 6
+                     ORDER BY tb_subrange_pahamdanlaksanak3.id_subrange_plk3 LIMIT 3";
+      return $this->db->query($query)->result_array();
+   }
+   public function showSubmatrixPahamdanLaksanaK3Kasi()
+   {
+      $query = "SELECT * FROM tb_submatriks_pahamdanlaksanak3
+                  WHERE tb_submatriks_pahamdanlaksanak3.id_submatrix_plk3 >= 4 AND tb_submatriks_pahamdanlaksanak3.id_submatrix_plk3 <= 6
+                     ORDER BY tb_submatriks_pahamdanlaksanak3.id_submatrix_plk3 LIMIT 3";
+      return $this->db->query($query)->result_array();
+   }
+   public function sumSubrangePahamdanLaksanaK3Kasi()
+   {
+      $query = "SELECT SUM(paham) AS sumPHM, SUM(kurang_paham) AS sumKrgPhm, SUM(tidak_paham) AS sumTdkPhm FROM tb_subrange_pahamdanlaksanak3
+                  WHERE tb_subrange_pahamdanlaksanak3.id_subrange_plk3 >= 4 AND tb_subrange_pahamdanlaksanak3.id_subrange_plk3 <= 6
+                     ORDER BY tb_subrange_pahamdanlaksanak3.id_subrange_plk3 LIMIT 3";
+      return $this->db->query($query)->row_array();
+   }
+   public function sumSubmatrixPahamdanLaksanaK3Kasi()
+   {
+      $query = "SELECT SUM(paham) AS sumPHM, SUM(kurang_paham) AS sumKrgPhm, SUM(tidak_paham) AS sumTdkPhm, SUM(jumlah) AS submtxJum, SUM(prioritas) AS submtxPrior, SUM(eigen_value) AS submtxEig FROM tb_submatriks_pahamdanlaksanak3
+                  WHERE tb_submatriks_pahamdanlaksanak3.id_submatrix_plk3 >= 4 AND tb_submatriks_pahamdanlaksanak3.id_submatrix_plk3 <= 6
+                     ORDER BY tb_submatriks_pahamdanlaksanak3.id_submatrix_plk3 LIMIT 3";
+      return $this->db->query($query)->row_array();
+   }
+   public function sumSubrangePahamdanLaksanaK3KasiResArray()
+   {
+      $query = "SELECT SUM(paham) AS '0', SUM(kurang_paham) AS '1', SUM(tidak_paham) AS '2' FROM tb_subrange_pahamdanlaksanak3
+                  WHERE tb_subrange_pahamdanlaksanak3.id_subrange_plk3 >= 4 AND tb_subrange_pahamdanlaksanak3.id_subrange_plk3 <= 6
+                     ORDER BY tb_subrange_pahamdanlaksanak3.id_subrange_plk3 LIMIT 3";
+      return $this->db->query($query)->row_array();
+   }
+   public function countSubrangePahamdanLaksanaK3Kasi()
+   {
+      $query = "SELECT COUNT(tb_subrange_pahamdanlaksanak3.id_subrange_plk3) AS jumSubPLK3 FROM tb_subrange_pahamdanlaksanak3
+                  WHERE tb_subrange_pahamdanlaksanak3.id_subrange_plk3 >= 4 AND tb_subrange_pahamdanlaksanak3.id_subrange_plk3 <= 6
+                     ORDER BY tb_subrange_pahamdanlaksanak3.id_subrange_plk3 LIMIT 3";
+      return $this->db->query($query)->row_array();
+   }
+   // ------------ || ------------
+
+
+
+
+
+
+
+
+
+
+   // ------------ || ------------
+   //Pemahaman SOP dan SPK
    public function showSubrangePahamSOPSPK()
    {
       $query = "SELECT * FROM tb_subrange_pahamsopspk";

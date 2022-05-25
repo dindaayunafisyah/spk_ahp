@@ -6,7 +6,7 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary"><?= $title; ?> Operator</h6>
+            <h6 class="m-0 font-weight-bold text-primary"><?= $title; ?> Kasi</h6>
         </div>
         <div class="card-content collapse show">
             <div class="row">
@@ -77,16 +77,16 @@
                                                         <th>
                                                             <?php
                                                             switch ($supro):
-                                                                case $supro['id_subrange_proc'] == 1:
+                                                                case $supro['id_subrange_proc'] == 5:
                                                                     echo 'Pekerjaan Selesai > 90 %';
                                                                     break;
-                                                                case $supro['id_subrange_proc'] == 2:
+                                                                case $supro['id_subrange_proc'] == 6:
                                                                     echo 'Pekerjaan Selesai 80 % - 90 %';
                                                                     break;
-                                                                case $supro['id_subrange_proc'] == 3:
+                                                                case $supro['id_subrange_proc'] == 7:
                                                                     echo 'Pekerjaan Selesai 60 % - 79 %';
                                                                     break;
-                                                                case $supro['id_subrange_proc'] == 4:
+                                                                case $supro['id_subrange_proc'] == 8:
                                                                     echo 'Pekerjaan Selesai < 60 %';
                                                                     break;
                                                                 default:
@@ -98,7 +98,7 @@
                                                     <?php endforeach; ?>
                                                 </tr>
                                             </thead>
-                                            <form action="<?php echo base_url() . 'admin/master_data/update_subrange_Productivity'; ?>" method="POST">
+                                            <form action="<?php echo base_url() . 'admin/master_data/update_subrange_ProductivityKasi'; ?>" method="POST">
                                                 <tbody>
                                                     <tr>
                                                     </tr>
@@ -108,16 +108,16 @@
                                                             <td>
                                                                 <?php
                                                                 switch ($supro):
-                                                                    case $supro['id_subrange_proc'] == 1:
+                                                                    case $supro['id_subrange_proc'] == 5:
                                                                         echo 'Pekerjaan Selesai > 90 %';
                                                                         break;
-                                                                    case $supro['id_subrange_proc'] == 2:
+                                                                    case $supro['id_subrange_proc'] == 6:
                                                                         echo 'Pekerjaan Selesai 80 % - 90 %';
                                                                         break;
-                                                                    case $supro['id_subrange_proc'] == 3:
+                                                                    case $supro['id_subrange_proc'] == 7:
                                                                         echo 'Pekerjaan Selesai 60 % - 79 %';
                                                                         break;
-                                                                    case $supro['id_subrange_proc'] == 4:
+                                                                    case $supro['id_subrange_proc'] == 8:
                                                                         echo 'Pekerjaan Selesai < 60 %';
                                                                         break;
                                                                     default:
@@ -289,16 +289,16 @@
                                                         <th>
                                                             <?php
                                                             switch ($supro):
-                                                                case $supro['id_subrange_proc'] == 1:
+                                                                case $supro['id_subrange_proc'] == 5:
                                                                     echo 'Pekerjaan Selesai > 90 %';
                                                                     break;
-                                                                case $supro['id_subrange_proc'] == 2:
+                                                                case $supro['id_subrange_proc'] == 6:
                                                                     echo 'Pekerjaan Selesai 80 % - 90 %';
                                                                     break;
-                                                                case $supro['id_subrange_proc'] == 3:
+                                                                case $supro['id_subrange_proc'] == 7:
                                                                     echo 'Pekerjaan Selesai 60 % - 79 %';
                                                                     break;
-                                                                case $supro['id_subrange_proc'] == 4:
+                                                                case $supro['id_subrange_proc'] == 8:
                                                                     echo 'Pekerjaan Selesai < 60 %';
                                                                     break;
                                                                 default:
@@ -326,16 +326,16 @@
                                                         <td>
                                                             <?php
                                                             switch ($submproc):
-                                                                case $submproc['id_submatrix_proc'] == 1:
+                                                                case $submproc['id_submatrix_proc'] == 5:
                                                                     echo 'Pekerjaan Selesai > 90 %';
                                                                     break;
-                                                                case $submproc['id_submatrix_proc'] == 2:
+                                                                case $submproc['id_submatrix_proc'] == 6:
                                                                     echo 'Pekerjaan Selesai 80 % - 90 %';
                                                                     break;
-                                                                case $submproc['id_submatrix_proc'] == 3:
+                                                                case $submproc['id_submatrix_proc'] == 7:
                                                                     echo 'Pekerjaan Selesai 60 % - 79 %';
                                                                     break;
-                                                                case $submproc['id_submatrix_proc'] == 4:
+                                                                case $submproc['id_submatrix_proc'] == 8:
                                                                     echo 'Pekerjaan Selesai < 60 %';
                                                                     break;
                                                                 default:
@@ -399,7 +399,7 @@
                                                 <th>CI</th>
                                                 <th colspan="2">
                                                     <?php
-                                                    $ci = ($sum_submatrixproduct['submtxEig'] - $count_subproduct['jumSubProc']) / ($count_subproduct['jumSubProc'] - 1);
+                                                    $ci = ($sum_submatrixproduct['submtxEig'] - $count_subproduct['jumSubProcKasi']) / ($count_subproduct['jumSubProcKasi'] - 1);
                                                     echo $ci;
                                                     ?>
                                                 </th>
@@ -443,7 +443,7 @@
 
 
 
-                                <!-- ------------------------------------------- Kerjasama dan Komunikasi ------------------------------------------- -->
+                                <!-- ------------------------------------------- Leadership ------------------------------------------- -->
 
 
                                 <div class="tab-pane fade" id="kerdankom" role="tabpanel" aria-labelledby="kerdankom-tab">
@@ -468,16 +468,16 @@
                                                         <th>
                                                             <?php
                                                             switch ($kdk):
-                                                                case $kdk['id_subrange_kdk'] == 1:
+                                                                case $kdk['id_subrange_kdk'] == 5:
                                                                     echo 'Sangat Baik';
                                                                     break;
-                                                                case $kdk['id_subrange_kdk'] == 2:
+                                                                case $kdk['id_subrange_kdk'] == 6:
                                                                     echo 'Baik';
                                                                     break;
-                                                                case $kdk['id_subrange_kdk'] == 3:
+                                                                case $kdk['id_subrange_kdk'] == 7:
                                                                     echo 'Kurang';
                                                                     break;
-                                                                case $kdk['id_subrange_kdk'] == 4:
+                                                                case $kdk['id_subrange_kdk'] == 8:
                                                                     echo 'Tidak Mampu';
                                                                     break;
                                                                 default:
@@ -489,7 +489,7 @@
                                                     <?php endforeach; ?>
                                                 </tr>
                                             </thead>
-                                            <form action="<?php echo base_url() . 'admin/master_data/update_subrange_KerjasamadanKomunikasi'; ?>" method="POST">
+                                            <form action="<?php echo base_url() . 'admin/master_data/update_subrange_Leadership'; ?>" method="POST">
                                                 <tbody>
                                                     <tr>
                                                     </tr>
@@ -499,16 +499,16 @@
                                                             <td>
                                                                 <?php
                                                                 switch ($kdk):
-                                                                    case $kdk['id_subrange_kdk'] == 1:
+                                                                    case $kdk['id_subrange_kdk'] == 5:
                                                                         echo 'Sangat Baik';
                                                                         break;
-                                                                    case $kdk['id_subrange_kdk'] == 2:
+                                                                    case $kdk['id_subrange_kdk'] == 6:
                                                                         echo 'Baik';
                                                                         break;
-                                                                    case $kdk['id_subrange_kdk'] == 3:
+                                                                    case $kdk['id_subrange_kdk'] == 7:
                                                                         echo 'Kurang';
                                                                         break;
-                                                                    case $kdk['id_subrange_kdk'] == 4:
+                                                                    case $kdk['id_subrange_kdk'] == 8:
                                                                         echo 'Tidak Mampu';
                                                                         break;
                                                                     default:
@@ -680,16 +680,16 @@
                                                         <th>
                                                             <?php
                                                             switch ($kdk):
-                                                                case $kdk['id_subrange_kdk'] == 1:
+                                                                case $kdk['id_subrange_kdk'] == 5:
                                                                     echo 'Sangat Baik';
                                                                     break;
-                                                                case $kdk['id_subrange_kdk'] == 2:
+                                                                case $kdk['id_subrange_kdk'] == 6:
                                                                     echo 'Baik';
                                                                     break;
-                                                                case $kdk['id_subrange_kdk'] == 3:
+                                                                case $kdk['id_subrange_kdk'] == 7:
                                                                     echo 'Kurang';
                                                                     break;
-                                                                case $kdk['id_subrange_kdk'] == 4:
+                                                                case $kdk['id_subrange_kdk'] == 8:
                                                                     echo 'Tidak Mampu';
                                                                     break;
                                                                 default:
@@ -717,16 +717,16 @@
                                                         <td>
                                                             <?php
                                                             switch ($submkdk):
-                                                                case $submkdk['id_submatrix_kdk'] == 1:
+                                                                case $submkdk['id_submatrix_kdk'] == 5:
                                                                     echo 'Sangat Baik';
                                                                     break;
-                                                                case $submkdk['id_submatrix_kdk'] == 2:
+                                                                case $submkdk['id_submatrix_kdk'] == 6:
                                                                     echo 'Baik';
                                                                     break;
-                                                                case $submkdk['id_submatrix_kdk'] == 3:
+                                                                case $submkdk['id_submatrix_kdk'] == 7:
                                                                     echo 'Kurang';
                                                                     break;
-                                                                case $submkdk['id_submatrix_kdk'] == 4:
+                                                                case $submkdk['id_submatrix_kdk'] == 8:
                                                                     echo 'Tidak Mampu';
                                                                     break;
                                                                 default:
@@ -863,13 +863,13 @@
                                                         <th>
                                                             <?php
                                                             switch ($spl5r):
-                                                                case $spl5r['id_subrange_p5r'] == 1:
+                                                                case $spl5r['id_subrange_p5r'] == 4:
                                                                     echo 'Melaksanakan';
                                                                     break;
-                                                                case $spl5r['id_subrange_p5r'] == 2:
+                                                                case $spl5r['id_subrange_p5r'] == 5:
                                                                     echo 'Kurang Melaksanakan';
                                                                     break;
-                                                                case $spl5r['id_subrange_p5r'] == 3:
+                                                                case $spl5r['id_subrange_p5r'] == 6:
                                                                     echo 'Tidak Melaksanakan';
                                                                     break;
                                                                 default:
@@ -881,7 +881,7 @@
                                                     <?php endforeach; ?>
                                                 </tr>
                                             </thead>
-                                            <form action="<?php echo base_url() . 'admin/master_data/update_subrange_Pelaksana5R'; ?>" method="POST">
+                                            <form action="<?php echo base_url() . 'admin/master_data/update_subrange_Pelaksana5RKasi'; ?>" method="POST">
                                                 <tbody>
                                                     <tr>
                                                     </tr>
@@ -891,13 +891,13 @@
                                                             <td>
                                                                 <?php
                                                                 switch ($spl5r):
-                                                                    case $spl5r['id_subrange_p5r'] == 1:
+                                                                    case $spl5r['id_subrange_p5r'] == 4:
                                                                         echo 'Melaksanakan';
                                                                         break;
-                                                                    case $spl5r['id_subrange_p5r'] == 2:
+                                                                    case $spl5r['id_subrange_p5r'] == 5:
                                                                         echo 'Kurang Melaksanakan';
                                                                         break;
-                                                                    case $spl5r['id_subrange_p5r'] == 3:
+                                                                    case $spl5r['id_subrange_p5r'] == 6:
                                                                         echo 'Tidak Melaksanakan';
                                                                         break;
                                                                     default:
@@ -1036,13 +1036,13 @@
                                                         <th>
                                                             <?php
                                                             switch ($spl5r):
-                                                                case $spl5r['id_subrange_p5r'] == 1:
+                                                                case $spl5r['id_subrange_p5r'] == 4:
                                                                     echo 'Melaksanakan';
                                                                     break;
-                                                                case $spl5r['id_subrange_p5r'] == 2:
+                                                                case $spl5r['id_subrange_p5r'] == 5:
                                                                     echo 'Kurang Melaksanakan';
                                                                     break;
-                                                                case $spl5r['id_subrange_p5r'] == 3:
+                                                                case $spl5r['id_subrange_p5r'] == 6:
                                                                     echo 'Tidak Melaksanakan';
                                                                     break;
                                                                 default:
@@ -1070,13 +1070,13 @@
                                                         <td>
                                                             <?php
                                                             switch ($submpl5r):
-                                                                case $submpl5r['id_submatrix_p5r'] == 1:
+                                                                case $submpl5r['id_submatrix_p5r'] == 4:
                                                                     echo 'Melaksanakan';
                                                                     break;
-                                                                case $submpl5r['id_submatrix_p5r'] == 2:
+                                                                case $submpl5r['id_submatrix_p5r'] == 5:
                                                                     echo 'Kurang Melaksanakan';
                                                                     break;
-                                                                case $submpl5r['id_submatrix_p5r'] == 3:
+                                                                case $submpl5r['id_submatrix_p5r'] == 6:
                                                                     echo 'Tidak Melaksanakan';
                                                                     break;
                                                                 default:
@@ -1209,16 +1209,16 @@
                                                         <th>
                                                             <?php
                                                             switch ($subdoc):
-                                                                case $subdoc['id_subrange_doc'] == 1:
+                                                                case $subdoc['id_subrange_doc'] == 5:
                                                                     echo 'Sangat Lengkap dan Sesuai';
                                                                     break;
-                                                                case $subdoc['id_subrange_doc'] == 2:
+                                                                case $subdoc['id_subrange_doc'] == 6:
                                                                     echo 'Lengkap';
                                                                     break;
-                                                                case $subdoc['id_subrange_doc'] == 3:
+                                                                case $subdoc['id_subrange_doc'] == 7:
                                                                     echo 'Kurang Lengkap dan Tidak Sesuai';
                                                                     break;
-                                                                case $subdoc['id_subrange_doc'] == 4:
+                                                                case $subdoc['id_subrange_doc'] == 8:
                                                                     echo 'Tidak Mampu';
                                                                     break;
                                                                 default:
@@ -1230,7 +1230,7 @@
                                                     <?php endforeach; ?>
                                                 </tr>
                                             </thead>
-                                            <form action="<?php echo base_url() . 'admin/master_data/update_subrange_dokumentasi'; ?>" method="POST">
+                                            <form action="<?php echo base_url() . 'admin/master_data/update_subrange_dokumentasi_kasi'; ?>" method="POST">
                                                 <tbody>
                                                     <tr>
                                                     </tr>
@@ -1240,16 +1240,16 @@
                                                             <td>
                                                                 <?php
                                                                 switch ($subdoc):
-                                                                    case $subdoc['id_subrange_doc'] == 1:
+                                                                    case $subdoc['id_subrange_doc'] == 5:
                                                                         echo 'Sangat Lengkap dan Sesuai';
                                                                         break;
-                                                                    case $subdoc['id_subrange_doc'] == 2:
+                                                                    case $subdoc['id_subrange_doc'] == 6:
                                                                         echo 'Lengkap';
                                                                         break;
-                                                                    case $subdoc['id_subrange_doc'] == 3:
+                                                                    case $subdoc['id_subrange_doc'] == 7:
                                                                         echo 'Kurang Lengkap dan Tidak Sesuai';
                                                                         break;
-                                                                    case $subdoc['id_subrange_doc'] == 4:
+                                                                    case $subdoc['id_subrange_doc'] == 8:
                                                                         echo 'Tidak Mampu';
                                                                         break;
                                                                     default:
@@ -1423,16 +1423,16 @@
                                                         <th>
                                                             <?php
                                                             switch ($subdoc):
-                                                                case $subdoc['id_subrange_doc'] == 1:
+                                                                case $subdoc['id_subrange_doc'] == 5:
                                                                     echo 'Sangat Lengkap dan Sesuai';
                                                                     break;
-                                                                case $subdoc['id_subrange_doc'] == 2:
+                                                                case $subdoc['id_subrange_doc'] == 6:
                                                                     echo 'Lengkap';
                                                                     break;
-                                                                case $subdoc['id_subrange_doc'] == 3:
+                                                                case $subdoc['id_subrange_doc'] == 7:
                                                                     echo 'Kurang Lengkap dan Tidak Sesuai';
                                                                     break;
-                                                                case $subdoc['id_subrange_doc'] == 4:
+                                                                case $subdoc['id_subrange_doc'] == 8:
                                                                     echo 'Tidak Mampu';
                                                                     break;
                                                                 default:
@@ -1460,16 +1460,16 @@
                                                         <td>
                                                             <?php
                                                             switch ($smtxdoc):
-                                                                case $smtxdoc['id_submatrix_doc'] == 1:
+                                                                case $smtxdoc['id_submatrix_doc'] == 5:
                                                                     echo 'Sangat Lengkap dan Sesuai';
                                                                     break;
-                                                                case $smtxdoc['id_submatrix_doc'] == 2:
+                                                                case $smtxdoc['id_submatrix_doc'] == 6:
                                                                     echo 'Lengkap';
                                                                     break;
-                                                                case $smtxdoc['id_submatrix_doc'] == 3:
+                                                                case $smtxdoc['id_submatrix_doc'] == 7:
                                                                     echo 'Kurang Lengkap dan Tidak Sesuai';
                                                                     break;
-                                                                case $smtxdoc['id_submatrix_doc'] == 4:
+                                                                case $smtxdoc['id_submatrix_doc'] == 8:
                                                                     echo 'Tidak Mampu';
                                                                     break;
                                                                 default:
@@ -1607,13 +1607,13 @@
                                                         <th>
                                                             <?php
                                                             switch ($subplk3):
-                                                                case $subplk3['id_subrange_plk3'] == 1:
+                                                                case $subplk3['id_subrange_plk3'] == 4:
                                                                     echo 'Paham dan Melaksanakan';
                                                                     break;
-                                                                case $subplk3['id_subrange_plk3'] == 2:
+                                                                case $subplk3['id_subrange_plk3'] == 5:
                                                                     echo 'Kurang Memahami';
                                                                     break;
-                                                                case $subplk3['id_subrange_plk3'] == 3:
+                                                                case $subplk3['id_subrange_plk3'] == 6:
                                                                     echo 'Tidak Memahami dan Melaksanakan';
                                                                     break;
                                                                 default:
@@ -1625,7 +1625,7 @@
                                                     <?php endforeach; ?>
                                                 </tr>
                                             </thead>
-                                            <form action="<?php echo base_url() . 'admin/master_data/update_subrange_pahamdanlaksanak3'; ?>" method="POST">
+                                            <form action="<?php echo base_url() . 'admin/master_data/update_subrange_pahamdanlaksanak3_kasi'; ?>" method="POST">
                                                 <tbody>
                                                     <tr>
                                                     </tr>
@@ -1635,13 +1635,13 @@
                                                             <td>
                                                                 <?php
                                                                 switch ($subplk3):
-                                                                    case $subplk3['id_subrange_plk3'] == 1:
+                                                                    case $subplk3['id_subrange_plk3'] == 4:
                                                                         echo 'Paham dan Melaksanakan';
                                                                         break;
-                                                                    case $subplk3['id_subrange_plk3'] == 2:
+                                                                    case $subplk3['id_subrange_plk3'] == 5:
                                                                         echo 'Kurang Memahami';
                                                                         break;
-                                                                    case $subplk3['id_subrange_plk3'] == 3:
+                                                                    case $subplk3['id_subrange_plk3'] == 6:
                                                                         echo 'Tidak Memahami dan Melaksanakan';
                                                                         break;
                                                                     default:
@@ -1780,13 +1780,13 @@
                                                         <th>
                                                             <?php
                                                             switch ($subplk3):
-                                                                case $subplk3['id_subrange_plk3'] == 1:
+                                                                case $subplk3['id_subrange_plk3'] == 4:
                                                                     echo 'Paham dan Melaksanakan';
                                                                     break;
-                                                                case $subplk3['id_subrange_plk3'] == 2:
+                                                                case $subplk3['id_subrange_plk3'] == 5:
                                                                     echo 'Kurang Memahami';
                                                                     break;
-                                                                case $subplk3['id_subrange_plk3'] == 3:
+                                                                case $subplk3['id_subrange_plk3'] == 6:
                                                                     echo 'Tidak Memahami dan Melaksanakan';
                                                                     break;
                                                                 default:
@@ -1814,13 +1814,13 @@
                                                         <td>
                                                             <?php
                                                             switch ($smtxplk3):
-                                                                case $smtxplk3['id_submatrix_plk3'] == 1:
+                                                                case $smtxplk3['id_submatrix_plk3'] == 4:
                                                                     echo 'Paham dan Melaksanakan';
                                                                     break;
-                                                                case $smtxplk3['id_submatrix_plk3'] == 2:
+                                                                case $smtxplk3['id_submatrix_plk3'] == 5:
                                                                     echo 'Kurang Memahami';
                                                                     break;
-                                                                case $smtxplk3['id_submatrix_plk3'] == 3:
+                                                                case $smtxplk3['id_submatrix_plk3'] == 6:
                                                                     echo 'Tidak Memahami dan Melaksanakan';
                                                                     break;
                                                                 default:
