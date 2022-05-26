@@ -117,6 +117,75 @@ class Master_data extends CI_Controller
         redirect('admin/master_data/tampil_jabatan');
     }
 
+
+
+    public function update_jabatan()
+    {
+        $this->form_validation->set_rules('nama_jabatan', 'Nama Jabatan', 'required|trim', [
+            'required' => '%s tidak boleh kosong',
+        ]);
+
+        if ($this->form_validation->run() == false) {
+            $data['title'] = 'tampil_jabatan';
+            // ini adalah variabel array $data yang memiliki index user, berguna untuk menyimpan data 
+            $data['jabatan'] = $this->m_data_jabatan->tampil_jabatan()->result();
+            // ini adalah baris kode yang berfungsi menampilkan v_tampil dan membawa data dari tabel user
+            $this->load->view('admin/tamplate/header', $data);
+            $this->load->view('admin/tamplate/sidebar', $data);
+            $this->load->view('admin/v_jabatan', $data);
+            $this->load->view('admin/tamplate/footer', $data);
+        } else {
+            $id = $this->input->post('id');
+            $data = [
+                'nama_jabatan' => $this->input->post('nama_jabatan'),
+            ];
+            $this->db->where('id_jabatan', $id);
+            $true = $this->db->update('tb_jabatan', $data);
+            if ($true) {
+                $this->session->set_flashdata(
+                    'message',
+                    '<div class="alert alert-primary alert-dismissible fade show" role="alert">
+                    Sukses diperbarui
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>'
+                );
+                redirect('admin/master_data/tampil_jabatan');
+            } else {
+                $this->session->set_flashdata(
+                    'message',
+                    '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    Gagal diperbarui
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>'
+                );
+                redirect('admin/master_data/tampil_jabatan');
+            }
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public function tampil_divisi()
     {
         $data['title'] = 'tampil_divisi';
@@ -209,6 +278,61 @@ class Master_data extends CI_Controller
          ');
         redirect('admin/master_data/tampil_divisi');
     }
+
+    public function update_divisi()
+    {
+        $this->form_validation->set_rules('nama_divisi', 'Nama Divisi', 'required|trim', [
+            'required' => '%s tidak boleh kosong',
+        ]);
+
+        if ($this->form_validation->run() == false) {
+            $data['title'] = 'tampil_divisi';
+            // ini adalah variabel array $data yang memiliki index user, berguna untuk menyimpan data 
+            $data['divisi'] = $this->m_data_divisi->tampil_divisi()->result();
+            // ini adalah baris kode yang berfungsi menampilkan v_tampil dan membawa data dari tabel user
+            $this->load->view('admin/tamplate/header', $data);
+            $this->load->view('admin/tamplate/sidebar', $data);
+            $this->load->view('admin/v_divisi', $data);
+            $this->load->view('admin/tamplate/footer', $data);
+        } else {
+            $id = $this->input->post('id');
+            $data = [
+                'nama_divisi' => $this->input->post('nama_divisi'),
+            ];
+            $this->db->where('id_divisi', $id);
+            $true = $this->db->update('tb_divisi', $data);
+            if ($true) {
+                $this->session->set_flashdata(
+                    'message',
+                    '<div class="alert alert-primary alert-dismissible fade show" role="alert">
+                    Sukses diperbarui
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>'
+                );
+                redirect('admin/master_data/tampil_divisi');
+            } else {
+                $this->session->set_flashdata(
+                    'message',
+                    '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    Gagal diperbarui
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>'
+                );
+                redirect('admin/master_data/tampil_divisi');
+            }
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -3004,7 +3128,6 @@ class Master_data extends CI_Controller
 
 
     //
-
     public function tampil_kriteria_kasi()
     {
         $data['title'] = 'tampil_kriteria_kasi';
@@ -3099,6 +3222,52 @@ class Master_data extends CI_Controller
          ');
         redirect('admin/master_data/tampil_kriteria_kasi');
     }
+
+    public function update_kriteria_kasi()
+    {
+        $data['title'] = 'update_kriteria_kasi';
+        // ini adalah variabel array $data yang memiliki index user, berguna untuk menyimpan data 
+        $data['kriteria_kasi'] = $this->m_data_kriteria->tampil_kriteria_kasi()->result();
+        $data['data_nilban'] = $this->m_data_nilai->tampil_nilai()->result_array();
+        // ini adalah baris kode yang berfungsi menampilkan v_tampil dan membawa data dari tabel user
+        $update = [
+            'nama_kriteria_kasi' => $this->input->post('nama_kriteria_kasi'),
+        ];
+        $id = $this->input->post('id_kriteria_kasi');
+        $this->db->where('id_kriteria_kasi', $id);
+        $true = $this->db->update('tb_kriteria_kasi', $update);
+        if ($true) {
+            $this->load->view('admin/tamplate/header', $data);
+            $this->load->view('admin/tamplate/sidebar', $data);
+            $this->load->view('admin/v_kriteria_kasi', $data);
+            $this->load->view('admin/tamplate/footer', $data);
+            $this->session->set_flashdata(
+                'pesan_update_kriteria_kasi',
+                '<div class="alert alert-primary alert-dismissible fade show" role="alert">
+                    Sukses diupdate
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>'
+            );
+            redirect('admin/master_data/tampil_kriteria_kasi');
+        } else {
+            $this->load->view('admin/tamplate/header', $data);
+            $this->load->view('admin/tamplate/sidebar', $data);
+            $this->load->view('admin/v_kriteria_kasi', $data);
+            $this->load->view('admin/tamplate/footer', $data);
+            $this->session->set_flashdata(
+                'pesan_update_kriteria_kasi',
+                '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    Gagal diupdate
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>'
+            );
+            redirect('admin/master_data/tampil_kriteria_kasi');
+        }
+    }
+
+
+
+
 
 
 
