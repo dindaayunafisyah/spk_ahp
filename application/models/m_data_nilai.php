@@ -33,7 +33,12 @@ class M_data_nilai extends CI_Model
   // 
   public function showPenilaianOP()
   {
-    $query = "SELECT * FROM tb_penilaian ORDER BY tb_penilaian.id_penilaian ASC";
+    $query = "SELECT * FROM tb_penilaian WHERE tb_penilaian.id_jabatan = 'JB004' ORDER BY tb_penilaian.id_penilaian ASC";
+    return $this->db->query($query);
+  }
+  public function showPenilaianKasi()
+  {
+    $query = "SELECT * FROM tb_penilaian WHERE tb_penilaian.id_jabatan = 'JB003' ORDER BY tb_penilaian.id_penilaian ASC";
     return $this->db->query($query);
   }
 

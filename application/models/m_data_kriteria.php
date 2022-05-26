@@ -10,6 +10,9 @@ class M_data_kriteria extends CI_Model
     $getUserb = $this->db->query($query);
     return $getUserb;
   }
+
+
+  //  ================== v-v ==================
   function tampil_kriteria_akhir_op()
   {
     $this->db->order_by('id_kriteria_op', 'DESC');

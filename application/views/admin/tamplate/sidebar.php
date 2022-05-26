@@ -70,7 +70,7 @@
                             </ul>
                         </li>
                         <li class="submenu-item<?= $this->uri->segment(3) == $title ? ' active' : '' ?>">
-                        <li class="sidebar-item  has-sub">
+                            <!-- <li class="sidebar-item  has-sub">
                             <a href="#" class='sidebar-link'>
                                 Data Subrange</a>
                             <ul class="submenu<?= $this->uri->segment(3) == $title ? ' active' : '' ?>">
@@ -81,7 +81,7 @@
                                     <a href="component-badge.html">Kepala Divisi</a>
                                 </li>
                             </ul>
-                        </li>
+                        </li> -->
                         <li class="submenu-item<?= $this->uri->segment(3) == $title ? ' active' : '' ?>">
                         <li class="sidebar-item  has-sub">
                             <a href="#" class='sidebar-link'>
@@ -91,14 +91,14 @@
                                     <a href="<?= base_url('admin/master_data/kuisioner_op') ?>">Operator</a>
                                 </li>
                                 <li class="submenu-item<?= $this->uri->segment(3) == $title ? ' active' : '' ?>">
-                                    <a href="<?= base_url('admin/master_data/kuisioner_kadis') ?>">Kepala Divisi</a>
+                                    <a href="<?= base_url('admin/master_data/kuisioner_kasi') ?>">Kepala Divisi</a>
                                 </li>
                             </ul>
                         </li>
                     </ul>
                     </li>
 
-                    <li class="sidebar-item  has-sub">
+                    <li class="sidebar-item  has-sub<?= $this->uri->segment(3) == $title ? ' active' : '' ?>">
                         <a href="#" class='sidebar-link'>
                             <i class="bi bi-collection-fill"></i>
                             <span>Pembobotan</span>
@@ -135,32 +135,32 @@
 
                     <li class="sidebar-title">Penentuan Bonus</li>
 
-                    <li class="sidebar-item  has-sub">
+                    <li class="sidebar-item  has-sub<?= $this->uri->segment(3) == $title ? ' active' : '' ?>">
                         <a href="#" class='sidebar-link'>
                             <i class="bi bi-hexagon-fill"></i>
                             <span>Hasil Perangkingan</span>
                         </a>
-                        <ul class="submenu ">
-                            <li class="submenu-item ">
-                                <a href="form-element-input.html">Hasil dari Kasi</a>
+                        <ul class="submenu <?= $this->uri->segment(3) == $title ? ' active' : '' ?>">
+                            <li class="submenu-item<?= $this->uri->segment(3) == $title ? ' active' : '' ?>">
+                                <a href="<?= base_url('admin/master_data/show_penilaian_kasi') ?>">Hasil dari Kasi</a>
                             </li>
-                            <li class="submenu-item ">
-                                <a href="form-element-input-group.html">Hasil dari Manajer</a>
+                            <li class="submenu-item<?= $this->uri->segment(3) == $title ? ' active' : '' ?>">
+                                <a href="<?= base_url('admin/master_data/show_penilaian_manajer') ?>">Hasil dari Manajer</a>
                             </li>
                         </ul>
                     </li>
 
-                    <li class="sidebar-item  has-sub">
+                    <li class="sidebar-item  has-sub<?= $this->uri->segment(3) == $title ? ' active' : '' ?>">
                         <a href="#" class='sidebar-link'>
                             <i class="bi bi-file-earmark-medical-fill"></i>
                             <span>Laporan</span>
                         </a>
-                        <ul class="submenu ">
-                            <li class="submenu-item ">
-                                <a href="form-editor-quill.html">Hasil dari Manajer</a>
+                        <ul class="submenu<?= $this->uri->segment(3) == $title ? ' active' : '' ?>">
+                            <li class="submenu-item<?= $this->uri->segment(3) == $title ? ' active' : '' ?>">
+                                <a href="<?= base_url('admin/master_data/cetak_penilaian_kasi') ?>">Hasil dari Kasi</a>
                             </li>
-                            <li class="submenu-item ">
-                                <a href="form-editor-ckeditor.html">Hasil dari Kasi</a>
+                            <li class="submenu-item<?= $this->uri->segment(3) == $title ? ' active' : '' ?>">
+                                <a href="<?= base_url('admin/master_data/cetak_penilaian_manajer') ?>">Hasil dari Manajer</a>
                             </li>
                         </ul>
                     </li>

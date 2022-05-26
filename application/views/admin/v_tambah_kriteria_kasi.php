@@ -14,7 +14,7 @@
 
             <div class="form-group">
                 <label for="id_divisi"> ID Kriteria Kasi : </label>
-                <input type="text" name="id_kriteria_kasi" id="id_kriteria_kasi" value="<?= $id_kriteria_kasi; ?>" class="form-control" readonly>
+                <input type="text" name="id_kriteria_kasi" id="id_kriteria_kasi" value="<?= $id_kriteria_kasi; ?>" class="form-control">
             </div>
             <div class="form-group">
                 <label for="nama_divisi"> Kriteria Penilaian : </label>

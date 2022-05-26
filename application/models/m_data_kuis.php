@@ -12,34 +12,48 @@ class M_data_kuis extends CI_Model
     $query = "SELECT * FROM data_kuisioner WHERE status_kuis = 'Kepala Divisi'";
     return $this->db->query($query)->result_array();
   }
+
+  // 
   public function showPrioritasProductivity()
   {
-    $query = "SELECT id_submatrix_proc, prioritas FROM tb_submatriks_productivity";
+    $query = "SELECT id_submatrix_proc, prioritas FROM tb_submatriks_productivity
+                WHERE tb_submatriks_productivity.id_submatrix_proc >= 1 AND tb_submatriks_productivity.id_submatrix_proc <= 4
+                  ORDER BY tb_submatriks_productivity.id_submatrix_proc ASC LIMIT 4";
     return $this->db->query($query)->result_array();
   }
   public function showPrioritasKomKer()
   {
-    $query = "SELECT id_submatrix_kdk, prioritas FROM tb_submatriks_komdanker";
+    $query = "SELECT id_submatrix_kdk, prioritas FROM tb_submatriks_komdanker
+                 WHERE tb_submatriks_komdanker.id_submatrix_kdk >= 1 AND tb_submatriks_komdanker.id_submatrix_kdk <= 4
+                  ORDER BY tb_submatriks_komdanker.id_submatrix_kdk ASC LIMIT 4";
     return $this->db->query($query)->result_array();
   }
   public function showPrioritasPelaksana5r()
   {
-    $query = "SELECT id_submatrix_p5r, prioritas FROM tb_submatriks_pelaksana5r";
+    $query = "SELECT id_submatrix_p5r, prioritas FROM tb_submatriks_pelaksana5r
+                WHERE tb_submatriks_pelaksana5r.id_submatrix_p5r >= 1 AND tb_submatriks_pelaksana5r.id_submatrix_p5r <= 3
+                  ORDER BY tb_submatriks_pelaksana5r.id_submatrix_p5r ASC LIMIT 3";
     return $this->db->query($query)->result_array();
   }
   public function showPrioritasDokumentasi()
   {
-    $query = "SELECT id_submatrix_doc, prioritas FROM tb_submatriks_dokumentasi";
+    $query = "SELECT id_submatrix_doc, prioritas FROM tb_submatriks_dokumentasi
+                WHERE tb_submatriks_dokumentasi.id_submatrix_doc >= 1 AND tb_submatriks_dokumentasi.id_submatrix_doc <= 4
+                  ORDER BY tb_submatriks_dokumentasi.id_submatrix_doc ASC LIMIT 4";
     return $this->db->query($query)->result_array();
   }
   public function showPrioritasPahamdanLaksanaK3()
   {
-    $query = "SELECT id_submatrix_plk3, prioritas FROM tb_submatriks_pahamdanlaksanak3";
+    $query = "SELECT id_submatrix_plk3, prioritas FROM tb_submatriks_pahamdanlaksanak3
+                WHERE tb_submatriks_pahamdanlaksanak3.id_submatrix_plk3 >= 1 AND tb_submatriks_pahamdanlaksanak3.id_submatrix_plk3 <= 3
+                  ORDER BY tb_submatriks_pahamdanlaksanak3.id_submatrix_plk3 ASC LIMIT 3";
     return $this->db->query($query)->result_array();
   }
   public function showPrioritasPahamSOP()
   {
-    $query = "SELECT id_submatrix_pss, prioritas FROM tb_submatriks_pahamsopspk";
+    $query = "SELECT id_submatrix_pss, prioritas FROM tb_submatriks_pahamsopspk
+                WHERE tb_submatriks_pahamsopspk.id_submatrix_pss >= 1 AND tb_submatriks_pahamsopspk.id_submatrix_pss <= 4
+                  ORDER BY tb_submatriks_pahamsopspk.id_submatrix_pss ASC LIMIT 4";
     return $this->db->query($query)->result_array();
   }
   public function showPrioritasPahamTools()
@@ -49,17 +63,23 @@ class M_data_kuis extends CI_Model
   }
   public function showPrioritasKehadiran()
   {
-    $query = "SELECT id_submatrix_hdr, prioritas FROM tb_submatriks_kehadiran";
+    $query = "SELECT id_submatrix_hdr, prioritas FROM tb_submatriks_kehadiran
+                WHERE tb_submatriks_kehadiran.id_submatrix_hdr >= 1 AND tb_submatriks_kehadiran.id_submatrix_hdr <= 8
+                  ORDER BY tb_submatriks_kehadiran.id_submatrix_hdr ASC LIMIT 8";
     return $this->db->query($query)->result_array();
   }
   public function showPrioritasDisiplin()
   {
-    $query = "SELECT id_submatrix_dsp, prioritas FROM tb_submatriks_kedisiplinan";
+    $query = "SELECT id_submatrix_dsp, prioritas FROM tb_submatriks_kedisiplinan
+                WHERE tb_submatriks_kedisiplinan.id_submatrix_dsp >= 1 AND tb_submatriks_kedisiplinan.id_submatrix_dsp <= 3
+                  ORDER BY tb_submatriks_kedisiplinan.id_submatrix_dsp ASC LIMIT 3";
     return $this->db->query($query)->result_array();
   }
   public function showPrioritasInisiatif()
   {
-    $query = "SELECT id_submatrix_inf, prioritas FROM tb_submatriks_inisiatif";
+    $query = "SELECT id_submatrix_inf, prioritas FROM tb_submatriks_inisiatif
+                WHERE tb_submatriks_inisiatif.id_submatrix_inf >= 1 AND tb_submatriks_inisiatif.id_submatrix_inf <= 4
+                  ORDER BY tb_submatriks_inisiatif.id_submatrix_inf ASC LIMIT 4";
     return $this->db->query($query)->result_array();
   }
 
@@ -77,6 +97,77 @@ class M_data_kuis extends CI_Model
 
 
 
+  // 
+  public function showKasiPrioritasProductivity()
+  {
+    $query = "SELECT id_submatrix_proc, prioritas FROM tb_submatriks_productivity
+                WHERE tb_submatriks_productivity.id_submatrix_proc >= 5 AND tb_submatriks_productivity.id_submatrix_proc <= 8
+                  ORDER BY tb_submatriks_productivity.id_submatrix_proc ASC LIMIT 4";
+    return $this->db->query($query)->result_array();
+  }
+  public function showKasiPrioritasLeadership()
+  {
+    $query = "SELECT id_submatrix_kdk, prioritas FROM tb_submatriks_komdanker
+                 WHERE tb_submatriks_komdanker.id_submatrix_kdk >= 5 AND tb_submatriks_komdanker.id_submatrix_kdk <= 8
+                  ORDER BY tb_submatriks_komdanker.id_submatrix_kdk ASC LIMIT 4";
+    return $this->db->query($query)->result_array();
+  }
+  public function showKasiPrioritasPelaksana5r()
+  {
+    $query = "SELECT id_submatrix_p5r, prioritas FROM tb_submatriks_pelaksana5r
+                WHERE tb_submatriks_pelaksana5r.id_submatrix_p5r >= 4 AND tb_submatriks_pelaksana5r.id_submatrix_p5r <= 6
+                  ORDER BY tb_submatriks_pelaksana5r.id_submatrix_p5r ASC LIMIT 3";
+    return $this->db->query($query)->result_array();
+  }
+  public function showKasiPrioritasDokumentasi()
+  {
+    $query = "SELECT id_submatrix_doc, prioritas FROM tb_submatriks_dokumentasi
+                WHERE tb_submatriks_dokumentasi.id_submatrix_doc >= 5 AND tb_submatriks_dokumentasi.id_submatrix_doc <= 8
+                  ORDER BY tb_submatriks_dokumentasi.id_submatrix_doc ASC LIMIT 4";
+    return $this->db->query($query)->result_array();
+  }
+  public function showKasiPrioritasPahamdanLaksanaK3()
+  {
+    $query = "SELECT id_submatrix_plk3, prioritas FROM tb_submatriks_pahamdanlaksanak3
+                WHERE tb_submatriks_pahamdanlaksanak3.id_submatrix_plk3 >= 4 AND tb_submatriks_pahamdanlaksanak3.id_submatrix_plk3 <= 6
+                  ORDER BY tb_submatriks_pahamdanlaksanak3.id_submatrix_plk3 ASC LIMIT 3";
+    return $this->db->query($query)->result_array();
+  }
+  public function showKasiPrioritasPahamSOP()
+  {
+    $query = "SELECT id_submatrix_pss, prioritas FROM tb_submatriks_pahamsopspk
+                WHERE tb_submatriks_pahamsopspk.id_submatrix_pss >= 5 AND tb_submatriks_pahamsopspk.id_submatrix_pss <= 8
+                  ORDER BY tb_submatriks_pahamsopspk.id_submatrix_pss ASC LIMIT 4";
+    return $this->db->query($query)->result_array();
+  }
+  public function showKasiPrioritasKPM()
+  {
+    $query = "SELECT id_submatrix_pss, prioritas FROM tb_submatriks_pahamsopspk
+                WHERE tb_submatriks_pahamsopspk.id_submatrix_pss >= 9 AND tb_submatriks_pahamsopspk.id_submatrix_pss <= 12
+                  ORDER BY tb_submatriks_pahamsopspk.id_submatrix_pss ASC LIMIT 4";
+    return $this->db->query($query)->result_array();
+  }
+  public function showKasiPrioritasKehadiran()
+  {
+    $query = "SELECT id_submatrix_hdr, prioritas FROM tb_submatriks_kehadiran
+                WHERE tb_submatriks_kehadiran.id_submatrix_hdr >= 9 AND tb_submatriks_kehadiran.id_submatrix_hdr <= 16
+                  ORDER BY tb_submatriks_kehadiran.id_submatrix_hdr ASC LIMIT 8";
+    return $this->db->query($query)->result_array();
+  }
+  public function showKasiPrioritasDisiplin()
+  {
+    $query = "SELECT id_submatrix_dsp, prioritas FROM tb_submatriks_kedisiplinan
+                WHERE tb_submatriks_kedisiplinan.id_submatrix_dsp >= 4 AND tb_submatriks_kedisiplinan.id_submatrix_dsp <= 6
+                  ORDER BY tb_submatriks_kedisiplinan.id_submatrix_dsp ASC LIMIT 3";
+    return $this->db->query($query)->result_array();
+  }
+  public function showKasiPrioritasInisiatif()
+  {
+    $query = "SELECT id_submatrix_inf, prioritas FROM tb_submatriks_inisiatif
+                WHERE tb_submatriks_inisiatif.id_submatrix_inf >= 5 AND tb_submatriks_inisiatif.id_submatrix_inf <= 8
+                  ORDER BY tb_submatriks_inisiatif.id_submatrix_inf ASC LIMIT 4";
+    return $this->db->query($query)->result_array();
+  }
 
 
 

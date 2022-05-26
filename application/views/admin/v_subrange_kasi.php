@@ -1952,16 +1952,16 @@
                                                         <th>
                                                             <?php
                                                             switch ($subpss):
-                                                                case $subpss['id_subrange_pss'] == 1:
+                                                                case $subpss['id_subrange_pss'] == 5:
                                                                     echo 'Sangat Mampu';
                                                                     break;
-                                                                case $subpss['id_subrange_pss'] == 2:
+                                                                case $subpss['id_subrange_pss'] == 6:
                                                                     echo 'Mampu';
                                                                     break;
-                                                                case $subpss['id_subrange_pss'] == 3:
+                                                                case $subpss['id_subrange_pss'] == 7:
                                                                     echo 'Kurang Mampu';
                                                                     break;
-                                                                case $subpss['id_subrange_pss'] == 4:
+                                                                case $subpss['id_subrange_pss'] == 8:
                                                                     echo 'Tidak Mampu';
                                                                     break;
                                                                 default:
@@ -1973,7 +1973,7 @@
                                                     <?php endforeach; ?>
                                                 </tr>
                                             </thead>
-                                            <form action="<?php echo base_url() . 'admin/master_data/update_subrange_pahamsopspk'; ?>" method="POST">
+                                            <form action="<?php echo base_url() . 'admin/master_data/update_subrange_pahamsopspk_kasi'; ?>" method="POST">
                                                 <tbody>
                                                     <tr>
                                                     </tr>
@@ -1983,16 +1983,16 @@
                                                             <td>
                                                                 <?php
                                                                 switch ($subpss):
-                                                                    case $subpss['id_subrange_pss'] == 1:
+                                                                    case $subpss['id_subrange_pss'] == 5:
                                                                         echo 'Sangat Mampu';
                                                                         break;
-                                                                    case $subpss['id_subrange_pss'] == 2:
+                                                                    case $subpss['id_subrange_pss'] == 6:
                                                                         echo 'Mampu';
                                                                         break;
-                                                                    case $subpss['id_subrange_pss'] == 3:
+                                                                    case $subpss['id_subrange_pss'] == 7:
                                                                         echo 'Kurang Mampu';
                                                                         break;
-                                                                    case $subpss['id_subrange_pss'] == 4:
+                                                                    case $subpss['id_subrange_pss'] == 8:
                                                                         echo 'Tidak Mampu';
                                                                         break;
                                                                     default:
@@ -2166,16 +2166,16 @@
                                                         <th>
                                                             <?php
                                                             switch ($subpss):
-                                                                case $subpss['id_subrange_pss'] == 1:
+                                                                case $subpss['id_subrange_pss'] == 5:
                                                                     echo 'Sangat Mampu';
                                                                     break;
-                                                                case $subpss['id_subrange_pss'] == 2:
+                                                                case $subpss['id_subrange_pss'] == 6:
                                                                     echo 'Mampu';
                                                                     break;
-                                                                case $subpss['id_subrange_pss'] == 3:
+                                                                case $subpss['id_subrange_pss'] == 7:
                                                                     echo 'Kurang Mampu';
                                                                     break;
-                                                                case $subpss['id_subrange_pss'] == 4:
+                                                                case $subpss['id_subrange_pss'] == 8:
                                                                     echo 'Tidak Mampu';
                                                                     break;
                                                                 default:
@@ -2203,16 +2203,16 @@
                                                         <td>
                                                             <?php
                                                             switch ($smtxpss):
-                                                                case $smtxpss['id_submatrix_pss'] == 1:
+                                                                case $smtxpss['id_submatrix_pss'] == 5:
                                                                     echo 'Sangat Mampu';
                                                                     break;
-                                                                case $smtxpss['id_submatrix_pss'] == 2:
+                                                                case $smtxpss['id_submatrix_pss'] == 6:
                                                                     echo 'Mampu';
                                                                     break;
-                                                                case $smtxpss['id_submatrix_pss'] == 3:
+                                                                case $smtxpss['id_submatrix_pss'] == 7:
                                                                     echo 'Kurang Mampu';
                                                                     break;
-                                                                case $smtxpss['id_submatrix_pss'] == 4:
+                                                                case $smtxpss['id_submatrix_pss'] == 8:
                                                                     echo 'Tidak Mampu';
                                                                     break;
                                                                 default:
@@ -2327,7 +2327,7 @@
 
 
 
-                                <!-- ------------------------------------------- Pemahaman Tools ------------------------------------------- -->
+                                <!-- ------------------------------------------- Kemampuan Pemecahan Masalah ------------------------------------------- -->
                                 <div class="tab-pane fade" id="<?= str_replace(" ", "_", $title7) ?>" role="tabpanel" aria-labelledby="<?= str_replace(" ", "_", $title7) ?>-tab">
                                     <div class="card">
                                         <table class="table table-responsive table-hover table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -2346,18 +2346,21 @@
                                                 <tr>
                                                     <th></th>
                                                     <?php
-                                                    foreach ($subrange_pahamtools as $subptls) : ?>
+                                                    foreach ($subrange_pahamsopspk1 as $subkpm) : ?>
                                                         <th>
                                                             <?php
-                                                            switch ($subptls):
-                                                                case $subptls['id_subrange_ptls'] == 1:
-                                                                    echo 'Pemahaman Baik';
+                                                            switch ($subkpm):
+                                                                case $subkpm['id_subrange_pss'] == 9:
+                                                                    echo 'Sangat Mampu';
                                                                     break;
-                                                                case $subptls['id_subrange_ptls'] == 2:
-                                                                    echo 'Pemahaman Kurang Baik';
+                                                                case $subkpm['id_subrange_pss'] == 10:
+                                                                    echo 'Mampu';
                                                                     break;
-                                                                case $subptls['id_subrange_ptls'] == 3:
-                                                                    echo 'Tidak Memahami';
+                                                                case $subkpm['id_subrange_pss'] == 11:
+                                                                    echo 'Kurang Mampu';
+                                                                    break;
+                                                                case $subkpm['id_subrange_pss'] == 12:
+                                                                    echo 'Tidak Mampu';
                                                                     break;
                                                                 default:
                                                                     echo 'No One';
@@ -2368,24 +2371,27 @@
                                                     <?php endforeach; ?>
                                                 </tr>
                                             </thead>
-                                            <form action="<?php echo base_url() . 'admin/master_data/update_subrange_pahamtools'; ?>" method="POST">
+                                            <form action="<?php echo base_url() . 'admin/master_data/update_subrange_kpm'; ?>" method="POST">
                                                 <tbody>
                                                     <tr>
                                                     </tr>
                                                     <?php
-                                                    foreach ($subrange_pahamtools as $subptls) : ?>
+                                                    foreach ($subrange_pahamsopspk1 as $subkpm) : ?>
                                                         <tr>
                                                             <td>
                                                                 <?php
-                                                                switch ($subptls):
-                                                                    case $subptls['id_subrange_ptls'] == 1:
-                                                                        echo 'Pemahaman Baik';
+                                                                switch ($subkpm):
+                                                                    case $subkpm['id_subrange_pss'] == 9:
+                                                                        echo 'Sangat Mampu';
                                                                         break;
-                                                                    case $subptls['id_subrange_ptls'] == 2:
-                                                                        echo 'Pemahaman Kurang Baik';
+                                                                    case $subkpm['id_subrange_pss'] == 10:
+                                                                        echo 'Mampu';
                                                                         break;
-                                                                    case $subptls['id_subrange_ptls'] == 3:
-                                                                        echo 'Tidak Memahami';
+                                                                    case $subkpm['id_subrange_pss'] == 11:
+                                                                        echo 'Kurang Mampu';
+                                                                        break;
+                                                                    case $subkpm['id_subrange_pss'] == 12:
+                                                                        echo 'Tidak Mampu';
                                                                         break;
                                                                     default:
                                                                         echo 'No One';
@@ -2393,10 +2399,10 @@
                                                                 ?>
                                                                 <?php endswitch; ?>
                                                             </td>
-                                                            <?php if ($subptls['baik'] == 1) : ?>
+                                                            <?php if ($subkpm['sangat_mampu'] == 1) : ?>
                                                                 <td style="background-color: aqua ;">
-                                                                    <select name="baik[]" id="baik" class="form-control" style="background-color: aqua;">
-                                                                        <option value="<?= $subptls['baik'] ?>"> <?= $subptls['baik'] ?></option>
+                                                                    <select name="sangat_mampu[]" id="sangat_mampu" class="form-control" style="background-color: aqua;">
+                                                                        <option value="<?= $subkpm['sangat_mampu'] ?>"> <?= $subkpm['sangat_mampu'] ?></option>
                                                                         <?php foreach ($data_nilban as $dbn) : ?>
                                                                             <option value="<?= $dbn['nilai'] ?>"><?= $dbn['nama_nilai'] . ' - ' . $dbn['nilai'] ?></option>
                                                                             <?php foreach ($data_nilban1 as $dbn1) : ?>
@@ -2409,8 +2415,8 @@
                                                                 </td>
                                                             <?php else : ?>
                                                                 <td>
-                                                                    <select name="baik[]" id="baik" class="form-control">
-                                                                        <option value="<?= $subptls['baik'] ?>"> <?= $subptls['baik'] ?></option>
+                                                                    <select name="sangat_mampu[]" id="sangat_mampu" class="form-control">
+                                                                        <option value="<?= $subkpm['sangat_mampu'] ?>"> <?= $subkpm['sangat_mampu'] ?></option>
                                                                         <?php foreach ($data_nilban as $dbn) : ?>
                                                                             <option value="<?= $dbn['nilai'] ?>"><?= $dbn['nama_nilai'] . ' - ' . $dbn['nilai'] ?></option>
                                                                             <?php foreach ($data_nilban1 as $dbn1) : ?>
@@ -2425,10 +2431,10 @@
 
                                                             <!--  -->
 
-                                                            <?php if ($subptls['kurang_baik'] == 1) : ?>
+                                                            <?php if ($subkpm['mampu'] == 1) : ?>
                                                                 <td style="background-color: aqua ;">
-                                                                    <select name="kurang_baik[]" id="kurang_baik" class="form-control" style="background-color: aqua;">
-                                                                        <option value="<?= $subptls['kurang_baik'] ?>"> <?= $subptls['kurang_baik'] ?></option>
+                                                                    <select name="mampu[]" id="mampu" class="form-control" style="background-color: aqua;">
+                                                                        <option value="<?= $subkpm['mampu'] ?>"> <?= $subkpm['mampu'] ?></option>
                                                                         <?php foreach ($data_nilban as $dbn) : ?>
                                                                             <option value="<?= $dbn['nilai'] ?>"><?= $dbn['nama_nilai'] . ' - ' . $dbn['nilai'] ?></option>
                                                                             <?php foreach ($data_nilban1 as $dbn1) : ?>
@@ -2441,8 +2447,8 @@
                                                                 </td>
                                                             <?php else : ?>
                                                                 <td>
-                                                                    <select name="kurang_baik[]" id="kurang_baik" class="form-control">
-                                                                        <option value="<?= $subptls['kurang_baik'] ?>"> <?= $subptls['kurang_baik'] ?></option>
+                                                                    <select name="mampu[]" id="mampu" class="form-control">
+                                                                        <option value="<?= $subkpm['mampu'] ?>"> <?= $subkpm['mampu'] ?></option>
                                                                         <?php foreach ($data_nilban as $dbn) : ?>
                                                                             <option value="<?= $dbn['nilai'] ?>"><?= $dbn['nama_nilai'] . ' - ' . $dbn['nilai'] ?></option>
                                                                             <?php foreach ($data_nilban1 as $dbn1) : ?>
@@ -2457,10 +2463,10 @@
 
                                                             <!--  -->
 
-                                                            <?php if ($subptls['tidak_baik'] == 1) : ?>
+                                                            <?php if ($subkpm['kurang_mampu'] == 1) : ?>
                                                                 <td style="background-color: aqua ;">
-                                                                    <select name="tidak_baik[]" id="tidak_baik" class="form-control" style="background-color: aqua;">
-                                                                        <option value="<?= $subptls['tidak_baik'] ?>"> <?= $subptls['tidak_baik'] ?></option>
+                                                                    <select name="kurang_mampu[]" id="kurang_mampu" class="form-control" style="background-color: aqua;">
+                                                                        <option value="<?= $subkpm['kurang_mampu'] ?>"> <?= $subkpm['kurang_mampu'] ?></option>
                                                                         <?php foreach ($data_nilban as $dbn) : ?>
                                                                             <option value="<?= $dbn['nilai'] ?>"><?= $dbn['nama_nilai'] . ' - ' . $dbn['nilai'] ?></option>
                                                                             <?php foreach ($data_nilban1 as $dbn1) : ?>
@@ -2473,8 +2479,40 @@
                                                                 </td>
                                                             <?php else : ?>
                                                                 <td>
-                                                                    <select name="tidak_baik[]" id="tidak_baik" class="form-control">
-                                                                        <option value="<?= $subptls['tidak_baik'] ?>"> <?= $subptls['tidak_baik'] ?></option>
+                                                                    <select name="kurang_mampu[]" id="kurang_mampu" class="form-control">
+                                                                        <option value="<?= $subkpm['kurang_mampu'] ?>"> <?= $subkpm['kurang_mampu'] ?></option>
+                                                                        <?php foreach ($data_nilban as $dbn) : ?>
+                                                                            <option value="<?= $dbn['nilai'] ?>"><?= $dbn['nama_nilai'] . ' - ' . $dbn['nilai'] ?></option>
+                                                                            <?php foreach ($data_nilban1 as $dbn1) : ?>
+                                                                                <?php if ($dbn1 != $dbn) : ?>
+                                                                                    <option value="<?= $dbn1['nilai'] / $dbn['nilai'] ?>"><?= '1 dibagi ' . $dbn['nama_nilai'] . ' - &sup' . $dbn1['nilai'] . ' / ' . $dbn['nilai'] ?></option>
+                                                                                <?php endif; ?>
+                                                                            <?php endforeach; ?>
+                                                                        <?php endforeach; ?>
+                                                                    </select>
+                                                                </td>
+                                                            <?php endif; ?>
+
+                                                            <!--  -->
+
+                                                            <?php if ($subkpm['tidak_mampu'] == 1) : ?>
+                                                                <td style="background-color: aqua ;">
+                                                                    <select name="tidak_mampu[]" id="tidak_mampu" class="form-control" style="background-color: aqua;">
+                                                                        <option value="<?= $subkpm['tidak_mampu'] ?>"> <?= $subkpm['tidak_mampu'] ?></option>
+                                                                        <?php foreach ($data_nilban as $dbn) : ?>
+                                                                            <option value="<?= $dbn['nilai'] ?>"><?= $dbn['nama_nilai'] . ' - ' . $dbn['nilai'] ?></option>
+                                                                            <?php foreach ($data_nilban1 as $dbn1) : ?>
+                                                                                <?php if ($dbn1 != $dbn) : ?>
+                                                                                    <option value="<?= $dbn1['nilai'] / $dbn['nilai'] ?>"><?= '1 dibagi ' . $dbn['nama_nilai'] . ' - &sup' . $dbn1['nilai'] . ' / ' . $dbn['nilai'] ?></option>
+                                                                                <?php endif; ?>
+                                                                            <?php endforeach; ?>
+                                                                        <?php endforeach; ?>
+                                                                    </select>
+                                                                </td>
+                                                            <?php else : ?>
+                                                                <td>
+                                                                    <select name="tidak_mampu[]" id="tidak_mampu" class="form-control">
+                                                                        <option value="<?= $subkpm['tidak_mampu'] ?>"> <?= $subkpm['tidak_mampu'] ?></option>
                                                                         <?php foreach ($data_nilban as $dbn) : ?>
                                                                             <option value="<?= $dbn['nilai'] ?>"><?= $dbn['nama_nilai'] . ' - ' . $dbn['nilai'] ?></option>
                                                                             <?php foreach ($data_nilban1 as $dbn1) : ?>
@@ -2493,13 +2531,16 @@
                                                     <tr>
                                                         <td><strong>Total</strong></td>
                                                         <td>
-                                                            <?= $sum_subpahamtools['sumBaik']; ?>
+                                                            <?= $sum_subpahamsopspk1['sumSgtMampu']; ?>
                                                         </td>
                                                         <td>
-                                                            <?= $sum_subpahamtools['sumKrgBaik']; ?>
+                                                            <?= $sum_subpahamsopspk1['sumMampu']; ?>
                                                         </td>
                                                         <td>
-                                                            <?= $sum_subpahamtools['sumTdkBaik']; ?>
+                                                            <?= $sum_subpahamsopspk1['sumKrgMampu']; ?>
+                                                        </td>
+                                                        <td>
+                                                            <?= $sum_subpahamsopspk1['sumTdkMampu']; ?>
                                                         </td>
                                                     </tr>
                                                 </tbody>
@@ -2519,18 +2560,21 @@
                                                 <tr>
                                                     <th></th>
                                                     <?php
-                                                    foreach ($subrange_pahamtools as $subptls) : ?>
+                                                    foreach ($subrange_pahamsopspk1 as $subkpm) : ?>
                                                         <th>
                                                             <?php
-                                                            switch ($subptls):
-                                                                case $subptls['id_subrange_ptls'] == 1:
-                                                                    echo 'Pemahaman Baik';
+                                                            switch ($subkpm):
+                                                                case $subkpm['id_subrange_pss'] == 9:
+                                                                    echo 'Sangat Mampu';
                                                                     break;
-                                                                case $subptls['id_subrange_ptls'] == 2:
-                                                                    echo 'Pemahaman Kurang Baik';
+                                                                case $subkpm['id_subrange_pss'] == 10:
+                                                                    echo 'Mampu';
                                                                     break;
-                                                                case $subptls['id_subrange_ptls'] == 3:
-                                                                    echo 'Tidak Memahami';
+                                                                case $subkpm['id_subrange_pss'] == 11:
+                                                                    echo 'Kurang Mampu';
+                                                                    break;
+                                                                case $subkpm['id_subrange_pss'] == 12:
+                                                                    echo 'Tidak Mampu';
                                                                     break;
                                                                 default:
                                                                     echo 'No One';
@@ -2552,19 +2596,22 @@
                                             </thead>
                                             <tbody>
                                                 <?php
-                                                foreach ($submatrix_pahamtools as $smtxptls) : ?>
+                                                foreach ($submatrix_pahamsopspk1 as $smtxkpm) : ?>
                                                     <tr>
                                                         <td>
                                                             <?php
-                                                            switch ($smtxptls):
-                                                                case $smtxptls['id_submatrix_ptls'] == 1:
-                                                                    echo 'Pemahaman Baik';
+                                                            switch ($smtxkpm):
+                                                                case $smtxkpm['id_submatrix_pss'] == 9:
+                                                                    echo 'Sangat Mampu';
                                                                     break;
-                                                                case $smtxptls['id_submatrix_ptls'] == 2:
-                                                                    echo 'Pemahaman Kurang Baik';
+                                                                case $smtxkpm['id_submatrix_pss'] == 10:
+                                                                    echo 'Mampu';
                                                                     break;
-                                                                case $smtxptls['id_submatrix_ptls'] == 3:
-                                                                    echo 'Tidak Memahami';
+                                                                case $smtxkpm['id_submatrix_pss'] == 11:
+                                                                    echo 'Kurang Mampu';
+                                                                    break;
+                                                                case $smtxkpm['id_submatrix_pss'] == 12:
+                                                                    echo 'Tidak Mampu';
                                                                     break;
                                                                 default:
                                                                     echo 'No One';
@@ -2573,44 +2620,50 @@
                                                             <?php endswitch; ?>
                                                         </td>
                                                         <td>
-                                                            <?= $smtxptls['baik'] ?>
+                                                            <?= $smtxkpm['sangat_mampu'] ?>
                                                         </td>
                                                         <td>
-                                                            <?= $smtxptls['kurang_baik'] ?>
+                                                            <?= $smtxkpm['mampu'] ?>
                                                         </td>
                                                         <td>
-                                                            <?= $smtxptls['tidak_baik'] ?>
+                                                            <?= $smtxkpm['kurang_mampu'] ?>
                                                         </td>
                                                         <td>
-                                                            <?= $smtxptls['jumlah'] ?>
+                                                            <?= $smtxkpm['tidak_mampu'] ?>
                                                         </td>
                                                         <td>
-                                                            <?= $smtxptls['prioritas'] ?>
+                                                            <?= $smtxkpm['jumlah'] ?>
                                                         </td>
                                                         <td>
-                                                            <?= $smtxptls['eigen_value'] ?>
+                                                            <?= $smtxkpm['prioritas'] ?>
+                                                        </td>
+                                                        <td>
+                                                            <?= $smtxkpm['eigen_value'] ?>
                                                         </td>
                                                     </tr>
                                                 <?php endforeach; ?>
                                                 <tr style="font-weight: bold; font-size:15px;">
                                                     <td><strong>Total</strong></td>
                                                     <td>
-                                                        <?= $sum_submatrixpahamtools['sumBaik']; ?>
+                                                        <?= $sum_submatrixpahamsopspk1['sumSgtMampu']; ?>
                                                     </td>
                                                     <td>
-                                                        <?= $sum_submatrixpahamtools['sumKrgBaik']; ?>
+                                                        <?= $sum_submatrixpahamsopspk1['sumMampu']; ?>
                                                     </td>
                                                     <td>
-                                                        <?= $sum_submatrixpahamtools['sumTdkBaik']; ?>
+                                                        <?= $sum_submatrixpahamsopspk1['sumKrgMampu']; ?>
                                                     </td>
                                                     <td>
-                                                        <?= $sum_submatrixpahamtools['submtxJum']; ?>
+                                                        <?= $sum_submatrixpahamsopspk1['sumTdkMampu']; ?>
                                                     </td>
                                                     <td>
-                                                        <?= $sum_submatrixpahamtools['submtxPrior']; ?>
+                                                        <?= $sum_submatrixpahamsopspk1['submtxJum']; ?>
                                                     </td>
                                                     <td>
-                                                        <?= $sum_submatrixpahamtools['submtxEig']; ?>
+                                                        <?= $sum_submatrixpahamsopspk1['submtxPrior']; ?>
+                                                    </td>
+                                                    <td>
+                                                        <?= $sum_submatrixpahamsopspk1['submtxEig']; ?>
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -2621,7 +2674,7 @@
                                                 <th>CI</th>
                                                 <th colspan="2">
                                                     <?php
-                                                    $ci = ($sum_submatrixpahamtools['submtxEig'] - $count_subpahamtools['jumSubPTLS']) / ($count_subpahamtools['jumSubPTLS'] - 1);
+                                                    $ci = ($sum_submatrixpahamsopspk1['submtxEig'] - $count_subpahamsopspk1['jumSubPSS']) / ($count_subpahamsopspk1['jumSubPSS'] - 1);
                                                     echo $ci;
                                                     ?>
                                                 </th>
@@ -2630,7 +2683,7 @@
                                                 <th>RI</th>
                                                 <th colspan="2">
                                                     <?php
-                                                    echo $ri3;
+                                                    echo $ri;
                                                     ?>
                                                 </th>
                                             </tr>
@@ -2638,7 +2691,7 @@
                                                 <th>CR</th>
                                                 <th>
                                                     <?php
-                                                    $cr = $ci / $ri3;
+                                                    $cr = $ci / $ri;
                                                     echo $cr;
                                                     ?>
                                                 </th>
@@ -2695,28 +2748,28 @@
                                                         <th>
                                                             <?php
                                                             switch ($subhdr):
-                                                                case $subhdr['id_subrange_hdr'] == 1:
+                                                                case $subhdr['id_subrange_hdr'] == 9:
                                                                     echo 'Hadir 100%';
                                                                     break;
-                                                                case $subhdr['id_subrange_hdr'] == 2:
+                                                                case $subhdr['id_subrange_hdr'] == 10:
                                                                     echo 'Hadir 100% ada terlambat';
                                                                     break;
-                                                                case $subhdr['id_subrange_hdr'] == 3:
+                                                                case $subhdr['id_subrange_hdr'] == 11:
                                                                     echo 'Hadir >= 90%';
                                                                     break;
-                                                                case $subhdr['id_subrange_hdr'] == 4:
+                                                                case $subhdr['id_subrange_hdr'] == 12:
                                                                     echo 'Hadir > 90% ada terlambat';
                                                                     break;
-                                                                case $subhdr['id_subrange_hdr'] == 5:
+                                                                case $subhdr['id_subrange_hdr'] == 13:
                                                                     echo 'Hadir 80-90 %';
                                                                     break;
-                                                                case $subhdr['id_subrange_hdr'] == 6:
+                                                                case $subhdr['id_subrange_hdr'] == 14:
                                                                     echo 'Hadir 80-90% ada terlambat';
                                                                     break;
-                                                                case $subhdr['id_subrange_hdr'] == 7:
+                                                                case $subhdr['id_subrange_hdr'] == 15:
                                                                     echo 'Hadir < 80%';
                                                                     break;
-                                                                case $subhdr['id_subrange_hdr'] == 8:
+                                                                case $subhdr['id_subrange_hdr'] == 16:
                                                                     echo 'Hadir < 80% ada terlambat';
                                                                     break;
                                                                 default:
@@ -2728,7 +2781,7 @@
                                                     <?php endforeach; ?>
                                                 </tr>
                                             </thead>
-                                            <form action="<?php echo base_url() . 'admin/master_data/update_subrange_kehadiran'; ?>" method="POST">
+                                            <form action="<?php echo base_url() . 'admin/master_data/update_subrange_kehadiran_kasi'; ?>" method="POST">
                                                 <tbody>
                                                     <tr>
                                                     </tr>
@@ -2738,28 +2791,28 @@
                                                             <td>
                                                                 <?php
                                                                 switch ($subhdr):
-                                                                    case $subhdr['id_subrange_hdr'] == 1:
+                                                                    case $subhdr['id_subrange_hdr'] == 9:
                                                                         echo 'Hadir 100%';
                                                                         break;
-                                                                    case $subhdr['id_subrange_hdr'] == 2:
+                                                                    case $subhdr['id_subrange_hdr'] == 10:
                                                                         echo 'Hadir 100% ada terlambat';
                                                                         break;
-                                                                    case $subhdr['id_subrange_hdr'] == 3:
+                                                                    case $subhdr['id_subrange_hdr'] == 11:
                                                                         echo 'Hadir >= 90%';
                                                                         break;
-                                                                    case $subhdr['id_subrange_hdr'] == 4:
+                                                                    case $subhdr['id_subrange_hdr'] == 12:
                                                                         echo 'Hadir > 90% ada terlambat';
                                                                         break;
-                                                                    case $subhdr['id_subrange_hdr'] == 5:
+                                                                    case $subhdr['id_subrange_hdr'] == 13:
                                                                         echo 'Hadir 80-90 %';
                                                                         break;
-                                                                    case $subhdr['id_subrange_hdr'] == 6:
+                                                                    case $subhdr['id_subrange_hdr'] == 14:
                                                                         echo 'Hadir 80-90% ada terlambat';
                                                                         break;
-                                                                    case $subhdr['id_subrange_hdr'] == 7:
+                                                                    case $subhdr['id_subrange_hdr'] == 15:
                                                                         echo 'Hadir < 80%';
                                                                         break;
-                                                                    case $subhdr['id_subrange_hdr'] == 8:
+                                                                    case $subhdr['id_subrange_hdr'] == 16:
                                                                         echo 'Hadir < 80% ada terlambat';
                                                                         break;
                                                                     default:
@@ -3073,28 +3126,28 @@
                                                         <th>
                                                             <?php
                                                             switch ($subhdr):
-                                                                case $subhdr['id_subrange_hdr'] == 1:
+                                                                case $subhdr['id_subrange_hdr'] == 9:
                                                                     echo 'Hadir 100%';
                                                                     break;
-                                                                case $subhdr['id_subrange_hdr'] == 2:
+                                                                case $subhdr['id_subrange_hdr'] == 10:
                                                                     echo 'Hadir 100% ada terlambat';
                                                                     break;
-                                                                case $subhdr['id_subrange_hdr'] == 3:
+                                                                case $subhdr['id_subrange_hdr'] == 11:
                                                                     echo 'Hadir >= 90%';
                                                                     break;
-                                                                case $subhdr['id_subrange_hdr'] == 4:
+                                                                case $subhdr['id_subrange_hdr'] == 12:
                                                                     echo 'Hadir > 90% ada terlambat';
                                                                     break;
-                                                                case $subhdr['id_subrange_hdr'] == 5:
+                                                                case $subhdr['id_subrange_hdr'] == 13:
                                                                     echo 'Hadir 80-90 %';
                                                                     break;
-                                                                case $subhdr['id_subrange_hdr'] == 6:
+                                                                case $subhdr['id_subrange_hdr'] == 14:
                                                                     echo 'Hadir 80-90% ada terlambat';
                                                                     break;
-                                                                case $subhdr['id_subrange_hdr'] == 7:
+                                                                case $subhdr['id_subrange_hdr'] == 15:
                                                                     echo 'Hadir < 80%';
                                                                     break;
-                                                                case $subhdr['id_subrange_hdr'] == 8:
+                                                                case $subhdr['id_subrange_hdr'] == 16:
                                                                     echo 'Hadir < 80% ada terlambat';
                                                                     break;
                                                                 default:
@@ -3122,28 +3175,28 @@
                                                         <td>
                                                             <?php
                                                             switch ($smtxhdr):
-                                                                case $smtxhdr['id_submatrix_hdr'] == 1:
+                                                                case $smtxhdr['id_submatrix_hdr'] == 9:
                                                                     echo 'Hadir 100%';
                                                                     break;
-                                                                case $smtxhdr['id_submatrix_hdr'] == 2:
+                                                                case $smtxhdr['id_submatrix_hdr'] == 10:
                                                                     echo 'Hadir 100% ada terlambat';
                                                                     break;
-                                                                case $smtxhdr['id_submatrix_hdr'] == 3:
+                                                                case $smtxhdr['id_submatrix_hdr'] == 11:
                                                                     echo 'Hadir >= 90%';
                                                                     break;
-                                                                case $smtxhdr['id_submatrix_hdr'] == 4:
+                                                                case $smtxhdr['id_submatrix_hdr'] == 12:
                                                                     echo 'Hadir > 90% ada terlambat';
                                                                     break;
-                                                                case $smtxhdr['id_submatrix_hdr'] == 5:
+                                                                case $smtxhdr['id_submatrix_hdr'] == 13:
                                                                     echo 'Hadir 80-90 %';
                                                                     break;
-                                                                case $smtxhdr['id_submatrix_hdr'] == 6:
+                                                                case $smtxhdr['id_submatrix_hdr'] == 14:
                                                                     echo 'Hadir 80-90% ada terlambat';
                                                                     break;
-                                                                case $smtxhdr['id_submatrix_hdr'] == 7:
+                                                                case $smtxhdr['id_submatrix_hdr'] == 15:
                                                                     echo 'Hadir < 80%';
                                                                     break;
-                                                                case $smtxhdr['id_submatrix_hdr'] == 8:
+                                                                case $smtxhdr['id_submatrix_hdr'] == 16:
                                                                     echo 'Hadir < 80% ada terlambat';
                                                                     break;
                                                                 default:
@@ -3305,13 +3358,13 @@
                                                         <th>
                                                             <?php
                                                             switch ($subdsp):
-                                                                case $subdsp['id_subrange_dsp'] == 1:
+                                                                case $subdsp['id_subrange_dsp'] == 4:
                                                                     echo 'Tidak ada Pelanggaran';
                                                                     break;
-                                                                case $subdsp['id_subrange_dsp'] == 2:
+                                                                case $subdsp['id_subrange_dsp'] == 5:
                                                                     echo 'Sedikit Pelanggaran';
                                                                     break;
-                                                                case $subdsp['id_subrange_dsp'] == 3:
+                                                                case $subdsp['id_subrange_dsp'] == 6:
                                                                     echo 'Banyak Pelanggaran';
                                                                     break;
                                                                 default:
@@ -3323,7 +3376,7 @@
                                                     <?php endforeach; ?>
                                                 </tr>
                                             </thead>
-                                            <form action="<?php echo base_url() . 'admin/master_data/update_subrange_kedisiplinan'; ?>" method="POST">
+                                            <form action="<?php echo base_url() . 'admin/master_data/update_subrange_kedisiplinan_kasi'; ?>" method="POST">
                                                 <tbody>
                                                     <tr>
                                                     </tr>
@@ -3333,13 +3386,13 @@
                                                             <td>
                                                                 <?php
                                                                 switch ($subdsp):
-                                                                    case $subdsp['id_subrange_dsp'] == 1:
+                                                                    case $subdsp['id_subrange_dsp'] == 4:
                                                                         echo 'Tidak ada Pelanggaran';
                                                                         break;
-                                                                    case $subdsp['id_subrange_dsp'] == 2:
+                                                                    case $subdsp['id_subrange_dsp'] == 5:
                                                                         echo 'Sedikit Pelanggaran';
                                                                         break;
-                                                                    case $subdsp['id_subrange_dsp'] == 3:
+                                                                    case $subdsp['id_subrange_dsp'] == 6:
                                                                         echo 'Banyak Pelanggaran';
                                                                         break;
                                                                     default:
@@ -3478,13 +3531,13 @@
                                                         <th>
                                                             <?php
                                                             switch ($subdsp):
-                                                                case $subdsp['id_subrange_dsp'] == 1:
+                                                                case $subdsp['id_subrange_dsp'] == 4:
                                                                     echo 'Tidak ada Pelanggaran';
                                                                     break;
-                                                                case $subdsp['id_subrange_dsp'] == 2:
+                                                                case $subdsp['id_subrange_dsp'] == 5:
                                                                     echo 'Sedikit Pelanggaran';
                                                                     break;
-                                                                case $subdsp['id_subrange_dsp'] == 3:
+                                                                case $subdsp['id_subrange_dsp'] == 6:
                                                                     echo 'Banyak Pelanggaran';
                                                                     break;
                                                                 default:
@@ -3512,13 +3565,13 @@
                                                         <td>
                                                             <?php
                                                             switch ($smtxdsp):
-                                                                case $smtxdsp['id_submatrix_dsp'] == 1:
+                                                                case $smtxdsp['id_submatrix_dsp'] == 4:
                                                                     echo 'Tidak ada Pelanggaran';
                                                                     break;
-                                                                case $smtxdsp['id_submatrix_dsp'] == 2:
+                                                                case $smtxdsp['id_submatrix_dsp'] == 5:
                                                                     echo 'Sedikit Melanggar';
                                                                     break;
-                                                                case $smtxdsp['id_submatrix_dsp'] == 3:
+                                                                case $smtxdsp['id_submatrix_dsp'] == 6:
                                                                     echo 'Banyak Melanggar';
                                                                     break;
                                                                 default:
@@ -3650,16 +3703,16 @@
                                                         <th>
                                                             <?php
                                                             switch ($subinf):
-                                                                case $subinf['id_subrange_inf'] == 1:
+                                                                case $subinf['id_subrange_inf'] == 5:
                                                                     echo 'Sangat Bagus';
                                                                     break;
-                                                                case $subinf['id_subrange_inf'] == 2:
+                                                                case $subinf['id_subrange_inf'] == 6:
                                                                     echo 'Bagus';
                                                                     break;
-                                                                case $subinf['id_subrange_inf'] == 3:
+                                                                case $subinf['id_subrange_inf'] == 7:
                                                                     echo 'Kurang Bagus';
                                                                     break;
-                                                                case $subinf['id_subrange_inf'] == 4:
+                                                                case $subinf['id_subrange_inf'] == 8:
                                                                     echo 'Tidak Bagus';
                                                                     break;
                                                                 default:
@@ -3671,7 +3724,7 @@
                                                     <?php endforeach; ?>
                                                 </tr>
                                             </thead>
-                                            <form action="<?php echo base_url() . 'admin/master_data/update_subrange_inisiatif'; ?>" method="POST">
+                                            <form action="<?php echo base_url() . 'admin/master_data/update_subrange_inisiatif_kasi'; ?>" method="POST">
                                                 <tbody>
                                                     <tr>
                                                     </tr>
@@ -3681,16 +3734,16 @@
                                                             <td>
                                                                 <?php
                                                                 switch ($subinf):
-                                                                    case $subinf['id_subrange_inf'] == 1:
+                                                                    case $subinf['id_subrange_inf'] == 5:
                                                                         echo 'Sangat Bagus';
                                                                         break;
-                                                                    case $subinf['id_subrange_inf'] == 2:
+                                                                    case $subinf['id_subrange_inf'] == 6:
                                                                         echo 'Bagus';
                                                                         break;
-                                                                    case $subinf['id_subrange_inf'] == 3:
+                                                                    case $subinf['id_subrange_inf'] == 7:
                                                                         echo 'Kurang Bagus';
                                                                         break;
-                                                                    case $subinf['id_subrange_inf'] == 4:
+                                                                    case $subinf['id_subrange_inf'] == 8:
                                                                         echo 'Tidak Bagus';
                                                                         break;
                                                                     default:
@@ -3862,16 +3915,16 @@
                                                         <th>
                                                             <?php
                                                             switch ($subinf):
-                                                                case $subinf['id_subrange_inf'] == 1:
+                                                                case $subinf['id_subrange_inf'] == 5:
                                                                     echo 'Sangat Bagus';
                                                                     break;
-                                                                case $subinf['id_subrange_inf'] == 2:
+                                                                case $subinf['id_subrange_inf'] == 6:
                                                                     echo 'Bagus';
                                                                     break;
-                                                                case $subinf['id_subrange_inf'] == 3:
+                                                                case $subinf['id_subrange_inf'] == 7:
                                                                     echo 'Kurang Bagus';
                                                                     break;
-                                                                case $subinf['id_subrange_inf'] == 4:
+                                                                case $subinf['id_subrange_inf'] == 8:
                                                                     echo 'Tidak Bagus';
                                                                     break;
                                                                 default:
@@ -3899,16 +3952,16 @@
                                                         <td>
                                                             <?php
                                                             switch ($subminf):
-                                                                case $subminf['id_submatrix_inf'] == 1:
+                                                                case $subminf['id_submatrix_inf'] == 5:
                                                                     echo 'Sangat Bagus';
                                                                     break;
-                                                                case $subminf['id_submatrix_inf'] == 2:
+                                                                case $subminf['id_submatrix_inf'] == 6:
                                                                     echo 'Bagus';
                                                                     break;
-                                                                case $subminf['id_submatrix_inf'] == 3:
+                                                                case $subminf['id_submatrix_inf'] == 7:
                                                                     echo 'Kurang Bagus';
                                                                     break;
-                                                                case $subminf['id_submatrix_inf'] == 4:
+                                                                case $subminf['id_submatrix_inf'] == 8:
                                                                     echo 'Tidak Bagus';
                                                                     break;
                                                                 default:

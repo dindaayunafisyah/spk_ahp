@@ -298,7 +298,7 @@
                   <div class="form-group">
                     <select name="status_kuis" id="status_kuis" class="form-control form-control-sm">
                       <option value="Operator">Operator</option>
-                      <option value="Kepala Divisi">Kepala Divisi</option>
+                      <!-- <option value="Kepala Divisi">Kepala Divisi</option> -->
                     </select>
                   </div>
                 </div>
@@ -455,7 +455,7 @@
                       <select name="status_kuis" id="status_kuis" class="form-control form-control-sm">
                         <option value="<?= $dt['status_kuis'] ?>"><?= $dt['status_kuis'] ?></option>
                         <option value="Operator">Operator</option>
-                        <option value="Kepala Divisi">Kepala Divisi</option>
+                        <!-- <option value="Kepala Divisi">Kepala Divisi</option> -->
                       </select>
                     </div>
                   </div>

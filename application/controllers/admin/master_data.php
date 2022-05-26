@@ -12,8 +12,11 @@ class Master_data extends CI_Controller
         $this->load->model('m_data_divisi');
         $this->load->model('m_data_kriteria');
         $this->load->model('m_data_nilai');
+        $this->load->model('M_data_nilai', 'mdn');
+        $this->load->model('M_data_kuis');
         $this->load->model('M_data_kuis', 'mdk');
         $this->load->model('DataKaryawan_Model');
+        $this->load->model('DataKaryawan_Model', 'dkm');
         $this->load->helper('url', 'form', 'file');
 
         if ($this->session->userdata('status') != "login") {
@@ -70,6 +73,7 @@ class Master_data extends CI_Controller
         $data = array(
             'id_jabatan' => $id_jabatan
         );
+        $data['title'] = 'tambah_jabatan';
         $this->load->view('admin/tamplate/header', $data);
         $this->load->view('admin/tamplate/sidebar', $data);
         $this->load->view('admin/v_tambah_jabatan', $data);
@@ -162,6 +166,7 @@ class Master_data extends CI_Controller
         $data = array(
             'id_divisi' => $id_divisi
         );
+        $data['title'] = 'tambah_divisi';
         $this->load->view('admin/tamplate/header', $data);
         $this->load->view('admin/tamplate/sidebar', $data);
         $this->load->view('admin/v_tambah_divisi', $data);
@@ -2069,43 +2074,43 @@ class Master_data extends CI_Controller
 
 
         //Pemahaman SOP dan SPK
-        $data['subrange_pahamsopspk'] = $this->DataKaryawan_Model->showSubrangePahamSOPSPK();
-        $data['submatrix_pahamsopspk'] = $this->DataKaryawan_Model->showSubmatrixPahamSOPSPK();
-        $data['count_subpahamsopspk'] = $this->DataKaryawan_Model->countSubrangePahamSOPSPK();
-        $data['sum_subpahamsopspk'] = $this->DataKaryawan_Model->sumSubrangePahamSOPSPK();
-        $data['sum_submatrixpahamsopspk'] = $this->DataKaryawan_Model->sumSubmatrixPahamSOPSPK();
+        $data['subrange_pahamsopspk'] = $this->DataKaryawan_Model->showSubrangePahamSOPSPKKasi();
+        $data['submatrix_pahamsopspk'] = $this->DataKaryawan_Model->showSubmatrixPahamSOPSPKKasi();
+        $data['count_subpahamsopspk'] = $this->DataKaryawan_Model->countSubrangePahamSOPSPKKasi();
+        $data['sum_subpahamsopspk'] = $this->DataKaryawan_Model->sumSubrangePahamSOPSPKKasi();
+        $data['sum_submatrixpahamsopspk'] = $this->DataKaryawan_Model->sumSubmatrixPahamSOPSPKKasi();
 
 
-        //Pemahaman Tools
-        $data['subrange_pahamtools'] = $this->DataKaryawan_Model->showSubrangePahamTools();
-        $data['submatrix_pahamtools'] = $this->DataKaryawan_Model->showSubmatrixPahamTools();
-        $data['count_subpahamtools'] = $this->DataKaryawan_Model->countSubrangePahamTools();
-        $data['sum_subpahamtools'] = $this->DataKaryawan_Model->sumSubrangePahamTools();
-        $data['sum_submatrixpahamtools'] = $this->DataKaryawan_Model->sumSubmatrixPahamTools();
+        //Kemampuan Pemecahan Masalah
+        $data['subrange_pahamsopspk1'] = $this->DataKaryawan_Model->showSubrangeKPM();
+        $data['submatrix_pahamsopspk1'] = $this->DataKaryawan_Model->showSubmatrixKPM();
+        $data['count_subpahamsopspk1'] = $this->DataKaryawan_Model->countSubrangeKPM();
+        $data['sum_subpahamsopspk1'] = $this->DataKaryawan_Model->sumSubrangeKPM();
+        $data['sum_submatrixpahamsopspk1'] = $this->DataKaryawan_Model->sumSubmatrixKPM();
 
 
         //Kehadiran
-        $data['subrange_kehadiran'] = $this->DataKaryawan_Model->showSubrangeKehadiran();
-        $data['submatrix_kehadiran'] = $this->DataKaryawan_Model->showSubmatrixKehadiran();
-        $data['count_subkehadiran'] = $this->DataKaryawan_Model->countSubrangeKehadiran();
-        $data['sum_subkehadiran'] = $this->DataKaryawan_Model->sumSubrangeKehadiran();
-        $data['sum_submatrixkehadiran'] = $this->DataKaryawan_Model->sumSubmatrixKehadiran();
+        $data['subrange_kehadiran'] = $this->DataKaryawan_Model->showSubrangeKehadiranKasi();
+        $data['submatrix_kehadiran'] = $this->DataKaryawan_Model->showSubmatrixKehadiranKasi();
+        $data['count_subkehadiran'] = $this->DataKaryawan_Model->countSubrangeKehadiranKasi();
+        $data['sum_subkehadiran'] = $this->DataKaryawan_Model->sumSubrangeKehadiranKasi();
+        $data['sum_submatrixkehadiran'] = $this->DataKaryawan_Model->sumSubmatrixKehadiranKasi();
 
 
         //Kedisiplinan
-        $data['subrange_kedisiplinan'] = $this->DataKaryawan_Model->showSubrangeKedisiplinan();
-        $data['submatrix_kedisiplinan'] = $this->DataKaryawan_Model->showSubmatrixKedisiplinan();
-        $data['count_subkedisiplinan'] = $this->DataKaryawan_Model->countSubrangeKedisiplinan();
-        $data['sum_subkedisiplinan'] = $this->DataKaryawan_Model->sumSubrangeKedisiplinan();
-        $data['sum_submatrixkedisiplinan'] = $this->DataKaryawan_Model->sumSubmatrixKedisiplinan();
+        $data['subrange_kedisiplinan'] = $this->DataKaryawan_Model->showSubrangeKedisiplinanKasi();
+        $data['submatrix_kedisiplinan'] = $this->DataKaryawan_Model->showSubmatrixKedisiplinanKasi();
+        $data['count_subkedisiplinan'] = $this->DataKaryawan_Model->countSubrangeKedisiplinanKasi();
+        $data['sum_subkedisiplinan'] = $this->DataKaryawan_Model->sumSubrangeKedisiplinanKasi();
+        $data['sum_submatrixkedisiplinan'] = $this->DataKaryawan_Model->sumSubmatrixKedisiplinanKasi();
 
 
         //Inisiatif
-        $data['subrange_inisiatif'] = $this->DataKaryawan_Model->showSubrangeInisiatif();
-        $data['submatrix_inisiatif'] = $this->DataKaryawan_Model->showSubmatrixInisiatif();
-        $data['count_subinisiatif'] = $this->DataKaryawan_Model->countSubrangeInisiatif();
-        $data['sum_subinisiatif'] = $this->DataKaryawan_Model->sumSubrangeInisiatif();
-        $data['sum_submatrixinisiatif'] = $this->DataKaryawan_Model->sumSubmatrixInisiatif();
+        $data['subrange_inisiatif'] = $this->DataKaryawan_Model->showSubrangeInisiatifKasi();
+        $data['submatrix_inisiatif'] = $this->DataKaryawan_Model->showSubmatrixInisiatifKasi();
+        $data['count_subinisiatif'] = $this->DataKaryawan_Model->countSubrangeInisiatifKasi();
+        $data['sum_subinisiatif'] = $this->DataKaryawan_Model->sumSubrangeInisiatifKasi();
+        $data['sum_submatrixinisiatif'] = $this->DataKaryawan_Model->sumSubmatrixInisiatifKasi();
 
 
         // 
@@ -2520,6 +2525,433 @@ class Master_data extends CI_Controller
             redirect('admin/master_data/subrange_KriKasi');
         }
     }
+
+    //---------------------------------------------------------- Pemahaman SOP dan SPK KASI ------------------------------------------------------------
+    public function update_subrange_pahamsopspk_kasi()
+    {
+        $_sgt_mampu = $this->input->post('sangat_mampu[]');
+        $_mampu = $this->input->post('mampu[]');
+        $_krg_mampu = $this->input->post('kurang_mampu[]');
+        $_tdk_mampu = $this->input->post('tidak_mampu[]');
+        $data = array();
+        for ($x = 0; $x < sizeof($_sgt_mampu); $x++) {
+            $data[] = [
+                'sangat_mampu' => $_sgt_mampu[$x],
+                'mampu' => $_mampu[$x],
+                'kurang_mampu' => $_krg_mampu[$x],
+                'tidak_mampu' => $_tdk_mampu[$x],
+                'id_subrange_pss' => $x + 1 + sizeof($_sgt_mampu),
+            ];
+        }
+        // echo "<pre>";
+        // echo sizeof($_phm) + 1;
+        // die;
+        // echo "</pre>";
+        $query = $this->db->update_batch('tb_subrange_pahamsopspk', $data, 'id_subrange_pss');
+        if ($query) {
+            $data['sum_subpahamsopspk'] = $this->DataKaryawan_Model->sumSubrangePahamSOPSPKKasi();
+            $sumSgtMampu = $data['sum_subpahamsopspk']['sumSgtMampu'];
+            $sumMampu = $data['sum_subpahamsopspk']['sumMampu'];
+            $sumKrgMampu = $data['sum_subpahamsopspk']['sumKrgMampu'];
+            $sumTdkMampu = $data['sum_subpahamsopspk']['sumTdkMampu'];
+
+            $data['count_subpahamsopspk'] = $this->DataKaryawan_Model->countSubrangePahamSOPSPKKasi();
+            $count_subpahamsopspk = $data['count_subpahamsopspk']['jumSubPSS'];
+
+            $data['sumArray_subpahamsopspk'] = $this->DataKaryawan_Model->sumSubrangePahamSOPSPKOPResArray();
+            $sumSubPahamSOPSPK = $data['sumArray_subpahamsopspk'];
+
+            $data = array();
+            for ($x = 0; $x < sizeof($_sgt_mampu); $x++) {
+                $data[] = [
+                    'sangat_mampu' => $_sgt_mampu[$x] / $sumSgtMampu,
+                    'mampu' => $_mampu[$x] / $sumMampu,
+                    'kurang_mampu' => $_krg_mampu[$x] / $sumKrgMampu,
+                    'tidak_mampu' => $_tdk_mampu[$x] / $sumTdkMampu,
+                    'jumlah' => (($_sgt_mampu[$x] / $sumSgtMampu) + ($_mampu[$x] / $sumMampu) + ($_krg_mampu[$x] / $sumKrgMampu) + ($_tdk_mampu[$x] / $sumTdkMampu)),
+
+                    'prioritas' => (($_sgt_mampu[$x] / $sumSgtMampu) + ($_mampu[$x] / $sumMampu) + ($_krg_mampu[$x] / $sumKrgMampu) + ($_tdk_mampu[$x] / $sumTdkMampu)) / $count_subpahamsopspk,
+
+                    'eigen_value' => ((($_sgt_mampu[$x] / $sumSgtMampu) + ($_mampu[$x] / $sumMampu) + ($_krg_mampu[$x] / $sumKrgMampu) + ($_tdk_mampu[$x] / $sumTdkMampu)) / $count_subpahamsopspk) * $sumSubPahamSOPSPK[$x],
+
+                    'id_submatrix_pss' => $x + 1 + sizeof($_sgt_mampu),
+                ];
+            }
+            $query1 = $this->db->update_batch('tb_submatriks_pahamsopspk', $data, 'id_submatrix_pss');
+            if ($query1) {
+                $this->session->set_flashdata(
+                    'message',
+                    '<div class="alert alert-success success-dismissible fade show" role="alert">
+                         Sukses dianalisa Subrange Pemahaman SOP dan SPK
+                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                     </div>'
+                );
+                redirect('admin/master_data/subrange_KriKasi');
+            } else {
+                $this->session->set_flashdata(
+                    'message',
+                    '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                         Gagal dianalisa Subrange Pemahaman SOP dan SPK
+                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                     </div>'
+                );
+                redirect('admin/master_data/subrange_KriKasi');
+            }
+        } else {
+            $this->session->set_flashdata(
+                'message',
+                '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                     Gagal dianalisa tahap nilai Pemahaman SOP dan SPK
+                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                 </div>'
+            );
+            redirect('admin/master_data/subrange_KriKasi');
+        }
+    }
+
+    //---------------------------------------------------------- Kemampuan Pemecahan Masalah ------------------------------------------------------------
+    public function update_subrange_kpm()
+    {
+        $_sgt_mampu = $this->input->post('sangat_mampu[]');
+        $_mampu = $this->input->post('mampu[]');
+        $_krg_mampu = $this->input->post('kurang_mampu[]');
+        $_tdk_mampu = $this->input->post('tidak_mampu[]');
+        $data = array();
+        for ($x = 0; $x < sizeof($_sgt_mampu); $x++) {
+            $data[] = [
+                'sangat_mampu' => $_sgt_mampu[$x],
+                'mampu' => $_mampu[$x],
+                'kurang_mampu' => $_krg_mampu[$x],
+                'tidak_mampu' => $_tdk_mampu[$x],
+                'id_subrange_pss' => $x + 5 + sizeof($_sgt_mampu),
+            ];
+        }
+        // echo "<pre>";
+        // echo sizeof($_phm) + 1;
+        // die;
+        // echo "</pre>";
+        $query = $this->db->update_batch('tb_subrange_pahamsopspk', $data, 'id_subrange_pss');
+        if ($query) {
+            $data['sum_subpahamsopspk'] = $this->DataKaryawan_Model->sumSubrangeKPM();
+            $sumSgtMampu = $data['sum_subpahamsopspk']['sumSgtMampu'];
+            $sumMampu = $data['sum_subpahamsopspk']['sumMampu'];
+            $sumKrgMampu = $data['sum_subpahamsopspk']['sumKrgMampu'];
+            $sumTdkMampu = $data['sum_subpahamsopspk']['sumTdkMampu'];
+
+            $data['count_subpahamsopspk'] = $this->DataKaryawan_Model->countSubrangeKPM();
+            $count_subpahamsopspk = $data['count_subpahamsopspk']['jumSubPSS'];
+
+            $data['sumArray_subpahamsopspk'] = $this->DataKaryawan_Model->sumSubrangeKPMResArray();
+            $sumSubPahamSOPSPK = $data['sumArray_subpahamsopspk'];
+
+            $data = array();
+            for ($x = 0; $x < sizeof($_sgt_mampu); $x++) {
+                $data[] = [
+                    'sangat_mampu' => $_sgt_mampu[$x] / $sumSgtMampu,
+                    'mampu' => $_mampu[$x] / $sumMampu,
+                    'kurang_mampu' => $_krg_mampu[$x] / $sumKrgMampu,
+                    'tidak_mampu' => $_tdk_mampu[$x] / $sumTdkMampu,
+                    'jumlah' => (($_sgt_mampu[$x] / $sumSgtMampu) + ($_mampu[$x] / $sumMampu) + ($_krg_mampu[$x] / $sumKrgMampu) + ($_tdk_mampu[$x] / $sumTdkMampu)),
+
+                    'prioritas' => (($_sgt_mampu[$x] / $sumSgtMampu) + ($_mampu[$x] / $sumMampu) + ($_krg_mampu[$x] / $sumKrgMampu) + ($_tdk_mampu[$x] / $sumTdkMampu)) / $count_subpahamsopspk,
+
+                    'eigen_value' => ((($_sgt_mampu[$x] / $sumSgtMampu) + ($_mampu[$x] / $sumMampu) + ($_krg_mampu[$x] / $sumKrgMampu) + ($_tdk_mampu[$x] / $sumTdkMampu)) / $count_subpahamsopspk) * $sumSubPahamSOPSPK[$x],
+
+                    'id_submatrix_pss' => $x + 5 + sizeof($_sgt_mampu),
+                ];
+            }
+            $query1 = $this->db->update_batch('tb_submatriks_pahamsopspk', $data, 'id_submatrix_pss');
+            if ($query1) {
+                $this->session->set_flashdata(
+                    'message',
+                    '<div class="alert alert-success success-dismissible fade show" role="alert">
+                         Sukses dianalisa Subrange Kemampuan Pemecahan Masalah
+                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                     </div>'
+                );
+                redirect('admin/master_data/subrange_KriKasi');
+            } else {
+                $this->session->set_flashdata(
+                    'message',
+                    '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                         Gagal dianalisa Subrange Kemampuan Pemecahan Masalah
+                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                     </div>'
+                );
+                redirect('admin/master_data/subrange_KriKasi');
+            }
+        } else {
+            $this->session->set_flashdata(
+                'message',
+                '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                     Gagal dianalisa tahap nilai Kemampuan Pemecahan Masalah
+                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                 </div>'
+            );
+            redirect('admin/master_data/subrange_KriKasi');
+        }
+    }
+
+    //---------------------------------------------------------- Kehadiran ------------------------------------------------------------
+    public function update_subrange_kehadiran_kasi()
+    {
+        $_hadir100 = $this->input->post('hadir100[]');
+        $_hadir100t = $this->input->post('hadir100t[]');
+        $_hadir90 = $this->input->post('hadir90[]');
+        $_hadir90t = $this->input->post('hadir90t[]');
+        $_hadir80 = $this->input->post('hadir80[]');
+        $_hadir80t = $this->input->post('hadir80t[]');
+        $_hadir70 = $this->input->post('hadir70[]');
+        $_hadir70t = $this->input->post('hadir70t[]');
+        $data = array();
+        for ($x = 0; $x < sizeof($_hadir100); $x++) {
+            $data[] = [
+                'hadir100' => $_hadir100[$x],
+                'hadir100t' => $_hadir100t[$x],
+                'hadir90' => $_hadir90[$x],
+                'hadir90t' => $_hadir90t[$x],
+                'hadir80' => $_hadir80[$x],
+                'hadir80t' => $_hadir80t[$x],
+                'hadir70' => $_hadir70[$x],
+                'hadir70t' => $_hadir70t[$x],
+                'id_subrange_hdr' => $x + 1 + sizeof($_hadir100),
+            ];
+        }
+        // echo "<pre>";
+        // echo sizeof($_phm) + 1;
+        // die;
+        // echo "</pre>";
+        $query = $this->db->update_batch('tb_subrange_kehadiran', $data, 'id_subrange_hdr');
+        if ($query) {
+            $data['sum_subkehadiran'] = $this->DataKaryawan_Model->sumSubrangeKehadiranKasi();
+            $sum100 = $data['sum_subkehadiran']['sum100'];
+            $sum100t = $data['sum_subkehadiran']['sum100t'];
+            $sum90 = $data['sum_subkehadiran']['sum90'];
+            $sum90t = $data['sum_subkehadiran']['sum90t'];
+            $sum80 = $data['sum_subkehadiran']['sum80'];
+            $sum80t = $data['sum_subkehadiran']['sum80t'];
+            $sum70 = $data['sum_subkehadiran']['sum70'];
+            $sum70t = $data['sum_subkehadiran']['sum70t'];
+
+            $data['count_subkehadiran'] = $this->DataKaryawan_Model->countSubrangeKehadiranKasi();
+            $count_subkehadiran = $data['count_subkehadiran']['jumSubHDR'];
+
+            $data['sumArray_subkehadiran'] = $this->DataKaryawan_Model->sumSubrangeKehadiranKasiResArray();
+            $sumSubKehadiran = $data['sumArray_subkehadiran'];
+
+            $data = array();
+            for ($x = 0; $x < sizeof($_hadir100); $x++) {
+                $data[] = [
+                    'hadir100' => $_hadir100[$x] / $sum100,
+                    'hadir100t' => $_hadir100t[$x] / $sum100t,
+                    'hadir90' => $_hadir90[$x] / $sum90,
+                    'hadir90t' => $_hadir90t[$x] / $sum90t,
+                    'hadir80' => $_hadir80[$x] / $sum80,
+                    'hadir80t' => $_hadir80t[$x] / $sum80t,
+                    'hadir70' => $_hadir70[$x] / $sum70,
+                    'hadir70t' => $_hadir70t[$x] / $sum70t,
+                    'jumlah' => (($_hadir100[$x] / $sum100) + ($_hadir100t[$x] / $sum100t) + ($_hadir90[$x] / $sum90) + ($_hadir90t[$x] / $sum90t) + ($_hadir80[$x] / $sum80) + ($_hadir80t[$x] / $sum80t) + ($_hadir70[$x] / $sum70) + ($_hadir70t[$x] / $sum70t)),
+
+                    'prioritas' => (($_hadir100[$x] / $sum100) + ($_hadir100t[$x] / $sum100t) + ($_hadir90[$x] / $sum90) + ($_hadir90t[$x] / $sum90t) + ($_hadir80[$x] / $sum80) + ($_hadir80t[$x] / $sum80t) + ($_hadir70[$x] / $sum70) + ($_hadir70t[$x] / $sum70t)) / $count_subkehadiran,
+
+                    'eigen_value' => ((($_hadir100[$x] / $sum100) + ($_hadir100t[$x] / $sum100t) + ($_hadir90[$x] / $sum90) + ($_hadir90t[$x] / $sum90t) + ($_hadir80[$x] / $sum80) + ($_hadir80t[$x] / $sum80t) + ($_hadir70[$x] / $sum70) + ($_hadir70t[$x] / $sum70t)) / $count_subkehadiran) * $sumSubKehadiran[$x],
+
+                    'id_submatrix_hdr' => $x + 1 + sizeof($_hadir100),
+                ];
+            }
+            $query1 = $this->db->update_batch('tb_submatriks_kehadiran', $data, 'id_submatrix_hdr');
+            if ($query1) {
+                $this->session->set_flashdata(
+                    'message',
+                    '<div class="alert alert-success success-dismissible fade show" role="alert">
+                          Sukses dianalisa Subrange Kehadiran
+                          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                      </div>'
+                );
+                redirect('admin/master_data/subrange_KriKasi');
+            } else {
+                $this->session->set_flashdata(
+                    'message',
+                    '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                          Gagal dianalisa Subrange Kehadiran
+                          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                      </div>'
+                );
+                redirect('admin/master_data/subrange_KriKasi');
+            }
+        } else {
+            $this->session->set_flashdata(
+                'message',
+                '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                      Gagal dianalisa tahap nilai Kehadiran
+                      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>'
+            );
+            redirect('admin/master_data/subrange_KriKasi');
+        }
+    }
+
+    //---------------------------------------------------------- Kedisiplinan ------------------------------------------------------------
+    public function update_subrange_kedisiplinan_kasi()
+    {
+        $_tidak_melanggar = $this->input->post('tidak_melanggar[]');
+        $_sedikit_melanggar = $this->input->post('sedikit_melanggar[]');
+        $_banyak_melanggar = $this->input->post('banyak_melanggar[]');
+        $data = array();
+        for ($x = 0; $x < sizeof($_tidak_melanggar); $x++) {
+            $data[] = [
+                'tidak_melanggar' => $_tidak_melanggar[$x],
+                'sedikit_melanggar' => $_sedikit_melanggar[$x],
+                'banyak_melanggar' => $_banyak_melanggar[$x],
+                'id_subrange_dsp' => $x + 1 + sizeof($_tidak_melanggar),
+            ];
+        }
+        // echo "<pre>";
+        // echo sizeof($_phm) + 1;
+        // die;
+        // echo "</pre>";
+        $query = $this->db->update_batch('tb_subrange_kedisiplinan', $data, 'id_subrange_dsp');
+        if ($query) {
+            $data['sum_subkedisiplinan'] = $this->DataKaryawan_Model->sumSubrangeKedisiplinanKasi();
+            $sumTDK_MLGR = $data['sum_subkedisiplinan']['sumTDK_MLGR'];
+            $sumSDK_MLGR = $data['sum_subkedisiplinan']['sumSDK_MLGR'];
+            $sumBYK_MLGR = $data['sum_subkedisiplinan']['sumBYK_MLGR'];
+
+            $data['count_subkedisiplinan'] = $this->DataKaryawan_Model->countSubrangeKedisiplinanKasi();
+            $count_subkedisiplinan = $data['count_subkedisiplinan']['jumSubDSP'];
+
+            $data['sumArray_subkedisiplinan'] = $this->DataKaryawan_Model->sumSubrangeKedisiplinanKasiResArray();
+            $sumSubDisiplin = $data['sumArray_subkedisiplinan'];
+
+            $data = array();
+            for ($x = 0; $x < sizeof($_tidak_melanggar); $x++) {
+                $data[] = [
+                    'tidak_melanggar' => $_tidak_melanggar[$x] / $sumTDK_MLGR,
+                    'sedikit_melanggar' => $_sedikit_melanggar[$x] / $sumSDK_MLGR,
+                    'banyak_melanggar' => $_banyak_melanggar[$x] / $sumBYK_MLGR,
+                    'jumlah' => (($_tidak_melanggar[$x] / $sumTDK_MLGR) + ($_sedikit_melanggar[$x] / $sumSDK_MLGR) + ($_banyak_melanggar[$x] / $sumBYK_MLGR)),
+
+                    'prioritas' => (($_tidak_melanggar[$x] / $sumTDK_MLGR) + ($_sedikit_melanggar[$x] / $sumSDK_MLGR) + ($_banyak_melanggar[$x] / $sumBYK_MLGR)) / $count_subkedisiplinan,
+
+                    'eigen_value' => ((($_tidak_melanggar[$x] / $sumTDK_MLGR) + ($_sedikit_melanggar[$x] / $sumSDK_MLGR) + ($_banyak_melanggar[$x] / $sumBYK_MLGR)) / $count_subkedisiplinan) * $sumSubDisiplin[$x],
+
+                    'id_submatrix_dsp' => $x + 1 + sizeof($_tidak_melanggar),
+                ];
+            }
+            $query1 = $this->db->update_batch('tb_submatriks_kedisiplinan', $data, 'id_submatrix_dsp');
+            if ($query1) {
+                $this->session->set_flashdata(
+                    'message',
+                    '<div class="alert alert-success success-dismissible fade show" role="alert">
+                         Sukses dianalisa Subrange Kedisiplinan
+                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                     </div>'
+                );
+                redirect('admin/master_data/subrange_KriKasi');
+            } else {
+                $this->session->set_flashdata(
+                    'message',
+                    '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                         Gagal dianalisa Subrange Kedisiplinan
+                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                     </div>'
+                );
+                redirect('admin/master_data/subrange_KriKasi');
+            }
+        } else {
+            $this->session->set_flashdata(
+                'message',
+                '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                     Gagal dianalisa tahap nilai Kedisiplinan
+                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                 </div>'
+            );
+            redirect('admin/master_data/subrange_KriKasi');
+        }
+    }
+
+    //---------------------------------------------------------- Inisiatif ------------------------------------------------------------
+    public function update_subrange_inisiatif_kasi()
+    {
+        $_sangat_bagus = $this->input->post('sangat_bagus[]');
+        $_bagus = $this->input->post('bagus[]');
+        $_kurang_bagus = $this->input->post('kurang_bagus[]');
+        $_tidak_bagus = $this->input->post('tidak_bagus[]');
+        $data = array();
+        for ($x = 0; $x < sizeof($_sangat_bagus); $x++) {
+            $data[] = [
+                'sangat_bagus' => $_sangat_bagus[$x],
+                'bagus' => $_bagus[$x],
+                'kurang_bagus' => $_kurang_bagus[$x],
+                'tidak_bagus' => $_tidak_bagus[$x],
+                'id_subrange_inf' => $x + 1 + sizeof($_sangat_bagus),
+            ];
+        }
+        // echo "<pre>";
+        // echo sizeof($_phm) + 1;
+        // die;
+        // echo "</pre>";
+        $query = $this->db->update_batch('tb_subrange_inisiatif', $data, 'id_subrange_inf');
+        if ($query) {
+            $data['sum_subinisiatif'] = $this->DataKaryawan_Model->sumSubrangeInisiatifKasi();
+            $sumSGT_BGS = $data['sum_subinisiatif']['sumSGT_BGS'];
+            $sumBGS = $data['sum_subinisiatif']['sumBGS'];
+            $sumKRG_BGS = $data['sum_subinisiatif']['sumKRG_BGS'];
+            $sumTDK_BGS = $data['sum_subinisiatif']['sumTDK_BGS'];
+
+            $data['count_subinisiatif'] = $this->DataKaryawan_Model->countSubrangeInisiatifKasi();
+            $count_subinisiatif = $data['count_subinisiatif']['jumSubINF'];
+
+            $data['sumArray_subinisiatif'] = $this->DataKaryawan_Model->sumSubrangeInisiatifKasiResArray();
+            $sumSubInisiatif = $data['sumArray_subinisiatif'];
+
+            $data = array();
+            for ($x = 0; $x < sizeof($_sangat_bagus); $x++) {
+                $data[] = [
+                    'sangat_bagus' => $_sangat_bagus[$x] / $sumSGT_BGS,
+                    'bagus' => $_bagus[$x] / $sumBGS,
+                    'kurang_bagus' => $_kurang_bagus[$x] / $sumKRG_BGS,
+                    'tidak_bagus' => $_tidak_bagus[$x] / $sumTDK_BGS,
+                    'jumlah' => (($_sangat_bagus[$x] / $sumSGT_BGS) + ($_bagus[$x] / $sumBGS) + ($_kurang_bagus[$x] / $sumKRG_BGS) + ($_tidak_bagus[$x] / $sumTDK_BGS)),
+
+                    'prioritas' => (($_sangat_bagus[$x] / $sumSGT_BGS) + ($_bagus[$x] / $sumBGS) + ($_kurang_bagus[$x] / $sumKRG_BGS) + ($_tidak_bagus[$x] / $sumTDK_BGS)) / $count_subinisiatif,
+
+                    'eigen_value' => ((($_sangat_bagus[$x] / $sumSGT_BGS) + ($_bagus[$x] / $sumBGS) + ($_kurang_bagus[$x] / $sumKRG_BGS) + ($_tidak_bagus[$x] / $sumTDK_BGS)) / $count_subinisiatif) * $sumSubInisiatif[$x],
+
+                    'id_submatrix_inf' => $x + 1 + sizeof($_sangat_bagus),
+                ];
+            }
+            $query1 = $this->db->update_batch('tb_submatriks_inisiatif', $data, 'id_submatrix_inf');
+            if ($query1) {
+                $this->session->set_flashdata(
+                    'message',
+                    '<div class="alert alert-success success-dismissible fade show" role="alert">
+                         Sukses dianalisa Subrange Inisiatif
+                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                     </div>'
+                );
+                redirect('admin/master_data/subrange_KriKasi');
+            } else {
+                $this->session->set_flashdata(
+                    'message',
+                    '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                         Gagal dianalisa Subrange Inisiatif
+                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                     </div>'
+                );
+                redirect('admin/master_data/subrange_KriKasi');
+            }
+        } else {
+            $this->session->set_flashdata(
+                'message',
+                '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                     Gagal dianalisa tahap nilai Inisiatif
+                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                 </div>'
+            );
+            redirect('admin/master_data/subrange_KriKasi');
+        }
+    }
     //---------------------- End Subrange Kriteria Kasi ----------------------
 
 
@@ -2587,7 +3019,7 @@ class Master_data extends CI_Controller
 
     public function tambah_kriteria_kasi()
     {
-
+        $id_kriteria_kasi = '';
         $idDivisiInt = 0;
         // Membuat fungsi untuk melakukan penambahan id produk secara otomatis
         // Mendapatkan jumlah produk yang ada di database
@@ -2803,6 +3235,7 @@ class Master_data extends CI_Controller
         $data = array(
             'id_nilai' =>  $id_nilai
         );
+        $data['title'] = 'tambah_nilai';
         $this->load->view('admin/tamplate/header', $data);
         $this->load->view('admin/tamplate/sidebar', $data);
         $this->load->view('admin/v_tambah_nilai', $data);
@@ -3144,6 +3577,533 @@ class Master_data extends CI_Controller
         }
     }
     // -------------------- END Kuisioner Operator --------------------
+
+
+
+
+
+
+    // -------------------- Kuisioner Kasi --------------------
+    public function kuisioner_kasi()
+    {
+        $this->form_validation->set_rules('idk_productivity', 'ID Productivity', 'required', [
+            'required' => '%s tidak boleh kosong',
+        ]);
+        $this->form_validation->set_rules('kuis_productivity', 'Kuis Productivity', 'required', [
+            'required' => '%s tidak boleh kosong',
+        ]);
+        // <===>
+        $this->form_validation->set_rules('idk_komker', 'ID Komunikasi dan Kerjasama', 'required', [
+            'required' => '%s tidak boleh kosong',
+        ]);
+        $this->form_validation->set_rules('kuis_komker', 'Kuis Komunikasi dan Kerjasama', 'required', [
+            'required' => '%s tidak boleh kosong',
+        ]);
+        // <===>
+        $this->form_validation->set_rules('idk_pelaksana5r', 'ID Pelaksanaan 5 R', 'required', [
+            'required' => '%s tidak boleh kosong',
+        ]);
+        $this->form_validation->set_rules('kuis_pelaksana5r', 'Kuis Pelaksanaan 5 R', 'required', [
+            'required' => '%s tidak boleh kosong',
+        ]);
+        // <===>
+        $this->form_validation->set_rules('idk_dokumentasi', 'ID Dokumentasi', 'required', [
+            'required' => '%s tidak boleh kosong',
+        ]);
+        $this->form_validation->set_rules('kuis_dokumentasi', 'Kuis Dokumentasi', 'required', [
+            'required' => '%s tidak boleh kosong',
+        ]);
+        // <===>
+        $this->form_validation->set_rules('idk_pahamdanlaksanak3', 'ID Pemahaman dan Pelaksanaan K3', 'required', [
+            'required' => '%s tidak boleh kosong',
+        ]);
+        $this->form_validation->set_rules('kuis_pahamdanlaksanak3', 'Kuis Pemahaman dan Pelaksanaan K3', 'required', [
+            'required' => '%s tidak boleh kosong',
+        ]);
+        // <===>
+        $this->form_validation->set_rules('idk_pahamsop', 'ID Paham SOP dan SPK', 'required', [
+            'required' => '%s tidak boleh kosong',
+        ]);
+        $this->form_validation->set_rules('kuis_pahamsop', 'Kuis Paham SOP dan SPK', 'required', [
+            'required' => '%s tidak boleh kosong',
+        ]);
+        // <===>
+        $this->form_validation->set_rules('idk_pahamtools', 'ID Paham Tools', 'required', [
+            'required' => '%s tidak boleh kosong',
+        ]);
+        $this->form_validation->set_rules('kuis_pahamtools', 'Kuis Paham Tools', 'required', [
+            'required' => '%s tidak boleh kosong',
+        ]);
+        // <===>
+        $this->form_validation->set_rules('idk_kehadiran', 'ID Kehadiran', 'required', [
+            'required' => '%s tidak boleh kosong',
+        ]);
+        $this->form_validation->set_rules('kuis_kehadiran', 'Kuis Kehadiran', 'required', [
+            'required' => '%s tidak boleh kosong',
+        ]);
+        // <===>
+        $this->form_validation->set_rules('idk_disiplin', 'ID Kedisiplinan', 'required', [
+            'required' => '%s tidak boleh kosong',
+        ]);
+        $this->form_validation->set_rules('kuis_disiplin', 'Kuis Kedisiplinan', 'required', [
+            'required' => '%s tidak boleh kosong',
+        ]);
+        // <===>
+        $this->form_validation->set_rules('idk_inisiatif', 'ID Inisiatif', 'required', [
+            'required' => '%s tidak boleh kosong',
+        ]);
+        $this->form_validation->set_rules('kuis_inisiatif', 'Kuis Inisiatif', 'required', [
+            'required' => '%s tidak boleh kosong',
+        ]);
+        // <===>
+        $this->form_validation->set_rules('status_kuis', 'Status', 'required', [
+            'required' => '%s tidak boleh kosong',
+        ]);
+
+
+        if ($this->form_validation->run() == false) {
+            $data['title'] = 'kuisioner_kasi';
+            // ini adalah variabel array $data yang memiliki index user, berguna untuk menyimpan data 
+            $data['header'] = $this->db->list_fields('data_kuisioner');
+            $data['data'] = $this->mdk->showQuisionerKepalaDivisi();
+            $data['data_kriteria'] = $this->m_data_kriteria->tampil_kriteria_kasi()->result_array();
+            // ini adalah baris kode yang berfungsi menampilkan v_tampil dan membawa data dari tabel user
+            $this->load->view('admin/tamplate/header', $data);
+            $this->load->view('admin/tamplate/sidebar', $data);
+            $this->load->view('admin/v_kuisioner_kasi', $data);
+            $this->load->view('admin/tamplate/footer', $data);
+        } else {
+            $data = [
+                'idk_productivity' => $this->input->post('idk_productivity'),
+                'kuis_productivity' => $this->input->post('kuis_productivity'),
+                // <===>
+                'idk_komker' => $this->input->post('idk_komker'),
+                'kuis_komker' => $this->input->post('kuis_komker'),
+                // <===>
+                'idk_pelaksana5r' => $this->input->post('idk_pelaksana5r'),
+                'kuis_pelaksana5r' => $this->input->post('kuis_pelaksana5r'),
+                // <===>
+                'idk_dokumentasi' => $this->input->post('idk_dokumentasi'),
+                'kuis_dokumentasi' => $this->input->post('kuis_dokumentasi'),
+                // <===>
+                'idk_pahamdanlaksanak3' => $this->input->post('idk_pahamdanlaksanak3'),
+                'kuis_pahamdanlaksanak3' => $this->input->post('kuis_pahamdanlaksanak3'),
+                // <===>
+                'idk_pahamsop' => $this->input->post('idk_pahamsop'),
+                'kuis_pahamsop' => $this->input->post('kuis_pahamsop'),
+                // <===>
+                'idk_pahamtools' => $this->input->post('idk_pahamtools'),
+                'kuis_pahamtools' => $this->input->post('kuis_pahamtools'),
+                // <===>
+                'idk_kehadiran' => $this->input->post('idk_kehadiran'),
+                'kuis_kehadiran' => $this->input->post('kuis_kehadiran'),
+                // <===>
+                'idk_disiplin' => $this->input->post('idk_disiplin'),
+                'kuis_disiplin' => $this->input->post('kuis_disiplin'),
+                // <===>
+                'idk_inisiatif' => $this->input->post('idk_inisiatif'),
+                'kuis_inisiatif' => $this->input->post('kuis_inisiatif'),
+                // <===>
+                'status_kuis' => $this->input->post('status_kuis'),
+            ];
+
+            $query = $this->db->insert('data_kuisioner', $data);
+            if ($query) {
+                $this->session->set_flashdata(
+                    'message',
+                    '<div class="alert alert-primary alert-dismissible fade show" role="alert">
+                        Sukses ditambah
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>'
+                );
+                redirect('admin/master_data/kuisioner_kasi');
+            } else {
+                $this->session->set_flashdata(
+                    'message',
+                    '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        Gagal ditambah
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>'
+                );
+                redirect('admin/master_data/kuisioner_kasi');
+            }
+        }
+    }
+    // ---------------- UPDATE ----------------
+    public function update_kuisioner_kasi()
+    {
+        $this->form_validation->set_rules('idk_productivity', 'ID Productivity', 'required', [
+            'required' => '%s tidak boleh kosong',
+        ]);
+        $this->form_validation->set_rules('kuis_productivity', 'Kuis Productivity', 'required', [
+            'required' => '%s tidak boleh kosong',
+        ]);
+        // <===>
+        $this->form_validation->set_rules('idk_komker', 'ID Komunikasi dan Kerjasama', 'required', [
+            'required' => '%s tidak boleh kosong',
+        ]);
+        $this->form_validation->set_rules('kuis_komker', 'Kuis Komunikasi dan Kerjasama', 'required', [
+            'required' => '%s tidak boleh kosong',
+        ]);
+        // <===>
+        $this->form_validation->set_rules('idk_pelaksana5r', 'ID Pelaksanaan 5 R', 'required', [
+            'required' => '%s tidak boleh kosong',
+        ]);
+        $this->form_validation->set_rules('kuis_pelaksana5r', 'Kuis Pelaksanaan 5 R', 'required', [
+            'required' => '%s tidak boleh kosong',
+        ]);
+        // <===>
+        $this->form_validation->set_rules('idk_dokumentasi', 'ID Dokumentasi', 'required', [
+            'required' => '%s tidak boleh kosong',
+        ]);
+        $this->form_validation->set_rules('kuis_dokumentasi', 'Kuis Dokumentasi', 'required', [
+            'required' => '%s tidak boleh kosong',
+        ]);
+        // <===>
+        $this->form_validation->set_rules('idk_pahamdanlaksanak3', 'ID Pemahaman dan Pelaksanaan K3', 'required', [
+            'required' => '%s tidak boleh kosong',
+        ]);
+        $this->form_validation->set_rules('kuis_pahamdanlaksanak3', 'Kuis Pemahaman dan Pelaksanaan K3', 'required', [
+            'required' => '%s tidak boleh kosong',
+        ]);
+        // <===>
+        $this->form_validation->set_rules('idk_pahamsop', 'ID Paham SOP dan SPK', 'required', [
+            'required' => '%s tidak boleh kosong',
+        ]);
+        $this->form_validation->set_rules('kuis_pahamsop', 'Kuis Paham SOP dan SPK', 'required', [
+            'required' => '%s tidak boleh kosong',
+        ]);
+        // <===>
+        $this->form_validation->set_rules('idk_pahamtools', 'ID Paham Tools', 'required', [
+            'required' => '%s tidak boleh kosong',
+        ]);
+        $this->form_validation->set_rules('kuis_pahamtools', 'Kuis Paham Tools', 'required', [
+            'required' => '%s tidak boleh kosong',
+        ]);
+        // <===>
+        $this->form_validation->set_rules('idk_kehadiran', 'ID Kehadiran', 'required', [
+            'required' => '%s tidak boleh kosong',
+        ]);
+        $this->form_validation->set_rules('kuis_kehadiran', 'Kuis Kehadiran', 'required', [
+            'required' => '%s tidak boleh kosong',
+        ]);
+        // <===>
+        $this->form_validation->set_rules('idk_disiplin', 'ID Kedisiplinan', 'required', [
+            'required' => '%s tidak boleh kosong',
+        ]);
+        $this->form_validation->set_rules('kuis_disiplin', 'Kuis Kedisiplinan', 'required', [
+            'required' => '%s tidak boleh kosong',
+        ]);
+        // <===>
+        $this->form_validation->set_rules('idk_inisiatif', 'ID Inisiatif', 'required', [
+            'required' => '%s tidak boleh kosong',
+        ]);
+        $this->form_validation->set_rules('kuis_inisiatif', 'Kuis Inisiatif', 'required', [
+            'required' => '%s tidak boleh kosong',
+        ]);
+        // <===>
+        $this->form_validation->set_rules('status_kuis', 'Status', 'required', [
+            'required' => '%s tidak boleh kosong',
+        ]);
+
+
+        if ($this->form_validation->run() == false) {
+            $data['title'] = 'kuisioner_kasi';
+            // ini adalah variabel array $data yang memiliki index user, berguna untuk menyimpan data 
+            $data['header'] = $this->db->list_fields('data_kuisioner');
+            $data['data'] = $this->mdk->showQuisionerKepalaDivisi();
+            $data['data_kriteria'] = $this->m_data_kriteria->tampil_kriteria_kasi()->result_array();
+            // ini adalah baris kode yang berfungsi menampilkan v_tampil dan membawa data dari tabel user
+            $this->load->view('admin/tamplate/header', $data);
+            $this->load->view('admin/tamplate/sidebar', $data);
+            $this->load->view('admin/v_kuisioner_kasi', $data);
+            $this->load->view('admin/tamplate/footer', $data);
+        } else {
+            $id = $this->input->post('id');
+            $data = [
+                'idk_productivity' => $this->input->post('idk_productivity'),
+                'kuis_productivity' => $this->input->post('kuis_productivity'),
+                // <===>
+                'idk_komker' => $this->input->post('idk_komker'),
+                'kuis_komker' => $this->input->post('kuis_komker'),
+                // <===>
+                'idk_pelaksana5r' => $this->input->post('idk_pelaksana5r'),
+                'kuis_pelaksana5r' => $this->input->post('kuis_pelaksana5r'),
+                // <===>
+                'idk_dokumentasi' => $this->input->post('idk_dokumentasi'),
+                'kuis_dokumentasi' => $this->input->post('kuis_dokumentasi'),
+                // <===>
+                'idk_pahamdanlaksanak3' => $this->input->post('idk_pahamdanlaksanak3'),
+                'kuis_pahamdanlaksanak3' => $this->input->post('kuis_pahamdanlaksanak3'),
+                // <===>
+                'idk_pahamsop' => $this->input->post('idk_pahamsop'),
+                'kuis_pahamsop' => $this->input->post('kuis_pahamsop'),
+                // <===>
+                'idk_pahamtools' => $this->input->post('idk_pahamtools'),
+                'kuis_pahamtools' => $this->input->post('kuis_pahamtools'),
+                // <===>
+                'idk_kehadiran' => $this->input->post('idk_kehadiran'),
+                'kuis_kehadiran' => $this->input->post('kuis_kehadiran'),
+                // <===>
+                'idk_disiplin' => $this->input->post('idk_disiplin'),
+                'kuis_disiplin' => $this->input->post('kuis_disiplin'),
+                // <===>
+                'idk_inisiatif' => $this->input->post('idk_inisiatif'),
+                'kuis_inisiatif' => $this->input->post('kuis_inisiatif'),
+                // <===>
+                'status_kuis' => $this->input->post('status_kuis'),
+            ];
+            $this->db->where('id_kuis', $id);
+            $query = $this->db->update('data_kuisioner', $data);
+            if ($query) {
+                $this->session->set_flashdata(
+                    'message',
+                    '<div class="alert alert-primary alert-dismissible fade show" role="alert">
+                        Sukses diupdate
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>'
+                );
+                redirect('admin/master_data/kuisioner_kasi');
+            } else {
+                $this->session->set_flashdata(
+                    'message',
+                    '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        Gagal diupdate
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>'
+                );
+                redirect('admin/master_data/kuisioner_kasi');
+            }
+        }
+    }
+    // -------------------- END Kuisioner Kasi --------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public function show_penilaian_kasi()
+    {
+
+        $data['title'] = "show_penilaian_kasi";
+        $data['titleex'] = "Penilaian Kasi";
+        $data['data'] = $this->mdn->showPenilaianOP()->result_array();
+        $data['karyawan'] = $this->dkm->showDataOperator();
+        $data['quiz'] = $this->mdk->showQuisionerOperator();
+        $data['jawaban_productivity'] = $this->mdk->showPrioritasProductivity();
+        $data['jawaban_komker'] = $this->mdk->showPrioritasKomKer();
+        $data['jawaban_pelaksana5r'] = $this->mdk->showPrioritasPelaksana5r();
+        $data['jawaban_dokumentasi'] = $this->mdk->showPrioritasDokumentasi();
+        $data['jawaban_pahamdanlaksanak3'] = $this->mdk->showPrioritasPahamdanLaksanaK3();
+        $data['jawaban_pahamsop'] = $this->mdk->showPrioritasPahamSOP();
+        $data['jawaban_pahamtools'] = $this->mdk->showPrioritasPahamTools();
+        $data['jawaban_hadir'] = $this->mdk->showPrioritasKehadiran();
+        $data['jawaban_disiplin'] = $this->mdk->showPrioritasDisiplin();
+        $data['jawaban_inisiatif'] = $this->mdk->showPrioritasInisiatif();
+
+        // echo "<pre>";
+        // print_r($data['product']);
+        // die;
+        // echo "</pre>";
+        $this->load->view('admin/tamplate/header', $data);
+        $this->load->view('admin/tamplate/sidebar', $data);
+        $this->load->view('admin/penilaian_kasi', $data);
+        $this->load->view('admin/tamplate/footer', $data);
+    }
+
+    public function delete_batch_kasi()
+    {
+        $id = $this->input->post('id');
+        for ($count = 0; $count < count($id); $count++) {
+            $query = $this->dkm->delete_batch($id[$count]);
+        }
+        if ($query) {
+            $this->session->set_flashdata(
+                'message',
+                '<div class="alert alert-primary alert-dismissible fade show" role="alert">
+                    Sukses direset
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>'
+            );
+            redirect('admin/master_data/show_penilaian_kasi');
+        } else {
+            $this->session->set_flashdata(
+                'message',
+                '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    Gagal direset
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>'
+            );
+            redirect('admin/master_data/show_penilaian_kasi');
+        }
+    }
+
+    // ============ v vv v 
+
+    public function show_penilaian_manajer()
+    {
+
+        $data['title'] = "show_penilaian_manajer";
+        $data['titleex'] = "Penilaian Manajer";
+        $data['data'] = $this->mdn->showPenilaianKasi()->result_array();
+        $data['karyawan'] = $this->dkm->showDataKepdis();
+        $data['quiz'] = $this->mdk->showQuisionerKepalaDivisi();
+        $data['jawaban_productivity'] = $this->mdk->showKasiPrioritasProductivity();
+        $data['jawaban_komker'] = $this->mdk->showKasiPrioritasLeadership();
+        $data['jawaban_pelaksana5r'] = $this->mdk->showKasiPrioritasPelaksana5r();
+        $data['jawaban_dokumentasi'] = $this->mdk->showKasiPrioritasDokumentasi();
+        $data['jawaban_pahamdanlaksanak3'] = $this->mdk->showKasiPrioritasPahamdanLaksanaK3();
+        $data['jawaban_pahamsop'] = $this->mdk->showKasiPrioritasPahamSOP();
+        $data['jawaban_pahamtools'] = $this->mdk->showKasiPrioritasKPM();
+        $data['jawaban_hadir'] = $this->mdk->showKasiPrioritasKehadiran();
+        $data['jawaban_disiplin'] = $this->mdk->showKasiPrioritasDisiplin();
+        $data['jawaban_inisiatif'] = $this->mdk->showKasiPrioritasInisiatif();
+
+        // echo "<pre>";
+        // print_r($data['product']);
+        // die;
+        // echo "</pre>";
+        $this->load->view('admin/tamplate/header', $data);
+        $this->load->view('admin/tamplate/sidebar', $data);
+        $this->load->view('admin/penilaian_manajer', $data);
+        $this->load->view('admin/tamplate/footer', $data);
+    }
+
+    public function delete_batch_manajer()
+    {
+        $id = $this->input->post('id');
+        for ($count = 0; $count < count($id); $count++) {
+            $query = $this->dkm->delete_batch($id[$count]);
+        }
+        if ($query) {
+            $this->session->set_flashdata(
+                'message',
+                '<div class="alert alert-primary alert-dismissible fade show" role="alert">
+                    Sukses direset
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>'
+            );
+            redirect('admin/master_data/show_penilaian_manajer');
+        } else {
+            $this->session->set_flashdata(
+                'message',
+                '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    Gagal direset
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>'
+            );
+            redirect('admin/master_data/show_penilaian_manajer');
+        }
+    }
+
+
+
+
+    public function cetak_penilaian_kasi()
+    {
+
+        $data['title'] = "show_penilaian_kasi";
+        $data['titleex'] = "Penilaian Kasi";
+        $data['data'] = $this->mdn->showPenilaianOP()->result_array();
+        $data['karyawan'] = $this->dkm->showDataOperator();
+        $data['quiz'] = $this->mdk->showQuisionerOperator();
+        $data['jawaban_productivity'] = $this->mdk->showPrioritasProductivity();
+        $data['jawaban_komker'] = $this->mdk->showPrioritasKomKer();
+        $data['jawaban_pelaksana5r'] = $this->mdk->showPrioritasPelaksana5r();
+        $data['jawaban_dokumentasi'] = $this->mdk->showPrioritasDokumentasi();
+        $data['jawaban_pahamdanlaksanak3'] = $this->mdk->showPrioritasPahamdanLaksanaK3();
+        $data['jawaban_pahamsop'] = $this->mdk->showPrioritasPahamSOP();
+        $data['jawaban_pahamtools'] = $this->mdk->showPrioritasPahamTools();
+        $data['jawaban_hadir'] = $this->mdk->showPrioritasKehadiran();
+        $data['jawaban_disiplin'] = $this->mdk->showPrioritasDisiplin();
+        $data['jawaban_inisiatif'] = $this->mdk->showPrioritasInisiatif();
+
+        // echo "<pre>";
+        // print_r($data['product']);
+        // die;
+        // echo "</pre>";
+        $this->load->view('admin/tamplate/header', $data);
+        // $this->load->view('admin/tamplate/sidebar', $data);
+        $this->load->view('admin/cetak_kasi', $data);
+        $this->load->view('admin/tamplate/footer', $data);
+    }
+
+    public function cetak_penilaian_manajer()
+    {
+
+        $data['title'] = "show_penilaian_manajer";
+        $data['titleex'] = "Penilaian Manajer";
+        $data['data'] = $this->mdn->showPenilaianKasi()->result_array();
+        $data['karyawan'] = $this->dkm->showDataKepdis();
+        $data['quiz'] = $this->mdk->showQuisionerKepalaDivisi();
+        $data['jawaban_productivity'] = $this->mdk->showKasiPrioritasProductivity();
+        $data['jawaban_komker'] = $this->mdk->showKasiPrioritasLeadership();
+        $data['jawaban_pelaksana5r'] = $this->mdk->showKasiPrioritasPelaksana5r();
+        $data['jawaban_dokumentasi'] = $this->mdk->showKasiPrioritasDokumentasi();
+        $data['jawaban_pahamdanlaksanak3'] = $this->mdk->showKasiPrioritasPahamdanLaksanaK3();
+        $data['jawaban_pahamsop'] = $this->mdk->showKasiPrioritasPahamSOP();
+        $data['jawaban_pahamtools'] = $this->mdk->showKasiPrioritasKPM();
+        $data['jawaban_hadir'] = $this->mdk->showKasiPrioritasKehadiran();
+        $data['jawaban_disiplin'] = $this->mdk->showKasiPrioritasDisiplin();
+        $data['jawaban_inisiatif'] = $this->mdk->showKasiPrioritasInisiatif();
+
+        // echo "<pre>";
+        // print_r($data['product']);
+        // die;
+        // echo "</pre>";
+        $this->load->view('admin/tamplate/header', $data);
+        // $this->load->view('admin/tamplate/sidebar', $data);
+        $this->load->view('admin/cetak_manajer', $data);
+        $this->load->view('admin/tamplate/footer', $data);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -18,18 +18,19 @@
                     <ul class="menu">
                         <li class="sidebar-title">Menu</li>
 
-                        <li class="sidebar-item active ">
-                            <a href="<?= base_url('kasi/dashboard'); ?>" class='sidebar-link'>
+                        <li class="sidebar-item <?= $this->uri->segment(2) == $title ? ' active' : '' ?>">
+                            <a href="<?= base_url('kasi/dashboard') ?>" class='sidebar-link'>
                                 <i class="bi bi-grid-fill"></i>
                                 <span>Dashboard</span>
                             </a>
                         </li>
 
-                        <li class="sidebar-item ">
+                        <li class="sidebar-item <?= $this->uri->segment(3) == $title ? ' active' : '' ?>">
                             <a href="<?= base_url('kasi/master_data/penilaian_op') ?>" class='sidebar-link'>
                                 <i class="bi bi-stack"></i>
-                                <span>Penilaian Opeartor</span>
+                                <span>Penilaian Kepala Divisi</span>
                             </a>
+                        </li>
 
                         <li class="sidebar-item  ">
                             <a href="<?php echo site_url('login/logout'); ?>" class='sidebar-link'>

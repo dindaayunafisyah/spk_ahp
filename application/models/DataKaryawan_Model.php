@@ -17,7 +17,12 @@ class DataKaryawan_Model extends CI_Model
 
 
 
-
+   public function delete_batch($id)
+   {
+      $this->db->where('id_penilaian', $id);
+      $this->db->delete('tb_penilaian');
+      return true;
+   }
 
 
 
@@ -698,37 +703,165 @@ class DataKaryawan_Model extends CI_Model
 
 
    // ------------ || ------------
-   //Pemahaman SOP dan SPK
+   //Pemahaman SOP dan SPK OPERATOR
    public function showSubrangePahamSOPSPK()
    {
-      $query = "SELECT * FROM tb_subrange_pahamsopspk";
+      $query = "SELECT * FROM tb_subrange_pahamsopspk
+                  WHERE tb_subrange_pahamsopspk.id_subrange_pss >= 1 AND tb_subrange_pahamsopspk.id_subrange_pss <= 4
+                     ORDER BY tb_subrange_pahamsopspk.id_subrange_pss LIMIT 4";
       return $this->db->query($query)->result_array();
    }
    public function showSubmatrixPahamSOPSPK()
    {
-      $query = "SELECT * FROM tb_submatriks_pahamsopspk";
+      $query = "SELECT * FROM tb_submatriks_pahamsopspk 
+                   WHERE tb_submatriks_pahamsopspk.id_submatrix_pss >= 1 AND tb_submatriks_pahamsopspk.id_submatrix_pss <= 4
+                     ORDER BY tb_submatriks_pahamsopspk.id_submatrix_pss LIMIT 4";
       return $this->db->query($query)->result_array();
    }
    public function sumSubrangePahamSOPSPK()
    {
-      $query = "SELECT SUM(sangat_mampu) AS sumSgtMampu, SUM(mampu) AS sumMampu, SUM(kurang_mampu) AS sumKrgMampu, SUM(tidak_mampu) AS sumTdkMampu FROM tb_subrange_pahamsopspk";
+      $query = "SELECT SUM(sangat_mampu) AS sumSgtMampu, SUM(mampu) AS sumMampu, SUM(kurang_mampu) AS sumKrgMampu, SUM(tidak_mampu) AS sumTdkMampu FROM tb_subrange_pahamsopspk
+                  WHERE tb_subrange_pahamsopspk.id_subrange_pss >= 1 AND tb_subrange_pahamsopspk.id_subrange_pss <= 4
+                     ORDER BY tb_subrange_pahamsopspk.id_subrange_pss LIMIT 4";
       return $this->db->query($query)->row_array();
    }
    public function sumSubmatrixPahamSOPSPK()
    {
-      $query = "SELECT SUM(sangat_mampu) AS sumSgtMampu, SUM(mampu) AS sumMampu, SUM(kurang_mampu) AS sumKrgMampu, SUM(tidak_mampu) AS sumTdkMampu, SUM(jumlah) AS submtxJum, SUM(prioritas) AS submtxPrior, SUM(eigen_value) AS submtxEig FROM tb_submatriks_pahamsopspk";
+      $query = "SELECT SUM(sangat_mampu) AS sumSgtMampu, SUM(mampu) AS sumMampu, SUM(kurang_mampu) AS sumKrgMampu, SUM(tidak_mampu) AS sumTdkMampu, SUM(jumlah) AS submtxJum, SUM(prioritas) AS submtxPrior, SUM(eigen_value) AS submtxEig FROM tb_submatriks_pahamsopspk
+                   WHERE tb_submatriks_pahamsopspk.id_submatrix_pss >= 1 AND tb_submatriks_pahamsopspk.id_submatrix_pss <= 4
+                     ORDER BY tb_submatriks_pahamsopspk.id_submatrix_pss LIMIT 4";
       return $this->db->query($query)->row_array();
    }
    public function sumSubrangePahamSOPSPKOPResArray()
    {
-      $query = "SELECT SUM(sangat_mampu) AS '0', SUM(mampu) AS '1', SUM(kurang_mampu) AS '2', SUM(tidak_mampu) AS '3' FROM tb_subrange_pahamsopspk";
+      $query = "SELECT SUM(sangat_mampu) AS '0', SUM(mampu) AS '1', SUM(kurang_mampu) AS '2', SUM(tidak_mampu) AS '3' FROM tb_subrange_pahamsopspk
+                  WHERE tb_subrange_pahamsopspk.id_subrange_pss >= 1 AND tb_subrange_pahamsopspk.id_subrange_pss <= 4
+                     ORDER BY tb_subrange_pahamsopspk.id_subrange_pss LIMIT 4";
       return $this->db->query($query)->row_array();
    }
    public function countSubrangePahamSOPSPK()
    {
-      $query = "SELECT COUNT(tb_subrange_pahamsopspk.id_subrange_pss) AS jumSubPSS FROM tb_subrange_pahamsopspk";
+      $query = "SELECT COUNT(tb_subrange_pahamsopspk.id_subrange_pss) AS jumSubPSS FROM tb_subrange_pahamsopspk
+                  WHERE tb_subrange_pahamsopspk.id_subrange_pss >= 1 AND tb_subrange_pahamsopspk.id_subrange_pss <= 4
+                     ORDER BY tb_subrange_pahamsopspk.id_subrange_pss LIMIT 4";
       return $this->db->query($query)->row_array();
    }
+   //Pemahaman SOP dan SPK OPERATOR
+
+
+
+
+
+
+   //Pemahaman SOP dan SPK KASI
+   public function showSubrangePahamSOPSPKKasi()
+   {
+      $query = "SELECT * FROM tb_subrange_pahamsopspk
+                  WHERE tb_subrange_pahamsopspk.id_subrange_pss >= 5 AND tb_subrange_pahamsopspk.id_subrange_pss <= 8
+                     ORDER BY tb_subrange_pahamsopspk.id_subrange_pss LIMIT 4";
+      return $this->db->query($query)->result_array();
+   }
+   public function showSubmatrixPahamSOPSPKKasi()
+   {
+      $query = "SELECT * FROM tb_submatriks_pahamsopspk 
+                   WHERE tb_submatriks_pahamsopspk.id_submatrix_pss >= 5 AND tb_submatriks_pahamsopspk.id_submatrix_pss <= 8
+                     ORDER BY tb_submatriks_pahamsopspk.id_submatrix_pss LIMIT 4";
+      return $this->db->query($query)->result_array();
+   }
+   public function sumSubrangePahamSOPSPKKasi()
+   {
+      $query = "SELECT SUM(sangat_mampu) AS sumSgtMampu, SUM(mampu) AS sumMampu, SUM(kurang_mampu) AS sumKrgMampu, SUM(tidak_mampu) AS sumTdkMampu FROM tb_subrange_pahamsopspk
+                  WHERE tb_subrange_pahamsopspk.id_subrange_pss >= 5 AND tb_subrange_pahamsopspk.id_subrange_pss <= 8
+                     ORDER BY tb_subrange_pahamsopspk.id_subrange_pss LIMIT 4";
+      return $this->db->query($query)->row_array();
+   }
+   public function sumSubmatrixPahamSOPSPKKasi()
+   {
+      $query = "SELECT SUM(sangat_mampu) AS sumSgtMampu, SUM(mampu) AS sumMampu, SUM(kurang_mampu) AS sumKrgMampu, SUM(tidak_mampu) AS sumTdkMampu, SUM(jumlah) AS submtxJum, SUM(prioritas) AS submtxPrior, SUM(eigen_value) AS submtxEig FROM tb_submatriks_pahamsopspk
+                   WHERE tb_submatriks_pahamsopspk.id_submatrix_pss >= 5 AND tb_submatriks_pahamsopspk.id_submatrix_pss <= 8
+                     ORDER BY tb_submatriks_pahamsopspk.id_submatrix_pss LIMIT 4";
+      return $this->db->query($query)->row_array();
+   }
+   public function sumSubrangePahamSOPSPKKasiResArray()
+   {
+      $query = "SELECT SUM(sangat_mampu) AS '0', SUM(mampu) AS '1', SUM(kurang_mampu) AS '2', SUM(tidak_mampu) AS '3' FROM tb_subrange_pahamsopspk
+                  WHERE tb_subrange_pahamsopspk.id_subrange_pss >= 5 AND tb_subrange_pahamsopspk.id_subrange_pss <= 8
+                     ORDER BY tb_subrange_pahamsopspk.id_subrange_pss LIMIT 4";
+      return $this->db->query($query)->row_array();
+   }
+   public function countSubrangePahamSOPSPKKasi()
+   {
+      $query = "SELECT COUNT(tb_subrange_pahamsopspk.id_subrange_pss) AS jumSubPSS FROM tb_subrange_pahamsopspk
+                  WHERE tb_subrange_pahamsopspk.id_subrange_pss >= 5 AND tb_subrange_pahamsopspk.id_subrange_pss <= 8
+                     ORDER BY tb_subrange_pahamsopspk.id_subrange_pss LIMIT 4";
+      return $this->db->query($query)->row_array();
+   }
+   //Pemahaman SOP dan SPK KASI
+
+
+
+
+
+
+
+
+
+
+   //Kemampuan Pemecahan Masalah
+   public function showSubrangeKPM()
+   {
+      $query = "SELECT * FROM tb_subrange_pahamsopspk
+                  WHERE tb_subrange_pahamsopspk.id_subrange_pss >= 9 AND tb_subrange_pahamsopspk.id_subrange_pss <= 12
+                     ORDER BY tb_subrange_pahamsopspk.id_subrange_pss LIMIT 4";
+      return $this->db->query($query)->result_array();
+   }
+   public function showSubmatrixKPM()
+   {
+      $query = "SELECT * FROM tb_submatriks_pahamsopspk 
+                   WHERE tb_submatriks_pahamsopspk.id_submatrix_pss >= 9 AND tb_submatriks_pahamsopspk.id_submatrix_pss <= 12
+                     ORDER BY tb_submatriks_pahamsopspk.id_submatrix_pss LIMIT 4";
+      return $this->db->query($query)->result_array();
+   }
+   public function sumSubrangeKPM()
+   {
+      $query = "SELECT SUM(sangat_mampu) AS sumSgtMampu, SUM(mampu) AS sumMampu, SUM(kurang_mampu) AS sumKrgMampu, SUM(tidak_mampu) AS sumTdkMampu FROM tb_subrange_pahamsopspk
+                  WHERE tb_subrange_pahamsopspk.id_subrange_pss >= 9 AND tb_subrange_pahamsopspk.id_subrange_pss <= 12
+                     ORDER BY tb_subrange_pahamsopspk.id_subrange_pss LIMIT 4";
+      return $this->db->query($query)->row_array();
+   }
+   public function sumSubmatrixKPM()
+   {
+      $query = "SELECT SUM(sangat_mampu) AS sumSgtMampu, SUM(mampu) AS sumMampu, SUM(kurang_mampu) AS sumKrgMampu, SUM(tidak_mampu) AS sumTdkMampu, SUM(jumlah) AS submtxJum, SUM(prioritas) AS submtxPrior, SUM(eigen_value) AS submtxEig FROM tb_submatriks_pahamsopspk
+                   WHERE tb_submatriks_pahamsopspk.id_submatrix_pss >= 9 AND tb_submatriks_pahamsopspk.id_submatrix_pss <= 12
+                     ORDER BY tb_submatriks_pahamsopspk.id_submatrix_pss LIMIT 4";
+      return $this->db->query($query)->row_array();
+   }
+   public function sumSubrangeKPMResArray()
+   {
+      $query = "SELECT SUM(sangat_mampu) AS '0', SUM(mampu) AS '1', SUM(kurang_mampu) AS '2', SUM(tidak_mampu) AS '3' FROM tb_subrange_pahamsopspk
+                  WHERE tb_subrange_pahamsopspk.id_subrange_pss >= 9 AND tb_subrange_pahamsopspk.id_subrange_pss <= 12
+                     ORDER BY tb_subrange_pahamsopspk.id_subrange_pss LIMIT 4";
+      return $this->db->query($query)->row_array();
+   }
+   public function countSubrangeKPM()
+   {
+      $query = "SELECT COUNT(tb_subrange_pahamsopspk.id_subrange_pss) AS jumSubPSS FROM tb_subrange_pahamsopspk
+                  WHERE tb_subrange_pahamsopspk.id_subrange_pss >= 9 AND tb_subrange_pahamsopspk.id_subrange_pss <= 12
+                     ORDER BY tb_subrange_pahamsopspk.id_subrange_pss LIMIT 4";
+      return $this->db->query($query)->row_array();
+   }
+   //Kemampuan Pemecahan Masalah
+   // ------------ || ------------
+
+
+
+
+
+
+
+
+
+
 
    // ------------ || ------------
    //Pemahaman Tools
@@ -763,102 +896,317 @@ class DataKaryawan_Model extends CI_Model
       return $this->db->query($query)->row_array();
    }
 
+
+
+
+
+
+
+
+
+
+
    // ------------ || ------------
    //Kehadiran
    public function showSubrangeKehadiran()
    {
-      $query = "SELECT * FROM tb_subrange_kehadiran";
+      $query = "SELECT * FROM tb_subrange_kehadiran
+                  WHERE tb_subrange_kehadiran.id_subrange_hdr >= 1 AND tb_subrange_kehadiran.id_subrange_hdr <= 8
+                     ORDER BY tb_subrange_kehadiran.id_subrange_hdr LIMIT 8";
       return $this->db->query($query)->result_array();
    }
    public function showSubmatrixKehadiran()
    {
-      $query = "SELECT * FROM tb_submatriks_kehadiran";
+      $query = "SELECT * FROM tb_submatriks_kehadiran
+                  WHERE tb_submatriks_kehadiran.id_submatrix_hdr >= 1 AND tb_submatriks_kehadiran.id_submatrix_hdr <= 8
+                     ORDER BY tb_submatriks_kehadiran.id_submatrix_hdr LIMIT 8";
       return $this->db->query($query)->result_array();
    }
    public function sumSubrangeKehadiran()
    {
-      $query = "SELECT SUM(hadir100) AS sum100, SUM(hadir100t) AS sum100t, SUM(hadir90) AS sum90, SUM(hadir90t) AS sum90t, SUM(hadir80) AS sum80, SUM(hadir80t) AS sum80t, SUM(hadir70) AS sum70, SUM(hadir70t) AS sum70t FROM tb_subrange_kehadiran";
+      $query = "SELECT SUM(hadir100) AS sum100, SUM(hadir100t) AS sum100t, SUM(hadir90) AS sum90, SUM(hadir90t) AS sum90t, SUM(hadir80) AS sum80, SUM(hadir80t) AS sum80t, SUM(hadir70) AS sum70, SUM(hadir70t) AS sum70t FROM tb_subrange_kehadiran
+                  WHERE tb_subrange_kehadiran.id_subrange_hdr >= 1 AND tb_subrange_kehadiran.id_subrange_hdr <= 8
+                     ORDER BY tb_subrange_kehadiran.id_subrange_hdr LIMIT 8";
       return $this->db->query($query)->row_array();
    }
    public function sumSubmatrixKehadiran()
    {
-      $query = "SELECT SUM(hadir100) AS sum100, SUM(hadir100t) AS sum100t, SUM(hadir90) AS sum90, SUM(hadir90t) AS sum90t, SUM(hadir80) AS sum80, SUM(hadir80t) AS sum80t, SUM(hadir70) AS sum70, SUM(hadir70t) AS sum70t, SUM(jumlah) AS submtxJum, SUM(prioritas) AS submtxPrior, SUM(eigen_value) AS submtxEig FROM tb_submatriks_kehadiran";
+      $query = "SELECT SUM(hadir100) AS sum100, SUM(hadir100t) AS sum100t, SUM(hadir90) AS sum90, SUM(hadir90t) AS sum90t, SUM(hadir80) AS sum80, SUM(hadir80t) AS sum80t, SUM(hadir70) AS sum70, SUM(hadir70t) AS sum70t, SUM(jumlah) AS submtxJum, SUM(prioritas) AS submtxPrior, SUM(eigen_value) AS submtxEig FROM tb_submatriks_kehadiran
+                  WHERE tb_submatriks_kehadiran.id_submatrix_hdr >= 1 AND tb_submatriks_kehadiran.id_submatrix_hdr <= 8
+                     ORDER BY tb_submatriks_kehadiran.id_submatrix_hdr LIMIT 8";
       return $this->db->query($query)->row_array();
    }
    public function sumSubrangeKehadiranOPResArray()
    {
-      $query = "SELECT SUM(hadir100) AS '0', SUM(hadir100t) AS '1', SUM(hadir90) AS '2', SUM(hadir90t) AS '3', SUM(hadir80) AS '4', SUM(hadir80t) AS '5', SUM(hadir70) AS '6', SUM(hadir70t) AS '7' FROM tb_subrange_kehadiran";
+      $query = "SELECT SUM(hadir100) AS '0', SUM(hadir100t) AS '1', SUM(hadir90) AS '2', SUM(hadir90t) AS '3', SUM(hadir80) AS '4', SUM(hadir80t) AS '5', SUM(hadir70) AS '6', SUM(hadir70t) AS '7' FROM tb_subrange_kehadiran
+                  WHERE tb_subrange_kehadiran.id_subrange_hdr >= 1 AND tb_subrange_kehadiran.id_subrange_hdr <= 8
+                     ORDER BY tb_subrange_kehadiran.id_subrange_hdr LIMIT 8";
       return $this->db->query($query)->row_array();
    }
    public function countSubrangeKehadiran()
    {
-      $query = "SELECT COUNT(tb_subrange_kehadiran.id_subrange_hdr) AS jumSubHDR FROM tb_subrange_kehadiran";
+      $query = "SELECT COUNT(tb_subrange_kehadiran.id_subrange_hdr) AS jumSubHDR FROM tb_subrange_kehadiran
+                  WHERE tb_subrange_kehadiran.id_subrange_hdr >= 1 AND tb_subrange_kehadiran.id_subrange_hdr <= 8
+                     ORDER BY tb_subrange_kehadiran.id_subrange_hdr LIMIT 8";
       return $this->db->query($query)->row_array();
    }
 
-   // ------------ || ------------
+
+
+
+
+
+   public function showSubrangeKehadiranKasi()
+   {
+      $query = "SELECT * FROM tb_subrange_kehadiran
+                  WHERE tb_subrange_kehadiran.id_subrange_hdr >= 9 AND tb_subrange_kehadiran.id_subrange_hdr <= 16
+                     ORDER BY tb_subrange_kehadiran.id_subrange_hdr LIMIT 8";
+      return $this->db->query($query)->result_array();
+   }
+   public function showSubmatrixKehadiranKasi()
+   {
+      $query = "SELECT * FROM tb_submatriks_kehadiran
+                  WHERE tb_submatriks_kehadiran.id_submatrix_hdr >= 9 AND tb_submatriks_kehadiran.id_submatrix_hdr <= 16
+                     ORDER BY tb_submatriks_kehadiran.id_submatrix_hdr LIMIT 8";
+      return $this->db->query($query)->result_array();
+   }
+   public function sumSubrangeKehadiranKasi()
+   {
+      $query = "SELECT SUM(hadir100) AS sum100, SUM(hadir100t) AS sum100t, SUM(hadir90) AS sum90, SUM(hadir90t) AS sum90t, SUM(hadir80) AS sum80, SUM(hadir80t) AS sum80t, SUM(hadir70) AS sum70, SUM(hadir70t) AS sum70t FROM tb_subrange_kehadiran
+                  WHERE tb_subrange_kehadiran.id_subrange_hdr >= 9 AND tb_subrange_kehadiran.id_subrange_hdr <= 16
+                     ORDER BY tb_subrange_kehadiran.id_subrange_hdr LIMIT 8";
+      return $this->db->query($query)->row_array();
+   }
+   public function sumSubmatrixKehadiranKasi()
+   {
+      $query = "SELECT SUM(hadir100) AS sum100, SUM(hadir100t) AS sum100t, SUM(hadir90) AS sum90, SUM(hadir90t) AS sum90t, SUM(hadir80) AS sum80, SUM(hadir80t) AS sum80t, SUM(hadir70) AS sum70, SUM(hadir70t) AS sum70t, SUM(jumlah) AS submtxJum, SUM(prioritas) AS submtxPrior, SUM(eigen_value) AS submtxEig FROM tb_submatriks_kehadiran
+                  WHERE tb_submatriks_kehadiran.id_submatrix_hdr >= 9 AND tb_submatriks_kehadiran.id_submatrix_hdr <= 16
+                     ORDER BY tb_submatriks_kehadiran.id_submatrix_hdr LIMIT 8";
+      return $this->db->query($query)->row_array();
+   }
+   public function sumSubrangeKehadiranKasiResArray()
+   {
+      $query = "SELECT SUM(hadir100) AS '0', SUM(hadir100t) AS '1', SUM(hadir90) AS '2', SUM(hadir90t) AS '3', SUM(hadir80) AS '4', SUM(hadir80t) AS '5', SUM(hadir70) AS '6', SUM(hadir70t) AS '7' FROM tb_subrange_kehadiran
+                  WHERE tb_subrange_kehadiran.id_subrange_hdr >= 9 AND tb_subrange_kehadiran.id_subrange_hdr <= 16
+                     ORDER BY tb_subrange_kehadiran.id_subrange_hdr LIMIT 8";
+      return $this->db->query($query)->row_array();
+   }
+   public function countSubrangeKehadiranKasi()
+   {
+      $query = "SELECT COUNT(tb_subrange_kehadiran.id_subrange_hdr) AS jumSubHDR FROM tb_subrange_kehadiran
+                  WHERE tb_subrange_kehadiran.id_subrange_hdr >= 9 AND tb_subrange_kehadiran.id_subrange_hdr <= 16
+                     ORDER BY tb_subrange_kehadiran.id_subrange_hdr LIMIT 8";
+      return $this->db->query($query)->row_array();
+   }
    //Kehadiran
+   // ------------ || ------------
+
+
+
+
+
+
+
+
+
+
+   // ------------ || ------------
+   //Kedisiplinan
    public function showSubrangeKedisiplinan()
    {
-      $query = "SELECT * FROM tb_subrange_kedisiplinan";
+      $query = "SELECT * FROM tb_subrange_kedisiplinan
+                  WHERE tb_subrange_kedisiplinan.id_subrange_dsp >= 1 AND tb_subrange_kedisiplinan.id_subrange_dsp <= 3
+                     ORDER BY tb_subrange_kedisiplinan.id_subrange_dsp LIMIT 3";
       return $this->db->query($query)->result_array();
    }
    public function showSubmatrixKedisiplinan()
    {
-      $query = "SELECT * FROM tb_submatriks_kedisiplinan";
+      $query = "SELECT * FROM tb_submatriks_kedisiplinan
+                  WHERE tb_submatriks_kedisiplinan.id_submatrix_dsp >= 1 AND tb_submatriks_kedisiplinan.id_submatrix_dsp <= 3
+                     ORDER BY tb_submatriks_kedisiplinan.id_submatrix_dsp LIMIT 3";
       return $this->db->query($query)->result_array();
    }
    public function sumSubrangeKedisiplinan()
    {
-      $query = "SELECT SUM(tidak_melanggar) AS sumTDK_MLGR, SUM(sedikit_melanggar) AS sumSDK_MLGR, SUM(banyak_melanggar) AS sumBYK_MLGR FROM tb_subrange_kedisiplinan";
+      $query = "SELECT SUM(tidak_melanggar) AS sumTDK_MLGR, SUM(sedikit_melanggar) AS sumSDK_MLGR, SUM(banyak_melanggar) AS sumBYK_MLGR FROM tb_subrange_kedisiplinan
+                  WHERE tb_subrange_kedisiplinan.id_subrange_dsp >= 1 AND tb_subrange_kedisiplinan.id_subrange_dsp <= 3
+                     ORDER BY tb_subrange_kedisiplinan.id_subrange_dsp LIMIT 3";
       return $this->db->query($query)->row_array();
    }
    public function sumSubmatrixKedisiplinan()
    {
-      $query = "SELECT SUM(tidak_melanggar) AS sumTDK_MLGR, SUM(sedikit_melanggar) AS sumSDK_MLGR, SUM(banyak_melanggar) AS sumBYK_MLGR, SUM(jumlah) AS submtxJum, SUM(prioritas) AS submtxPrior, SUM(eigen_value) AS submtxEig FROM tb_submatriks_kedisiplinan";
+      $query = "SELECT SUM(tidak_melanggar) AS sumTDK_MLGR, SUM(sedikit_melanggar) AS sumSDK_MLGR, SUM(banyak_melanggar) AS sumBYK_MLGR, SUM(jumlah) AS submtxJum, SUM(prioritas) AS submtxPrior, SUM(eigen_value) AS submtxEig FROM tb_submatriks_kedisiplinan
+                   WHERE tb_submatriks_kedisiplinan.id_submatrix_dsp >= 1 AND tb_submatriks_kedisiplinan.id_submatrix_dsp <= 3
+                     ORDER BY tb_submatriks_kedisiplinan.id_submatrix_dsp LIMIT 3";
       return $this->db->query($query)->row_array();
    }
    public function sumSubrangeKedisiplinanOPResArray()
    {
-      $query = "SELECT SUM(tidak_melanggar) AS '0', SUM(sedikit_melanggar) AS '1', SUM(banyak_melanggar) AS '2' FROM tb_subrange_kedisiplinan";
+      $query = "SELECT SUM(tidak_melanggar) AS '0', SUM(sedikit_melanggar) AS '1', SUM(banyak_melanggar) AS '2' FROM tb_subrange_kedisiplinan
+                  WHERE tb_subrange_kedisiplinan.id_subrange_dsp >= 1 AND tb_subrange_kedisiplinan.id_subrange_dsp <= 3
+                     ORDER BY tb_subrange_kedisiplinan.id_subrange_dsp LIMIT 3";
       return $this->db->query($query)->row_array();
    }
    public function countSubrangeKedisiplinan()
    {
-      $query = "SELECT COUNT(tb_subrange_kedisiplinan.id_subrange_dsp) AS jumSubDSP FROM tb_subrange_kedisiplinan";
+      $query = "SELECT COUNT(tb_subrange_kedisiplinan.id_subrange_dsp) AS jumSubDSP FROM tb_subrange_kedisiplinan
+                  WHERE tb_subrange_kedisiplinan.id_subrange_dsp >= 1 AND tb_subrange_kedisiplinan.id_subrange_dsp <= 3
+                     ORDER BY tb_subrange_kedisiplinan.id_subrange_dsp LIMIT 3";
       return $this->db->query($query)->row_array();
    }
+
+
+
+
+
+
+
+   public function showSubrangeKedisiplinanKasi()
+   {
+      $query = "SELECT * FROM tb_subrange_kedisiplinan
+                  WHERE tb_subrange_kedisiplinan.id_subrange_dsp >= 4 AND tb_subrange_kedisiplinan.id_subrange_dsp <= 6
+                     ORDER BY tb_subrange_kedisiplinan.id_subrange_dsp LIMIT 3";
+      return $this->db->query($query)->result_array();
+   }
+   public function showSubmatrixKedisiplinanKasi()
+   {
+      $query = "SELECT * FROM tb_submatriks_kedisiplinan
+                  WHERE tb_submatriks_kedisiplinan.id_submatrix_dsp >= 4 AND tb_submatriks_kedisiplinan.id_submatrix_dsp <= 6
+                     ORDER BY tb_submatriks_kedisiplinan.id_submatrix_dsp LIMIT 3";
+      return $this->db->query($query)->result_array();
+   }
+   public function sumSubrangeKedisiplinanKasi()
+   {
+      $query = "SELECT SUM(tidak_melanggar) AS sumTDK_MLGR, SUM(sedikit_melanggar) AS sumSDK_MLGR, SUM(banyak_melanggar) AS sumBYK_MLGR FROM tb_subrange_kedisiplinan
+                  WHERE tb_subrange_kedisiplinan.id_subrange_dsp >= 4 AND tb_subrange_kedisiplinan.id_subrange_dsp <= 6
+                     ORDER BY tb_subrange_kedisiplinan.id_subrange_dsp LIMIT 3";
+      return $this->db->query($query)->row_array();
+   }
+   public function sumSubmatrixKedisiplinanKasi()
+   {
+      $query = "SELECT SUM(tidak_melanggar) AS sumTDK_MLGR, SUM(sedikit_melanggar) AS sumSDK_MLGR, SUM(banyak_melanggar) AS sumBYK_MLGR, SUM(jumlah) AS submtxJum, SUM(prioritas) AS submtxPrior, SUM(eigen_value) AS submtxEig FROM tb_submatriks_kedisiplinan
+                   WHERE tb_submatriks_kedisiplinan.id_submatrix_dsp >= 4 AND tb_submatriks_kedisiplinan.id_submatrix_dsp <= 6
+                     ORDER BY tb_submatriks_kedisiplinan.id_submatrix_dsp LIMIT 3";
+      return $this->db->query($query)->row_array();
+   }
+   public function sumSubrangeKedisiplinanKasiResArray()
+   {
+      $query = "SELECT SUM(tidak_melanggar) AS '0', SUM(sedikit_melanggar) AS '1', SUM(banyak_melanggar) AS '2' FROM tb_subrange_kedisiplinan
+                  WHERE tb_subrange_kedisiplinan.id_subrange_dsp >= 4 AND tb_subrange_kedisiplinan.id_subrange_dsp <= 6
+                     ORDER BY tb_subrange_kedisiplinan.id_subrange_dsp LIMIT 3";
+      return $this->db->query($query)->row_array();
+   }
+   public function countSubrangeKedisiplinanKasi()
+   {
+      $query = "SELECT COUNT(tb_subrange_kedisiplinan.id_subrange_dsp) AS jumSubDSP FROM tb_subrange_kedisiplinan
+                  WHERE tb_subrange_kedisiplinan.id_subrange_dsp >= 4 AND tb_subrange_kedisiplinan.id_subrange_dsp <= 6
+                     ORDER BY tb_subrange_kedisiplinan.id_subrange_dsp LIMIT 3";
+      return $this->db->query($query)->row_array();
+   }
+   //Kedisiplinan
+   // ------------ || ------------
+
+
+
+
+
+
+
+
+
 
    // ------------ || ------------
    //Inisiatif
    public function showSubrangeInisiatif()
    {
-      $query = "SELECT * FROM tb_subrange_inisiatif";
+      $query = "SELECT * FROM tb_subrange_inisiatif
+                  WHERE tb_subrange_inisiatif.id_subrange_inf >= 1 AND tb_subrange_inisiatif.id_subrange_inf <= 4
+                     ORDER BY tb_subrange_inisiatif.id_subrange_inf LIMIT 4";
       return $this->db->query($query)->result_array();
    }
    public function showSubmatrixInisiatif()
    {
-      $query = "SELECT * FROM tb_submatriks_inisiatif";
+      $query = "SELECT * FROM tb_submatriks_inisiatif
+                  WHERE tb_submatriks_inisiatif.id_submatrix_inf >= 1 AND tb_submatriks_inisiatif.id_submatrix_inf <= 4
+                     ORDER BY tb_submatriks_inisiatif.id_submatrix_inf LIMIT 4";
       return $this->db->query($query)->result_array();
    }
    public function sumSubrangeInisiatif()
    {
-      $query = "SELECT SUM(sangat_bagus) AS sumSGT_BGS, SUM(bagus) AS sumBGS, SUM(kurang_bagus) AS sumKRG_BGS, SUM(tidak_bagus) AS sumTDK_BGS FROM tb_subrange_inisiatif";
+      $query = "SELECT SUM(sangat_bagus) AS sumSGT_BGS, SUM(bagus) AS sumBGS, SUM(kurang_bagus) AS sumKRG_BGS, SUM(tidak_bagus) AS sumTDK_BGS FROM tb_subrange_inisiatif
+                  WHERE tb_subrange_inisiatif.id_subrange_inf >= 1 AND tb_subrange_inisiatif.id_subrange_inf <= 4
+                     ORDER BY tb_subrange_inisiatif.id_subrange_inf LIMIT 4";
       return $this->db->query($query)->row_array();
    }
    public function sumSubmatrixInisiatif()
    {
-      $query = "SELECT SUM(sangat_bagus) AS sumSGT_BGS, SUM(bagus) AS sumBGS, SUM(kurang_bagus) AS sumKRG_BGS, SUM(tidak_bagus) AS sumTDK_BGS, SUM(jumlah) AS submtxJum, SUM(prioritas) AS submtxPrior, SUM(eigen_value) AS submtxEig FROM tb_submatriks_inisiatif";
+      $query = "SELECT SUM(sangat_bagus) AS sumSGT_BGS, SUM(bagus) AS sumBGS, SUM(kurang_bagus) AS sumKRG_BGS, SUM(tidak_bagus) AS sumTDK_BGS, SUM(jumlah) AS submtxJum, SUM(prioritas) AS submtxPrior, SUM(eigen_value) AS submtxEig FROM tb_submatriks_inisiatif
+                  WHERE tb_submatriks_inisiatif.id_submatrix_inf >= 1 AND tb_submatriks_inisiatif.id_submatrix_inf <= 4
+                     ORDER BY tb_submatriks_inisiatif.id_submatrix_inf LIMIT 4";
       return $this->db->query($query)->row_array();
    }
    public function sumSubrangeInisiatifOPResArray()
    {
-      $query = "SELECT SUM(sangat_bagus) AS '0', SUM(bagus) AS '1', SUM(kurang_bagus) AS '2', SUM(tidak_bagus) AS '3' FROM tb_subrange_inisiatif";
+      $query = "SELECT SUM(sangat_bagus) AS '0', SUM(bagus) AS '1', SUM(kurang_bagus) AS '2', SUM(tidak_bagus) AS '3' FROM tb_subrange_inisiatif
+                  WHERE tb_subrange_inisiatif.id_subrange_inf >= 1 AND tb_subrange_inisiatif.id_subrange_inf <= 4
+                     ORDER BY tb_subrange_inisiatif.id_subrange_inf LIMIT 4";
       return $this->db->query($query)->row_array();
    }
    public function countSubrangeInisiatif()
    {
-      $query = "SELECT COUNT(tb_subrange_inisiatif.id_subrange_inf) AS jumSubINF FROM tb_subrange_inisiatif";
+      $query = "SELECT COUNT(tb_subrange_inisiatif.id_subrange_inf) AS jumSubINF FROM tb_subrange_inisiatif
+                  WHERE tb_subrange_inisiatif.id_subrange_inf >= 1 AND tb_subrange_inisiatif.id_subrange_inf <= 4
+                     ORDER BY tb_subrange_inisiatif.id_subrange_inf LIMIT 4";
       return $this->db->query($query)->row_array();
    }
+
+
+
+
+
+
+   public function showSubrangeInisiatifKasi()
+   {
+      $query = "SELECT * FROM tb_subrange_inisiatif
+                  WHERE tb_subrange_inisiatif.id_subrange_inf >= 5 AND tb_subrange_inisiatif.id_subrange_inf <= 8
+                     ORDER BY tb_subrange_inisiatif.id_subrange_inf LIMIT 4";
+      return $this->db->query($query)->result_array();
+   }
+   public function showSubmatrixInisiatifKasi()
+   {
+      $query = "SELECT * FROM tb_submatriks_inisiatif
+                  WHERE tb_submatriks_inisiatif.id_submatrix_inf >= 5 AND tb_submatriks_inisiatif.id_submatrix_inf <= 8
+                     ORDER BY tb_submatriks_inisiatif.id_submatrix_inf LIMIT 4";
+      return $this->db->query($query)->result_array();
+   }
+   public function sumSubrangeInisiatifKasi()
+   {
+      $query = "SELECT SUM(sangat_bagus) AS sumSGT_BGS, SUM(bagus) AS sumBGS, SUM(kurang_bagus) AS sumKRG_BGS, SUM(tidak_bagus) AS sumTDK_BGS FROM tb_subrange_inisiatif
+                  WHERE tb_subrange_inisiatif.id_subrange_inf >= 5 AND tb_subrange_inisiatif.id_subrange_inf <= 8
+                     ORDER BY tb_subrange_inisiatif.id_subrange_inf LIMIT 4";
+      return $this->db->query($query)->row_array();
+   }
+   public function sumSubmatrixInisiatifKasi()
+   {
+      $query = "SELECT SUM(sangat_bagus) AS sumSGT_BGS, SUM(bagus) AS sumBGS, SUM(kurang_bagus) AS sumKRG_BGS, SUM(tidak_bagus) AS sumTDK_BGS, SUM(jumlah) AS submtxJum, SUM(prioritas) AS submtxPrior, SUM(eigen_value) AS submtxEig FROM tb_submatriks_inisiatif
+                  WHERE tb_submatriks_inisiatif.id_submatrix_inf >= 5 AND tb_submatriks_inisiatif.id_submatrix_inf <= 8
+                     ORDER BY tb_submatriks_inisiatif.id_submatrix_inf LIMIT 4";
+      return $this->db->query($query)->row_array();
+   }
+   public function sumSubrangeInisiatifKasiResArray()
+   {
+      $query = "SELECT SUM(sangat_bagus) AS '0', SUM(bagus) AS '1', SUM(kurang_bagus) AS '2', SUM(tidak_bagus) AS '3' FROM tb_subrange_inisiatif
+                  WHERE tb_subrange_inisiatif.id_subrange_inf >= 5 AND tb_subrange_inisiatif.id_subrange_inf <= 8
+                     ORDER BY tb_subrange_inisiatif.id_subrange_inf LIMIT 4";
+      return $this->db->query($query)->row_array();
+   }
+   public function countSubrangeInisiatifKasi()
+   {
+      $query = "SELECT COUNT(tb_subrange_inisiatif.id_subrange_inf) AS jumSubINF FROM tb_subrange_inisiatif
+                  WHERE tb_subrange_inisiatif.id_subrange_inf >= 5 AND tb_subrange_inisiatif.id_subrange_inf <= 8
+                     ORDER BY tb_subrange_inisiatif.id_subrange_inf LIMIT 4";
+      return $this->db->query($query)->row_array();
+   }
+   //Inisiatif
+   // ------------ || ------------
 }

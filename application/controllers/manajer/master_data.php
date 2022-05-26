@@ -21,7 +21,7 @@ class master_data extends CI_Controller
         }
     }
 
-    public function penilaian_op()
+    public function penilaian_kasi()
     {
         $this->form_validation->set_rules('productivity', 'Kuis Productivity', 'required', [
             'required' => '%s tidak boleh kosong',
@@ -75,41 +75,41 @@ class master_data extends CI_Controller
 
         if ($this->form_validation->run() == false) {
 
-            $data['title'] = "penilaian_op";
-            $data['data'] = $this->mdn->showPenilaianOP()->result_array();
-            $data['karyawan'] = $this->dkm->showDataOperator();
-            $data['quiz'] = $this->mdk->showQuisionerOperator();
-            $data['jawaban_productivity'] = $this->mdk->showPrioritasProductivity();
-            $data['jawaban_komker'] = $this->mdk->showPrioritasKomKer();
-            $data['jawaban_pelaksana5r'] = $this->mdk->showPrioritasPelaksana5r();
-            $data['jawaban_dokumentasi'] = $this->mdk->showPrioritasDokumentasi();
-            $data['jawaban_pahamdanlaksanak3'] = $this->mdk->showPrioritasPahamdanLaksanaK3();
-            $data['jawaban_pahamsop'] = $this->mdk->showPrioritasPahamSOP();
-            $data['jawaban_pahamtools'] = $this->mdk->showPrioritasPahamTools();
-            $data['jawaban_hadir'] = $this->mdk->showPrioritasKehadiran();
-            $data['jawaban_disiplin'] = $this->mdk->showPrioritasDisiplin();
-            $data['jawaban_inisiatif'] = $this->mdk->showPrioritasInisiatif();
+            $data['title'] = "penilaian_kasi";
+            $data['data'] = $this->mdn->showPenilaianKasi()->result_array();
+            $data['karyawan'] = $this->dkm->showDataKepdis();
+            $data['quiz'] = $this->mdk->showQuisionerKepalaDivisi();
+            $data['jawaban_productivity'] = $this->mdk->showKasiPrioritasProductivity();
+            $data['jawaban_komker'] = $this->mdk->showKasiPrioritasLeadership();
+            $data['jawaban_pelaksana5r'] = $this->mdk->showKasiPrioritasPelaksana5r();
+            $data['jawaban_dokumentasi'] = $this->mdk->showKasiPrioritasDokumentasi();
+            $data['jawaban_pahamdanlaksanak3'] = $this->mdk->showKasiPrioritasPahamdanLaksanaK3();
+            $data['jawaban_pahamsop'] = $this->mdk->showKasiPrioritasPahamSOP();
+            $data['jawaban_pahamtools'] = $this->mdk->showKasiPrioritasKPM();
+            $data['jawaban_hadir'] = $this->mdk->showKasiPrioritasKehadiran();
+            $data['jawaban_disiplin'] = $this->mdk->showKasiPrioritasDisiplin();
+            $data['jawaban_inisiatif'] = $this->mdk->showKasiPrioritasInisiatif();
 
             // echo "<pre>";
             // print_r($data['product']);
             // die;
             // echo "</pre>";
-            $this->load->view('kasi/tamplate/header');
-            $this->load->view('kasi/tamplate/sidebar', $data);
-            $this->load->view('kasi/tamplate/penilaian_op', $data);
-            $this->load->view('kasi/tamplate/footer', $data);
+            $this->load->view('manajer/tamplate/header');
+            $this->load->view('manajer/tamplate/sidebar', $data);
+            $this->load->view('manajer/tamplate/penilaian_kasi', $data);
+            $this->load->view('manajer/tamplate/footer', $data);
         } else {
             $data['kriteria'] = $this->mdk->showPriorMatrixOP();
-            $product = $data['kriteria'][0]['prioritas'];
-            $komker = $data['kriteria'][1]['prioritas'];
-            $pl5r = $data['kriteria'][2]['prioritas'];
-            $doc = $data['kriteria'][3]['prioritas'];
-            $plk3 = $data['kriteria'][4]['prioritas'];
-            $pss = $data['kriteria'][5]['prioritas'];
-            $ptls = $data['kriteria'][6]['prioritas'];
-            $hdr = $data['kriteria'][7]['prioritas'];
-            $dsp = $data['kriteria'][8]['prioritas'];
-            $inf = $data['kriteria'][9]['prioritas'];
+            $product = $data['kriteria'][10]['prioritas'];
+            $komker = $data['kriteria'][11]['prioritas'];
+            $pl5r = $data['kriteria'][12]['prioritas'];
+            $doc = $data['kriteria'][13]['prioritas'];
+            $plk3 = $data['kriteria'][14]['prioritas'];
+            $pss = $data['kriteria'][15]['prioritas'];
+            $ptls = $data['kriteria'][16]['prioritas'];
+            $hdr = $data['kriteria'][17]['prioritas'];
+            $dsp = $data['kriteria'][18]['prioritas'];
+            $inf = $data['kriteria'][19]['prioritas'];
 
             $p1 = $this->input->post('productivity');
             $p2 = $this->input->post('komker');
@@ -174,20 +174,20 @@ class master_data extends CI_Controller
                 $this->session->set_flashdata(
                     'message',
                     '<div class="alert alert-primary alert-dismissible fade show" role="alert">
-                        Operator Sukses dinilai
+                        Kasi Sukses dinilai
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>'
                 );
-                redirect('kasi/master_data/penilaian_op');
+                redirect('manajer/master_data/penilaian_kasi');
             } else {
                 $this->session->set_flashdata(
                     'message',
                     '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-                       Operator  Gagal dinilai
+                       Kasi  Gagal dinilai
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>'
                 );
-                redirect('kasi/master_data/penilaian_op');
+                redirect('manajer/master_data/penilaian_kasi');
             }
         }
     }
